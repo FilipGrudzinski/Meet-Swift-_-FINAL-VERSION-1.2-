@@ -7,14 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1408977421CC1BD9003C2915 /* ColorTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1408977321CC1BD9003C2915 /* ColorTheme.swift */; };
 		149B3F7921BE7DCA00539BC3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149B3F7821BE7DCA00539BC3 /* AppDelegate.swift */; };
 		149B3F7B21BE7DCA00539BC3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149B3F7A21BE7DCA00539BC3 /* ViewController.swift */; };
 		149B3F7E21BE7DCA00539BC3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 149B3F7C21BE7DCA00539BC3 /* Main.storyboard */; };
 		149B3F8021BE7DCC00539BC3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 149B3F7F21BE7DCC00539BC3 /* Assets.xcassets */; };
 		149B3F8321BE7DCC00539BC3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 149B3F8121BE7DCC00539BC3 /* LaunchScreen.storyboard */; };
+		149B3F8E21BE7F2700539BC3 /* LessonsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149B3F8D21BE7F2700539BC3 /* LessonsTableViewController.swift */; };
+		149B3F9021BE7F8000539BC3 /* SubLessonsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149B3F8F21BE7F8000539BC3 /* SubLessonsTableViewController.swift */; };
+		149B3F9221BE7FC500539BC3 /* LessonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149B3F9121BE7FC500539BC3 /* LessonViewController.swift */; };
+		149B3F9421BE8DB600539BC3 /* LessonsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149B3F9321BE8DB600539BC3 /* LessonsModel.swift */; };
+		149B3F9621BE8DC600539BC3 /* BeginnerLessonsBank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149B3F9521BE8DC600539BC3 /* BeginnerLessonsBank.swift */; };
+		149B3F9821BE9A0C00539BC3 /* IntermediateLessonsBank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149B3F9721BE9A0C00539BC3 /* IntermediateLessonsBank.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1408977321CC1BD9003C2915 /* ColorTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorTheme.swift; sourceTree = "<group>"; };
 		149B3F7521BE7DCA00539BC3 /* Meet Swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Meet Swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		149B3F7821BE7DCA00539BC3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		149B3F7A21BE7DCA00539BC3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +30,12 @@
 		149B3F7F21BE7DCC00539BC3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		149B3F8221BE7DCC00539BC3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		149B3F8421BE7DCC00539BC3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		149B3F8D21BE7F2700539BC3 /* LessonsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonsTableViewController.swift; sourceTree = "<group>"; };
+		149B3F8F21BE7F8000539BC3 /* SubLessonsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubLessonsTableViewController.swift; sourceTree = "<group>"; };
+		149B3F9121BE7FC500539BC3 /* LessonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonViewController.swift; sourceTree = "<group>"; };
+		149B3F9321BE8DB600539BC3 /* LessonsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonsModel.swift; sourceTree = "<group>"; };
+		149B3F9521BE8DC600539BC3 /* BeginnerLessonsBank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeginnerLessonsBank.swift; sourceTree = "<group>"; };
+		149B3F9721BE9A0C00539BC3 /* IntermediateLessonsBank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntermediateLessonsBank.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +68,45 @@
 		149B3F7721BE7DCA00539BC3 /* Meet Swift */ = {
 			isa = PBXGroup;
 			children = (
-				149B3F7821BE7DCA00539BC3 /* AppDelegate.swift */,
-				149B3F7A21BE7DCA00539BC3 /* ViewController.swift */,
-				149B3F7C21BE7DCA00539BC3 /* Main.storyboard */,
+				149B3F8C21BE7EDE00539BC3 /* Controller */,
+				149B3F8B21BE7ED000539BC3 /* Model */,
+				149B3F8A21BE7EC700539BC3 /* View */,
 				149B3F7F21BE7DCC00539BC3 /* Assets.xcassets */,
 				149B3F8121BE7DCC00539BC3 /* LaunchScreen.storyboard */,
 				149B3F8421BE7DCC00539BC3 /* Info.plist */,
 			);
 			path = "Meet Swift";
+			sourceTree = "<group>";
+		};
+		149B3F8A21BE7EC700539BC3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				149B3F7C21BE7DCA00539BC3 /* Main.storyboard */,
+				1408977321CC1BD9003C2915 /* ColorTheme.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		149B3F8B21BE7ED000539BC3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				149B3F9321BE8DB600539BC3 /* LessonsModel.swift */,
+				149B3F9521BE8DC600539BC3 /* BeginnerLessonsBank.swift */,
+				149B3F9721BE9A0C00539BC3 /* IntermediateLessonsBank.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		149B3F8C21BE7EDE00539BC3 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				149B3F7821BE7DCA00539BC3 /* AppDelegate.swift */,
+				149B3F7A21BE7DCA00539BC3 /* ViewController.swift */,
+				149B3F8D21BE7F2700539BC3 /* LessonsTableViewController.swift */,
+				149B3F8F21BE7F8000539BC3 /* SubLessonsTableViewController.swift */,
+				149B3F9121BE7FC500539BC3 /* LessonViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -135,8 +180,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1408977421CC1BD9003C2915 /* ColorTheme.swift in Sources */,
 				149B3F7B21BE7DCA00539BC3 /* ViewController.swift in Sources */,
+				149B3F9621BE8DC600539BC3 /* BeginnerLessonsBank.swift in Sources */,
 				149B3F7921BE7DCA00539BC3 /* AppDelegate.swift in Sources */,
+				149B3F9021BE7F8000539BC3 /* SubLessonsTableViewController.swift in Sources */,
+				149B3F9821BE9A0C00539BC3 /* IntermediateLessonsBank.swift in Sources */,
+				149B3F9421BE8DB600539BC3 /* LessonsModel.swift in Sources */,
+				149B3F9221BE7FC500539BC3 /* LessonViewController.swift in Sources */,
+				149B3F8E21BE7F2700539BC3 /* LessonsTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
