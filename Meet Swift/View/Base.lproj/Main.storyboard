@@ -64,13 +64,24 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="yaj-hv-lbg">
+                        <nil key="title"/>
                         <barButtonItem key="leftBarButtonItem" title="About" id="PYR-sM-5Yc">
                             <connections>
                                 <segue destination="BYZ-38-t0r" kind="show" identifier="aboutview" id="iSI-L2-2wz"/>
                             </connections>
                         </barButtonItem>
+                        <switch key="titleView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="j3z-fy-Q3m">
+                            <rect key="frame" x="162" y="6.5" width="51" height="31"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <connections>
+                                <action selector="toggleSwitch:" destination="V0q-eY-EaJ" eventType="valueChanged" id="I0e-Zk-lgx"/>
+                            </connections>
+                        </switch>
                         <barButtonItem key="rightBarButtonItem" title="Settings" id="INf-Vk-UUB"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="switchButton" destination="j3z-fy-Q3m" id="nYe-ta-kYY"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hGp-3I-297" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -132,6 +143,9 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="tq6-GC-rzB">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="V0q-eY-EaJ" kind="relationship" relationship="rootViewController" id="gK6-BJ-gH8"/>
                     </connections>

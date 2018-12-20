@@ -23,21 +23,17 @@ class SubLessonsTableViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return subLessons.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-        
-        let cell = UITableViewCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: "SubLessonsCell")
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SubLessonsCell", for: indexPath)
         
         let name = subLessons[indexPath.row]
         
         cell.textLabel?.text = name
-        
         
         return cell
     }
@@ -45,11 +41,7 @@ class SubLessonsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        
         lessonTitle = self.subLessons[indexPath.row]
-        performSegue(withIdentifier: "goToSubLessons", sender: nil)
-        
-        
         
     }
     
