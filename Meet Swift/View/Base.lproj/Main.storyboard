@@ -10,23 +10,23 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--About View View Controller-->
+        <!--About-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="AboutViewViewController" customModule="Meet_Swift" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="About" id="BYZ-38-t0r" customClass="AboutViewViewController" customModule="Meet_Swift" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8e9-lG-Gej">
                                 <rect key="frame" x="16" y="81" width="343" height="101.5"/>
-                                <string key="text">    Meet Swift jest to autorska aplikacja w celu nauki języka programowania Swift. Aplikacja Pozwoli nauczyć się podstaw skladni języka Swift jak i zaawansowane zagadnienia. </string>
+                                <string key="text">    Meet Swift jest to autorska aplikacja w celu nauki języka programowania Swift. Aplikacja Pozwoli nauczyć się podstaw skladni języka Swift jak i zaawansowanych zagadnień. </string>
                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="TGQ-Tx-s4Y">
-                                <rect key="frame" x="16" y="240" width="250" height="46"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="TGQ-Tx-s4Y">
+                                <rect key="frame" x="16" y="240" width="250" height="57"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="hcM-wR-Euk">
                                         <rect key="frame" x="0.0" y="0.0" width="250" height="20.5"/>
@@ -46,7 +46,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="UJJ-7d-prI">
-                                        <rect key="frame" x="0.0" y="25.5" width="250" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="36.5" width="250" height="20.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Kontakt:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MAq-aC-Ugg">
                                                 <rect key="frame" x="0.0" y="0.0" width="69.5" height="20.5"/>
@@ -81,7 +81,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1821.5999999999999" y="-543.77811094452773"/>
+            <point key="canvasLocation" x="1823" y="-654"/>
         </scene>
         <!--Lessons Table View Controller-->
         <scene sceneID="0KS-vh-VxZ">
@@ -116,22 +116,77 @@
                                 <segue destination="BYZ-38-t0r" kind="show" identifier="aboutView" id="iSI-L2-2wz"/>
                             </connections>
                         </barButtonItem>
-                        <switch key="titleView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="j3z-fy-Q3m">
-                            <rect key="frame" x="162" y="6.5" width="51" height="31"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <barButtonItem key="rightBarButtonItem" title="Settings" id="INf-Vk-UUB">
                             <connections>
-                                <action selector="toggleSwitch:" destination="V0q-eY-EaJ" eventType="valueChanged" id="I0e-Zk-lgx"/>
+                                <segue destination="GuP-gJ-gds" kind="show" identifier="settingsView" id="oDC-qV-Epw"/>
                             </connections>
-                        </switch>
-                        <barButtonItem key="rightBarButtonItem" title="Settings" id="INf-Vk-UUB"/>
+                        </barButtonItem>
                     </navigationItem>
-                    <connections>
-                        <outlet property="switchButton" destination="j3z-fy-Q3m" id="nYe-ta-kYY"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hGp-3I-297" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1823.2" y="134.48275862068968"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="kHG-CY-EGV">
+            <objects>
+                <viewController title="Settings" id="GuP-gJ-gds" customClass="SettingsViewController" customModule="Meet_Swift" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="YzC-Nl-XzN">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pUy-9P-S3O">
+                                <rect key="frame" x="16" y="121.5" width="137" height="33"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="Reset all progress"/>
+                                <connections>
+                                    <action selector="resetAllProgressButton:" destination="GuP-gJ-gds" eventType="touchUpInside" id="c0S-Q1-tJ8"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AV2-O9-lmp">
+                                <rect key="frame" x="16" y="170.5" width="189" height="33"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="Restore in-app purchase"/>
+                                <connections>
+                                    <action selector="restoreInAppPurchaseButton:" destination="GuP-gJ-gds" eventType="touchUpInside" id="zEK-WB-bFc"/>
+                                </connections>
+                            </button>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="XiE-ey-WoL">
+                                <rect key="frame" x="310" y="80" width="51" height="31"/>
+                                <connections>
+                                    <action selector="colorThemeSwitch:" destination="GuP-gJ-gds" eventType="valueChanged" id="ll8-he-Ha1"/>
+                                </connections>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dark Mode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gu0-UV-g8D">
+                                <rect key="frame" x="16" y="85" width="84" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="AV2-O9-lmp" firstAttribute="leading" secondItem="62q-kT-5q6" secondAttribute="leading" constant="16" id="6hm-cF-2BU"/>
+                            <constraint firstItem="pUy-9P-S3O" firstAttribute="leading" secondItem="62q-kT-5q6" secondAttribute="leading" constant="16" id="NsY-LX-CRe"/>
+                            <constraint firstItem="AV2-O9-lmp" firstAttribute="top" secondItem="pUy-9P-S3O" secondAttribute="bottom" constant="16" id="Wz9-iW-B32"/>
+                            <constraint firstItem="XiE-ey-WoL" firstAttribute="top" secondItem="62q-kT-5q6" secondAttribute="top" constant="16" id="XhK-bZ-a6K"/>
+                            <constraint firstItem="Gu0-UV-g8D" firstAttribute="leading" secondItem="62q-kT-5q6" secondAttribute="leading" constant="16" id="ZJT-UN-h9s"/>
+                            <constraint firstItem="62q-kT-5q6" firstAttribute="trailing" secondItem="XiE-ey-WoL" secondAttribute="trailing" constant="16" id="aJm-0g-zf3"/>
+                            <constraint firstItem="Gu0-UV-g8D" firstAttribute="top" secondItem="62q-kT-5q6" secondAttribute="top" constant="21" id="fmK-Oz-TDv"/>
+                            <constraint firstItem="pUy-9P-S3O" firstAttribute="top" secondItem="Gu0-UV-g8D" secondAttribute="bottom" constant="16" id="tZT-Kv-dOP"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="62q-kT-5q6"/>
+                    </view>
+                    <connections>
+                        <outlet property="darkModeLabel" destination="Gu0-UV-g8D" id="nhy-0d-njy"/>
+                        <outlet property="darkModeSwitchOutlet" destination="XiE-ey-WoL" id="dUJ-JM-SmB"/>
+                        <outlet property="resetAllProgressButtonLabel" destination="pUy-9P-S3O" id="aAZ-dK-oCP"/>
+                        <outlet property="restoreInAppPurchaseButtonLabel" destination="AV2-O9-lmp" id="cKV-cq-Aaj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Two-kw-FsY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2526" y="-654"/>
         </scene>
         <!--Sub Lessons Table View Controller-->
         <scene sceneID="PrQ-R2-mtb">
@@ -162,7 +217,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7V7-yN-2gU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2991" y="134"/>
+            <point key="canvasLocation" x="2526" y="134"/>
         </scene>
         <!--Lesson View Controller-->
         <scene sceneID="RYq-Ug-H8T">
@@ -205,7 +260,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K9Z-pV-eW7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3781.5999999999999" y="133.5832083958021"/>
+            <point key="canvasLocation" x="3222" y="134"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="i9D-BA-TgU">
@@ -226,7 +281,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mlP-KH-R4E" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="884" y="134.48275862068968"/>
+            <point key="canvasLocation" x="1106" y="134"/>
         </scene>
     </scenes>
 </document>

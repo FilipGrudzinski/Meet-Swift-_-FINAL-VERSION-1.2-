@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1408977421CC1BD9003C2915 /* ColorTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1408977321CC1BD9003C2915 /* ColorTheme.swift */; };
 		146F8E1E21DF9264002215CB /* AboutViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146F8E1D21DF9264002215CB /* AboutViewViewController.swift */; };
+		146F8E2021DF9B76002215CB /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146F8E1F21DF9B76002215CB /* SettingsViewController.swift */; };
 		149B3F7921BE7DCA00539BC3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149B3F7821BE7DCA00539BC3 /* AppDelegate.swift */; };
 		149B3F7E21BE7DCA00539BC3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 149B3F7C21BE7DCA00539BC3 /* Main.storyboard */; };
 		149B3F8021BE7DCC00539BC3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 149B3F7F21BE7DCC00539BC3 /* Assets.xcassets */; };
@@ -24,6 +25,7 @@
 /* Begin PBXFileReference section */
 		1408977321CC1BD9003C2915 /* ColorTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorTheme.swift; sourceTree = "<group>"; };
 		146F8E1D21DF9264002215CB /* AboutViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewViewController.swift; sourceTree = "<group>"; };
+		146F8E1F21DF9B76002215CB /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		149B3F7521BE7DCA00539BC3 /* Meet Swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Meet Swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		149B3F7821BE7DCA00539BC3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		149B3F7D21BE7DCA00539BC3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 				149B3F8F21BE7F8000539BC3 /* SubLessonsTableViewController.swift */,
 				149B3F9121BE7FC500539BC3 /* LessonViewController.swift */,
 				146F8E1D21DF9264002215CB /* AboutViewViewController.swift */,
+				146F8E1F21DF9B76002215CB /* SettingsViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -183,6 +186,7 @@
 				1408977421CC1BD9003C2915 /* ColorTheme.swift in Sources */,
 				149B3F9621BE8DC600539BC3 /* BeginnerLessonsBank.swift in Sources */,
 				149B3F7921BE7DCA00539BC3 /* AppDelegate.swift in Sources */,
+				146F8E2021DF9B76002215CB /* SettingsViewController.swift in Sources */,
 				146F8E1E21DF9264002215CB /* AboutViewViewController.swift in Sources */,
 				149B3F9021BE7F8000539BC3 /* SubLessonsTableViewController.swift in Sources */,
 				149B3F9821BE9A0C00539BC3 /* IntermediateLessonsBank.swift in Sources */,

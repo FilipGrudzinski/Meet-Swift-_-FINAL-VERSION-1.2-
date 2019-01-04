@@ -18,14 +18,7 @@ class LessonsTableViewController: UITableViewController {
     let sections1 = IntermediateLessonsBank()
     let sections2 = ["2sda32", "3232fdfd3","sekcja 3"]
     
-    @IBOutlet weak var switchButton: UISwitch!
-    
-    @IBAction func toggleSwitch(_ sender: UISwitch) {
-        
-        setTheme(isDark: sender.isOn)
-        
-    }
-    
+  
     override func viewDidLoad() {
         super.viewDidLoad()
         
