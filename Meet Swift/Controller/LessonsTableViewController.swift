@@ -14,11 +14,9 @@ class LessonsTableViewController: UITableViewController {
     var cellColor = UIColor()
     
     let sections = ["Beginner", "Intermediate", "Advanced"]
-    let sections1 = ["232", "32323","sekcja 1"]
-    let sections2 = ["fdfd232", "32323fdfd","sekcja 2"]
-    let sections3 = ["2sda32", "3232fdfd3","sekcja 3"]
-    //var beginner = BeginnerLessonsBank()
-    //    var intermediate = IntermediateLessonsBank()
+    let sections0 = BeginnerLessonsBank()
+    let sections1 = IntermediateLessonsBank()
+    let sections2 = ["2sda32", "3232fdfd3","sekcja 3"]
     
     @IBOutlet weak var switchButton: UISwitch!
     
@@ -28,43 +26,12 @@ class LessonsTableViewController: UITableViewController {
         
     }
     
-    
-    func setTheme(isDark: Bool) {
-        
-        let theme = isDark ? ColorTheme.dark : ColorTheme.light
-        
-        //view.backgroundColor = theme.viewControllerBackgroundColor
-        
-        navigationController?.navigationBar.barTintColor = theme.primaryColor
-        navigationController?.navigationBar.tintColor =  theme.primaryTextColor
-        cellColor = theme.cellColor
-        
-        isDefaultStatusBar = theme.isDefaultStatusBar
-
-        if isDefaultStatusBar {
-
-            navigationController?.navigationBar.barStyle = .default
-        
-
-        } else {
-
-            navigationController?.navigationBar.barStyle = .blackOpaque
-
-        }
-        tableView.reloadData()
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setTheme(isDark: false)
 
-        
     }
-    
- 
-
-   
     
     // MARK: - Table view data source
     
@@ -82,8 +49,22 @@ class LessonsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
- 
-        return sections.count
+        
+        if section == 0 {
+            
+            return sections0.list.count
+            
+        } else if section == 1 {
+            
+             return sections1.list.count
+            
+            
+        } else if section == 2 {
+            
+             return sections2.count
+            
+        }
+        return 0
         
     }
     
@@ -97,20 +78,20 @@ class LessonsTableViewController: UITableViewController {
         //let cell = UITableViewCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: "LessonsCell")
         if indexPath.section == 0 {
             
-            let name = sections1[indexPath.row]
-            
+            let name = sections1.list[indexPath.row].lessonText
+            cell.detailTextLabel?.text = sections0.list[indexPath.row].lessonlvl
             cell.textLabel?.text = name
             
         } else if indexPath.section == 1 {
             
-            let name = sections2[indexPath.row]
+            let name = sections1.list[indexPath.row].lessonText
             
             cell.textLabel?.text = name
             
             
         } else if indexPath.section == 2 {
             
-            let name = sections3[indexPath.row]
+            let name = sections2[indexPath.row]
             
             cell.textLabel?.text = name
             
@@ -125,25 +106,56 @@ class LessonsTableViewController: UITableViewController {
         
         if indexPath.section == 0 {
             
-            let name = sections1[indexPath.row]
+            let name = sections0.list[indexPath.row].lessonText
             
            subTitle = name
             
         } else if indexPath.section == 1 {
             
-            let name = sections2[indexPath.row]
+            let name = sections1.list[indexPath.row].lessonText
             
             subTitle = name
             
             
         } else if indexPath.section == 2 {
             
-            let name = sections3[indexPath.row]
+            let name = sections2[indexPath.row]
             
             subTitle = name
             
         }
         
+    }
+    
+    
+}
+
+extension LessonsTableViewController {
+    
+    func setTheme(isDark: Bool) {
+        
+        let theme = isDark ? ColorTheme.dark : ColorTheme.light
+        
+        //view.backgroundColor = theme.viewControllerBackgroundColor
+        
+        navigationController?.navigationBar.barTintColor = theme.primaryColor
+        navigationController?.navigationBar.tintColor =  theme.primaryTextColor
+        cellColor = theme.cellColor
+        
+        isDefaultStatusBar = theme.isDefaultStatusBar
+        
+        if isDefaultStatusBar {
+            
+            navigationController?.navigationBar.barStyle = .default
+            
+            
+        } else {
+            
+            navigationController?.navigationBar.barStyle = .blackOpaque
+            
+        }
+        
+        tableView.reloadData()
     }
     
     
