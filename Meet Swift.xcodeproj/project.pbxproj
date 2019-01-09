@@ -20,6 +20,8 @@
 		149B3F9421BE8DB600539BC3 /* LessonsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149B3F9321BE8DB600539BC3 /* LessonsModel.swift */; };
 		149B3F9621BE8DC600539BC3 /* BeginnerLessonsBank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149B3F9521BE8DC600539BC3 /* BeginnerLessonsBank.swift */; };
 		149B3F9821BE9A0C00539BC3 /* IntermediateLessonsBank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149B3F9721BE9A0C00539BC3 /* IntermediateLessonsBank.swift */; };
+		14FE5FBF21E6A3EF007E877F /* CustomLessonsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FE5FBD21E6A3EF007E877F /* CustomLessonsCell.swift */; };
+		14FE5FC021E6A3EF007E877F /* CustomLessonsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14FE5FBE21E6A3EF007E877F /* CustomLessonsCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +40,8 @@
 		149B3F9321BE8DB600539BC3 /* LessonsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonsModel.swift; sourceTree = "<group>"; };
 		149B3F9521BE8DC600539BC3 /* BeginnerLessonsBank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeginnerLessonsBank.swift; sourceTree = "<group>"; };
 		149B3F9721BE9A0C00539BC3 /* IntermediateLessonsBank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntermediateLessonsBank.swift; sourceTree = "<group>"; };
+		14FE5FBD21E6A3EF007E877F /* CustomLessonsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLessonsCell.swift; sourceTree = "<group>"; };
+		14FE5FBE21E6A3EF007E877F /* CustomLessonsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomLessonsCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +87,7 @@
 		149B3F8A21BE7EC700539BC3 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				14FE5FBC21E6A2C0007E877F /* Cell */,
 				149B3F7C21BE7DCA00539BC3 /* Main.storyboard */,
 				1408977321CC1BD9003C2915 /* ColorTheme.swift */,
 			);
@@ -103,13 +108,22 @@
 			isa = PBXGroup;
 			children = (
 				149B3F7821BE7DCA00539BC3 /* AppDelegate.swift */,
+				146F8E1D21DF9264002215CB /* AboutViewViewController.swift */,
+				146F8E1F21DF9B76002215CB /* SettingsViewController.swift */,
 				149B3F8D21BE7F2700539BC3 /* LessonsTableViewController.swift */,
 				149B3F8F21BE7F8000539BC3 /* SubLessonsTableViewController.swift */,
 				149B3F9121BE7FC500539BC3 /* LessonViewController.swift */,
-				146F8E1D21DF9264002215CB /* AboutViewViewController.swift */,
-				146F8E1F21DF9B76002215CB /* SettingsViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		14FE5FBC21E6A2C0007E877F /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				14FE5FBD21E6A3EF007E877F /* CustomLessonsCell.swift */,
+				14FE5FBE21E6A3EF007E877F /* CustomLessonsCell.xib */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -170,6 +184,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14FE5FC021E6A3EF007E877F /* CustomLessonsCell.xib in Resources */,
 				149B3F8321BE7DCC00539BC3 /* LaunchScreen.storyboard in Resources */,
 				149B3F8021BE7DCC00539BC3 /* Assets.xcassets in Resources */,
 				149B3F7E21BE7DCA00539BC3 /* Main.storyboard in Resources */,
@@ -187,6 +202,7 @@
 				149B3F9621BE8DC600539BC3 /* BeginnerLessonsBank.swift in Sources */,
 				149B3F7921BE7DCA00539BC3 /* AppDelegate.swift in Sources */,
 				146F8E2021DF9B76002215CB /* SettingsViewController.swift in Sources */,
+				14FE5FBF21E6A3EF007E877F /* CustomLessonsCell.swift in Sources */,
 				146F8E1E21DF9264002215CB /* AboutViewViewController.swift in Sources */,
 				149B3F9021BE7F8000539BC3 /* SubLessonsTableViewController.swift in Sources */,
 				149B3F9821BE9A0C00539BC3 /* IntermediateLessonsBank.swift in Sources */,

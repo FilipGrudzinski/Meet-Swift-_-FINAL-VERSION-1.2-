@@ -21,7 +21,10 @@ class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-         setTheme(isDark: false)
+        setTheme(isDark: false)
+        //resetAllProgressButtonLabel.isHidden = true
+        //restoreInAppPurchaseButtonLabel.isHidden = true
+        
         
         // Do any additional setup after loading the view.
     }
@@ -56,10 +59,11 @@ extension SettingsViewController {
         
         let theme = isDark ? ColorTheme.dark : ColorTheme.light
         
-        //view.backgroundColor = theme.viewControllerBackgroundColor
+        view.backgroundColor = theme.viewControllerBackgroundColor
         
         navigationController?.navigationBar.barTintColor = theme.primaryColor
         navigationController?.navigationBar.tintColor =  theme.primaryTextColor
+    
         cellColor = theme.cellColor
         
         isDefaultStatusBar = theme.isDefaultStatusBar

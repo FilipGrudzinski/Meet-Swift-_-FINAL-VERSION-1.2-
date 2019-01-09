@@ -11,19 +11,20 @@ import UIKit
 class LessonsTableViewController: UITableViewController {
     
     var isDefaultStatusBar = true
-    var cellColor = UIColor()
+    //var cellColor = UIColor()
     
     let sections = ["Beginner", "Intermediate", "Advanced"]
     let sections0 = BeginnerLessonsBank()
     let sections1 = IntermediateLessonsBank()
     let sections2 = ["2sda32", "3232fdfd3","sekcja 3"]
     
-  
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setTheme(isDark: false)
-
+        self.title = "Meet Swift"
+        //setTheme(isDark: false)
+        
     }
     
     // MARK: - Table view data source
@@ -49,12 +50,12 @@ class LessonsTableViewController: UITableViewController {
             
         } else if section == 1 {
             
-             return sections1.list.count
+            return sections1.list.count
             
             
         } else if section == 2 {
             
-             return sections2.count
+            return sections2.count
             
         }
         return 0
@@ -64,10 +65,10 @@ class LessonsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-      
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "LessonsCell", for: indexPath)
-        let color = cellColor
-        cell.backgroundColor = color
+        //let color = cellColor
+        //cell.backgroundColor = color
         //let cell = UITableViewCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: "LessonsCell")
         if indexPath.section == 0 {
             
@@ -89,8 +90,8 @@ class LessonsTableViewController: UITableViewController {
             cell.textLabel?.text = name
             
         }
-     
-
+        
+        
         return cell
     }
     
@@ -101,20 +102,20 @@ class LessonsTableViewController: UITableViewController {
             
             let name = sections0.list[indexPath.row].lessonText
             
-           subTitle = name
+            subLessonsTitle = name
             
         } else if indexPath.section == 1 {
             
             let name = sections1.list[indexPath.row].lessonText
             
-            subTitle = name
+            subLessonsTitle = name
             
             
         } else if indexPath.section == 2 {
             
             let name = sections2[indexPath.row]
             
-            subTitle = name
+            subLessonsTitle = name
             
         }
         
@@ -122,34 +123,34 @@ class LessonsTableViewController: UITableViewController {
     
     
 }
-
-extension LessonsTableViewController {
-    
-    func setTheme(isDark: Bool) {
-        
-        let theme = isDark ? ColorTheme.dark : ColorTheme.light
-        
-        //view.backgroundColor = theme.viewControllerBackgroundColor
-        
-        navigationController?.navigationBar.barTintColor = theme.primaryColor
-        navigationController?.navigationBar.tintColor =  theme.primaryTextColor
-        cellColor = theme.cellColor
-        
-        isDefaultStatusBar = theme.isDefaultStatusBar
-        
-        if isDefaultStatusBar {
-            
-            navigationController?.navigationBar.barStyle = .default
-            
-            
-        } else {
-            
-            navigationController?.navigationBar.barStyle = .blackOpaque
-            
-        }
-        
-        tableView.reloadData()
-    }
-    
-    
-}
+//
+//extension LessonsTableViewController {
+//
+//    func setTheme(isDark: Bool) {
+//
+//        let theme = isDark ? ColorTheme.dark : ColorTheme.light
+//
+//        //view.backgroundColor = theme.viewControllerBackgroundColor
+//
+//        navigationController?.navigationBar.barTintColor = theme.primaryColor
+//        navigationController?.navigationBar.tintColor =  theme.primaryTextColor
+//        cellColor = theme.cellColor
+//
+//        isDefaultStatusBar = theme.isDefaultStatusBar
+//
+//        if isDefaultStatusBar {
+//
+//            navigationController?.navigationBar.barStyle = .default
+//
+//
+//        } else {
+//
+//            navigationController?.navigationBar.barStyle = .blackOpaque
+//
+//        }
+//
+//        tableView.reloadData()
+//    }
+//
+//
+//}

@@ -11,7 +11,12 @@ import UIKit
 var lessonTitle = ""
 
 class LessonViewController: UIViewController {
-
+    
+    
+    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var exampleLabel: UILabel!
+    @IBOutlet weak var textField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -19,6 +24,15 @@ class LessonViewController: UIViewController {
         self.title = lessonTitle
         
         
+        
     }
 
+    
+    @IBOutlet weak var previousButton: UIToolbar!
+    
+    @IBAction func checkButton(_ sender: UIBarButtonItem) {
+    }
+    @IBAction func hintButton(_ sender: UIBarButtonItem) {
+    }
+    
 }
