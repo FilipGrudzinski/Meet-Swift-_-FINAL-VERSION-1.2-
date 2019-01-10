@@ -53,19 +53,18 @@ class AboutViewViewController: UIViewController, MFMailComposeViewControllerDele
                     })
                 }
             }
+
         }
         
     }
     
+   
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+     //MARK: MFMailComposeViewControllerDelegate Method
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true, completion: nil)
     }
-    */
+    
 
 }

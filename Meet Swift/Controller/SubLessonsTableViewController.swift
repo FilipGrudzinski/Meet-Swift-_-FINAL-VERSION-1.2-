@@ -12,12 +12,13 @@ var subLessonsTitle = ""
 
 class SubLessonsTableViewController: UITableViewController {
 
-    var subLessons = ["SubLesson 111111111111111111", "SubLesson 2", "SubLesson 3", "SubLesson 4", "SubLesson 5", "SubLesson 6", "SubLesson 7", "SubLesson 8", "SubLesson 9", "SubLesson 10", "SubLesson 11", "SubLesson 12", "SubLesson 13", "SubLesson 14", "SubLesson 152",]
+    var subLessons = ["SubLesson 1", "SubLesson 2", "SubLesson 3", "SubLesson 4", "SubLesson 5", "SubLesson 6", "SubLesson 7", "SubLesson 8", "SubLesson 9", "SubLesson 10", "SubLesson 11", "SubLesson 12", "SubLesson 13", "SubLesson 14", "SubLesson 152",]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+       
         self.title = subLessonsTitle
+     
     
     }
 

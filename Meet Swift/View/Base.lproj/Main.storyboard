@@ -83,7 +83,7 @@
             </objects>
             <point key="canvasLocation" x="1823" y="-654"/>
         </scene>
-        <!--Lessons Table View Controller-->
+        <!--Meet Swift-->
         <scene sceneID="0KS-vh-VxZ">
             <objects>
                 <tableViewController id="V0q-eY-EaJ" customClass="LessonsTableViewController" customModule="Meet_Swift" customModuleProvider="target" sceneMemberID="viewController">
@@ -109,8 +109,8 @@
                             <outlet property="delegate" destination="V0q-eY-EaJ" id="ygx-cy-nDL"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="yaj-hv-lbg">
-                        <nil key="title"/>
+                    <navigationItem key="navigationItem" title="Meet Swift" id="yaj-hv-lbg">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="Rtv-wZ-k7T"/>
                         <barButtonItem key="leftBarButtonItem" title="About" id="PYR-sM-5Yc">
                             <connections>
                                 <segue destination="BYZ-38-t0r" kind="show" identifier="aboutView" id="iSI-L2-2wz"/>

@@ -20,8 +20,8 @@
 		149B3F9421BE8DB600539BC3 /* LessonsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149B3F9321BE8DB600539BC3 /* LessonsModel.swift */; };
 		149B3F9621BE8DC600539BC3 /* BeginnerLessonsBank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149B3F9521BE8DC600539BC3 /* BeginnerLessonsBank.swift */; };
 		149B3F9821BE9A0C00539BC3 /* IntermediateLessonsBank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149B3F9721BE9A0C00539BC3 /* IntermediateLessonsBank.swift */; };
-		14FE5FBF21E6A3EF007E877F /* CustomLessonsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FE5FBD21E6A3EF007E877F /* CustomLessonsCell.swift */; };
-		14FE5FC021E6A3EF007E877F /* LessonsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14FE5FBE21E6A3EF007E877F /* LessonsCell.xib */; };
+		14FF7FCF21E7A20000808F89 /* CustomLessonsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FF7FCD21E7A20000808F89 /* CustomLessonsCell.swift */; };
+		14FF7FD021E7A20000808F89 /* CustomLessonsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14FF7FCE21E7A20000808F89 /* CustomLessonsCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,8 +40,8 @@
 		149B3F9321BE8DB600539BC3 /* LessonsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonsModel.swift; sourceTree = "<group>"; };
 		149B3F9521BE8DC600539BC3 /* BeginnerLessonsBank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeginnerLessonsBank.swift; sourceTree = "<group>"; };
 		149B3F9721BE9A0C00539BC3 /* IntermediateLessonsBank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntermediateLessonsBank.swift; sourceTree = "<group>"; };
-		14FE5FBD21E6A3EF007E877F /* CustomLessonsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLessonsCell.swift; sourceTree = "<group>"; };
-		14FE5FBE21E6A3EF007E877F /* LessonsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LessonsCell.xib; sourceTree = "<group>"; };
+		14FF7FCD21E7A20000808F89 /* CustomLessonsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLessonsCell.swift; sourceTree = "<group>"; };
+		14FF7FCE21E7A20000808F89 /* CustomLessonsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomLessonsCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,8 +120,8 @@
 		14FE5FBC21E6A2C0007E877F /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				14FE5FBD21E6A3EF007E877F /* CustomLessonsCell.swift */,
-				14FE5FBE21E6A3EF007E877F /* LessonsCell.xib */,
+				14FF7FCD21E7A20000808F89 /* CustomLessonsCell.swift */,
+				14FF7FCE21E7A20000808F89 /* CustomLessonsCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -184,8 +184,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				14FE5FC021E6A3EF007E877F /* LessonsCell.xib in Resources */,
 				149B3F8321BE7DCC00539BC3 /* LaunchScreen.storyboard in Resources */,
+				14FF7FD021E7A20000808F89 /* CustomLessonsCell.xib in Resources */,
 				149B3F8021BE7DCC00539BC3 /* Assets.xcassets in Resources */,
 				149B3F7E21BE7DCA00539BC3 /* Main.storyboard in Resources */,
 			);
@@ -198,11 +198,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14FF7FCF21E7A20000808F89 /* CustomLessonsCell.swift in Sources */,
 				1408977421CC1BD9003C2915 /* ColorTheme.swift in Sources */,
 				149B3F9621BE8DC600539BC3 /* BeginnerLessonsBank.swift in Sources */,
 				149B3F7921BE7DCA00539BC3 /* AppDelegate.swift in Sources */,
 				146F8E2021DF9B76002215CB /* SettingsViewController.swift in Sources */,
-				14FE5FBF21E6A3EF007E877F /* CustomLessonsCell.swift in Sources */,
 				146F8E1E21DF9264002215CB /* AboutViewViewController.swift in Sources */,
 				149B3F9021BE7F8000539BC3 /* SubLessonsTableViewController.swift in Sources */,
 				149B3F9821BE9A0C00539BC3 /* IntermediateLessonsBank.swift in Sources */,
