@@ -15,33 +15,40 @@ struct ColorTheme {
     let isDefaultStatusBar: Bool
     let viewControllerBackgroundColor: UIColor
     
-    let primaryColor: UIColor
-    let primaryTextColor: UIColor
+    let navigationColor: UIColor
+    let navigationButtonColor: UIColor
     
-    let secondaryColor: UIColor
+    let textColor: UIColor
+    let style: UIBarStyle
     
-    let accentColor: UIColor
-    let outputTextColor: UIColor
-    let cellColor: UIColor
+    let cellTextColor: UIColor
+    let cellProgressBarColor: UIColor
+    let cellBackgroundColor: UIColor
+    let selectedRow: UIColor
+    
+  
     
     
     static let light = ColorTheme(isDefaultStatusBar: true,
                                   viewControllerBackgroundColor: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1),
-                                  primaryColor: #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0),
-                                  primaryTextColor: #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1),
-                                  secondaryColor: #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0),
-                                  accentColor: #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0),
-                                  outputTextColor: #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0),
-                                  cellColor: #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0))
+                                  navigationColor: #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0),
+                                  navigationButtonColor: #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1),
+                                  textColor: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1),
+                                  style: .default,
+                                  cellTextColor : #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1),
+                                  cellProgressBarColor: #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1),
+                                  cellBackgroundColor: #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0),
+                                  selectedRow: #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 0.1))
     
     static let dark = ColorTheme(isDefaultStatusBar: false,
                                  viewControllerBackgroundColor: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1),
-                                 primaryColor: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1),
-                                 primaryTextColor: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1),
-                                 secondaryColor: #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0),
-                                 accentColor: #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0),
-                                 outputTextColor: #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0),
-                                 cellColor: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1))
-    
+                                 navigationColor: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1),
+                                 navigationButtonColor: #colorLiteral(red: 1, green: 0.5781051517, blue: 0, alpha: 1),
+                                 textColor: #colorLiteral(red: 0.9174425006, green: 0.9216420054, blue: 0.9215044379, alpha: 1),
+                                 style: .blackOpaque,
+                                 cellTextColor : #colorLiteral(red: 0.9174425006, green: 0.9216420054, blue: 0.9215044379, alpha: 1),
+                                 cellProgressBarColor: #colorLiteral(red: 1, green: 0.5781051517, blue: 0, alpha: 1),
+                                 cellBackgroundColor: #colorLiteral(red: 0.07058823529, green: 0.07058823529, blue: 0.07058823529, alpha: 0.9),
+                                 selectedRow: #colorLiteral(red: 1, green: 0.5781051517, blue: 0, alpha: 0.1))
     
 }

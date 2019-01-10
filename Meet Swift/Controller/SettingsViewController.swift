@@ -10,9 +10,6 @@ import UIKit
 
 class SettingsViewController: UIViewController {
     
-    var isDefaultStatusBar = true
-    var cellColor = UIColor()
-
     @IBOutlet weak var darkModeLabel: UILabel!
     @IBOutlet weak var darkModeSwitchOutlet: UISwitch!
     @IBOutlet weak var resetAllProgressButtonLabel: UIButton!
@@ -21,20 +18,36 @@ class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setTheme(isDark: false)
         //resetAllProgressButtonLabel.isHidden = true
         //restoreInAppPurchaseButtonLabel.isHidden = true
         
+        let modeValue = UserDefaults.standard.bool(forKey: "mode")
+        mode = modeValue
+        darkModeSwitchOutlet.setOn(mode, animated: false)
+        setTheme(isDark: mode)
         
-        // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        setTheme(isDark: mode)
+        
     }
     
     @IBAction func colorThemeSwitch(_ sender: UISwitch) {
         
-        setTheme(isDark: sender.isOn)
-
-        print("Toggle Switch")
+        if darkModeSwitchOutlet.isOn {
+            
+            mode = true
+            UserDefaults.standard.set(mode, forKey: "mode")
+            
+        } else {
+            
+            mode = false
+            UserDefaults.standard.set(mode, forKey: "mode")
+            
+        }
         
+        setTheme(isDark: mode)
     }
     
     
@@ -49,11 +62,6 @@ class SettingsViewController: UIViewController {
         print("Restore in-app pruchase Button Pressed")
     }
     
-   
-
-}
-
-extension SettingsViewController {
     
     func setTheme(isDark: Bool) {
         
@@ -61,25 +69,15 @@ extension SettingsViewController {
         
         view.backgroundColor = theme.viewControllerBackgroundColor
         
-        navigationController?.navigationBar.barTintColor = theme.primaryColor
-        navigationController?.navigationBar.tintColor =  theme.primaryTextColor
-    
-        cellColor = theme.cellColor
+        navigationController?.navigationBar.barTintColor = theme.navigationColor // color of navigationbar
+        navigationController?.navigationBar.tintColor =  theme.navigationButtonColor // color of navigationbar buttons
+        navigationController?.navigationBar.barStyle = theme.style
         
-        isDefaultStatusBar = theme.isDefaultStatusBar
+        // Content Text collors
+        darkModeLabel.textColor = theme.textColor
+        resetAllProgressButtonLabel.tintColor = theme.navigationButtonColor
+        restoreInAppPurchaseButtonLabel.tintColor = theme.navigationButtonColor
         
-        if isDefaultStatusBar {
-            
-            navigationController?.navigationBar.barStyle = .default
-            
-            
-        } else {
-            
-            navigationController?.navigationBar.barStyle = .blackOpaque
-            
-        }
-        
-        //tableView.reloadData()
     }
     
 }

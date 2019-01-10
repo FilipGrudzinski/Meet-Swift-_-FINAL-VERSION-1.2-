@@ -15,18 +15,18 @@
             <objects>
                 <viewController title="About" id="BYZ-38-t0r" customClass="AboutViewViewController" customModule="Meet_Swift" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8e9-lG-Gej">
-                                <rect key="frame" x="16" y="133" width="343" height="101.5"/>
+                                <rect key="frame" x="16" y="17" width="343" height="101.5"/>
                                 <string key="text">    Meet Swift jest to autorska aplikacja w celu nauki języka programowania Swift. Aplikacja Pozwoli nauczyć się podstaw skladni języka Swift jak i zaawansowanych zagadnień. </string>
                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="TGQ-Tx-s4Y">
-                                <rect key="frame" x="16" y="292" width="250" height="57"/>
+                                <rect key="frame" x="16" y="176" width="250" height="57"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="hcM-wR-Euk">
                                         <rect key="frame" x="0.0" y="0.0" width="250" height="20.5"/>
@@ -76,7 +76,11 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="autorLabel" destination="fMI-fh-xDm" id="hp7-dw-8Gd"/>
+                        <outlet property="autorLabelContent" destination="bB6-oY-woh" id="VNl-Ih-VsR"/>
+                        <outlet property="contactLabel" destination="MAq-aC-Ugg" id="U0j-Zx-DJG"/>
                         <outlet property="contaktLabelContent" destination="FDa-1i-N7Q" id="xzK-Z7-UFM"/>
+                        <outlet property="descriptionLabel" destination="8e9-lG-Gej" id="ONp-tI-Hdq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -88,7 +92,7 @@
             <objects>
                 <tableViewController id="V0q-eY-EaJ" customClass="LessonsTableViewController" customModule="Meet_Swift" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="gI0-Bk-nyy">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
@@ -132,11 +136,11 @@
             <objects>
                 <viewController title="Settings" id="GuP-gJ-gds" customClass="SettingsViewController" customModule="Meet_Swift" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="YzC-Nl-XzN">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pUy-9P-S3O">
-                                <rect key="frame" x="16" y="173.5" width="343" height="33"/>
+                                <rect key="frame" x="16" y="57.5" width="343" height="33"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal" title="Reset all progress"/>
                                 <connections>
@@ -144,7 +148,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AV2-O9-lmp">
-                                <rect key="frame" x="16" y="222.5" width="343" height="33"/>
+                                <rect key="frame" x="16" y="106.5" width="343" height="33"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal" title="Restore in-app purchase"/>
                                 <connections>
@@ -152,13 +156,13 @@
                                 </connections>
                             </button>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="XiE-ey-WoL">
-                                <rect key="frame" x="310" y="132" width="51" height="31"/>
+                                <rect key="frame" x="310" y="16" width="51" height="31"/>
                                 <connections>
                                     <action selector="colorThemeSwitch:" destination="GuP-gJ-gds" eventType="valueChanged" id="ll8-he-Ha1"/>
                                 </connections>
                             </switch>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dark Mode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gu0-UV-g8D">
-                                <rect key="frame" x="16" y="137" width="84" height="20.5"/>
+                                <rect key="frame" x="16" y="21" width="84" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -196,7 +200,7 @@
             <objects>
                 <tableViewController id="3Hg-IJ-jHo" customClass="SubLessonsTableViewController" customModule="Meet_Swift" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="qfR-Cd-vhL">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
@@ -227,11 +231,11 @@
             <objects>
                 <viewController id="zNG-Pn-fPl" customClass="LessonViewController" customModule="Meet_Swift" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ewg-US-yJQ">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Opis Zadania" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4cp-AO-HPi">
-                                <rect key="frame" x="16" y="132" width="343" height="100"/>
+                                <rect key="frame" x="16" y="16" width="343" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="zd1-Tb-xVJ"/>
                                 </constraints>
@@ -240,7 +244,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Przykład lub inny tekst" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N0Z-im-LgX">
-                                <rect key="frame" x="16" y="248" width="343" height="50"/>
+                                <rect key="frame" x="16" y="132" width="343" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="56w-TA-ccD"/>
                                 </constraints>
@@ -249,13 +253,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FU1-Bf-GDT">
-                                <rect key="frame" x="16" y="314" width="343" height="30"/>
+                                <rect key="frame" x="16" y="198" width="343" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d6b-Ne-CTp">
-                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="559" width="375" height="44"/>
                                 <items>
                                     <barButtonItem title="Previous" id="mlA-XL-7Zr"/>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="aQ3-31-wGA"/>
@@ -306,8 +310,8 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="A0G-bJ-NEr" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="2md-6T-p5Q">
-                        <rect key="frame" x="0.0" y="20" width="375" height="96"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="2md-6T-p5Q">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
