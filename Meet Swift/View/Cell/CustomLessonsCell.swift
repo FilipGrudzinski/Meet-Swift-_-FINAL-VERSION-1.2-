@@ -12,7 +12,6 @@ class CustomLessonsCell: UITableViewCell {
 
     @IBOutlet weak var lessonsNumberLabel: UILabel!
     @IBOutlet weak var lessonsTitleLabel: UILabel!
-    @IBOutlet weak var lessonsDescriptionLabel: UILabel!
     @IBOutlet weak var progressBar: UIProgressView!
     @IBOutlet weak var lessonsProgressLabel: UILabel!
     

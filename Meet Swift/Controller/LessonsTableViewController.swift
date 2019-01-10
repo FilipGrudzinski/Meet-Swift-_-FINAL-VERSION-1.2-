@@ -8,7 +8,8 @@
 
 import UIKit
 
-class LessonsTableViewController: UITableViewController {
+class LessonsTableViewController: UITableViewController{
+    
     
     var isDefaultStatusBar = true
     //var cellColor = UIColor()
@@ -22,10 +23,13 @@ class LessonsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.register(UINib(nibName: "LessonsCell", bundle: nil), forCellReuseIdentifier: "customLessonsCell")
         self.title = "Meet Swift"
         //setTheme(isDark: false)
         
     }
+    
+    
     
     // MARK: - Table view data source
     
@@ -65,61 +69,83 @@ class LessonsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: "LessonsCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "customLessonsCell", for: indexPath) as! CustomLessonsCell
+        //let cell = tableView.dequeueReusableCell(withIdentifier: "LessonsCell", for: indexPath)
         //let color = cellColor
         //cell.backgroundColor = color
         //let cell = UITableViewCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: "LessonsCell")
         if indexPath.section == 0 {
             
-            let name = sections1.list[indexPath.row].lessonText
-            cell.detailTextLabel?.text = sections0.list[indexPath.row].lessonlvl
-            cell.textLabel?.text = name
+            cell.lessonsNumberLabel.text = "\(indexPath.row + 1)."
+            cell.lessonsTitleLabel.text = sections0.list[indexPath.row].lessonText
+            cell.progressBar.progress = 0.0
+            cell.lessonsProgressLabel.text = "1/20"
+       
             
         } else if indexPath.section == 1 {
             
-            let name = sections1.list[indexPath.row].lessonText
-            
-            cell.textLabel?.text = name
-            
+            cell.lessonsNumberLabel.text = "\(indexPath.row + 1)."
+            cell.lessonsTitleLabel.text = sections1.list[indexPath.row].lessonText
+            cell.progressBar.progress = 0.1
+            cell.lessonsProgressLabel.text = "1/20"
+           
             
         } else if indexPath.section == 2 {
             
-            let name = sections2[indexPath.row]
-            
-            cell.textLabel?.text = name
-            
+            cell.lessonsNumberLabel.text = "\(indexPath.row + 1)."
+            cell.lessonsTitleLabel.text = sections1.list[indexPath.row].lessonText
+            cell.progressBar.progress = 0.1
+            cell.lessonsProgressLabel.text = "1/20"
+         
         }
-        
         
         return cell
     }
     
-    
+
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        if indexPath.section == 0 {
-            
-            let name = sections0.list[indexPath.row].lessonText
-            
-            subLessonsTitle = name
-            
-        } else if indexPath.section == 1 {
-            
-            let name = sections1.list[indexPath.row].lessonText
-            
-            subLessonsTitle = name
-            
-            
-        } else if indexPath.section == 2 {
-            
-            let name = sections2[indexPath.row]
-            
-            subLessonsTitle = name
-            
-        }
+        performSegue(withIdentifier: "goToSubLessonsView", sender: self)
         
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        let destinationVC = segue.destination as! SubLessonsTableViewController
+        
+//        if let indexPath = tableView.indexPathForSelectedRow {
+//            
+//            destinationVC.selectedCategory = categories?[indexPath.row]
+//            
+//        }
+        
+    }
+    
+//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//
+//        if indexPath.section == 0 {
+//            
+//            let name = sections0.list[indexPath.row].lessonText
+//
+//            subLessonsTitle = name
+//
+//        } else if indexPath.section == 1 {
+//
+//            let name = sections1.list[indexPath.row].lessonText
+//
+//            subLessonsTitle = name
+//            
+//
+//        } else if indexPath.section == 2 {
+//
+//            let name = sections2[indexPath.row]
+//
+//            subLessonsTitle = name
+//
+//        }
+//
+//    }
+    
     
     
 }
