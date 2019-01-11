@@ -18,6 +18,8 @@ class SubLessonsTableViewController: UITableViewController {
         super.viewDidLoad()
        
         self.title = subLessonsTitle
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 44
      
     
     }
@@ -31,11 +33,22 @@ class SubLessonsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "SubLessonsCell", for: indexPath)
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "SubLessonsCell", for: indexPath)
+//
+//        let headerLabel = UILabel()
+//        headerLabel.text = subLessons[indexPath.row]
+//        headerLabel.frame = CGRect(x: 15, y: 5, width: 100, height: 35)
+//        headerLabel.font = UIFont.boldSystemFont(ofSize: 16.0)
+//
+//        //let name = subLessons[indexPath.row]
+//        view.addSubview(headerLabel)
+//        //cell.textLabel?.text = name
         
-        let name = subLessons[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SubLessonsCell", for: indexPath) as! CustomSubLessonsTableViewCell
         
-        cell.textLabel?.text = name
+        cell.labUerName.text = subLessons[indexPath.row]
+        cell.labMessage.text = "Message \(indexPath.row)"
+        cell.labTime.text = DateFormatter.localizedString(from: NSDate() as Date, dateStyle: .short, timeStyle: .short)
         
         return cell
     }
