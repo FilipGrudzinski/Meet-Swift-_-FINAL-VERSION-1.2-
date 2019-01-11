@@ -12,9 +12,6 @@ var mode: Bool = false
 
 class LessonsTableViewController: UITableViewController{
     
-    var cellColor = UIColor.white
-    var textCellColor = UIColor.black
-    var progressBarColor = #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1)
     var selectedRow = #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 0.5)
     
     let sectionTitles = ["Beginner", "Intermediate", "Advanced"]
@@ -27,15 +24,15 @@ class LessonsTableViewController: UITableViewController{
         
         tableView.register(UINib(nibName: "CustomLessonsCell", bundle: nil), forCellReuseIdentifier: "customLessonsCell")
         
-        let modeValue = UserDefaults.standard.bool(forKey: "mode")
-        mode = modeValue
+        mode = UserDefaults.standard.bool(forKey: "mode")
         setTheme(isDark: mode)
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        setTheme(isDark: mode)
         
+        setTheme(isDark: mode)
+  
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -101,15 +98,10 @@ class LessonsTableViewController: UITableViewController{
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "customLessonsCell", for: indexPath) as! CustomLessonsCell
         
-        let backgroundView = UIView()
-        backgroundView.backgroundColor = selectedRow
-        cell.selectedBackgroundView = backgroundView
+//        let backgroundView = UIView()
+//        backgroundView.backgroundColor = selectedRow
+           //cell.selectedBackgroundView?.backgroundColor = selectedRow
         
-        cell.backgroundColor = cellColor
-        cell.lessonsNumberLabel.textColor = textCellColor
-        cell.lessonsTitleLabel.textColor = textCellColor
-        cell.lessonsProgressLabel.textColor = textCellColor
-        cell.progressBar.progressTintColor = progressBarColor
         
         if indexPath.section == 0 {
             
@@ -172,12 +164,11 @@ class LessonsTableViewController: UITableViewController{
         let theme = isDark ? ColorTheme.dark : ColorTheme.light
         
         view.backgroundColor = theme.viewControllerBackgroundColor
+        UITableViewCell.appearance().backgroundColor = theme.cellBackgroundColor
+      
+        //selectedRow = theme.selectedRow
         
-        
-        cellColor = theme.cellBackgroundColor
-        textCellColor = theme.textColor
-        progressBarColor = theme.cellProgressBarColor
-        selectedRow = theme.selectedRow
+    
         
         navigationController?.navigationBar.barTintColor = theme.navigationColor // color of navigationbar
         navigationController?.navigationBar.tintColor =  theme.navigationButtonColor // color of navigationbar buttons

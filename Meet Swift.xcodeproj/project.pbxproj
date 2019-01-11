@@ -20,7 +20,7 @@
 		149B3F9421BE8DB600539BC3 /* LessonsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149B3F9321BE8DB600539BC3 /* LessonsModel.swift */; };
 		149B3F9621BE8DC600539BC3 /* BeginnerLessonsBank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149B3F9521BE8DC600539BC3 /* BeginnerLessonsBank.swift */; };
 		149B3F9821BE9A0C00539BC3 /* IntermediateLessonsBank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149B3F9721BE9A0C00539BC3 /* IntermediateLessonsBank.swift */; };
-		14DC500B21E90C5B006EDC00 /* CustomSubLessonsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DC500A21E90C5B006EDC00 /* CustomSubLessonsTableViewCell.swift */; };
+		14DC500B21E90C5B006EDC00 /* CustomSubLessonsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DC500A21E90C5B006EDC00 /* CustomSubLessonsCell.swift */; };
 		14FF7FCF21E7A20000808F89 /* CustomLessonsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FF7FCD21E7A20000808F89 /* CustomLessonsCell.swift */; };
 		14FF7FD021E7A20000808F89 /* CustomLessonsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14FF7FCE21E7A20000808F89 /* CustomLessonsCell.xib */; };
 /* End PBXBuildFile section */
@@ -41,7 +41,7 @@
 		149B3F9321BE8DB600539BC3 /* LessonsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonsModel.swift; sourceTree = "<group>"; };
 		149B3F9521BE8DC600539BC3 /* BeginnerLessonsBank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeginnerLessonsBank.swift; sourceTree = "<group>"; };
 		149B3F9721BE9A0C00539BC3 /* IntermediateLessonsBank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntermediateLessonsBank.swift; sourceTree = "<group>"; };
-		14DC500A21E90C5B006EDC00 /* CustomSubLessonsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSubLessonsTableViewCell.swift; sourceTree = "<group>"; };
+		14DC500A21E90C5B006EDC00 /* CustomSubLessonsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSubLessonsCell.swift; sourceTree = "<group>"; };
 		14FF7FCD21E7A20000808F89 /* CustomLessonsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLessonsCell.swift; sourceTree = "<group>"; };
 		14FF7FCE21E7A20000808F89 /* CustomLessonsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomLessonsCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -124,7 +124,7 @@
 			children = (
 				14FF7FCD21E7A20000808F89 /* CustomLessonsCell.swift */,
 				14FF7FCE21E7A20000808F89 /* CustomLessonsCell.xib */,
-				14DC500A21E90C5B006EDC00 /* CustomSubLessonsTableViewCell.swift */,
+				14DC500A21E90C5B006EDC00 /* CustomSubLessonsCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -210,7 +210,7 @@
 				149B3F9021BE7F8000539BC3 /* SubLessonsTableViewController.swift in Sources */,
 				149B3F9821BE9A0C00539BC3 /* IntermediateLessonsBank.swift in Sources */,
 				149B3F9421BE8DB600539BC3 /* LessonsModel.swift in Sources */,
-				14DC500B21E90C5B006EDC00 /* CustomSubLessonsTableViewCell.swift in Sources */,
+				14DC500B21E90C5B006EDC00 /* CustomSubLessonsCell.swift in Sources */,
 				149B3F9221BE7FC500539BC3 /* LessonViewController.swift in Sources */,
 				149B3F8E21BE7F2700539BC3 /* LessonsTableViewController.swift in Sources */,
 			);

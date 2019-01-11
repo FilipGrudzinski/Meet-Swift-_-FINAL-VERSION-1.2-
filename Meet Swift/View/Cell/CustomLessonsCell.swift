@@ -17,7 +17,9 @@ class CustomLessonsCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
- 
+        
+        setTheme(isDark: mode)
+        
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -27,6 +29,17 @@ class CustomLessonsCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    
+    func setTheme(isDark: Bool) {
+        
+        let theme = isDark ? ColorTheme.dark : ColorTheme.light
+        
+        lessonsNumberLabel.textColor = theme.textColor
+        lessonsTitleLabel.textColor = theme.textColor
+        lessonsProgressLabel.textColor = theme.textColor
+        progressBar.progressTintColor = theme.cellProgressBarColor
+        
+        //UITableViewCell.appearance().selectedBackgroundView?.backgroundColor = theme.selectedRow
+        
+    }
 
 }

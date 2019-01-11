@@ -18,11 +18,18 @@ class SubLessonsTableViewController: UITableViewController {
         super.viewDidLoad()
        
         self.title = subLessonsTitle
+        tableView.separatorStyle = .none
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 44
-     
     
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        setTheme(isDark: mode)
+     
+        
+    }
+    
 
     // MARK: - Table view data source
 
@@ -44,11 +51,14 @@ class SubLessonsTableViewController: UITableViewController {
 //        view.addSubview(headerLabel)
 //        //cell.textLabel?.text = name
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "SubLessonsCell", for: indexPath) as! CustomSubLessonsTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SubLessonsCell", for: indexPath) as! CustomSubLessonsCell
         
-        cell.labUerName.text = subLessons[indexPath.row]
-        cell.labMessage.text = "Message \(indexPath.row)"
-        cell.labTime.text = DateFormatter.localizedString(from: NSDate() as Date, dateStyle: .short, timeStyle: .short)
+        //cell.imgUser.text = "LOLEK"
+        cell.subLessonNumber.text = "\(indexPath.row + 1)."
+        cell.subLessonTitle.text = subLessons[indexPath.row]
+        cell.subLessonDescription.text = "Message \(indexPath.row)"
+        cell.progressLabel.text = "OK"
+        //cell.progressBar.progress = 1.0
         
         return cell
     }
@@ -57,8 +67,26 @@ class SubLessonsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         lessonTitle = self.subLessons[indexPath.row]
-        
+        self.tableView.deselectRow(at: indexPath, animated: true)
     }
     
 
+    func setTheme(isDark: Bool) {
+        
+        let theme = isDark ? ColorTheme.dark : ColorTheme.light
+        
+        view.backgroundColor = theme.viewControllerBackgroundColor
+        //UITableViewCell.appearance().backgroundColor = theme.cellBackgroundColor
+        
+        //selectedRow = theme.selectedRow
+        
+        navigationController?.navigationBar.barTintColor = theme.navigationColor // color of navigationbar
+        navigationController?.navigationBar.tintColor =  theme.navigationButtonColor // color of navigationbar buttons
+        navigationController?.navigationBar.barStyle = theme.style
+        
+        
+        tableView.reloadData()
+    }
+    
+    
 }
