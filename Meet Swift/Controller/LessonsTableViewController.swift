@@ -20,6 +20,9 @@ class LessonsTableViewController: UITableViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if UserDefaults.standard.object(forKey: "LightTheme") != nil {
+            Theme.current = UserDefaults.standard.bool(forKey: "LightTheme") ? DarkTheme() : LightTheme()
+        }
         applyTheme()
         
     }
@@ -94,9 +97,11 @@ class LessonsTableViewController: UITableViewController{
          
         let cell = tableView.dequeueReusableCell(withIdentifier: "LessonsCell", for: indexPath) as! CustomLessonsCell
         cell.backgroundColor = Theme.current.cellBackgroundColor
-//        let backgroundView = UIView()
-//        backgroundView.backgroundColor = selectedRow
-           //cell.selectedBackgroundView?.backgroundColor = selectedRow
+        cell.lessonsNumber.textColor = Theme.current.textColor
+        cell.lessonsTitle.textColor = Theme.current.textColor
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = Theme.current.selectedRow
+        cell.selectedBackgroundView = backgroundView
        
         
         if indexPath.section == 0 {

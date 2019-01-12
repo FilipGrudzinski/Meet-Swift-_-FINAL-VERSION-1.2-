@@ -38,7 +38,7 @@ class CustomSubLessonsCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        applySubLessonCellTheme()
+       
         
         subLessonNumber.translatesAutoresizingMaskIntoConstraints = false
         subLessonTitle.translatesAutoresizingMaskIntoConstraints = false
@@ -71,14 +71,7 @@ class CustomSubLessonsCell: UITableViewCell {
         
     }
     
-    private func applySubLessonCellTheme() {
+   
         
-        backgroundColor = Theme.current.cellBackgroundColor
-        subLessonNumber.textColor = Theme.current.textColor
-        subLessonTitle.textColor = Theme.current.textColor
-        subLessonDescription.textColor = Theme.current.textColor
-        
-    }
-    
     
 }

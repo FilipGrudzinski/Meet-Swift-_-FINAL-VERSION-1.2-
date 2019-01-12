@@ -37,7 +37,6 @@ class CustomLessonsCell: UITableViewCell  {
     override func awakeFromNib() {
         super.awakeFromNib()
     
-        applyLessonCellTheme()
         
         lessonsNumber.translatesAutoresizingMaskIntoConstraints = false
         lessonsTitle.translatesAutoresizingMaskIntoConstraints = false
@@ -74,14 +73,6 @@ class CustomLessonsCell: UITableViewCell  {
         
     }
     
-    private func applyLessonCellTheme() {
 
-        backgroundColor = Theme.current.cellBackgroundColor
-        lessonsNumber.textColor = Theme.current.textColor
-        lessonsTitle.textColor = Theme.current.textColor
-        lessonsDescription.textColor = Theme.current.textColor
-
-    }
-   
 
 }
