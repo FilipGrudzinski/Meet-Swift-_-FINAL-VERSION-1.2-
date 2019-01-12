@@ -28,7 +28,7 @@ class AboutViewViewController: UIViewController, MFMailComposeViewControllerDele
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        setTheme(isDark: mode)
+        //setTheme(isDark: mode)
         
     }
     
@@ -72,25 +72,25 @@ class AboutViewViewController: UIViewController, MFMailComposeViewControllerDele
     }
     
     
-    func setTheme(isDark: Bool) {
-        
-        let theme = isDark ? ColorTheme.dark : ColorTheme.light
-        
-        view.backgroundColor = theme.viewControllerBackgroundColor
-        
-        navigationController?.navigationBar.barTintColor = theme.navigationColor // color of navigationbar
-        navigationController?.navigationBar.tintColor =  theme.navigationButtonColor // color of navigationbar buttons
-        navigationController?.navigationBar.barStyle = theme.style
-        
-        // Content Text collors
-        let textesColor = theme.textColor
-        descriptionLabel.textColor = textesColor
-        contaktLabelContent.textColor = theme.navigationButtonColor
-        contactLabel.textColor = textesColor
-        autorLabel.textColor = textesColor
-        autorLabelContent.textColor = textesColor
-        
-    }
-    
+//    func setTheme(isDark: Bool) {
+//        
+//        let theme = isDark ? ColorTheme.dark : ColorTheme.light
+//        
+//        view.backgroundColor = theme.viewControllerBackgroundColor
+//        
+//        navigationController?.navigationBar.barTintColor = theme.navigationColor // color of navigationbar
+//        navigationController?.navigationBar.tintColor =  theme.navigationButtonColor // color of navigationbar buttons
+//        navigationController?.navigationBar.barStyle = theme.style
+//        
+//        // Content Text collors
+//        let textesColor = theme.textColor
+//        descriptionLabel.textColor = textesColor
+//        contaktLabelContent.textColor = theme.navigationButtonColor
+//        contactLabel.textColor = textesColor
+//        autorLabel.textColor = textesColor
+//        autorLabelContent.textColor = textesColor
+//        
+//    }
+//    
     
 }

@@ -96,7 +96,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="lessonsCell" id="jVH-op-92W">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LessonsCell" id="jVH-op-92W" customClass="CustomLessonsCell" customModule="Meet_Swift" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jVH-op-92W" id="hyt-6I-jnU">
@@ -186,7 +186,7 @@
                     </view>
                     <connections>
                         <outlet property="darkModeLabel" destination="Gu0-UV-g8D" id="nhy-0d-njy"/>
-                        <outlet property="darkModeSwitchOutlet" destination="XiE-ey-WoL" id="dUJ-JM-SmB"/>
+                        <outlet property="darkModeSwitchOutlet" destination="XiE-ey-WoL" id="BXI-H6-Zle"/>
                         <outlet property="resetAllProgressButtonLabel" destination="pUy-9P-S3O" id="aAZ-dK-oCP"/>
                         <outlet property="restoreInAppPurchaseButtonLabel" destination="AV2-O9-lmp" id="cKV-cq-Aaj"/>
                     </connections>

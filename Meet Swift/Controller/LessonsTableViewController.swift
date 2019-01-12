@@ -8,9 +8,9 @@
 
 import UIKit
 
-var mode: Bool = false
-
 class LessonsTableViewController: UITableViewController{
+    
+//    var mode:Bool = false
     
     var selectedRow = #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 0.5)
     
@@ -22,18 +22,27 @@ class LessonsTableViewController: UITableViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.register(UINib(nibName: "CustomLessonsCell", bundle: nil), forCellReuseIdentifier: "customLessonsCell")
+        //tableView.register(UINib(nibName: "CustomLessonsCell", bundle: nil), forCellReuseIdentifier: "customLessonsCell")
         
-        mode = UserDefaults.standard.bool(forKey: "mode")
-        setTheme(isDark: mode)
+        //mode = UserDefaults.standard.bool(forKey: "mode")
+        
+        //setTheme(isDark: mode)
         
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        
-        setTheme(isDark: mode)
-  
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//        setTheme(isDark: mode)
+//        tableView.reloadData()
+//    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super .viewDidAppear(animated)
+        view.backgroundColor = Theme.currnet.background
+        //setTheme(isDark: mode)
+        tableView.reloadData()
     }
+    
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 40
@@ -53,13 +62,13 @@ class LessonsTableViewController: UITableViewController{
         
         view.addSubview(headerLabel)
         
-        if !mode  {
-            view.backgroundColor = #colorLiteral(red: 0.9607132469, green: 0.9607132469, blue: 0.9607132469, alpha: 1)
-            headerLabel.textColor = UIColor.black
-        } else {
-            view.backgroundColor = #colorLiteral(red: 0.07058823529, green: 0.07058823529, blue: 0.07058823529, alpha: 1)
-            headerLabel.textColor = #colorLiteral(red: 0.9008589757, green: 0.9056003387, blue: 0.9056003387, alpha: 1)
-        }
+//        if !mode  {
+//            view.backgroundColor = #colorLiteral(red: 0.9607132469, green: 0.9607132469, blue: 0.9607132469, alpha: 1)
+//            headerLabel.textColor = UIColor.black
+//        } else {
+//            view.backgroundColor = #colorLiteral(red: 0.07058823529, green: 0.07058823529, blue: 0.07058823529, alpha: 1)
+//            headerLabel.textColor = #colorLiteral(red: 0.9008589757, green: 0.9056003387, blue: 0.9056003387, alpha: 1)
+//        }
         
         return view
     }
@@ -96,8 +105,8 @@ class LessonsTableViewController: UITableViewController{
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "customLessonsCell", for: indexPath) as! CustomLessonsCell
-        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "LessonsCell", for: indexPath) as! CustomLessonsCell
+        cell.backgroundColor = Theme.currnet.background
 //        let backgroundView = UIView()
 //        backgroundView.backgroundColor = selectedRow
            //cell.selectedBackgroundView?.backgroundColor = selectedRow
@@ -105,24 +114,24 @@ class LessonsTableViewController: UITableViewController{
         
         if indexPath.section == 0 {
             
-            cell.lessonsNumberLabel.text = "\(indexPath.row + 1)."
-            cell.lessonsTitleLabel.text = sections0.list[indexPath.row].lessonText
+            cell.subLessonNumber.text = "\(indexPath.row + 1)."
+            cell.subLessonTitle.text = sections0.list[indexPath.row].lessonText
             cell.progressBar.progress = 0.05
-            cell.lessonsProgressLabel.text = "0/20"
+            //cell.lessonsProgressLabel.text = "0/20"
             
         } else if indexPath.section == 1 {
             
-            cell.lessonsNumberLabel.text = "\(indexPath.row + 1)."
-            cell.lessonsTitleLabel.text = sections1.list[indexPath.row].lessonText
+            cell.subLessonNumber.text = "\(indexPath.row + 1)."
+            cell.subLessonTitle.text = sections1.list[indexPath.row].lessonText
             cell.progressBar.progress = 0.09
-            cell.lessonsProgressLabel.text = "0/20"
+            //cell.lessonsProgressLabel.text = "0/20"
             
         } else if indexPath.section == 2 {
             
-            cell.lessonsNumberLabel.text = "\(indexPath.row + 1)."
-            cell.lessonsTitleLabel.text = sections1.list[indexPath.row].lessonText
+            cell.subLessonNumber.text = "\(indexPath.row + 1)."
+            cell.subLessonTitle.text = sections1.list[indexPath.row].lessonText
             cell.progressBar.progress = 0.01
-            cell.lessonsProgressLabel.text = "0/20"
+            //cell.lessonsProgressLabel.text = "0/20"
             
         }
         
@@ -132,7 +141,7 @@ class LessonsTableViewController: UITableViewController{
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        performSegue(withIdentifier: "goToSubLessonsView", sender: self)
+        //performSegue(withIdentifier: "goToSubLessonsView", sender: self)
      
         if indexPath.section == 0 {
             
@@ -159,23 +168,20 @@ class LessonsTableViewController: UITableViewController{
     }
     
     
-    func setTheme(isDark: Bool) {
-        
-        let theme = isDark ? ColorTheme.dark : ColorTheme.light
-        
-        view.backgroundColor = theme.viewControllerBackgroundColor
-        UITableViewCell.appearance().backgroundColor = theme.cellBackgroundColor
-      
-        //selectedRow = theme.selectedRow
-        
-    
-        
-        navigationController?.navigationBar.barTintColor = theme.navigationColor // color of navigationbar
-        navigationController?.navigationBar.tintColor =  theme.navigationButtonColor // color of navigationbar buttons
-        navigationController?.navigationBar.barStyle = theme.style
-        
-        
-        tableView.reloadData()
-    }
+//    func setTheme(isDark: Bool) {
+//
+//        let theme = isDark ? ColorTheme.dark : ColorTheme.light
+//
+//        view.backgroundColor = theme.viewControllerBackgroundColor
+//        //UITableViewCell.appearance().backgroundColor = theme.cellBackgroundColor
+//
+//        //selectedRow = theme.selectedRow
+//
+//
+//        navigationController?.navigationBar.barTintColor = theme.navigationColor // color of navigationbar
+//        navigationController?.navigationBar.tintColor =  theme.navigationButtonColor // color of navigationbar buttons
+//        navigationController?.navigationBar.barStyle = theme.style
+//
+//    }
     
 }

@@ -13,6 +13,7 @@ import UIKit
 class SettingsViewController: UIViewController {
     
     @IBOutlet weak var darkModeLabel: UILabel!
+    
     @IBOutlet weak var darkModeSwitchOutlet: UISwitch!
     @IBOutlet weak var resetAllProgressButtonLabel: UIButton!
     @IBOutlet weak var restoreInAppPurchaseButtonLabel: UIButton!
@@ -20,36 +21,44 @@ class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         //resetAllProgressButtonLabel.isHidden = true
         //restoreInAppPurchaseButtonLabel.isHidden = true
         
-        let modeValue = UserDefaults.standard.bool(forKey: "mode")
-        mode = modeValue
-        darkModeSwitchOutlet.setOn(mode, animated: false)
-        setTheme(isDark: mode)
+        let modeValue = UserDefaults.standard.bool(forKey: "LightTheme")
+//        mode = modeValue
+        darkModeSwitchOutlet.setOn(modeValue, animated: false)
+       // setTheme(isDark: mode)
+     applyTheme()
+        
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        setTheme(isDark: mode)
+      // setTheme(isDark: mode)
         
     }
     
     @IBAction func colorThemeSwitch(_ sender: UISwitch) {
         
-        if darkModeSwitchOutlet.isOn {
-            
-            mode = true
-            UserDefaults.standard.set(mode, forKey: "mode")
-            
-        } else {
-            
-            mode = false
-            UserDefaults.standard.set(mode, forKey: "mode")
-            
-        }
+//        if darkModeSwitchOutlet.isOn {
+//
+////            mode = true
+////            UserDefaults.standard.set(mode, forKey: "mode")
+//             Theme.currnet = DarkTheme()
+//
+//
+//        } else {
+//              Theme.currnet = LightTheme()
+////            mode = false
+////            UserDefaults.standard.set(mode, forKey: "mode")
+//
+//        }
         
-        setTheme(isDark: mode)
+        Theme.currnet = sender.isOn ? DarkTheme() : LightTheme()
+        UserDefaults.standard.set(sender.isOn, forKey: "LightTheme")
+        applyTheme()
+        //setTheme(isDark: mode)
     }
     
     
@@ -65,21 +74,27 @@ class SettingsViewController: UIViewController {
     }
     
     
-    func setTheme(isDark: Bool) {
+//    func setTheme(isDark: Bool) {
+//
+//        let theme = isDark ? ColorTheme.dark : ColorTheme.light
+//
+//        view.backgroundColor = theme.viewControllerBackgroundColor
+//
+//        navigationController?.navigationBar.barTintColor = theme.navigationColor // color of navigationbar
+//        navigationController?.navigationBar.tintColor =  theme.navigationButtonColor // color of navigationbar buttons
+//        navigationController?.navigationBar.barStyle = theme.style
+//
+//        // Content Text collors
+//        darkModeLabel.textColor = theme.textColor
+//        resetAllProgressButtonLabel.tintColor = theme.navigationButtonColor
+//        restoreInAppPurchaseButtonLabel.tintColor = theme.navigationButtonColor
+//
+//    }
+    
+    private func applyTheme() {
         
-        let theme = isDark ? ColorTheme.dark : ColorTheme.light
-        
-        view.backgroundColor = theme.viewControllerBackgroundColor
-        
-        navigationController?.navigationBar.barTintColor = theme.navigationColor // color of navigationbar
-        navigationController?.navigationBar.tintColor =  theme.navigationButtonColor // color of navigationbar buttons
-        navigationController?.navigationBar.barStyle = theme.style
-        
-        // Content Text collors
-        darkModeLabel.textColor = theme.textColor
-        resetAllProgressButtonLabel.tintColor = theme.navigationButtonColor
-        restoreInAppPurchaseButtonLabel.tintColor = theme.navigationButtonColor
-        
+        view.backgroundColor = Theme.currnet.background
+        navigationController?.navigationBar.barTintColor = Theme.currnet.tint
     }
     
 }

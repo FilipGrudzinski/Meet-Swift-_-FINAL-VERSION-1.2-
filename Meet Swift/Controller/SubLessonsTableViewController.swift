@@ -11,45 +11,45 @@ import UIKit
 var subLessonsTitle = ""
 
 class SubLessonsTableViewController: UITableViewController {
-
+    
     var subLessons = ["SubLesson 1", "SubLesson 2", "SubLesson 3", "SubLesson 4", "SubLesson 5", "SubLesson 6", "SubLesson 7", "SubLesson 8", "SubLesson 9", "SubLesson 10", "SubLesson 11", "SubLesson 12", "SubLesson 13", "SubLesson 14", "SubLesson 152",]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+        
         self.title = subLessonsTitle
         tableView.separatorStyle = .none
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 44
-    
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        setTheme(isDark: mode)
-     
         
     }
     
-
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        //setTheme(isDark: mode)
+        tableView.reloadData()
+    }
+    
+    
     // MARK: - Table view data source
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-  
+        
         return subLessons.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "SubLessonsCell", for: indexPath)
-//
-//        let headerLabel = UILabel()
-//        headerLabel.text = subLessons[indexPath.row]
-//        headerLabel.frame = CGRect(x: 15, y: 5, width: 100, height: 35)
-//        headerLabel.font = UIFont.boldSystemFont(ofSize: 16.0)
-//
-//        //let name = subLessons[indexPath.row]
-//        view.addSubview(headerLabel)
-//        //cell.textLabel?.text = name
+        //        let cell = tableView.dequeueReusableCell(withIdentifier: "SubLessonsCell", for: indexPath)
+        //
+        //        let headerLabel = UILabel()
+        //        headerLabel.text = subLessons[indexPath.row]
+        //        headerLabel.frame = CGRect(x: 15, y: 5, width: 100, height: 35)
+        //        headerLabel.font = UIFont.boldSystemFont(ofSize: 16.0)
+        //
+        //        //let name = subLessons[indexPath.row]
+        //        view.addSubview(headerLabel)
+        //        //cell.textLabel?.text = name
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "SubLessonsCell", for: indexPath) as! CustomSubLessonsCell
         
@@ -70,23 +70,16 @@ class SubLessonsTableViewController: UITableViewController {
         self.tableView.deselectRow(at: indexPath, animated: true)
     }
     
-
-    func setTheme(isDark: Bool) {
-        
-        let theme = isDark ? ColorTheme.dark : ColorTheme.light
-        
-        view.backgroundColor = theme.viewControllerBackgroundColor
-        //UITableViewCell.appearance().backgroundColor = theme.cellBackgroundColor
-        
-        //selectedRow = theme.selectedRow
-        
-        navigationController?.navigationBar.barTintColor = theme.navigationColor // color of navigationbar
-        navigationController?.navigationBar.tintColor =  theme.navigationButtonColor // color of navigationbar buttons
-        navigationController?.navigationBar.barStyle = theme.style
-        
-        
-        tableView.reloadData()
-    }
     
-    
+//    func setTheme(isDark: Bool) {
+//        
+//        let theme = isDark ? ColorTheme.dark : ColorTheme.light
+//        
+//        view.backgroundColor = theme.viewControllerBackgroundColor
+//        //UITableViewCell.appearance().backgroundColor = theme.cellBackgroundColor
+//        
+//        //selectedRow = theme.selectedRow
+//        
+//        
+//    }
 }

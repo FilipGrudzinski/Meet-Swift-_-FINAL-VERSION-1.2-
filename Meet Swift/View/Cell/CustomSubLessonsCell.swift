@@ -44,8 +44,9 @@ class CustomSubLessonsCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        UITableViewCell.appearance().backgroundColor = Theme.currnet.background
 
-        setTheme(isDark: mode)
+        //setTheme(isDark: mode)
      
         subLessonNumber.translatesAutoresizingMaskIntoConstraints = false
         subLessonTitle.translatesAutoresizingMaskIntoConstraints = false
@@ -87,17 +88,17 @@ class CustomSubLessonsCell: UITableViewCell {
     }
 
     
-    func setTheme(isDark: Bool) {
-        
-        let theme = isDark ? ColorTheme.dark : ColorTheme.light
-        
-        subLessonNumber.textColor = theme.textColor
-        subLessonTitle.textColor = theme.textColor
-        subLessonDescription.textColor = theme.textColor
-        progressLabel.textColor = theme.textColor
-        
-        //UITableViewCell.appearance().backgroundColor = theme.cellBackgroundColor
-
-    }
+//    func setTheme(isDark: Bool) {
+//
+//        let theme = isDark ? ColorTheme.dark : ColorTheme.light
+//
+//        subLessonNumber.textColor = theme.textColor
+//        subLessonTitle.textColor = theme.textColor
+//        subLessonDescription.textColor = theme.textColor
+//        progressLabel.textColor = theme.textColor
+//
+//        UITableViewCell.appearance().backgroundColor = theme.cellBackgroundColor
+//
+//    }
     
 }
