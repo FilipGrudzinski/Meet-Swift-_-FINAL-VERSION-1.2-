@@ -26,10 +26,15 @@ class SubLessonsTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        //setTheme(isDark: mode)
+        applyTheme()
         tableView.reloadData()
     }
     
+//    override func viewDidAppear(_ animated: Bool) {
+//        super.viewDidAppear(animated)
+//        applyTheme()
+//        tableView.reloadData()
+//    }
     
     // MARK: - Table view data source
     
@@ -52,7 +57,7 @@ class SubLessonsTableViewController: UITableViewController {
         //        //cell.textLabel?.text = name
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "SubLessonsCell", for: indexPath) as! CustomSubLessonsCell
-        
+        //cell.backgroundColor = Theme.current.cellBackgroundColor
         //cell.imgUser.text = "LOLEK"
         cell.subLessonNumber.text = "\(indexPath.row + 1)."
         cell.subLessonTitle.text = subLessons[indexPath.row]
@@ -82,4 +87,14 @@ class SubLessonsTableViewController: UITableViewController {
 //        
 //        
 //    }
+    
+    private func applyTheme() {
+        
+        navigationController?.navigationBar.barStyle = Theme.current.style
+        navigationController?.navigationBar.tintColor = Theme.current.buttonColor // color of navigationbar buttons
+        navigationController?.navigationBar.barTintColor = Theme.current.navigationColor // color of navigationbar
+        view.backgroundColor = Theme.current.viewControllerBackgroundColor
+ 
+    }
+    
 }

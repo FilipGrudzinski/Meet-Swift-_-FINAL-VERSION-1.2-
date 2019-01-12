@@ -26,8 +26,6 @@
 		149B3F9621BE8DC600539BC3 /* BeginnerLessonsBank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149B3F9521BE8DC600539BC3 /* BeginnerLessonsBank.swift */; };
 		149B3F9821BE9A0C00539BC3 /* IntermediateLessonsBank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149B3F9721BE9A0C00539BC3 /* IntermediateLessonsBank.swift */; };
 		14DC500B21E90C5B006EDC00 /* CustomSubLessonsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DC500A21E90C5B006EDC00 /* CustomSubLessonsCell.swift */; };
-		14FF7FCF21E7A20000808F89 /* CustomLessonsCellOLD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FF7FCD21E7A20000808F89 /* CustomLessonsCellOLD.swift */; };
-		14FF7FD021E7A20000808F89 /* CustomLessonsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14FF7FCE21E7A20000808F89 /* CustomLessonsCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,8 +50,6 @@
 		149B3F9521BE8DC600539BC3 /* BeginnerLessonsBank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeginnerLessonsBank.swift; sourceTree = "<group>"; };
 		149B3F9721BE9A0C00539BC3 /* IntermediateLessonsBank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntermediateLessonsBank.swift; sourceTree = "<group>"; };
 		14DC500A21E90C5B006EDC00 /* CustomSubLessonsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSubLessonsCell.swift; sourceTree = "<group>"; };
-		14FF7FCD21E7A20000808F89 /* CustomLessonsCellOLD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLessonsCellOLD.swift; sourceTree = "<group>"; };
-		14FF7FCE21E7A20000808F89 /* CustomLessonsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomLessonsCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,10 +66,10 @@
 		1458E44221EA4780005AE25F /* Theme */ = {
 			isa = PBXGroup;
 			children = (
-				1458E44321EA47AE005AE25F /* ThemeProtocol.swift */,
-				1458E44521EA4885005AE25F /* DarkTheme.swift */,
-				1458E44721EA4893005AE25F /* LightTheme.swift */,
 				1458E44921EA4A23005AE25F /* Theme.swift */,
+				1458E44321EA47AE005AE25F /* ThemeProtocol.swift */,
+				1458E44721EA4893005AE25F /* LightTheme.swift */,
+				1458E44521EA4885005AE25F /* DarkTheme.swift */,
 			);
 			path = Theme;
 			sourceTree = "<group>";
@@ -100,7 +96,6 @@
 				149B3F8C21BE7EDE00539BC3 /* Controller */,
 				149B3F8B21BE7ED000539BC3 /* Model */,
 				149B3F8A21BE7EC700539BC3 /* View */,
-				1458E44221EA4780005AE25F /* Theme */,
 				149B3F7F21BE7DCC00539BC3 /* Assets.xcassets */,
 				149B3F8121BE7DCC00539BC3 /* LaunchScreen.storyboard */,
 				149B3F8421BE7DCC00539BC3 /* Info.plist */,
@@ -111,6 +106,7 @@
 		149B3F8A21BE7EC700539BC3 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1458E44221EA4780005AE25F /* Theme */,
 				14FE5FBC21E6A2C0007E877F /* Cell */,
 				149B3F7C21BE7DCA00539BC3 /* Main.storyboard */,
 				1408977321CC1BD9003C2915 /* ColorTheme.swift */,
@@ -144,10 +140,8 @@
 		14FE5FBC21E6A2C0007E877F /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				14FF7FCD21E7A20000808F89 /* CustomLessonsCellOLD.swift */,
-				14FF7FCE21E7A20000808F89 /* CustomLessonsCell.xib */,
-				14DC500A21E90C5B006EDC00 /* CustomSubLessonsCell.swift */,
 				1458E44021EA2A6F005AE25F /* CustomLessonsCell.swift */,
+				14DC500A21E90C5B006EDC00 /* CustomSubLessonsCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -211,7 +205,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				149B3F8321BE7DCC00539BC3 /* LaunchScreen.storyboard in Resources */,
-				14FF7FD021E7A20000808F89 /* CustomLessonsCell.xib in Resources */,
 				149B3F8021BE7DCC00539BC3 /* Assets.xcassets in Resources */,
 				149B3F7E21BE7DCA00539BC3 /* Main.storyboard in Resources */,
 			);
@@ -224,7 +217,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				14FF7FCF21E7A20000808F89 /* CustomLessonsCellOLD.swift in Sources */,
 				1408977421CC1BD9003C2915 /* ColorTheme.swift in Sources */,
 				149B3F9621BE8DC600539BC3 /* BeginnerLessonsBank.swift in Sources */,
 				1458E44421EA47AE005AE25F /* ThemeProtocol.swift in Sources */,

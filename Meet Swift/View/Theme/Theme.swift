@@ -11,6 +11,6 @@ import UIKit
 
 class Theme {
     
-    static var currnet:ThemeProtocol = LightTheme()
+    static var current:ThemeProtocol = LightTheme()
     
 }

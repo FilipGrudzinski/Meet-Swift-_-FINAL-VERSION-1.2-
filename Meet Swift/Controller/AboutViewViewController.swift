@@ -23,15 +23,9 @@ class AboutViewViewController: UIViewController, MFMailComposeViewControllerDele
         let tap = UITapGestureRecognizer(target: self, action: #selector(AboutViewViewController.tapFunction))
         contaktLabelContent.isUserInteractionEnabled = true
         contaktLabelContent.addGestureRecognizer(tap)
-        
+        applyTheme()
         // Do any additional setup after loading the view.
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        //setTheme(isDark: mode)
-        
-    }
-    
     
     @objc func tapFunction(sender:UITapGestureRecognizer) {
         
@@ -72,25 +66,17 @@ class AboutViewViewController: UIViewController, MFMailComposeViewControllerDele
     }
     
     
-//    func setTheme(isDark: Bool) {
-//        
-//        let theme = isDark ? ColorTheme.dark : ColorTheme.light
-//        
-//        view.backgroundColor = theme.viewControllerBackgroundColor
-//        
-//        navigationController?.navigationBar.barTintColor = theme.navigationColor // color of navigationbar
-//        navigationController?.navigationBar.tintColor =  theme.navigationButtonColor // color of navigationbar buttons
-//        navigationController?.navigationBar.barStyle = theme.style
-//        
-//        // Content Text collors
-//        let textesColor = theme.textColor
-//        descriptionLabel.textColor = textesColor
-//        contaktLabelContent.textColor = theme.navigationButtonColor
-//        contactLabel.textColor = textesColor
-//        autorLabel.textColor = textesColor
-//        autorLabelContent.textColor = textesColor
-//        
-//    }
-//    
+    private func applyTheme() {
+        
+        navigationController?.navigationBar.barStyle = Theme.current.style
+        navigationController?.navigationBar.tintColor = Theme.current.buttonColor // color of navigationbar buttons
+        navigationController?.navigationBar.barTintColor = Theme.current.navigationColor // color of navigationbar
+        view.backgroundColor = Theme.current.viewControllerBackgroundColor
+        descriptionLabel.textColor = Theme.current.textColor
+        autorLabel.textColor = Theme.current.textColor
+        autorLabelContent.textColor = Theme.current.textColor
+        contactLabel.textColor = Theme.current.textColor
+        contaktLabelContent.textColor = Theme.current.buttonColor
+    }
     
 }

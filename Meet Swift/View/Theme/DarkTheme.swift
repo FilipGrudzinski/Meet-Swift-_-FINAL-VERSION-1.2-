@@ -13,7 +13,7 @@ class DarkTheme: ThemeProtocol {
     var statusBar: Bool = false
     var viewControllerBackgroundColor: UIColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
     var navigationColor: UIColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-    var navigationButtonColor: UIColor = #colorLiteral(red: 1, green: 0.5781051517, blue: 0, alpha: 1)
+    var buttonColor: UIColor = #colorLiteral(red: 1, green: 0.5781051517, blue: 0, alpha: 1)
     var textColor: UIColor = #colorLiteral(red: 0.9174425006, green: 0.9216420054, blue: 0.9215044379, alpha: 1)
     var style: UIBarStyle = .blackOpaque
     var cellProgressBarColor: UIColor = #colorLiteral(red: 1, green: 0.5781051517, blue: 0, alpha: 1)

@@ -10,8 +10,6 @@ import UIKit
 
 class LessonsTableViewController: UITableViewController{
     
-//    var mode:Bool = false
-    
     var selectedRow = #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 0.5)
     
     let sectionTitles = ["Beginner", "Intermediate", "Advanced"]
@@ -22,27 +20,16 @@ class LessonsTableViewController: UITableViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //tableView.register(UINib(nibName: "CustomLessonsCell", bundle: nil), forCellReuseIdentifier: "customLessonsCell")
-        
-        //mode = UserDefaults.standard.bool(forKey: "mode")
-        
-        //setTheme(isDark: mode)
+        applyTheme()
         
     }
     
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//        setTheme(isDark: mode)
-//        tableView.reloadData()
-//    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super .viewDidAppear(animated)
-        view.backgroundColor = Theme.currnet.background
-        //setTheme(isDark: mode)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        applyTheme()
         tableView.reloadData()
     }
-    
+
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 40
@@ -104,32 +91,29 @@ class LessonsTableViewController: UITableViewController{
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+         
         let cell = tableView.dequeueReusableCell(withIdentifier: "LessonsCell", for: indexPath) as! CustomLessonsCell
-        cell.backgroundColor = Theme.currnet.background
+        cell.backgroundColor = Theme.current.cellBackgroundColor
 //        let backgroundView = UIView()
 //        backgroundView.backgroundColor = selectedRow
            //cell.selectedBackgroundView?.backgroundColor = selectedRow
-        
+       
         
         if indexPath.section == 0 {
-            
-            cell.subLessonNumber.text = "\(indexPath.row + 1)."
-            cell.subLessonTitle.text = sections0.list[indexPath.row].lessonText
+            cell.lessonsNumber.text = "\(indexPath.row + 1)."
+            cell.lessonsTitle.text = sections0.list[indexPath.row].lessonText
             cell.progressBar.progress = 0.05
             //cell.lessonsProgressLabel.text = "0/20"
             
         } else if indexPath.section == 1 {
-            
-            cell.subLessonNumber.text = "\(indexPath.row + 1)."
-            cell.subLessonTitle.text = sections1.list[indexPath.row].lessonText
+            cell.lessonsNumber.text = "\(indexPath.row + 1)."
+            cell.lessonsTitle.text = sections1.list[indexPath.row].lessonText
             cell.progressBar.progress = 0.09
             //cell.lessonsProgressLabel.text = "0/20"
             
         } else if indexPath.section == 2 {
-            
-            cell.subLessonNumber.text = "\(indexPath.row + 1)."
-            cell.subLessonTitle.text = sections1.list[indexPath.row].lessonText
+            cell.lessonsNumber.text = "\(indexPath.row + 1)."
+            cell.lessonsTitle.text = sections1.list[indexPath.row].lessonText
             cell.progressBar.progress = 0.01
             //cell.lessonsProgressLabel.text = "0/20"
             
@@ -168,20 +152,13 @@ class LessonsTableViewController: UITableViewController{
     }
     
     
-//    func setTheme(isDark: Bool) {
-//
-//        let theme = isDark ? ColorTheme.dark : ColorTheme.light
-//
-//        view.backgroundColor = theme.viewControllerBackgroundColor
-//        //UITableViewCell.appearance().backgroundColor = theme.cellBackgroundColor
-//
-//        //selectedRow = theme.selectedRow
-//
-//
-//        navigationController?.navigationBar.barTintColor = theme.navigationColor // color of navigationbar
-//        navigationController?.navigationBar.tintColor =  theme.navigationButtonColor // color of navigationbar buttons
-//        navigationController?.navigationBar.barStyle = theme.style
-//
-//    }
-    
+
+    private func applyTheme() {
+
+        navigationController?.navigationBar.barStyle = Theme.current.style
+        navigationController?.navigationBar.tintColor = Theme.current.buttonColor // color of navigationbar buttons
+        navigationController?.navigationBar.barTintColor = Theme.current.navigationColor // color of navigationbar
+        view.backgroundColor = Theme.current.viewControllerBackgroundColor
+
+    }
 }

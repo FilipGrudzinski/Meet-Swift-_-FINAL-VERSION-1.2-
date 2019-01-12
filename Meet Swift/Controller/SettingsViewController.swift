@@ -21,44 +21,21 @@ class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         //resetAllProgressButtonLabel.isHidden = true
         //restoreInAppPurchaseButtonLabel.isHidden = true
         
         let modeValue = UserDefaults.standard.bool(forKey: "LightTheme")
-//        mode = modeValue
         darkModeSwitchOutlet.setOn(modeValue, animated: false)
-       // setTheme(isDark: mode)
-     applyTheme()
-        
-        
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-      // setTheme(isDark: mode)
+        applyTheme()
         
     }
     
     @IBAction func colorThemeSwitch(_ sender: UISwitch) {
         
-//        if darkModeSwitchOutlet.isOn {
-//
-////            mode = true
-////            UserDefaults.standard.set(mode, forKey: "mode")
-//             Theme.currnet = DarkTheme()
-//
-//
-//        } else {
-//              Theme.currnet = LightTheme()
-////            mode = false
-////            UserDefaults.standard.set(mode, forKey: "mode")
-//
-//        }
-        
-        Theme.currnet = sender.isOn ? DarkTheme() : LightTheme()
+        Theme.current = sender.isOn ? DarkTheme() : LightTheme()
         UserDefaults.standard.set(sender.isOn, forKey: "LightTheme")
         applyTheme()
-        //setTheme(isDark: mode)
+     
     }
     
     
@@ -73,28 +50,17 @@ class SettingsViewController: UIViewController {
         print("Restore in-app pruchase Button Pressed")
     }
     
-    
-//    func setTheme(isDark: Bool) {
-//
-//        let theme = isDark ? ColorTheme.dark : ColorTheme.light
-//
-//        view.backgroundColor = theme.viewControllerBackgroundColor
-//
-//        navigationController?.navigationBar.barTintColor = theme.navigationColor // color of navigationbar
-//        navigationController?.navigationBar.tintColor =  theme.navigationButtonColor // color of navigationbar buttons
-//        navigationController?.navigationBar.barStyle = theme.style
-//
-//        // Content Text collors
-//        darkModeLabel.textColor = theme.textColor
-//        resetAllProgressButtonLabel.tintColor = theme.navigationButtonColor
-//        restoreInAppPurchaseButtonLabel.tintColor = theme.navigationButtonColor
-//
-//    }
-    
+
     private func applyTheme() {
         
-        view.backgroundColor = Theme.currnet.background
-        navigationController?.navigationBar.barTintColor = Theme.currnet.tint
+        navigationController?.navigationBar.barStyle = Theme.current.style
+        navigationController?.navigationBar.tintColor = Theme.current.buttonColor // color of navigationbar buttons
+        navigationController?.navigationBar.barTintColor = Theme.current.navigationColor // color of navigationbar
+        view.backgroundColor = Theme.current.viewControllerBackgroundColor
+        darkModeLabel.textColor = Theme.current.textColor
+        resetAllProgressButtonLabel.tintColor = Theme.current.buttonColor
+        restoreInAppPurchaseButtonLabel.tintColor = Theme.current.buttonColor
+        
     }
     
 }

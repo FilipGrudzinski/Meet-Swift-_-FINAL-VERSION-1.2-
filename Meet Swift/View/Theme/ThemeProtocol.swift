@@ -11,10 +11,10 @@ import UIKit
 
 protocol ThemeProtocol {
     
-    var statusBar: Bool {get}
+    var statusBar: Bool { get }
     var viewControllerBackgroundColor: UIColor { get }
     var navigationColor: UIColor { get }
-    var navigationButtonColor: UIColor { get }
+    var buttonColor: UIColor { get }
     var textColor: UIColor { get }
     var style: UIBarStyle { get }
     var cellProgressBarColor: UIColor { get }

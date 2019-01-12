@@ -8,31 +8,25 @@
 
 import UIKit
 
-class CustomLessonsCell: UITableViewCell {
-
-    let subLessonNumber:UILabel = {
+class CustomLessonsCell: UITableViewCell  {
+    
+    let lessonsNumber:UILabel = {
         
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 17.0)
-        label.text = ""
-        label.textColor = UIColor.red
         return label
     }()
     
-    let subLessonTitle:UILabel = {
+    let lessonsTitle:UILabel = {
         
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 16.0)
-        label.text = ""
-        label.textColor = UIColor.red
         return label
     }()
     
-    let subLessonDescription: UILabel = {
+    let lessonsDescription: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 16.0)
-        label.text = ""
-        label.textColor = UIColor.blue
         return label
     }()
     
@@ -42,29 +36,26 @@ class CustomLessonsCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+    
+        applyLessonCellTheme()
         
-        UITableViewCell.appearance().backgroundColor = Theme.currnet.background
-
-        
-       // setTheme(isDark: mode)
-        
-        subLessonNumber.translatesAutoresizingMaskIntoConstraints = false
-        subLessonTitle.translatesAutoresizingMaskIntoConstraints = false
-        subLessonDescription.translatesAutoresizingMaskIntoConstraints = false
+        lessonsNumber.translatesAutoresizingMaskIntoConstraints = false
+        lessonsTitle.translatesAutoresizingMaskIntoConstraints = false
+        lessonsDescription.translatesAutoresizingMaskIntoConstraints = false
         progressLabel.translatesAutoresizingMaskIntoConstraints = false
         //progressBar.translatesAutoresizingMaskIntoConstraints = true
         
-        contentView.addSubview(subLessonNumber)
-        contentView.addSubview(subLessonTitle)
-        contentView.addSubview(subLessonDescription)
+        contentView.addSubview(lessonsNumber)
+        contentView.addSubview(lessonsTitle)
+        contentView.addSubview(lessonsDescription)
         contentView.addSubview(progressLabel)
         
         
         let viewsDict = [
             
-            "subLesson" : subLessonNumber,
-            "title" : subLessonTitle,
-            "description" : subLessonDescription,
+            "subLesson" : lessonsNumber,
+            "title" : lessonsTitle,
+            "description" : lessonsDescription,
             "progress" : progressLabel,
             
             ]
@@ -78,27 +69,19 @@ class CustomLessonsCell: UITableViewCell {
         //h = horizontal - poziomy
         // v = vertical - pionowy
         
+       
+      
         
     }
     
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        
-        // Configure the view for the selected state
+    private func applyLessonCellTheme() {
+
+        backgroundColor = Theme.current.cellBackgroundColor
+        lessonsNumber.textColor = Theme.current.textColor
+        lessonsTitle.textColor = Theme.current.textColor
+        lessonsDescription.textColor = Theme.current.textColor
+
     }
-    
-//    
-//    func setTheme(isDark: Bool) {
-//        
-//        let theme = isDark ? ColorTheme.dark : ColorTheme.light
-//        
-//        subLessonNumber.textColor = theme.textColor
-//        subLessonTitle.textColor = theme.textColor
-//        subLessonDescription.textColor = theme.textColor
-//        progressLabel.textColor = theme.textColor
-//        
-//        //UITableViewCell.appearance().backgroundColor = theme.cellBackgroundColor
-//        
-//    }
+   
 
 }
