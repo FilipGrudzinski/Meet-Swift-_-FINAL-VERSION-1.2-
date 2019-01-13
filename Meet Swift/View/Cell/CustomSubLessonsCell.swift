@@ -8,66 +8,60 @@
 
 import UIKit
 
+
+
 class CustomSubLessonsCell: UITableViewCell {
     
     
-    let subLessonNumber:UILabel = {
+    
+    let subLessonsNumber:UILabel = {
         
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 17.0)
         return label
     }()
     
-    let subLessonTitle:UILabel = {
+    let subLessonsTitle:UILabel = {
         
-        let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 16.0)
-        return label
-    }()
-    
-    let subLessonDescription: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 16.0)
         return label
     }()
     
+    let subLessonsDescription: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 10.0)
+        return label
+    }()
     
-    let progressLabel = UILabel()
-    let progressBar = UIProgressView()
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
-       
+        subLessonsNumber.translatesAutoresizingMaskIntoConstraints = false
+        subLessonsTitle.translatesAutoresizingMaskIntoConstraints = false
+        subLessonsDescription.translatesAutoresizingMaskIntoConstraints = false
         
-        subLessonNumber.translatesAutoresizingMaskIntoConstraints = false
-        subLessonTitle.translatesAutoresizingMaskIntoConstraints = false
-        subLessonDescription.translatesAutoresizingMaskIntoConstraints = false
-        progressLabel.translatesAutoresizingMaskIntoConstraints = false
-        //progressBar.translatesAutoresizingMaskIntoConstraints = true
-        
-        contentView.addSubview(subLessonNumber)
-        contentView.addSubview(subLessonTitle)
-        contentView.addSubview(subLessonDescription)
-        contentView.addSubview(progressLabel)
+        contentView.addSubview(subLessonsNumber)
+        contentView.addSubview(subLessonsTitle)
+        contentView.addSubview(subLessonsDescription)
         
         let viewsDict = [
             
-            "subLesson" : subLessonNumber,
-            "title" : subLessonTitle,
-            "description" : subLessonDescription,
-            "progress" : progressLabel,
+            "subNum" : subLessonsNumber,
+            "title" : subLessonsTitle,
+            "description" : subLessonsDescription,
             
             ]
         
-        contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-16-[subLesson(14)]-10-[title]-0-[progress]-16-|", options: [], metrics: nil, views: viewsDict))
-        contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-[title]-5-[description]-|", options: [], metrics: nil, views: viewsDict))
-        contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-40-[description]-0-|", options: [], metrics: nil, views: viewsDict))
-        contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-16-[subLesson]", options: [], metrics: nil, views: viewsDict))
-        contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-16-[progress]", options: [], metrics: nil, views: viewsDict))
+        //h = horizontal - poziomy // v = vertical - pionowy
         
-        //h = horizontal - poziomy
-        // v = vertical - pionowy
+        contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-16-[subNum(30)]-5-[title]-40-|", options: [], metrics: nil, views: viewsDict))
+        contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-21-[title]-2-[description]", options: [], metrics: nil, views: viewsDict))
+        contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-20-[subNum]", options: [], metrics: nil, views: viewsDict))
+        contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-51-[description]-40-|", options: [], metrics: nil, views: viewsDict))
+ 
         
     }
     

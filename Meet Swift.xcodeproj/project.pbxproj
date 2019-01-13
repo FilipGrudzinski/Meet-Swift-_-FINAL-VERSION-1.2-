@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1408977421CC1BD9003C2915 /* ColorTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1408977321CC1BD9003C2915 /* ColorTheme.swift */; };
 		1458E44121EA2A6F005AE25F /* CustomLessonsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1458E44021EA2A6F005AE25F /* CustomLessonsCell.swift */; };
 		1458E44421EA47AE005AE25F /* ThemeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1458E44321EA47AE005AE25F /* ThemeProtocol.swift */; };
 		1458E44621EA4885005AE25F /* DarkTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1458E44521EA4885005AE25F /* DarkTheme.swift */; };
@@ -29,7 +28,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1408977321CC1BD9003C2915 /* ColorTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorTheme.swift; sourceTree = "<group>"; };
 		1458E44021EA2A6F005AE25F /* CustomLessonsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLessonsCell.swift; sourceTree = "<group>"; };
 		1458E44321EA47AE005AE25F /* ThemeProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeProtocol.swift; sourceTree = "<group>"; };
 		1458E44521EA4885005AE25F /* DarkTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkTheme.swift; sourceTree = "<group>"; };
@@ -109,7 +107,6 @@
 				1458E44221EA4780005AE25F /* Theme */,
 				14FE5FBC21E6A2C0007E877F /* Cell */,
 				149B3F7C21BE7DCA00539BC3 /* Main.storyboard */,
-				1408977321CC1BD9003C2915 /* ColorTheme.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -217,7 +214,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1408977421CC1BD9003C2915 /* ColorTheme.swift in Sources */,
 				149B3F9621BE8DC600539BC3 /* BeginnerLessonsBank.swift in Sources */,
 				1458E44421EA47AE005AE25F /* ThemeProtocol.swift in Sources */,
 				149B3F7921BE7DCA00539BC3 /* AppDelegate.swift in Sources */,

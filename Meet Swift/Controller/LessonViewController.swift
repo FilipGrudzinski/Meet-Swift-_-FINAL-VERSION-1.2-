@@ -8,7 +8,9 @@
 
 import UIKit
 
+
 var lessonTitle = ""
+
 
 class LessonViewController: UIViewController {
     
@@ -19,33 +21,76 @@ class LessonViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         
         applyTheme()
         self.title = lessonTitle
-
+        
+        let toolBar = UIToolbar()
+        var buttonsArray = [UIBarButtonItem]()
+        buttonsArray.append(
+            UIBarButtonItem(title: "Previous", style: .plain, target: self, action: nil)
+        )
+        
+        buttonsArray.append(
+            UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+        )
+        
+        buttonsArray.append(
+            UIBarButtonItem(title: "Hint", style: .plain, target: self, action: nil)
+        )
+        
+        buttonsArray.append(
+            UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+        )
+        
+        
+        buttonsArray.append(
+            UIBarButtonItem(title: "Check", style: .plain, target: self, action: nil)
+        )
+        
+        toolBar.setItems(buttonsArray, animated: true)
+        toolBar.tintColor = Theme.current.buttonColor
+        toolBar.barTintColor = Theme.current.navigationColor
+        
+        
+        
+        view.addSubview(toolBar)
+        
+        // MARK: - Constraint settup
+        
+        
+        toolBar.translatesAutoresizingMaskIntoConstraints = false
+        
+        
+        if #available(iOS 11.0, *) {
+            let guide = self.view.safeAreaLayoutGuide
+            toolBar.trailingAnchor.constraint(equalTo: guide.trailingAnchor).isActive = true
+            toolBar.leadingAnchor.constraint(equalTo: guide.leadingAnchor).isActive = true
+            toolBar.bottomAnchor.constraint(equalTo: guide.bottomAnchor).isActive = true
+            toolBar.heightAnchor.constraint(equalToConstant: 44).isActive = true
+            
+        } else {
+            NSLayoutConstraint(item: toolBar, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1.0, constant: 0).isActive = true
+            NSLayoutConstraint(item: toolBar, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
+            NSLayoutConstraint(item: toolBar, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1.0, constant: 0).isActive = true
+            
+            toolBar.heightAnchor.constraint(equalToConstant: 44).isActive = true
+        }
+        
         
     }
-
     
-    @IBOutlet weak var previousButton: UIToolbar!
     
-    @IBAction func checkButton(_ sender: UIBarButtonItem) {
-    }
-    @IBAction func hintButton(_ sender: UIBarButtonItem) {
-    }
-    
+    // MARK: - Theme function
     
     
     private func applyTheme() {
         
-        navigationController?.navigationBar.barStyle = Theme.current.style
-        navigationController?.navigationBar.tintColor = Theme.current.buttonColor // color of navigationbar buttons
-        navigationController?.navigationBar.barTintColor = Theme.current.navigationColor // color of navigationbar
         view.backgroundColor = Theme.current.viewControllerBackgroundColor
         descriptionLabel.textColor = Theme.current.textColor
         exampleLabel.textColor = Theme.current.buttonColor
         
     }
+    
     
 }

@@ -12,11 +12,15 @@ import UIKit
 
 class SettingsViewController: UIViewController {
     
-    @IBOutlet weak var darkModeLabel: UILabel!
     
+    // MARK: - IBOutlet
+    
+    
+    @IBOutlet weak var darkModeLabel: UILabel!
     @IBOutlet weak var darkModeSwitchOutlet: UISwitch!
     @IBOutlet weak var resetAllProgressButtonLabel: UIButton!
     @IBOutlet weak var restoreInAppPurchaseButtonLabel: UIButton!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +34,9 @@ class SettingsViewController: UIViewController {
         
     }
     
+    // MARK: - IBAction
+    
+    
     @IBAction func colorThemeSwitch(_ sender: UISwitch) {
         
         Theme.current = sender.isOn ? DarkTheme() : LightTheme()
@@ -38,14 +45,19 @@ class SettingsViewController: UIViewController {
      
     }
     
+    
     @IBAction func resetAllProgressButton(_ sender: UIButton) {
         print("Reset All Progress Button Pressed")
     }
+    
     
     @IBAction func restoreInAppPurchaseButton(_ sender: UIButton) {
         print("Restore in-app pruchase Button Pressed")
     }
 
+    // MARK: - Theme function
+    
+    
     private func applyTheme() {
         
         navigationController?.navigationBar.barStyle = Theme.current.style
@@ -57,5 +69,6 @@ class SettingsViewController: UIViewController {
         restoreInAppPurchaseButtonLabel.tintColor = Theme.current.buttonColor
         
     }
+    
     
 }

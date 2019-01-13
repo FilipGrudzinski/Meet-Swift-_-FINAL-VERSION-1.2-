@@ -12,32 +12,39 @@ import UIKit
 
 class LessonsTableViewController: UITableViewController{
     
+    
     let sectionTitles = ["Beginner", "Intermediate", "Advanced"]
     let sections0 = BeginnerLessonsBank()
     let sections1 = IntermediateLessonsBank()
     let sections2 = ["2sda32", "3232fdfd3","sekcja 3"]
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-       
         applyTheme()
-        
     }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         applyTheme()
         tableView.reloadData()
     }
-
+    
+    
+    
+    // MARK: - TableView Section settings
+    
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 40
     }
     
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return sectionTitles.count
     }
+    
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
@@ -45,18 +52,16 @@ class LessonsTableViewController: UITableViewController{
         view.backgroundColor = #colorLiteral(red: 0.9519319969, green: 0.9519319969, blue: 0.9519319969, alpha: 1)
         let headerLabel = UILabel()
         headerLabel.text = sectionTitles[section]
-        headerLabel.frame = CGRect(x: 15, y: 4, width: 100, height: 35)
+        headerLabel.frame = CGRect(x: 51, y: 4, width: UIScreen.main.bounds.width - 100, height: 35)
         headerLabel.font = UIFont.boldSystemFont(ofSize: 20.0)
         
         let counterLabel = UILabel()
         counterLabel.text = "0/20"
         counterLabel.frame = CGRect(x: UIScreen.main.bounds.width - 50, y: 4, width: 100, height: 35)
-    
-        counterLabel.font = UIFont.boldSystemFont(ofSize: 20.0)
+        counterLabel.font = UIFont.systemFont(ofSize: 14.0)
         
         view.addSubview(counterLabel)
         view.addSubview(headerLabel)
-        
         
         if UserDefaults.standard.bool(forKey: "Theme") {
             view.backgroundColor = Theme.current.headerBackgroundColor
@@ -67,16 +72,16 @@ class LessonsTableViewController: UITableViewController{
         return view
     }
     
-    // MARK: - Table view data source
     
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        
-        return sectionTitles.count
-        
+    
+    // MARK: - TableView Row settings
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60
     }
     
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         
         if section == 0 {
             
@@ -85,7 +90,6 @@ class LessonsTableViewController: UITableViewController{
         } else if section == 1 {
             
             return sections1.list.count
-            
             
         } else if section == 2 {
             
@@ -96,8 +100,9 @@ class LessonsTableViewController: UITableViewController{
         
     }
     
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-         
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "LessonsCell", for: indexPath) as! CustomLessonsCell
         
         cell.backgroundColor = Theme.current.cellBackgroundColor
@@ -110,7 +115,7 @@ class LessonsTableViewController: UITableViewController{
         let backgroundView = UIView()
         backgroundView.backgroundColor = Theme.current.selectedRow
         cell.selectedBackgroundView = backgroundView
-       
+        
         
         if indexPath.section == 0 {
             cell.lessonsNumber.text = "\(indexPath.row + 1)."
@@ -139,7 +144,7 @@ class LessonsTableViewController: UITableViewController{
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         //performSegue(withIdentifier: "goToSubLessonsView", sender: self)
-     
+        
         if indexPath.section == 0 {
             
             let name = sections0.list[indexPath.row].lessonText
@@ -165,13 +170,17 @@ class LessonsTableViewController: UITableViewController{
     }
     
     
-
+    // MARK: - Theme function
+    
+    
     private func applyTheme() {
-
+        
         navigationController?.navigationBar.barStyle = Theme.current.style
         navigationController?.navigationBar.tintColor = Theme.current.buttonColor // color of navigationbar buttons
         navigationController?.navigationBar.barTintColor = Theme.current.navigationColor // color of navigationbar
         view.backgroundColor = Theme.current.viewControllerBackgroundColor
-
+        
     }
+    
+    
 }

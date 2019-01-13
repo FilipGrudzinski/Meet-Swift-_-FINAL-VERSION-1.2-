@@ -34,13 +34,16 @@ class AboutViewViewController: UIViewController, MFMailComposeViewControllerDele
         let email = "grufil.apps@gmail.com"
         let subject = "Meet Swift App Contact - Subject"
         let bodyText = "Please provide information that will help us to serve you better"
+        
         if MFMailComposeViewController.canSendMail() {
+            
             let mailComposerVC = MFMailComposeViewController()
             mailComposerVC.mailComposeDelegate = self
             mailComposerVC.setToRecipients([email])
             mailComposerVC.setSubject(subject)
             mailComposerVC.setMessageBody(bodyText, isHTML: true)
             self.present(mailComposerVC, animated: true, completion: nil)
+            
         } else {
             let coded = "mailto:\(email)?subject=\(subject)&body=\(bodyText)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
             if let emailURL = URL(string: coded!)
@@ -67,12 +70,11 @@ class AboutViewViewController: UIViewController, MFMailComposeViewControllerDele
         controller.dismiss(animated: true, completion: nil)
     }
     
+    // MARK: - Theme function
+    
     
     private func applyTheme() {
         
-        navigationController?.navigationBar.barStyle = Theme.current.style
-        navigationController?.navigationBar.tintColor = Theme.current.buttonColor // color of navigationbar buttons
-        navigationController?.navigationBar.barTintColor = Theme.current.navigationColor // color of navigationbar
         view.backgroundColor = Theme.current.viewControllerBackgroundColor
         descriptionLabel.textColor = Theme.current.textColor
         autorLabel.textColor = Theme.current.textColor
