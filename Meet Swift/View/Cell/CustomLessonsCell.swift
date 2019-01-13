@@ -40,6 +40,9 @@ class CustomLessonsCell: UITableViewCell  {
         super.awakeFromNib()
     
        
+        progressBar.transform = progressBar.transform.scaledBy(x: 1, y: 2)
+        progressBar.layer.cornerRadius = 4
+        progressBar.layer.masksToBounds = true
         
         lessonsNumber.translatesAutoresizingMaskIntoConstraints = false
         lessonsTitle.translatesAutoresizingMaskIntoConstraints = false
@@ -66,8 +69,8 @@ class CustomLessonsCell: UITableViewCell  {
         contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-20-[subNum]", options: [], metrics: nil, views: viewsDict))
         contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-21-[progress]", options: [], metrics: nil, views: viewsDict))
         
-        contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[bar]-0-|", options: [], metrics: nil, views: viewsDict))
-        contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-16-[bar]-16-|", options: [], metrics: nil, views: viewsDict))
+        contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[bar]-1-|", options: [], metrics: nil, views: viewsDict))
+        contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-51-[bar]-16-|", options: [], metrics: nil, views: viewsDict))
         
         //h = horizontal - poziomy
         // v = vertical - pionowy

@@ -104,7 +104,8 @@ class LessonsTableViewController: UITableViewController{
         cell.lessonsNumber.textColor = Theme.current.textColor
         cell.lessonsTitle.textColor = Theme.current.textColor
         cell.progressLabel.textColor = Theme.current.textColor
-        cell.progressBar.progressTintColor = Theme.current.buttonColor
+        cell.progressBar.progressTintColor = Theme.current.progressTintColor
+        cell.progressBar.trackTintColor = Theme.current.buttonColor
         
         let backgroundView = UIView()
         backgroundView.backgroundColor = Theme.current.selectedRow

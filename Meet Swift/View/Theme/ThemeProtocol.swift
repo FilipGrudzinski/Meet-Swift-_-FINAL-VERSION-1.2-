@@ -21,5 +21,6 @@ protocol ThemeProtocol {
     var cellBackgroundColor: UIColor { get }
     var selectedRow: UIColor { get }
     var headerBackgroundColor: UIColor { get }
+    var progressTintColor: UIColor { get }
     
 }
