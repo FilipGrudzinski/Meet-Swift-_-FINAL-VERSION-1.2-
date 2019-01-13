@@ -21,21 +21,13 @@ class SubLessonsTableViewController: UITableViewController {
         tableView.separatorStyle = .none
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 44
+        applyTheme()
+        tableView.reloadData()
+        
         
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        applyTheme()
-        tableView.reloadData()
-    }
-    
-//    override func viewDidAppear(_ animated: Bool) {
-//        super.viewDidAppear(animated)
-//        applyTheme()
-//        tableView.reloadData()
-//    }
-    
+
     // MARK: - Table view data source
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -45,20 +37,17 @@ class SubLessonsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        //        let cell = tableView.dequeueReusableCell(withIdentifier: "SubLessonsCell", for: indexPath)
-        //
-        //        let headerLabel = UILabel()
-        //        headerLabel.text = subLessons[indexPath.row]
-        //        headerLabel.frame = CGRect(x: 15, y: 5, width: 100, height: 35)
-        //        headerLabel.font = UIFont.boldSystemFont(ofSize: 16.0)
-        //
-        //        //let name = subLessons[indexPath.row]
-        //        view.addSubview(headerLabel)
-        //        //cell.textLabel?.text = name
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: "SubLessonsCell", for: indexPath) as! CustomSubLessonsCell
-        //cell.backgroundColor = Theme.current.cellBackgroundColor
-        //cell.imgUser.text = "LOLEK"
+        
+        cell.backgroundColor = Theme.current.cellBackgroundColor
+        cell.subLessonNumber.textColor = Theme.current.textColor
+        cell.subLessonTitle.textColor = Theme.current.textColor
+        cell.subLessonDescription.textColor = Theme.current.textColor
+        
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = Theme.current.selectedRow
+        cell.selectedBackgroundView = backgroundView
+        
         cell.subLessonNumber.text = "\(indexPath.row + 1)."
         cell.subLessonTitle.text = subLessons[indexPath.row]
         cell.subLessonDescription.text = "Message \(indexPath.row)"
@@ -75,18 +64,6 @@ class SubLessonsTableViewController: UITableViewController {
         self.tableView.deselectRow(at: indexPath, animated: true)
     }
     
-    
-//    func setTheme(isDark: Bool) {
-//        
-//        let theme = isDark ? ColorTheme.dark : ColorTheme.light
-//        
-//        view.backgroundColor = theme.viewControllerBackgroundColor
-//        //UITableViewCell.appearance().backgroundColor = theme.cellBackgroundColor
-//        
-//        //selectedRow = theme.selectedRow
-//        
-//        
-//    }
     
     private func applyTheme() {
         

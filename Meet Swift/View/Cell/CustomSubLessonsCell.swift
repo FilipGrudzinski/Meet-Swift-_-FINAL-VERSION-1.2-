@@ -71,7 +71,5 @@ class CustomSubLessonsCell: UITableViewCell {
         
     }
     
-   
-        
     
 }

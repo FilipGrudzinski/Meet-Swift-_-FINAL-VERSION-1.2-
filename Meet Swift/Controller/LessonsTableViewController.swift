@@ -8,9 +8,9 @@
 
 import UIKit
 
+
+
 class LessonsTableViewController: UITableViewController{
-    
-    var selectedRow = #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 0.5)
     
     let sectionTitles = ["Beginner", "Intermediate", "Advanced"]
     let sections0 = BeginnerLessonsBank()
@@ -19,10 +19,7 @@ class LessonsTableViewController: UITableViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if UserDefaults.standard.object(forKey: "LightTheme") != nil {
-            Theme.current = UserDefaults.standard.bool(forKey: "LightTheme") ? DarkTheme() : LightTheme()
-        }
+       
         applyTheme()
         
     }
@@ -39,26 +36,33 @@ class LessonsTableViewController: UITableViewController{
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 55
+        return 60
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
         let view = UIView()
+        view.backgroundColor = #colorLiteral(red: 0.9519319969, green: 0.9519319969, blue: 0.9519319969, alpha: 1)
         let headerLabel = UILabel()
         headerLabel.text = sectionTitles[section]
-        headerLabel.frame = CGRect(x: 15, y: 5, width: 100, height: 35)
-        headerLabel.font = UIFont.boldSystemFont(ofSize: 16.0)
+        headerLabel.frame = CGRect(x: 15, y: 4, width: 100, height: 35)
+        headerLabel.font = UIFont.boldSystemFont(ofSize: 20.0)
         
+        let counterLabel = UILabel()
+        counterLabel.text = "0/20"
+        counterLabel.frame = CGRect(x: UIScreen.main.bounds.width - 50, y: 4, width: 100, height: 35)
+    
+        counterLabel.font = UIFont.boldSystemFont(ofSize: 20.0)
+        
+        view.addSubview(counterLabel)
         view.addSubview(headerLabel)
         
-//        if !mode  {
-//            view.backgroundColor = #colorLiteral(red: 0.9607132469, green: 0.9607132469, blue: 0.9607132469, alpha: 1)
-//            headerLabel.textColor = UIColor.black
-//        } else {
-//            view.backgroundColor = #colorLiteral(red: 0.07058823529, green: 0.07058823529, blue: 0.07058823529, alpha: 1)
-//            headerLabel.textColor = #colorLiteral(red: 0.9008589757, green: 0.9056003387, blue: 0.9056003387, alpha: 1)
-//        }
+        
+        if UserDefaults.standard.bool(forKey: "Theme") {
+            view.backgroundColor = Theme.current.headerBackgroundColor
+            headerLabel.textColor = Theme.current.textColor
+            counterLabel.textColor = Theme.current.textColor
+        }
         
         return view
     }
@@ -70,7 +74,6 @@ class LessonsTableViewController: UITableViewController{
         return sectionTitles.count
         
     }
-    
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
@@ -96,9 +99,13 @@ class LessonsTableViewController: UITableViewController{
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
          
         let cell = tableView.dequeueReusableCell(withIdentifier: "LessonsCell", for: indexPath) as! CustomLessonsCell
+        
         cell.backgroundColor = Theme.current.cellBackgroundColor
         cell.lessonsNumber.textColor = Theme.current.textColor
         cell.lessonsTitle.textColor = Theme.current.textColor
+        cell.progressLabel.textColor = Theme.current.textColor
+        cell.progressBar.progressTintColor = Theme.current.buttonColor
+        
         let backgroundView = UIView()
         backgroundView.backgroundColor = Theme.current.selectedRow
         cell.selectedBackgroundView = backgroundView
@@ -107,20 +114,20 @@ class LessonsTableViewController: UITableViewController{
         if indexPath.section == 0 {
             cell.lessonsNumber.text = "\(indexPath.row + 1)."
             cell.lessonsTitle.text = sections0.list[indexPath.row].lessonText
-            cell.progressBar.progress = 0.05
-            //cell.lessonsProgressLabel.text = "0/20"
+            cell.progressBar.progress = 0.8
+            cell.progressLabel.text = "0/20"
             
         } else if indexPath.section == 1 {
             cell.lessonsNumber.text = "\(indexPath.row + 1)."
             cell.lessonsTitle.text = sections1.list[indexPath.row].lessonText
             cell.progressBar.progress = 0.09
-            //cell.lessonsProgressLabel.text = "0/20"
+            cell.progressLabel.text = "0/20"
             
         } else if indexPath.section == 2 {
             cell.lessonsNumber.text = "\(indexPath.row + 1)."
             cell.lessonsTitle.text = sections1.list[indexPath.row].lessonText
             cell.progressBar.progress = 0.01
-            //cell.lessonsProgressLabel.text = "0/20"
+            cell.progressLabel.text = "0/20"
             
         }
         

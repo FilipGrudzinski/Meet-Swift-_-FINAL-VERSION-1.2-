@@ -24,7 +24,7 @@ class SettingsViewController: UIViewController {
         //resetAllProgressButtonLabel.isHidden = true
         //restoreInAppPurchaseButtonLabel.isHidden = true
         
-        let modeValue = UserDefaults.standard.bool(forKey: "LightTheme")
+        let modeValue = UserDefaults.standard.bool(forKey: "Theme")
         darkModeSwitchOutlet.setOn(modeValue, animated: false)
         applyTheme()
         
@@ -33,23 +33,18 @@ class SettingsViewController: UIViewController {
     @IBAction func colorThemeSwitch(_ sender: UISwitch) {
         
         Theme.current = sender.isOn ? DarkTheme() : LightTheme()
-        UserDefaults.standard.set(sender.isOn, forKey: "LightTheme")
+        UserDefaults.standard.set(sender.isOn, forKey: "Theme")
         applyTheme()
      
     }
     
-    
     @IBAction func resetAllProgressButton(_ sender: UIButton) {
-        
         print("Reset All Progress Button Pressed")
-        
     }
-    
     
     @IBAction func restoreInAppPurchaseButton(_ sender: UIButton) {
         print("Restore in-app pruchase Button Pressed")
     }
-    
 
     private func applyTheme() {
         

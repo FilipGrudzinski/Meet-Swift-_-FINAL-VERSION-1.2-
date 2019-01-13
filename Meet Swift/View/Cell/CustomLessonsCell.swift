@@ -14,56 +14,60 @@ class CustomLessonsCell: UITableViewCell  {
         
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 17.0)
+       // label.adjustsFontSizeToFitWidth = true
         return label
     }()
     
     let lessonsTitle:UILabel = {
         
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 16.0)
+        label.font = UIFont.systemFont(ofSize: 16.0)
         return label
     }()
     
-    let lessonsDescription: UILabel = {
+   
+    
+    
+    let progressLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 16.0)
         return label
     }()
     
-    
-    let progressLabel = UILabel()
     let progressBar = UIProgressView()
     
     override func awakeFromNib() {
         super.awakeFromNib()
     
+       
         
         lessonsNumber.translatesAutoresizingMaskIntoConstraints = false
         lessonsTitle.translatesAutoresizingMaskIntoConstraints = false
-        lessonsDescription.translatesAutoresizingMaskIntoConstraints = false
+       
         progressLabel.translatesAutoresizingMaskIntoConstraints = false
-        //progressBar.translatesAutoresizingMaskIntoConstraints = true
+        progressBar.translatesAutoresizingMaskIntoConstraints = false
         
         contentView.addSubview(lessonsNumber)
         contentView.addSubview(lessonsTitle)
-        contentView.addSubview(lessonsDescription)
         contentView.addSubview(progressLabel)
-        
+        contentView.addSubview(progressBar)
         
         let viewsDict = [
             
-            "subLesson" : lessonsNumber,
+            "subNum" : lessonsNumber,
             "title" : lessonsTitle,
-            "description" : lessonsDescription,
             "progress" : progressLabel,
+            "bar" : progressBar,
             
             ]
         
-        contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-16-[subLesson(14)]-10-[title]-0-[progress]-16-|", options: [], metrics: nil, views: viewsDict))
-        contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-[title]-5-[description]-|", options: [], metrics: nil, views: viewsDict))
-        contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-40-[description]-0-|", options: [], metrics: nil, views: viewsDict))
-        contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-16-[subLesson]", options: [], metrics: nil, views: viewsDict))
-        contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-16-[progress]", options: [], metrics: nil, views: viewsDict))
+        contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-16-[subNum(30)]-5-[title]-5-[progress]-16-|", options: [], metrics: nil, views: viewsDict))
+        contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-21-[title]", options: [], metrics: nil, views: viewsDict))
+        contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-20-[subNum]", options: [], metrics: nil, views: viewsDict))
+        contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-21-[progress]", options: [], metrics: nil, views: viewsDict))
+        
+        contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[bar]-0-|", options: [], metrics: nil, views: viewsDict))
+        contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-16-[bar]-16-|", options: [], metrics: nil, views: viewsDict))
         
         //h = horizontal - poziomy
         // v = vertical - pionowy
@@ -73,6 +77,5 @@ class CustomLessonsCell: UITableViewCell  {
         
     }
     
-
 
 }
