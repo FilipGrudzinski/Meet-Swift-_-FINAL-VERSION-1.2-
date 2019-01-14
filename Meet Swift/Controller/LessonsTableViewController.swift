@@ -10,11 +10,28 @@ import UIKit
 
 
 
-struct ExpandableNames {
+struct LessonsData {
     
     var isExpanded: Bool
-    let name: String
-    let names: [String]
+    let title: String
+    var lessonsArray: [String]
+    
+}
+
+struct LessonsArrayData {
+    
+    var completion: Int
+    let title: String
+    var subLessonsArray: [SubLessonsArrayData]
+    
+}
+
+struct SubLessonsArrayData {
+    
+    var completion: Bool
+    let subLessonsTitle: String
+    let subLessonsTitleDescription: String
+    var lessonData: [String]
     
 }
 
@@ -31,9 +48,9 @@ class LessonsTableViewController: UITableViewController {
     
     var twoDimensionArray = [
         
-        ExpandableNames(isExpanded: false, name: "Beginner", names: ["dsadas","dsadas","dsadas","dsadas","dsadas","dsadas","dsadas","dsadas"]),
-        ExpandableNames(isExpanded: false, name: "Beginner", names: ["dsadas","dsadas","dsadas","dsadas"]),
-        ExpandableNames(isExpanded: false, name: "Beginner", names: ["dsadas","dsadas",])
+        LessonsData(isExpanded: false, title: "Beginner", lessonsArray: ["dsadas","dsadas","dsadas","dsadas","dsadas","dsadas","dsadas","dsadas"]),
+        LessonsData(isExpanded: false, title: "Intermediate", lessonsArray: ["dsadas","dsadas","dsadas","dsadas"]),
+        LessonsData(isExpanded: false, title: "Advanced", lessonsArray: ["dsadas","dsadas",])
         
         
     ]
@@ -73,7 +90,7 @@ class LessonsTableViewController: UITableViewController {
         let headerButton:UIButton = {
             let button = UIButton()
             button.frame = CGRect(x: -128, y: 4, width: UIScreen.main.bounds.width + 128, height: 35)
-            button.setTitle(twoDimensionArray[section].isExpanded ? "\(sectionTitles[section])" : "\(sectionTitles[section])", for: .normal)
+            button.setTitle(twoDimensionArray[section].title, for: .normal)
             button.titleLabel?.font = UIFont.systemFont(ofSize: 20.0)
             button.addTarget(self, action: #selector(handleOpenClose), for: .touchUpInside)
             button.tag = section
@@ -112,22 +129,12 @@ class LessonsTableViewController: UITableViewController {
         
         if !twoDimensionArray[section].isExpanded {
             return 0
-            
-        } else {
-            
-            let name = twoDimensionArray[section].names.count
-            return name
         }
-       
         
+        return twoDimensionArray[section].lessonsArray.count
         
     }
-    
-    
-
-    
-
-    
+    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
@@ -205,7 +212,7 @@ class LessonsTableViewController: UITableViewController {
         
         var indexPaths = [IndexPath]()
         
-        for row in twoDimensionArray[section].names.indices {
+        for row in twoDimensionArray[section].lessonsArray.indices {
             
             let indexPath = IndexPath(row: row, section: section)
             indexPaths.append(indexPath)

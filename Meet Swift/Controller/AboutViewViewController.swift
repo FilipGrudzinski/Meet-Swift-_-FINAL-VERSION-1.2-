@@ -74,7 +74,7 @@ class AboutViewViewController: UIViewController, MFMailComposeViewControllerDele
     
     
     private func applyTheme() {
-        
+
         view.backgroundColor = Theme.current.viewControllerBackgroundColor
         descriptionLabel.textColor = Theme.current.textColor
         autorLabel.textColor = Theme.current.textColor
