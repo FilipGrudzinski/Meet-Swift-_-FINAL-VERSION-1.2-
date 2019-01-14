@@ -20,4 +20,5 @@ class DarkTheme: ThemeProtocol {
     var selectedRow = #colorLiteral(red: 1, green: 0.5781051517, blue: 0, alpha: 0.1)
     var headerBackgroundColor = #colorLiteral(red: 0.08537990196, green: 0.08537990196, blue: 0.08537990196, alpha: 1)
     var progressTintColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
+    var pressedSectionButton = #colorLiteral(red: 1, green: 0.5781051517, blue: 0, alpha: 0.5)
 }

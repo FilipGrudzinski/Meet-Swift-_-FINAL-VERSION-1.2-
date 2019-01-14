@@ -22,6 +22,7 @@ class LightTheme: ThemeProtocol {
     var selectedRow = #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 0.1)
     var headerBackgroundColor = #colorLiteral(red: 0.9519319969, green: 0.9519319969, blue: 0.9519319969, alpha: 1)
     var progressTintColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
+    var pressedSectionButton = #colorLiteral(red: 0.1960784314, green: 0.4784313725, blue: 1, alpha: 0.5)
     
     
 }
