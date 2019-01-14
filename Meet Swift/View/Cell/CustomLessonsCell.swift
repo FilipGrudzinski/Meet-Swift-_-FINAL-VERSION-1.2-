@@ -33,10 +33,11 @@ class CustomLessonsCell: UITableViewCell  {
     
     let progressBar = UIProgressView()
     
-    
+   
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
         
         progressBar.transform = progressBar.transform.scaledBy(x: 1, y: 1.2)
         progressBar.alpha = 0.7

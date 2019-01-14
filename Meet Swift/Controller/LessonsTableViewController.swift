@@ -39,7 +39,6 @@ struct SubLessonsArrayData {
 class LessonsTableViewController: UITableViewController {
     
     
-    
     let sectionTitles = ["Beginner", "Intermediate", "Advanced"]
     let sections0 = BeginnerLessonsBank()
     let sections1 = IntermediateLessonsBank()
@@ -48,7 +47,7 @@ class LessonsTableViewController: UITableViewController {
     
     var twoDimensionArray = [
         
-        LessonsData(isExpanded: false, title: "Beginner", lessonsArray: ["dsadas","dsadas","dsadas","dsadas","dsadas","dsadas","dsadas","dsadas"]),
+        LessonsData(isExpanded: true, title: "Beginner", lessonsArray: ["dsadas","dsadas","dsadas","dsadas","dsadas","dsadas","dsadas","dsadas"]),
         LessonsData(isExpanded: false, title: "Intermediate", lessonsArray: ["dsadas","dsadas","dsadas","dsadas"]),
         LessonsData(isExpanded: false, title: "Advanced", lessonsArray: ["dsadas","dsadas",])
         
@@ -58,6 +57,7 @@ class LessonsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         applyTheme()
+
     }
     
     
@@ -89,8 +89,10 @@ class LessonsTableViewController: UITableViewController {
         
         let headerButton:UIButton = {
             let button = UIButton()
-            button.frame = CGRect(x: -128, y: 4, width: UIScreen.main.bounds.width + 128, height: 35)
+            button.frame = CGRect(x: 0, y: 4, width: UIScreen.main.bounds.width, height: 35)
+            button.contentEdgeInsets = UIEdgeInsets(top: 0, left: 50, bottom: 0, right: 0)
             button.setTitle(twoDimensionArray[section].title, for: .normal)
+            button.contentHorizontalAlignment = .left
             button.titleLabel?.font = UIFont.systemFont(ofSize: 20.0)
             button.addTarget(self, action: #selector(handleOpenClose), for: .touchUpInside)
             button.tag = section
@@ -134,7 +136,7 @@ class LessonsTableViewController: UITableViewController {
         return twoDimensionArray[section].lessonsArray.count
         
     }
-    
+
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
@@ -153,6 +155,7 @@ class LessonsTableViewController: UITableViewController {
 
 
         if indexPath.section == 0 {
+
             cell.lessonsNumber.text = "\(indexPath.row + 1)."
             cell.lessonsTitle.text = sections0.list[indexPath.row].lessonText
             cell.progressBar.progress = 0.8
@@ -175,11 +178,10 @@ class LessonsTableViewController: UITableViewController {
         return cell
     }
     
-    
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
-        //performSegue(withIdentifier: "goToSubLessonsView", sender: self)
+//        performSegue(withIdentifier: "goToSubLessonsView", sender: self)
 
         if indexPath.section == 0 {
 
