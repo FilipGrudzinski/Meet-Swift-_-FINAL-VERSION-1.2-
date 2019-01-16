@@ -10,30 +10,30 @@ import UIKit
 
 
 
-struct LessonsData {
-    
-    var isExpanded: Bool
-    let title: String
-    var lessonsArray: [String]
-    
-}
+//struct LessonsData {
+//    
+//    var isExpanded: Bool
+//    let title: String
+//    var lessonsArray: [String]
+//    
+//}
 
-struct LessonsArrayData {
-    
-    var completion: Int
-    let title: String
-    var subLessonsArray: [SubLessonsArrayData]
-    
-}
-
-struct SubLessonsArrayData {
-    
-    var completion: Bool
-    let subLessonsTitle: String
-    let subLessonsTitleDescription: String
-    var lessonData: [String]
-    
-}
+//struct LessonsArrayData {
+//
+//    var completion: Int
+//    let title: String
+//    var subLessonsArray: [SubLessonsArrayData]
+//
+//}
+//
+//struct SubLessonsArrayData {
+//
+//    var completion: Bool
+//    let subLessonsTitle: String
+//    let subLessonsTitleDescription: String
+//    var lessonData: [String]
+//
+//}
 
 
 class LessonsTableViewController: UITableViewController {
@@ -42,22 +42,29 @@ class LessonsTableViewController: UITableViewController {
     let sectionTitles = ["Beginner", "Intermediate", "Advanced"]
     let sections0 = BeginnerLessonsBank()
     let sections1 = IntermediateLessonsBank()
-    let sections2 = ["2sda32", "3232fdfd3","sekcja 3"]
+    let sections2 = IntermediateLessonsBank()
     
     
-    var twoDimensionArray = [
-        
-        LessonsData(isExpanded: true, title: "Beginner", lessonsArray: ["dsadas","dsadas","dsadas","dsadas","dsadas","dsadas","dsadas","dsadas"]),
-        LessonsData(isExpanded: false, title: "Intermediate", lessonsArray: ["dsadas","dsadas","dsadas","dsadas"]),
-        LessonsData(isExpanded: false, title: "Advanced", lessonsArray: ["dsadas","dsadas",])
-        
-        
-    ]
+    //    var twoDimensionArray = [
+    //
+    //        LessonsData(isExpanded: true, title: "Beginner", lessonsArray: ["dsadas","dsadas","dsadas","dsadas","dsadas","dsadas","dsadas","dsadas"]),
+    //        LessonsData(isExpanded: false, title: "Intermediate", lessonsArray: ["dsadas","dsadas","dsadas","dsadas"]),
+    //        LessonsData(isExpanded: false, title: "Advanced", lessonsArray: ["dsadas","dsadas",])
+    //
+    //
+    //    ]
+    
+    
+    
+    
+    var twoDimensionArray = rozdzialy
     
     override func viewDidLoad() {
         super.viewDidLoad()
         applyTheme()
-
+        
+        //twoDimensionArray.append(LessonsData(isExpanded: true, title: "KolejnyRozdział", lessonsArray: ["dsadsada","dsdas"]))
+        
     }
     
     
@@ -85,6 +92,8 @@ class LessonsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
+        //print(section)
+        
         let view = UIView()
         
         let headerButton:UIButton = {
@@ -97,25 +106,63 @@ class LessonsTableViewController: UITableViewController {
             button.addTarget(self, action: #selector(handleOpenClose), for: .touchUpInside)
             button.tag = section
             return button
-       }()
+        }()
         
-        let counterLabel: UILabel = {
+        let headerCounterLabel: UILabel = {
             let label = UILabel()
-            label.text = "0/20"
             label.frame = CGRect(x: UIScreen.main.bounds.width - 50, y: 4, width: 50, height: 35)
             label.font = UIFont.systemFont(ofSize: 14.0)
             return label
         }()
         
+       
         
-        view.addSubview(counterLabel)
+        
+        view.addSubview(headerCounterLabel)
         view.addSubview(headerButton)
         
         view.backgroundColor = Theme.current.headerBackgroundColor
-        headerButton.setTitleColor(Theme.current.buttonColor, for: .normal)
-        counterLabel.textColor = Theme.current.textColor
+        //headerButton.setTitleColor(Theme.current.buttonColor, for: .normal)
+        headerCounterLabel.textColor = Theme.current.textColor
         
+        if !twoDimensionArray[section].isExpanded {
+            
+            headerButton.setTitleColor(Theme.current.buttonColor, for: .normal)
+            
+        } else {
+            
+            headerButton.setTitleColor(Theme.current.pressedSectionButton, for: .normal)
+        }
         
+
+        
+//        var sum = 0
+//        var subsum = 0
+//        for _ in twoDimensionArray[section].lessonsData {
+//
+//            for _ in twoDimensionArray[section].lessonsData[twoDimensionArray[section].lessonsData.count - 1].subLessonsData {
+//
+//                let sumaRozwiazanychPodRozdzialow = twoDimensionArray[section].lessonsData[twoDimensionArray[section].lessonsData.count - 1].completionCounter
+//                let sumaPodRozdzialowWLekcji = twoDimensionArray[section].lessonsData[twoDimensionArray[section].lessonsData.count - 1].subLessonsData.count
+//
+//                if sumaRozwiazanychPodRozdzialow == sumaPodRozdzialowWLekcji {
+//                    sum += 1
+//                    print(sum)
+//                }
+//
+//                subsum += 1
+//
+//            }
+//
+//
+//
+//
+//        }
+        //print(twoDimensionArray[section].lessonsData.count - 1)
+        //print(twoDimensionArray[section].lessonsData[twoDimensionArray[section].lessonsData.count - 1].subLessonsData.count)
+            
+             //headerCounterLabel.text = "\(subsum)/\(twoDimensionArray[section].lessonsData.count)"
+  
         return view
     }
     
@@ -133,88 +180,56 @@ class LessonsTableViewController: UITableViewController {
             return 0
         }
         
-        return twoDimensionArray[section].lessonsArray.count
+        return twoDimensionArray[section].lessonsData.count
         
     }
-
+    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "LessonsCell", for: indexPath) as! CustomLessonsCell
-
+        
+        let valueCounterCompletionCounterForProgressBar = twoDimensionArray[indexPath.section].lessonsData[indexPath.row].completionCounter
+        let subLessonsCounterForProgressBar = twoDimensionArray[indexPath.section].lessonsData[indexPath.row].subLessonsData.count
+        
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = Theme.current.selectedRow
+        cell.selectedBackgroundView = backgroundView
+        
         cell.backgroundColor = Theme.current.cellBackgroundColor
         cell.lessonsNumber.textColor = Theme.current.textColor
         cell.lessonsTitle.textColor = Theme.current.textColor
         cell.progressLabel.textColor = Theme.current.textColor
         cell.progressBar.progressTintColor = Theme.current.progressTintColor
         cell.progressBar.trackTintColor = Theme.current.buttonColor
-
-        let backgroundView = UIView()
-        backgroundView.backgroundColor = Theme.current.selectedRow
-        cell.selectedBackgroundView = backgroundView
-
-
-        if indexPath.section == 0 {
-
-            cell.lessonsNumber.text = "\(indexPath.row + 1)."
-            cell.lessonsTitle.text = sections0.list[indexPath.row].lessonText
-            cell.progressBar.progress = 0.8
-            cell.progressLabel.text = "0/20"
-
-        } else if indexPath.section == 1 {
-            cell.lessonsNumber.text = "\(indexPath.row + 1)."
-            cell.lessonsTitle.text = sections1.list[indexPath.row].lessonText
-            cell.progressBar.progress = 0.09
-            cell.progressLabel.text = "0/20"
-
-        } else if indexPath.section == 2 {
-            cell.lessonsNumber.text = "\(indexPath.row + 1)."
-            cell.lessonsTitle.text = sections1.list[indexPath.row].lessonText
-            cell.progressBar.progress = 0.01
-            cell.progressLabel.text = "0/20"
-
-        }
-
+        
+        cell.lessonsNumber.text = "\(indexPath.row + 1)."
+        cell.lessonsTitle.text = twoDimensionArray[indexPath.section].lessonsData[indexPath.row].title
+        cell.progressBar.progress = Float((Double(100/subLessonsCounterForProgressBar) * 0.01) * Double(valueCounterCompletionCounterForProgressBar))
+        cell.progressLabel.text = "\(valueCounterCompletionCounterForProgressBar)/\(subLessonsCounterForProgressBar)"
+        
         return cell
     }
     
-
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
-//        performSegue(withIdentifier: "goToSubLessonsView", sender: self)
-
-        if indexPath.section == 0 {
-
-            let name = sections0.list[indexPath.row].lessonText
-
-            subLessonsTitle = name
-
-        } else if indexPath.section == 1 {
-
-            let name = sections1.list[indexPath.row].lessonText
-
-            subLessonsTitle = name
-
-
-        } else if indexPath.section == 2 {
-
-            let name = sections2[indexPath.row]
-
-            subLessonsTitle = name
-
-        }
-
-        self.tableView.deselectRow(at: indexPath, animated: true)
+        
+        //        performSegue(withIdentifier: "goToSubLessonsView", sender: self)
+        
+        let name = twoDimensionArray[indexPath.section].lessonsData[indexPath.row].title
+        subLessonsTitle = name
+        
+        //self.tableView.deselectRow(at: indexPath, animated: true)
+        
     }
     
     
-    @objc func handleOpenClose(button: UIButton) {
+    @objc func handleOpenClose(headerButton: UIButton) {
         
-        let section = button.tag
-        
+        let section = headerButton.tag
         var indexPaths = [IndexPath]()
         
-        for row in twoDimensionArray[section].lessonsArray.indices {
+        for row in twoDimensionArray[section].lessonsData.indices {
             
             let indexPath = IndexPath(row: row, section: section)
             indexPaths.append(indexPath)
@@ -226,14 +241,27 @@ class LessonsTableViewController: UITableViewController {
         
         if isExpanded {
             
-            tableView.deleteRows(at: indexPaths, with: .none)
-            button.setTitleColor(Theme.current.buttonColor, for: .normal)
+            tableView.deleteRows(at: indexPaths, with: .fade)
+            headerButton.setTitleColor(Theme.current.buttonColor, for: .normal)
             
         } else {
             
-            tableView.insertRows(at: indexPaths, with: .none)
-            button.setTitleColor(Theme.current.pressedSectionButton, for: .normal)
+            tableView.insertRows(at: indexPaths, with: .fade)
+            headerButton.setTitleColor(Theme.current.pressedSectionButton, for: .normal)
+            
         }
+        
+        if section == 0 {
+            
+            tableView.scrollsToTop = true
+            
+        } else {
+            
+            tableView.layoutIfNeeded()
+            tableView.scrollRectToVisible(CGRect(x: 0  , y: tableView.contentSize.height - tableView.bounds.size.height  , width: tableView.bounds.size.width, height: tableView.bounds.size.height), animated: true)
+            
+        }
+        
         
     }
     

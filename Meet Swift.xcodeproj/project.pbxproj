@@ -14,6 +14,7 @@
 		1458E44A21EA4A23005AE25F /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1458E44921EA4A23005AE25F /* Theme.swift */; };
 		146F8E1E21DF9264002215CB /* AboutViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146F8E1D21DF9264002215CB /* AboutViewViewController.swift */; };
 		146F8E2021DF9B76002215CB /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146F8E1F21DF9B76002215CB /* SettingsViewController.swift */; };
+		147AE56821EE753A0075DEC9 /* NewModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147AE56721EE753A0075DEC9 /* NewModels.swift */; };
 		149B3F7921BE7DCA00539BC3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149B3F7821BE7DCA00539BC3 /* AppDelegate.swift */; };
 		149B3F7E21BE7DCA00539BC3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 149B3F7C21BE7DCA00539BC3 /* Main.storyboard */; };
 		149B3F8021BE7DCC00539BC3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 149B3F7F21BE7DCC00539BC3 /* Assets.xcassets */; };
@@ -35,6 +36,7 @@
 		1458E44921EA4A23005AE25F /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		146F8E1D21DF9264002215CB /* AboutViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewViewController.swift; sourceTree = "<group>"; };
 		146F8E1F21DF9B76002215CB /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		147AE56721EE753A0075DEC9 /* NewModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewModels.swift; sourceTree = "<group>"; };
 		149B3F7521BE7DCA00539BC3 /* Meet Swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Meet Swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		149B3F7821BE7DCA00539BC3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		149B3F7D21BE7DCA00539BC3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 				149B3F9321BE8DB600539BC3 /* LessonsModel.swift */,
 				149B3F9521BE8DC600539BC3 /* BeginnerLessonsBank.swift */,
 				149B3F9721BE9A0C00539BC3 /* IntermediateLessonsBank.swift */,
+				147AE56721EE753A0075DEC9 /* NewModels.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -222,6 +225,7 @@
 				146F8E1E21DF9264002215CB /* AboutViewViewController.swift in Sources */,
 				149B3F9021BE7F8000539BC3 /* SubLessonsTableViewController.swift in Sources */,
 				1458E44121EA2A6F005AE25F /* CustomLessonsCell.swift in Sources */,
+				147AE56821EE753A0075DEC9 /* NewModels.swift in Sources */,
 				149B3F9821BE9A0C00539BC3 /* IntermediateLessonsBank.swift in Sources */,
 				1458E44621EA4885005AE25F /* DarkTheme.swift in Sources */,
 				149B3F9421BE8DB600539BC3 /* LessonsModel.swift in Sources */,

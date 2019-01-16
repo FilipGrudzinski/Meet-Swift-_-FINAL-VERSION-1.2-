@@ -25,7 +25,7 @@ class SubLessonsTableViewController: UITableViewController {
         self.title = subLessonsTitle
         tableView.separatorStyle = .none
         view.backgroundColor = Theme.current.viewControllerBackgroundColor
-        
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: nil, action: nil)
         
     }
     
