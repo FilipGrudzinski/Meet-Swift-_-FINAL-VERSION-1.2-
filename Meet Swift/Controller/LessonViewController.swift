@@ -15,9 +15,11 @@ var lessonTitle = ""
 class LessonViewController: UIViewController {
     
     
+    
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var exampleLabel: UILabel!
     @IBOutlet weak var textField: UITextField!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,7 +62,6 @@ class LessonViewController: UIViewController {
         
         
         toolBar.translatesAutoresizingMaskIntoConstraints = false
-        
         
         if #available(iOS 11.0, *) {
             let guide = self.view.safeAreaLayoutGuide

@@ -10,42 +10,16 @@ import UIKit
 
 
 
-//struct LessonsData {
-//    
-//    var isExpanded: Bool
-//    let title: String
-//    var lessonsArray: [String]
-//    
-//}
 
-//struct LessonsArrayData {
-//
-//    var completion: Int
-//    let title: String
-//    var subLessonsArray: [SubLessonsArrayData]
-//
-//}
-//
-//struct SubLessonsArrayData {
-//
-//    var completion: Bool
-//    let subLessonsTitle: String
-//    let subLessonsTitleDescription: String
-//    var lessonData: [String]
-//
-//}
 
 
 class LessonsTableViewController: UITableViewController {
     
-    
-//    let sectionTitles = ["Beginner", "Intermediate", "Advanced"]
-//    let sections0 = BeginnerLessonsBank()
-//    let sections1 = IntermediateLessonsBank()
-//    let sections2 = IntermediateLessonsBank()
-//
+  
     
     var twoDimensionArray = rozdzialy
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,7 +35,6 @@ class LessonsTableViewController: UITableViewController {
     }
     
     
-    
     // MARK: - TableView Section settings
     
     
@@ -71,14 +44,11 @@ class LessonsTableViewController: UITableViewController {
     
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        //return sectionTitles.count
         return twoDimensionArray.count
     }
     
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        
-        //print(section)
         
         let view = UIView()
         
@@ -101,9 +71,6 @@ class LessonsTableViewController: UITableViewController {
             return label
         }()
         
-       
-        
-        
         view.addSubview(headerCounterLabel)
         view.addSubview(headerButton)
         
@@ -119,71 +86,21 @@ class LessonsTableViewController: UITableViewController {
             headerButton.setTitleColor(Theme.current.pressedSectionButton, for: .normal)
         }
         
-        if section == 0 {
+        let sumOfLessonsInSection = twoDimensionArray[section].lessonsData.count
+        var sumOfDoneLessonsInSection = 0
+        
+        for n in 0..<twoDimensionArray[section].lessonsData.count {
             
-            let sumaRozdzialow = twoDimensionArray[0].lessonsData.count
-            var sum = 0
-            for n in 0..<sumaRozdzialow {
-                print("n \(n)")
-              
-                let sumaPod = twoDimensionArray[0].lessonsData[n].subLessonsData.count
-                print(sumaPod)
-                if sumaPod == twoDimensionArray[0].lessonsData[n].completionCounter {
-                    
-                    sum += 1
-                    
-                }
+            if twoDimensionArray[section].lessonsData[n].subLessonsData.count == twoDimensionArray[section].lessonsData[n].completionCounter {
                 
-            
+                sumOfDoneLessonsInSection += 1
+                
             }
-            print("sum \(sum)")
-            
-            headerCounterLabel.text = "\(sum)/\(sumaRozdzialow)"
-//            let b = twoDimensionArray[0].lessonsData[sumaRozdzialow - 1].subLessonsData.count
-//            print(b)
-            
-        
-            
-//            headerCounterLabel.text = "\(sum)/\(twoDimensionArray[section].lessonsData.count)"
-//
-        
-        } else if section == 1 {
-            
-            
-            
-        } else if section == 2 {
-            
-            
             
         }
         
-//        var sum = 0
-//        var subsum = 0
-//        for _ in twoDimensionArray[section].lessonsData {
-//
-//            for _ in twoDimensionArray[section].lessonsData[twoDimensionArray[section].lessonsData.count - 1].subLessonsData {
-//
-//                let sumaRozwiazanychPodRozdzialow = twoDimensionArray[section].lessonsData[twoDimensionArray[section].lessonsData.count - 1].completionCounter
-//                let sumaPodRozdzialowWLekcji = twoDimensionArray[section].lessonsData[twoDimensionArray[section].lessonsData.count - 1].subLessonsData.count
-//
-//                if sumaRozwiazanychPodRozdzialow == sumaPodRozdzialowWLekcji {
-//                    sum += 1
-//                    print(sum)
-//                }
-//
-//                subsum += 1
-//
-//            }
-//
-//
-//
-//
-//        }
-        //print(twoDimensionArray[section].lessonsData.count - 1)
-        //print(twoDimensionArray[section].lessonsData[twoDimensionArray[section].lessonsData.count - 1].subLessonsData.count)
-            
-             //headerCounterLabel.text = "\(subsum)/\(twoDimensionArray[section].lessonsData.count)"
-  
+        headerCounterLabel.text = "\(sumOfDoneLessonsInSection)/\(sumOfLessonsInSection)"
+        
         return view
     }
     
@@ -200,7 +117,6 @@ class LessonsTableViewController: UITableViewController {
         if !twoDimensionArray[section].isExpanded {
             return 0
         }
-        
         return twoDimensionArray[section].lessonsData.count
         
     }
@@ -240,6 +156,9 @@ class LessonsTableViewController: UITableViewController {
         let name = twoDimensionArray[indexPath.section].lessonsData[indexPath.row].title
         subLessonsTitle = name
         
+        let indexPaths = [indexPath.section,indexPath.row]
+        print(indexPaths)
+        indexPathsInSublessons = [indexPath.section,indexPath.row]
         //self.tableView.deselectRow(at: indexPath, animated: true)
         
     }

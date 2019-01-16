@@ -13,13 +13,15 @@ import UIKit
 class SettingsViewController: UIViewController {
     
     
-    // MARK: - IBOutlet
+   
+     // MARK: - IBOutlet
     
     
     @IBOutlet weak var darkModeLabel: UILabel!
     @IBOutlet weak var darkModeSwitchOutlet: UISwitch!
     @IBOutlet weak var resetAllProgressButtonLabel: UIButton!
     @IBOutlet weak var restoreInAppPurchaseButtonLabel: UIButton!
+    
     
     
     override func viewDidLoad() {
@@ -33,6 +35,7 @@ class SettingsViewController: UIViewController {
         applyTheme()
         
     }
+    
     
     // MARK: - IBAction
     

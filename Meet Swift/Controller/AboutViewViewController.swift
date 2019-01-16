@@ -13,11 +13,15 @@ import MessageUI
 
 class AboutViewViewController: UIViewController, MFMailComposeViewControllerDelegate {
     
+    
+    
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var contaktLabelContent: UILabel!
     @IBOutlet weak var autorLabel: UILabel!
     @IBOutlet weak var autorLabelContent: UILabel!
     @IBOutlet weak var contactLabel: UILabel!
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()

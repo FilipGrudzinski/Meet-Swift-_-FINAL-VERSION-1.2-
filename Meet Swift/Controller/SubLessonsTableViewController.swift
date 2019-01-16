@@ -10,24 +10,22 @@ import UIKit
 
 
 var subLessonsTitle = ""
+var indexPathsInSublessons: [Int] = []
 
 
 class SubLessonsTableViewController: UITableViewController {
     
     
-    var done: Bool = true
-    var subLessons = ["SubLesson 1", "SubLesson 2", "SubLesson 3", "SubLesson 4", "SubLesson 5", "SubLesson 6", "SubLesson 7", "SubLesson 8", "SubLesson 9", "SubLesson 10", "SubLesson 11", "SubLesson 12", "SubLesson 13", "SubLesson 14", "SubLesson 152",]
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        print(indexPathsInSublessons)
         self.title = subLessonsTitle
         tableView.separatorStyle = .none
         view.backgroundColor = Theme.current.viewControllerBackgroundColor
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: nil, action: nil)
-        
     }
+    
     
     // MARK: - TableView Row settings
     
@@ -38,7 +36,7 @@ class SubLessonsTableViewController: UITableViewController {
     
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return subLessons.count
+        return rozdzialy[indexPathsInSublessons[0]].lessonsData[indexPathsInSublessons[1]].subLessonsData.count
     }
     
     
@@ -57,9 +55,9 @@ class SubLessonsTableViewController: UITableViewController {
         cell.selectedBackgroundView = backgroundView
         
         cell.subLessonsNumber.text = "\(indexPath.row + 1)."
-        cell.subLessonsTitle.text = subLessons[indexPath.row]
-        cell.subLessonsDescription.text = "Message \(indexPath.row) dsadasdasdadadadasda"
-        cell.accessoryType = self.done ? .checkmark : .none
+        cell.subLessonsTitle.text = rozdzialy[indexPathsInSublessons[0]].lessonsData[indexPathsInSublessons[1]].subLessonsData[indexPath.row].subLessonsTitle
+        cell.subLessonsDescription.text = rozdzialy[indexPathsInSublessons[0]].lessonsData[indexPathsInSublessons[1]].subLessonsData[indexPath.row].subLessonsTitleDescription
+        cell.accessoryType = rozdzialy[indexPathsInSublessons[0]].lessonsData[indexPathsInSublessons[1]].subLessonsData[indexPath.row].completion ? .checkmark : .none
         
         return cell
     }
@@ -67,7 +65,7 @@ class SubLessonsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        lessonTitle = self.subLessons[indexPath.row]
+        lessonTitle = rozdzialy[indexPathsInSublessons[0]].lessonsData[indexPathsInSublessons[1]].subLessonsData[indexPath.row].subLessonsTitle
         self.tableView.deselectRow(at: indexPath, animated: true)
     }
     
