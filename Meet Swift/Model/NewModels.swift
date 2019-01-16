@@ -122,10 +122,10 @@ var podrozdzialyZaawansowany1 = [
 ]
 
 
-var LessonsArrayDataStructDataPoczatkujacy = [LessonsDataStruct(completionCounter: 1, title: "Rozdział Poczatkujacy 1", subLessonsData: podrozdzialyPoczatkujacy),
-                                              LessonsDataStruct(completionCounter: 0, title: "Rozdział Poczatkujacy 2", subLessonsData: podrozdzialyPoczatkujacy1),
-                                              LessonsDataStruct(completionCounter: 0, title: "Rozdział Poczatkujacy 3", subLessonsData: podrozdzialyPoczatkujacy2),
-                                              LessonsDataStruct(completionCounter: 0, title: "Rozdział Poczatkujacy 4", subLessonsData: podrozdzialyPoczatkujacy3),
+var LessonsArrayDataStructDataPoczatkujacy = [LessonsDataStruct(completionCounter: 5, title: "Rozdział Poczatkujacy 1", subLessonsData: podrozdzialyPoczatkujacy),
+                                              LessonsDataStruct(completionCounter: 1, title: "Rozdział Poczatkujacy 2", subLessonsData: podrozdzialyPoczatkujacy1),
+                                              LessonsDataStruct(completionCounter: 2, title: "Rozdział Poczatkujacy 3", subLessonsData: podrozdzialyPoczatkujacy2),
+                                              LessonsDataStruct(completionCounter: 3, title: "Rozdział Poczatkujacy 4", subLessonsData: podrozdzialyPoczatkujacy3),
 ]
 
 var LessonsArrayDataStructDataSrednio = [LessonsDataStruct(completionCounter: 5, title: "Rozdział Srednio 1", subLessonsData: podrozdzialySredniozaws),

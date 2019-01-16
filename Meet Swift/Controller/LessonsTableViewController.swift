@@ -39,31 +39,17 @@ import UIKit
 class LessonsTableViewController: UITableViewController {
     
     
-    let sectionTitles = ["Beginner", "Intermediate", "Advanced"]
-    let sections0 = BeginnerLessonsBank()
-    let sections1 = IntermediateLessonsBank()
-    let sections2 = IntermediateLessonsBank()
-    
-    
-    //    var twoDimensionArray = [
-    //
-    //        LessonsData(isExpanded: true, title: "Beginner", lessonsArray: ["dsadas","dsadas","dsadas","dsadas","dsadas","dsadas","dsadas","dsadas"]),
-    //        LessonsData(isExpanded: false, title: "Intermediate", lessonsArray: ["dsadas","dsadas","dsadas","dsadas"]),
-    //        LessonsData(isExpanded: false, title: "Advanced", lessonsArray: ["dsadas","dsadas",])
-    //
-    //
-    //    ]
-    
-    
-    
+//    let sectionTitles = ["Beginner", "Intermediate", "Advanced"]
+//    let sections0 = BeginnerLessonsBank()
+//    let sections1 = IntermediateLessonsBank()
+//    let sections2 = IntermediateLessonsBank()
+//
     
     var twoDimensionArray = rozdzialy
     
     override func viewDidLoad() {
         super.viewDidLoad()
         applyTheme()
-        
-        //twoDimensionArray.append(LessonsData(isExpanded: true, title: "KolejnyRozdział", lessonsArray: ["dsadsada","dsdas"]))
         
     }
     
@@ -122,7 +108,6 @@ class LessonsTableViewController: UITableViewController {
         view.addSubview(headerButton)
         
         view.backgroundColor = Theme.current.headerBackgroundColor
-        //headerButton.setTitleColor(Theme.current.buttonColor, for: .normal)
         headerCounterLabel.textColor = Theme.current.textColor
         
         if !twoDimensionArray[section].isExpanded {
@@ -134,7 +119,43 @@ class LessonsTableViewController: UITableViewController {
             headerButton.setTitleColor(Theme.current.pressedSectionButton, for: .normal)
         }
         
-
+        if section == 0 {
+            
+            let sumaRozdzialow = twoDimensionArray[0].lessonsData.count
+            var sum = 0
+            for n in 0..<sumaRozdzialow {
+                print("n \(n)")
+              
+                let sumaPod = twoDimensionArray[0].lessonsData[n].subLessonsData.count
+                print(sumaPod)
+                if sumaPod == twoDimensionArray[0].lessonsData[n].completionCounter {
+                    
+                    sum += 1
+                    
+                }
+                
+            
+            }
+            print("sum \(sum)")
+            
+            headerCounterLabel.text = "\(sum)/\(sumaRozdzialow)"
+//            let b = twoDimensionArray[0].lessonsData[sumaRozdzialow - 1].subLessonsData.count
+//            print(b)
+            
+        
+            
+//            headerCounterLabel.text = "\(sum)/\(twoDimensionArray[section].lessonsData.count)"
+//
+        
+        } else if section == 1 {
+            
+            
+            
+        } else if section == 2 {
+            
+            
+            
+        }
         
 //        var sum = 0
 //        var subsum = 0
