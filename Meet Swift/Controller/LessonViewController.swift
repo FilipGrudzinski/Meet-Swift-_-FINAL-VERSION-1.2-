@@ -12,7 +12,7 @@ import UIKit
 var lessonTitle = ""
 
 
-class LessonViewController: UIViewController {
+class LessonViewController: UIViewController, UITextFieldDelegate {
     
     
     
@@ -26,6 +26,8 @@ class LessonViewController: UIViewController {
         
         applyTheme()
         self.title = lessonTitle
+        self.textField.delegate = self
+        
         
         let toolBar = UIToolbar()
         var buttonsArray = [UIBarButtonItem]()
@@ -81,6 +83,12 @@ class LessonViewController: UIViewController {
         
     }
     
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        
+        return true
+    }
     
     // MARK: - Theme function
     
