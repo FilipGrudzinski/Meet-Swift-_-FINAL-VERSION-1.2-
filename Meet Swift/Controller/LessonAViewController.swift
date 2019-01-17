@@ -9,10 +9,10 @@
 import UIKit
 
 
-var lessonTitle = ""
+var lessonATitle = ""
 
 
-class LessonViewController: UIViewController, UITextFieldDelegate {
+class LessonAViewController: UIViewController, UITextFieldDelegate {
     
     
     
@@ -25,7 +25,7 @@ class LessonViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         
         applyTheme()
-        self.title = lessonTitle
+        self.title = lessonATitle
         self.textField.delegate = self
         
         

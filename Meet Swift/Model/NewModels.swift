@@ -30,6 +30,7 @@ struct SubLessonsDataStruct {
     var completion: Bool
     let subLessonsTitle: String
     let subLessonsTitleDescription: String
+    let typeOfTask: String
     //var lessonData: [String]
     
 }
@@ -37,88 +38,88 @@ struct SubLessonsDataStruct {
 
 
 var podrozdzialyPoczatkujacy = [
-    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział Poczatkujacy 1", subLessonsTitleDescription: "Opis Podrozdziału Poczatkujacy 1"),
-    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział Poczatkujacy 2", subLessonsTitleDescription: "Opis Podrozdziału Poczatkujacy 2"),
-    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział Poczatkujacy 3", subLessonsTitleDescription: "Opis Podrozdziału Poczatkujacy 3"),
-    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział Poczatkujacy 4", subLessonsTitleDescription: "Opis Podrozdziału Poczatkujacy 4"),
-    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział Poczatkujacy 5", subLessonsTitleDescription: "Opis Podrozdziału Poczatkujacy 5"),
+    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział Poczatkujacy 1", subLessonsTitleDescription: "Opis Podrozdziału Poczatkujacy 1", typeOfTask: "B"),
+    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział Poczatkujacy 2", subLessonsTitleDescription: "Opis Podrozdziału Poczatkujacy 2", typeOfTask: "B"),
+    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział Poczatkujacy 3", subLessonsTitleDescription: "Opis Podrozdziału Poczatkujacy 3", typeOfTask: "B"),
+    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział Poczatkujacy 4", subLessonsTitleDescription: "Opis Podrozdziału Poczatkujacy 4", typeOfTask: "A"),
+    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział Poczatkujacy 5", subLessonsTitleDescription: "Opis Podrozdziału Poczatkujacy 5", typeOfTask: "A"),
 ]
 var podrozdzialyPoczatkujacy1 = [
-    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział Poczatkujacy 1", subLessonsTitleDescription: "Opis Podrozdziału Poczatkujacy 1"),
-    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział 2", subLessonsTitleDescription: "Opis Podrozdziału 2"),
-    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział 3", subLessonsTitleDescription: "Opis Podrozdziału 3"),
-    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział 4", subLessonsTitleDescription: "Opis Podrozdziału 4"),
-    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział 5", subLessonsTitleDescription: "Opis Podrozdziału 5"),
+    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział Poczatkujacy 1", subLessonsTitleDescription: "Opis Podrozdziału Poczatkujacy 1", typeOfTask: "A"),
+    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział 2", subLessonsTitleDescription: "Opis Podrozdziału 2", typeOfTask: "A"),
+    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział 3", subLessonsTitleDescription: "Opis Podrozdziału 3", typeOfTask: "A"),
+    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział 4", subLessonsTitleDescription: "Opis Podrozdziału 4", typeOfTask: "A"),
+    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział 5", subLessonsTitleDescription: "Opis Podrozdziału 5", typeOfTask: "A"),
 ]
 var podrozdzialyPoczatkujacy2 = [
-    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział Poczatkujacy 1", subLessonsTitleDescription: "Opis Podrozdziału Poczatkujacy 1"),
-    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział Poczatkujacy 2", subLessonsTitleDescription: "Opis Podrozdziału Poczatkujacy 2"),
-    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział 3", subLessonsTitleDescription: "Opis Podrozdziału 3"),
-    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział 4", subLessonsTitleDescription: "Opis Podrozdziału 4"),
-    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział 5", subLessonsTitleDescription: "Opis Podrozdziału 5"),
+    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział Poczatkujacy 1", subLessonsTitleDescription: "Opis Podrozdziału Poczatkujacy 1", typeOfTask: "A"),
+    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział Poczatkujacy 2", subLessonsTitleDescription: "Opis Podrozdziału Poczatkujacy 2", typeOfTask: "A"),
+    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział 3", subLessonsTitleDescription: "Opis Podrozdziału 3", typeOfTask: "A"),
+    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział 4", subLessonsTitleDescription: "Opis Podrozdziału 4", typeOfTask: "A"),
+    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział 5", subLessonsTitleDescription: "Opis Podrozdziału 5", typeOfTask: "A"),
 ]
 var podrozdzialyPoczatkujacy3 = [
-    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział Poczatkujacy 1", subLessonsTitleDescription: "Opis Podrozdziału Poczatkujacy 1"),
-    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział Poczatkujacy  2", subLessonsTitleDescription: "Opis PodrozdziałuPoczatkujacy 2"),
-    SubLessonsDataStruct(completion: false, subLessonsTitle: "PodrozdziałPoczatkujacy 3", subLessonsTitleDescription: "Opis Podrozdziału Poczatkujacy 3"),
-    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział 4", subLessonsTitleDescription: "Opis Podrozdziału 4"),
-    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział 5", subLessonsTitleDescription: "Opis Podrozdziału 5"),
+    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział Poczatkujacy 1", subLessonsTitleDescription: "Opis Podrozdziału Poczatkujacy 1", typeOfTask: "A"),
+    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział Poczatkujacy  2", subLessonsTitleDescription: "Opis PodrozdziałuPoczatkujacy 2", typeOfTask: "A"),
+    SubLessonsDataStruct(completion: false, subLessonsTitle: "PodrozdziałPoczatkujacy 3", subLessonsTitleDescription: "Opis Podrozdziału Poczatkujacy 3", typeOfTask: "A"),
+    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział 4", subLessonsTitleDescription: "Opis Podrozdziału 4", typeOfTask: "A"),
+    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział 5", subLessonsTitleDescription: "Opis Podrozdziału 5", typeOfTask: "A"),
 ]
 
 
 var podrozdzialySredniozaws = [
-    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział Sredniozaws 1", subLessonsTitleDescription: "Opis Podrozdziału Sredniozaws 1"),
-    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział Sredniozaws 2", subLessonsTitleDescription: "Opis Podrozdziału Sredniozaws 2"),
-    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział Sredniozaws 3", subLessonsTitleDescription: "Opis Podrozdziału Sredniozaws 3"),
-    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział Sredniozaws 4", subLessonsTitleDescription: "Opis Podrozdziału Sredniozaws 4"),
-    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział Sredniozaws 5", subLessonsTitleDescription: "Opis Podrozdziału Sredniozaws 5"),
+    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział Sredniozaws 1", subLessonsTitleDescription: "Opis Podrozdziału Sredniozaws 1", typeOfTask: "A"),
+    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział Sredniozaws 2", subLessonsTitleDescription: "Opis Podrozdziału Sredniozaws 2", typeOfTask: "A"),
+    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział Sredniozaws 3", subLessonsTitleDescription: "Opis Podrozdziału Sredniozaws 3", typeOfTask: "A"),
+    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział Sredniozaws 4", subLessonsTitleDescription: "Opis Podrozdziału Sredniozaws 4", typeOfTask: "A"),
+    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział Sredniozaws 5", subLessonsTitleDescription: "Opis Podrozdziału Sredniozaws 5", typeOfTask: "A"),
 ]
 
 var podrozdzialySredniozaws1 = [
-    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział Sredniozaws 1", subLessonsTitleDescription: "Opis Podrozdziału 1"),
-    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział Sredniozaws 2", subLessonsTitleDescription: "Opis Podrozdziału 2"),
-    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział 3", subLessonsTitleDescription: "Opis Podrozdziału 3"),
-    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział 4", subLessonsTitleDescription: "Opis Podrozdziału 4"),
-    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział 5", subLessonsTitleDescription: "Opis Podrozdziału 5"),
+    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział Sredniozaws 1", subLessonsTitleDescription: "Opis Podrozdziału 1", typeOfTask: "A"),
+    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział Sredniozaws 2", subLessonsTitleDescription: "Opis Podrozdziału 2", typeOfTask: "A"),
+    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział 3", subLessonsTitleDescription: "Opis Podrozdziału 3", typeOfTask: "A"),
+    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział 4", subLessonsTitleDescription: "Opis Podrozdziału 4", typeOfTask: "A"),
+    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział 5", subLessonsTitleDescription: "Opis Podrozdziału 5", typeOfTask: "A"),
 ]
 
 var podrozdzialySredniozaws2 = [
-    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział 1", subLessonsTitleDescription: "Opis Podrozdziału 1"),
-    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział 2", subLessonsTitleDescription: "Opis Podrozdziału 2"),
-    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział 3", subLessonsTitleDescription: "Opis Podrozdziału 3"),
-    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział 4", subLessonsTitleDescription: "Opis Podrozdziału 4"),
-    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział 5", subLessonsTitleDescription: "Opis Podrozdziału 5"),
+    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział 1", subLessonsTitleDescription: "Opis Podrozdziału 1", typeOfTask: "A"),
+    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział 2", subLessonsTitleDescription: "Opis Podrozdziału 2", typeOfTask: "A"),
+    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział 3", subLessonsTitleDescription: "Opis Podrozdziału 3", typeOfTask: "A"),
+    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział 4", subLessonsTitleDescription: "Opis Podrozdziału 4", typeOfTask: "A"),
+    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział 5", subLessonsTitleDescription: "Opis Podrozdziału 5", typeOfTask: "A"),
 ]
 
 var podrozdzialySredniozaws3 = [
-    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział 1", subLessonsTitleDescription: "Opis Podrozdziału 1"),
-    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział 2", subLessonsTitleDescription: "Opis Podrozdziału 2"),
-    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział 3", subLessonsTitleDescription: "Opis Podrozdziału 3"),
-    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział 4", subLessonsTitleDescription: "Opis Podrozdziału 4"),
-    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział 5", subLessonsTitleDescription: "Opis Podrozdziału 5"),
+    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział 1", subLessonsTitleDescription: "Opis Podrozdziału 1", typeOfTask: "A"),
+    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział 2", subLessonsTitleDescription: "Opis Podrozdziału 2", typeOfTask: "A"),
+    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział 3", subLessonsTitleDescription: "Opis Podrozdziału 3", typeOfTask: "A"),
+    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział 4", subLessonsTitleDescription: "Opis Podrozdziału 4", typeOfTask: "A"),
+    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział 5", subLessonsTitleDescription: "Opis Podrozdziału 5", typeOfTask: "A"),
 ]
 
 var podrozdzialySredniozaws4 = [
-    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział 1", subLessonsTitleDescription: "Opis Podrozdziału 1"),
-    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział 2", subLessonsTitleDescription: "Opis Podrozdziału 2"),
-    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział 3", subLessonsTitleDescription: "Opis Podrozdziału 3"),
-    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział 4", subLessonsTitleDescription: "Opis Podrozdziału 4"),
-    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział 5", subLessonsTitleDescription: "Opis Podrozdziału 5"),
+    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział 1", subLessonsTitleDescription: "Opis Podrozdziału 1", typeOfTask: "A"),
+    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział 2", subLessonsTitleDescription: "Opis Podrozdziału 2", typeOfTask: "A"),
+    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział 3", subLessonsTitleDescription: "Opis Podrozdziału 3", typeOfTask: "A"),
+    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział 4", subLessonsTitleDescription: "Opis Podrozdziału 4", typeOfTask: "A"),
+    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział 5", subLessonsTitleDescription: "Opis Podrozdziału 5", typeOfTask: "A"),
 ]
 
 var podrozdzialyZaawansowany = [
-    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział Zaawansowany0 1", subLessonsTitleDescription: "Opis Podrozdziału Zaawansowany0 1"),
-    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział 2", subLessonsTitleDescription: "Opis Podrozdziału 2"),
-    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział 3", subLessonsTitleDescription: "Opis Podrozdziału 3"),
-    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział 4", subLessonsTitleDescription: "Opis Podrozdziału 4"),
-    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział 5", subLessonsTitleDescription: "Opis Podrozdziału 5"),
+    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział Zaawansowany0 1", subLessonsTitleDescription: "Opis Podrozdziału Zaawansowany0 1", typeOfTask: "A"),
+    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział 2", subLessonsTitleDescription: "Opis Podrozdziału 2", typeOfTask: "A"),
+    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział 3", subLessonsTitleDescription: "Opis Podrozdziału 3", typeOfTask: "A"),
+    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział 4", subLessonsTitleDescription: "Opis Podrozdziału 4", typeOfTask: "A"),
+    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział 5", subLessonsTitleDescription: "Opis Podrozdziału 5", typeOfTask: "A"),
 ]
 var podrozdzialyZaawansowany1 = [
-    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział 1", subLessonsTitleDescription: "Opis Podrozdziału 1"),
-    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział 2", subLessonsTitleDescription: "Opis Podrozdziału 2"),
-    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział 3", subLessonsTitleDescription: "Opis Podrozdziału 3"),
-    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział Zaawansowany1 4", subLessonsTitleDescription: "Opis Podrozdziału Zaawansowany1 4"),
-    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział 5", subLessonsTitleDescription: "Opis Podrozdziału 5"),
+    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział 1", subLessonsTitleDescription: "Opis Podrozdziału 1", typeOfTask: "A"),
+    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział 2", subLessonsTitleDescription: "Opis Podrozdziału 2", typeOfTask: "A"),
+    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział 3", subLessonsTitleDescription: "Opis Podrozdziału 3", typeOfTask: "A"),
+    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział Zaawansowany1 4", subLessonsTitleDescription: "Opis Podrozdziału Zaawansowany1 4", typeOfTask: "A"),
+    SubLessonsDataStruct(completion: false, subLessonsTitle: "Podrozdział 5", subLessonsTitleDescription: "Opis Podrozdziału 5", typeOfTask: "A"),
 ]
 
 

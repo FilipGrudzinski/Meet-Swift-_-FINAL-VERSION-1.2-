@@ -11,11 +11,11 @@ import RealmSwift
 
 class LessonData: Object {
     
-    @objc dynamic let typeOfTask: String = ""
-    @objc dynamic let lessonDescription: String = ""
-    @objc dynamic let lessonExample: String = ""
-    @objc dynamic let lessonTask: String = ""
-    @objc dynamic let lessonAnswer: String = ""
+    @objc dynamic var typeOfTask: String = ""
+    @objc dynamic var lessonDescription: String = ""
+    @objc dynamic var lessonExample: String = ""
+    @objc dynamic var lessonTask: String = ""
+    @objc dynamic var lessonAnswer: String = ""
     
     var parentSubLessonsData = LinkingObjects(fromType: SubLessonsData.self, property: "lessonData")  //Reverse category realationship
     

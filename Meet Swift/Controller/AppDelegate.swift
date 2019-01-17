@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -21,6 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if UserDefaults.standard.object(forKey: "Theme") != nil {
             Theme.current = UserDefaults.standard.bool(forKey: "Theme") ? DarkTheme() : LightTheme()
         }
+        
+        openRealm()
         
         return true
     }
@@ -49,7 +52,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
    
-    
+    func openRealm() {
+        
+        let defaultRealmPath = Realm.Configuration.defaultConfiguration.fileURL!
+        let bundleRealmPath = Bundle.main.url(forResource: "default", withExtension: "realm")
+
+        if !FileManager.default.fileExists(atPath: defaultRealmPath.absoluteString) {
+            do {
+                try FileManager.default.copyItem(at: bundleRealmPath!, to: defaultRealmPath)
+            } catch let error {
+                print("error copying seeds: \(error)")
+            }
+        }
+        
+
+        
+//        let bundlePath = Bundle.main.path(forResource: "default", ofType: "realm")
+//        let destPath = Realm.Configuration.defaultConfiguration.fileURL?.path
+//        let fileManager = FileManager.default
+//
+//        if fileManager.fileExists(atPath: destPath!) {
+//            //File exist, do nothing
+//            //print(fileManager.fileExists(atPath: destPath!))
+//        } else {
+//            do {
+//                //Copy file from bundle to Realm default path
+//                try fileManager.copyItem(atPath: bundlePath!, toPath: destPath!)
+//            } catch {
+//                print("\n",error)
+//            }
+//        }
+        
+    }
     
 }
 

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import RealmSwift
 
 
 class SettingsViewController: UIViewController {
@@ -51,6 +51,9 @@ class SettingsViewController: UIViewController {
     
     @IBAction func resetAllProgressButton(_ sender: UIButton) {
         print("Reset All Progress Button Pressed")
+        
+        
+       
     }
     
     

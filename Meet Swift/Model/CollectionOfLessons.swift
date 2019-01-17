@@ -14,8 +14,7 @@ import RealmSwift
 class CollectionOfLessons: Object {
     
     @objc dynamic var isExpanded: Bool = false
-    @objc dynamic let title: String = ""
-    
+    @objc dynamic var title: String = ""
     let lessons = List<LessonsData>()
     
 }

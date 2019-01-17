@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 
 var subLessonsTitle = ""
@@ -15,15 +16,30 @@ var indexPathsInSublessons: [Int] = []
 
 class SubLessonsTableViewController: UITableViewController {
     
+     lazy var realm = try! Realm()
     
+     var toDoItems: Results<LessonsData>!
+    
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
         print(indexPathsInSublessons)
         self.title = subLessonsTitle
+        loadItems()
         tableView.separatorStyle = .none
         view.backgroundColor = Theme.current.viewControllerBackgroundColor
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: nil, action: nil)
+    }
+    
+    
+    func loadItems() {
+        
+        toDoItems = realm.objects(LessonsData.self)
+        
+        
+        tableView.reloadData()
+        
     }
     
     
@@ -36,7 +52,9 @@ class SubLessonsTableViewController: UITableViewController {
     
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return rozdzialy[indexPathsInSublessons[0]].lessonsData[indexPathsInSublessons[1]].subLessonsData.count
+        //return rozdzialy[indexPathsInSublessons[0]].lessonsData[indexPathsInSublessons[1]].subLessonsData.count
+        return toDoItems[indexPathsInSublessons[1]].subLessonsData.count
+        
     }
     
     
@@ -55,9 +73,13 @@ class SubLessonsTableViewController: UITableViewController {
         cell.selectedBackgroundView = backgroundView
         
         cell.subLessonsNumber.text = "\(indexPath.row + 1)."
-        cell.subLessonsTitle.text = rozdzialy[indexPathsInSublessons[0]].lessonsData[indexPathsInSublessons[1]].subLessonsData[indexPath.row].subLessonsTitle
-        cell.subLessonsDescription.text = rozdzialy[indexPathsInSublessons[0]].lessonsData[indexPathsInSublessons[1]].subLessonsData[indexPath.row].subLessonsTitleDescription
-        cell.accessoryType = rozdzialy[indexPathsInSublessons[0]].lessonsData[indexPathsInSublessons[1]].subLessonsData[indexPath.row].completion ? .checkmark : .none
+        //cell.subLessonsTitle.text = rozdzialy[indexPathsInSublessons[0]].lessonsData[indexPathsInSublessons[1]].subLessonsData[indexPath.row].subLessonsTitle
+        
+        cell.subLessonsTitle.text = toDoItems[indexPathsInSublessons[1]].subLessonsData[indexPath.row].subLessonsTitle
+        cell.subLessonsDescription.text = toDoItems[indexPathsInSublessons[1]].subLessonsData[indexPath.row].subLessonsTitleDescription
+        cell.accessoryType = toDoItems[indexPathsInSublessons[1]].subLessonsData[indexPath.row].completion ? .checkmark : .none
+        //cell.subLessonsDescription.text = rozdzialy[indexPathsInSublessons[0]].lessonsData[indexPathsInSublessons[1]].subLessonsData[indexPath.row].subLessonsTitleDescription
+       // cell.accessoryType = rozdzialy[indexPathsInSublessons[0]].lessonsData[indexPathsInSublessons[1]].subLessonsData[indexPath.row].completion ? .checkmark : .none
         
         return cell
     }
@@ -65,8 +87,21 @@ class SubLessonsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        lessonTitle = rozdzialy[indexPathsInSublessons[0]].lessonsData[indexPathsInSublessons[1]].subLessonsData[indexPath.row].subLessonsTitle
+        let lessonTitle = rozdzialy[indexPathsInSublessons[0]].lessonsData[indexPathsInSublessons[1]].subLessonsData[indexPath.row].subLessonsTitle
         self.tableView.deselectRow(at: indexPath, animated: true)
+        
+        let type = rozdzialy[indexPathsInSublessons[0]].lessonsData[indexPathsInSublessons[1]].subLessonsData[indexPath.row].typeOfTask
+        
+        if type == "A" {
+            lessonATitle = lessonTitle
+            performSegue(withIdentifier: "goToSubLessonsA", sender: self)
+            
+        } else {
+            lessonBTitle = lessonTitle
+             performSegue(withIdentifier: "goToSubLessonsB", sender: self)
+            
+        }
+   
     }
     
     

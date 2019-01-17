@@ -13,8 +13,7 @@ import RealmSwift
 class LessonsData: Object {
     
     @objc dynamic var completionCounter: Int = 0
-    @objc dynamic let title: String = ""
-    
+    @objc dynamic var title: String = ""
     let subLessonsData = List<SubLessonsData>()
     
     var parentCollectionOfLessons = LinkingObjects(fromType: CollectionOfLessons.self, property: "lessons")  //Reverse category realationship
