@@ -29,6 +29,7 @@
 		149B3F9621BE8DC600539BC3 /* BeginnerLessonsBank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149B3F9521BE8DC600539BC3 /* BeginnerLessonsBank.swift */; };
 		149B3F9821BE9A0C00539BC3 /* IntermediateLessonsBank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149B3F9721BE9A0C00539BC3 /* IntermediateLessonsBank.swift */; };
 		14DC500B21E90C5B006EDC00 /* CustomSubLessonsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DC500A21E90C5B006EDC00 /* CustomSubLessonsCell.swift */; };
+		515C6557D7745EBD1C032B16 /* Pods_Meet_Swift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B572BF09DFF4C3EE4290E578 /* Pods_Meet_Swift.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,9 @@
 		149B3F9521BE8DC600539BC3 /* BeginnerLessonsBank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeginnerLessonsBank.swift; sourceTree = "<group>"; };
 		149B3F9721BE9A0C00539BC3 /* IntermediateLessonsBank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntermediateLessonsBank.swift; sourceTree = "<group>"; };
 		14DC500A21E90C5B006EDC00 /* CustomSubLessonsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSubLessonsCell.swift; sourceTree = "<group>"; };
+		327FCC0BF6494264725D6F7F /* Pods-Meet Swift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Meet Swift.release.xcconfig"; path = "Pods/Target Support Files/Pods-Meet Swift/Pods-Meet Swift.release.xcconfig"; sourceTree = "<group>"; };
+		60BE35164B456F78A4272A0C /* Pods-Meet Swift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Meet Swift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Meet Swift/Pods-Meet Swift.debug.xcconfig"; sourceTree = "<group>"; };
+		B572BF09DFF4C3EE4290E578 /* Pods_Meet_Swift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Meet_Swift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				515C6557D7745EBD1C032B16 /* Pods_Meet_Swift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,6 +90,8 @@
 			children = (
 				149B3F7721BE7DCA00539BC3 /* Meet Swift */,
 				149B3F7621BE7DCA00539BC3 /* Products */,
+				57C606EA4C50D2A9ABA9811D /* Pods */,
+				6D25A77CF14207BD6E90077D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -155,6 +162,23 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		57C606EA4C50D2A9ABA9811D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				60BE35164B456F78A4272A0C /* Pods-Meet Swift.debug.xcconfig */,
+				327FCC0BF6494264725D6F7F /* Pods-Meet Swift.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		6D25A77CF14207BD6E90077D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B572BF09DFF4C3EE4290E578 /* Pods_Meet_Swift.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -162,9 +186,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 149B3F8721BE7DCC00539BC3 /* Build configuration list for PBXNativeTarget "Meet Swift" */;
 			buildPhases = (
+				01A22A875BB8F92C335D0C16 /* [CP] Check Pods Manifest.lock */,
 				149B3F7121BE7DCA00539BC3 /* Sources */,
 				149B3F7221BE7DCA00539BC3 /* Frameworks */,
 				149B3F7321BE7DCA00539BC3 /* Resources */,
+				358921EE65888E8F7F3E4046 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -220,6 +246,55 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		01A22A875BB8F92C335D0C16 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Meet Swift-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		358921EE65888E8F7F3E4046 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Meet Swift/Pods-Meet Swift-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Meet Swift/Pods-Meet Swift-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		149B3F7121BE7DCA00539BC3 /* Sources */ = {
@@ -388,6 +463,7 @@
 		};
 		149B3F8821BE7DCC00539BC3 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 60BE35164B456F78A4272A0C /* Pods-Meet Swift.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -406,6 +482,7 @@
 		};
 		149B3F8921BE7DCC00539BC3 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 327FCC0BF6494264725D6F7F /* Pods-Meet Swift.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

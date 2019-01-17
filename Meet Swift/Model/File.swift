@@ -7,3 +7,17 @@
 //
 
 import Foundation
+
+
+
+class Lessons {
+    
+}
+
+//clas LessonsStruct { // Rozdziały
+//
+//    var isExpanded: Bool
+//    let title: String
+//    var lessonsData: [LessonsDataStruct]
+//
+//}
