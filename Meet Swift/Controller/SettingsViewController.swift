@@ -53,6 +53,8 @@ class SettingsViewController: UIViewController {
         print("Reset All Progress Button Pressed")
         
         
+        //NSFileManager.defaultManager().removeItemAtURL(Realm.Configuration.defaultConfiguration.fileURL!)
+        
        
     }
     

@@ -15,6 +15,8 @@ class LessonsTableViewController: UITableViewController {
     
     lazy var realm = try! Realm()
     
+    var buyedContent = false
+    
     var resultsOfCollectionOfLessons: Results<CollectionOfLessons>!
     
     override func viewDidLoad() {
@@ -22,23 +24,18 @@ class LessonsTableViewController: UITableViewController {
         
         print(Realm.Configuration.defaultConfiguration.fileURL!)
         
-        try! realm.write {
-            
-            let beginnerLessons = CollectionOfLessons()
-            beginnerLessons.isExpanded = true
-            beginnerLessons.title = "Beginner"
-            
-            
-            
-        }
         
-        //loadItems()
+        
+        
+        
+        
+        loadItems()
         applyTheme()
         
         
     }
     
-  
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -57,6 +54,7 @@ class LessonsTableViewController: UITableViewController {
     
     
     override func numberOfSections(in tableView: UITableView) -> Int {
+        
         return resultsOfCollectionOfLessons?.count ?? 1
     }
     
@@ -91,11 +89,11 @@ class LessonsTableViewController: UITableViewController {
         headerCounterLabel.textColor = Theme.current.textColor
         
         if !(resultsOfCollectionOfLessons?[section].isExpanded)! {
-
+            
             headerButton.setTitleColor(Theme.current.buttonColor, for: .normal)
-
+            
         } else {
-
+            
             headerButton.setTitleColor(Theme.current.pressedSectionButton, for: .normal)
         }
         
@@ -111,7 +109,26 @@ class LessonsTableViewController: UITableViewController {
             }
         }
         
-        headerCounterLabel.text = "\(sumOfDoneLessonsInSection)/\(sumOfLessonsInSection!)"
+        
+        
+        if section != (resultsOfCollectionOfLessons?.count)! - 1 {
+            
+            headerCounterLabel.text = "\(sumOfDoneLessonsInSection)/\(sumOfLessonsInSection!)"
+            
+        } else {
+            
+            if buyedContent {
+                
+                headerCounterLabel.text = "\(sumOfDoneLessonsInSection)/\(sumOfLessonsInSection!)"
+                
+            } else {
+                
+                headerCounterLabel.isHidden = true
+                
+            }
+        }
+        
+        
         
         return view
     }
@@ -139,30 +156,54 @@ class LessonsTableViewController: UITableViewController {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "LessonsCell", for: indexPath) as! CustomLessonsCell
         
-        let valueCounterCompletionCounterForProgressBar = resultsOfCollectionOfLessons[indexPath.section].lessons[indexPath.row].completionCounter
-        let subLessonsCounterForProgressBar = resultsOfCollectionOfLessons[indexPath.section].lessons[indexPath.row].subLessons.count
-        print(subLessonsCounterForProgressBar)
-        
-        let backgroundView = UIView()
-        backgroundView.backgroundColor = Theme.current.selectedRow
-        cell.selectedBackgroundView = backgroundView
-        
-        cell.backgroundColor = Theme.current.cellBackgroundColor
-        cell.lessonsNumber.textColor = Theme.current.textColor
-        cell.lessonsTitle.textColor = Theme.current.textColor
-        cell.progressLabel.textColor = Theme.current.textColor
-        cell.progressBar.progressTintColor = Theme.current.progressTintColor
-        cell.progressBar.trackTintColor = Theme.current.buttonColor
-        
-        cell.lessonsNumber.text = "\(indexPath.row + 1)."
-        cell.lessonsTitle.text = resultsOfCollectionOfLessons[indexPath.section].lessons[indexPath.row].title
-        if subLessonsCounterForProgressBar == 0 {
-            cell.progressBar.progress = 0.0
-        } else {
-             cell.progressBar.progress = Float((Double(100/subLessonsCounterForProgressBar) * 0.01) * Double(valueCounterCompletionCounterForProgressBar))
+        func showsCell() {
+            
+            let valueCounterCompletionCounterForProgressBar = resultsOfCollectionOfLessons[indexPath.section].lessons[indexPath.row].completionCounter
+            let subLessonsCounterForProgressBar = resultsOfCollectionOfLessons[indexPath.section].lessons[indexPath.row].subLessons.count
+            print(subLessonsCounterForProgressBar)
+            
+            let backgroundView = UIView()
+            backgroundView.backgroundColor = Theme.current.selectedRow
+            cell.selectedBackgroundView = backgroundView
+            
+            cell.backgroundColor = Theme.current.cellBackgroundColor
+            cell.lessonsNumber.textColor = Theme.current.textColor
+            cell.lessonsTitle.textColor = Theme.current.textColor
+            cell.progressLabel.textColor = Theme.current.textColor
+            cell.progressBar.progressTintColor = Theme.current.progressTintColor
+            cell.progressBar.trackTintColor = Theme.current.buttonColor
+            
+            cell.lessonsNumber.text = "\(indexPath.row + 1)."
+            cell.lessonsTitle.text = resultsOfCollectionOfLessons[indexPath.section].lessons[indexPath.row].title
+            if subLessonsCounterForProgressBar == 0 {
+                cell.progressBar.progress = 0.0
+            } else {
+                cell.progressBar.progress = Float((Double(100/subLessonsCounterForProgressBar) * 0.01) * Double(valueCounterCompletionCounterForProgressBar))
+            }
+            
+            cell.progressLabel.text = "\(valueCounterCompletionCounterForProgressBar)/\(subLessonsCounterForProgressBar)"
         }
-      
-        cell.progressLabel.text = "\(valueCounterCompletionCounterForProgressBar)/\(subLessonsCounterForProgressBar)"
+        
+        
+        if indexPath.section != (resultsOfCollectionOfLessons?.count)! - 1 {
+            
+            showsCell()
+            
+        } else {
+            
+            if buyedContent {
+                
+                showsCell()
+                
+            } else {
+                cell.lessonsTitle.text = "Buy More Lessons"
+                cell.progressBar.isHidden = true
+                
+            }
+        }
+        
+        
+        
         
         return cell
     }
@@ -180,14 +221,14 @@ class LessonsTableViewController: UITableViewController {
         indexPathsInSublessons = [indexPath.section,indexPath.row]
         //self.tableView.deselectRow(at: indexPath, animated: true)
         
-       
+        
         
         
     }
     
     
     
-   // MARK: - HandleOpenClosefunction
+    // MARK: - HandleOpenClosefunction
     
     @objc func handleOpenClose(headerButton: UIButton) {
         
@@ -205,14 +246,14 @@ class LessonsTableViewController: UITableViewController {
         try! realm.write {
             resultsOfCollectionOfLessons[section].isExpanded = !isExpanded
         }
-
+        
         if isExpanded {
-
+            
             tableView.deleteRows(at: indexPaths, with: .fade)
             headerButton.setTitleColor(Theme.current.buttonColor, for: .normal)
-
+            
         } else {
-        
+            
             tableView.insertRows(at: indexPaths, with: .fade)
             headerButton.setTitleColor(Theme.current.pressedSectionButton, for: .normal)
             
@@ -255,4 +296,8 @@ class LessonsTableViewController: UITableViewController {
         tableView.reloadData()
         
     }
+    
+    
 }
+
+
