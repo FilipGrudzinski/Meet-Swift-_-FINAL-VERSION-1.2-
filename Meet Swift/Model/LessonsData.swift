@@ -14,7 +14,7 @@ class LessonsData: Object {
     
     @objc dynamic var completionCounter: Int = 0
     @objc dynamic var title: String = ""
-    let subLessonsData = List<SubLessonsData>()
+    let subLessons = List<SubLessonsData>()
     
     var parentCollectionOfLessons = LinkingObjects(fromType: CollectionOfLessons.self, property: "lessons")  //Reverse category realationship
 

@@ -28,7 +28,6 @@
 		14DC500B21E90C5B006EDC00 /* CustomSubLessonsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DC500A21E90C5B006EDC00 /* CustomSubLessonsCell.swift */; };
 		14EAE08321F0AB550008B3EF /* LessonData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14EAE08221F0AB550008B3EF /* LessonData.swift */; };
 		14EAE08521F0B39E0008B3EF /* LessonBViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14EAE08421F0B39E0008B3EF /* LessonBViewController.swift */; };
-		14EAE09021F129880008B3EF /* default.realm in Resources */ = {isa = PBXBuildFile; fileRef = 14EAE08F21F129880008B3EF /* default.realm */; };
 		515C6557D7745EBD1C032B16 /* Pods_Meet_Swift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B572BF09DFF4C3EE4290E578 /* Pods_Meet_Swift.framework */; };
 /* End PBXBuildFile section */
 
@@ -56,7 +55,6 @@
 		14DC500A21E90C5B006EDC00 /* CustomSubLessonsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSubLessonsCell.swift; sourceTree = "<group>"; };
 		14EAE08221F0AB550008B3EF /* LessonData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonData.swift; sourceTree = "<group>"; };
 		14EAE08421F0B39E0008B3EF /* LessonBViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonBViewController.swift; sourceTree = "<group>"; };
-		14EAE08F21F129880008B3EF /* default.realm */ = {isa = PBXFileReference; lastKnownFileType = file; path = default.realm; sourceTree = "<group>"; };
 		327FCC0BF6494264725D6F7F /* Pods-Meet Swift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Meet Swift.release.xcconfig"; path = "Pods/Target Support Files/Pods-Meet Swift/Pods-Meet Swift.release.xcconfig"; sourceTree = "<group>"; };
 		60BE35164B456F78A4272A0C /* Pods-Meet Swift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Meet Swift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Meet Swift/Pods-Meet Swift.debug.xcconfig"; sourceTree = "<group>"; };
 		B572BF09DFF4C3EE4290E578 /* Pods_Meet_Swift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Meet_Swift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -128,7 +126,6 @@
 		149B3F8B21BE7ED000539BC3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				14EAE08F21F129880008B3EF /* default.realm */,
 				147AE56921EFF35F0075DEC9 /* CollectionOfLessons.swift */,
 				147AE56B21EFF3690075DEC9 /* LessonsData.swift */,
 				147AE56D21EFF3720075DEC9 /* SubLessonsData.swift */,
@@ -248,7 +245,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				149B3F8321BE7DCC00539BC3 /* LaunchScreen.storyboard in Resources */,
-				14EAE09021F129880008B3EF /* default.realm in Resources */,
 				149B3F8021BE7DCC00539BC3 /* Assets.xcassets in Resources */,
 				149B3F7E21BE7DCA00539BC3 /* Main.storyboard in Resources */,
 			);

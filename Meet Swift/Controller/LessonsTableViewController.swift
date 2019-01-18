@@ -11,45 +11,39 @@ import RealmSwift
 
 
 
-
 class LessonsTableViewController: UITableViewController {
     
     lazy var realm = try! Realm()
     
-    var models: Results<CollectionOfLessons>!
-   
-    
-    
-    var twoDimensionArray = rozdzialy
-    
+    var resultsOfCollectionOfLessons: Results<CollectionOfLessons>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         print(Realm.Configuration.defaultConfiguration.fileURL!)
         
-        loadItems()
+        try! realm.write {
+            
+            let beginnerLessons = CollectionOfLessons()
+            beginnerLessons.isExpanded = true
+            beginnerLessons.title = "Beginner"
+            
+            
+            
+        }
+        
+        //loadItems()
         applyTheme()
         
         
-        print(models!)
-        
     }
     
-    func loadItems() {
-        
-        models = realm.objects(CollectionOfLessons.self)
-        
-        
-        tableView.reloadData()
-        
-    }
+  
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         applyTheme()
-        loadItems()
+        //loadItems()
         tableView.reloadData()
     }
     
@@ -63,7 +57,7 @@ class LessonsTableViewController: UITableViewController {
     
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return models?.count ?? 1
+        return resultsOfCollectionOfLessons?.count ?? 1
     }
     
     
@@ -75,7 +69,7 @@ class LessonsTableViewController: UITableViewController {
             let button = UIButton()
             button.frame = CGRect(x: 0, y: 4, width: UIScreen.main.bounds.width, height: 35)
             button.contentEdgeInsets = UIEdgeInsets(top: 0, left: 50, bottom: 0, right: 0)
-            button.setTitle(models?[section].title, for: .normal)
+            button.setTitle(resultsOfCollectionOfLessons?[section].title, for: .normal)
             button.contentHorizontalAlignment = .left
             button.titleLabel?.font = UIFont.systemFont(ofSize: 20.0)
             button.addTarget(self, action: #selector(handleOpenClose), for: .touchUpInside)
@@ -96,7 +90,7 @@ class LessonsTableViewController: UITableViewController {
         view.backgroundColor = Theme.current.headerBackgroundColor
         headerCounterLabel.textColor = Theme.current.textColor
         
-        if !(models?[section].isExpanded)! {
+        if !(resultsOfCollectionOfLessons?[section].isExpanded)! {
 
             headerButton.setTitleColor(Theme.current.buttonColor, for: .normal)
 
@@ -105,12 +99,12 @@ class LessonsTableViewController: UITableViewController {
             headerButton.setTitleColor(Theme.current.pressedSectionButton, for: .normal)
         }
         
-        let sumOfLessonsInSection = models?[section].lessons.count
+        let sumOfLessonsInSection = resultsOfCollectionOfLessons?[section].lessons.count
         var sumOfDoneLessonsInSection = 0
         
-        for n in 0..<(models?[section].lessons.count)! {
+        for n in 0..<(resultsOfCollectionOfLessons?[section].lessons.count)! {
             
-            if models?[section].lessons[n].subLessonsData.count == models?[section].lessons[n].completionCounter {
+            if resultsOfCollectionOfLessons?[section].lessons[n].subLessons.count == resultsOfCollectionOfLessons?[section].lessons[n].completionCounter {
                 
                 sumOfDoneLessonsInSection += 1
                 
@@ -130,12 +124,13 @@ class LessonsTableViewController: UITableViewController {
         return 60
     }
     
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if !(models?[section].isExpanded)! {
+        if !(resultsOfCollectionOfLessons?[section].isExpanded)! {
             return 0
         }
-        return (models?[section].lessons.count)!
+        return (resultsOfCollectionOfLessons?[section].lessons.count)!
         
     }
     
@@ -144,8 +139,8 @@ class LessonsTableViewController: UITableViewController {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "LessonsCell", for: indexPath) as! CustomLessonsCell
         
-        let valueCounterCompletionCounterForProgressBar = models[indexPath.section].lessons[indexPath.row].completionCounter
-        let subLessonsCounterForProgressBar = models[indexPath.section].lessons[indexPath.row].subLessonsData.count
+        let valueCounterCompletionCounterForProgressBar = resultsOfCollectionOfLessons[indexPath.section].lessons[indexPath.row].completionCounter
+        let subLessonsCounterForProgressBar = resultsOfCollectionOfLessons[indexPath.section].lessons[indexPath.row].subLessons.count
         print(subLessonsCounterForProgressBar)
         
         let backgroundView = UIView()
@@ -160,7 +155,7 @@ class LessonsTableViewController: UITableViewController {
         cell.progressBar.trackTintColor = Theme.current.buttonColor
         
         cell.lessonsNumber.text = "\(indexPath.row + 1)."
-        cell.lessonsTitle.text = models[indexPath.section].lessons[indexPath.row].title
+        cell.lessonsTitle.text = resultsOfCollectionOfLessons[indexPath.section].lessons[indexPath.row].title
         if subLessonsCounterForProgressBar == 0 {
             cell.progressBar.progress = 0.0
         } else {
@@ -177,7 +172,7 @@ class LessonsTableViewController: UITableViewController {
         
         //        performSegue(withIdentifier: "goToSubLessonsView", sender: self)
         
-        let name = models[indexPath.section].lessons[indexPath.row].title
+        let name = resultsOfCollectionOfLessons[indexPath.section].lessons[indexPath.row].title
         subLessonsTitle = name
         
         let indexPaths = [indexPath.section,indexPath.row]
@@ -190,27 +185,27 @@ class LessonsTableViewController: UITableViewController {
         
     }
     
-   
+    
+    
+   // MARK: - HandleOpenClosefunction
     
     @objc func handleOpenClose(headerButton: UIButton) {
         
         let section = headerButton.tag
         var indexPaths = [IndexPath]()
         
-        for row in models[section].lessons.indices {
+        for row in resultsOfCollectionOfLessons[section].lessons.indices {
             
             let indexPath = IndexPath(row: row, section: section)
             indexPaths.append(indexPath)
             
         }
         
-        let isExpanded = models[section].isExpanded
+        let isExpanded = resultsOfCollectionOfLessons[section].isExpanded
         try! realm.write {
-            models[section].isExpanded = !isExpanded
+            resultsOfCollectionOfLessons[section].isExpanded = !isExpanded
         }
-//        let isExpanded = models[section].isExpanded
-//        models[section].isExpanded = !isExpanded
-//
+
         if isExpanded {
 
             tableView.deleteRows(at: indexPaths, with: .fade)
@@ -238,8 +233,8 @@ class LessonsTableViewController: UITableViewController {
     }
     
     
-    // MARK: - Theme function
     
+    // MARK: - Theme function
     
     private func applyTheme() {
         
@@ -251,4 +246,13 @@ class LessonsTableViewController: UITableViewController {
     }
     
     
+    
+    // MARK: - Theme function
+    
+    private func loadItems() {
+        
+        resultsOfCollectionOfLessons = realm.objects(CollectionOfLessons.self)
+        tableView.reloadData()
+        
+    }
 }

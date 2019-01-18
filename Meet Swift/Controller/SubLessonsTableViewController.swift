@@ -53,7 +53,7 @@ class SubLessonsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //return rozdzialy[indexPathsInSublessons[0]].lessonsData[indexPathsInSublessons[1]].subLessonsData.count
-        return toDoItems[indexPathsInSublessons[1]].subLessonsData.count
+        return toDoItems[indexPathsInSublessons[1]].subLessons.count
         
     }
     
@@ -75,9 +75,9 @@ class SubLessonsTableViewController: UITableViewController {
         cell.subLessonsNumber.text = "\(indexPath.row + 1)."
         //cell.subLessonsTitle.text = rozdzialy[indexPathsInSublessons[0]].lessonsData[indexPathsInSublessons[1]].subLessonsData[indexPath.row].subLessonsTitle
         
-        cell.subLessonsTitle.text = toDoItems[indexPathsInSublessons[1]].subLessonsData[indexPath.row].subLessonsTitle
-        cell.subLessonsDescription.text = toDoItems[indexPathsInSublessons[1]].subLessonsData[indexPath.row].subLessonsTitleDescription
-        cell.accessoryType = toDoItems[indexPathsInSublessons[1]].subLessonsData[indexPath.row].completion ? .checkmark : .none
+        cell.subLessonsTitle.text = toDoItems[indexPathsInSublessons[1]].subLessons[indexPath.row].subLessonsTitle
+        cell.subLessonsDescription.text = toDoItems[indexPathsInSublessons[1]].subLessons[indexPath.row].subLessonsTitleDescription
+        cell.accessoryType = toDoItems[indexPathsInSublessons[1]].subLessons[indexPath.row].completion ? .checkmark : .none
         //cell.subLessonsDescription.text = rozdzialy[indexPathsInSublessons[0]].lessonsData[indexPathsInSublessons[1]].subLessonsData[indexPath.row].subLessonsTitleDescription
        // cell.accessoryType = rozdzialy[indexPathsInSublessons[0]].lessonsData[indexPathsInSublessons[1]].subLessonsData[indexPath.row].completion ? .checkmark : .none
         
@@ -87,20 +87,20 @@ class SubLessonsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let lessonTitle = rozdzialy[indexPathsInSublessons[0]].lessonsData[indexPathsInSublessons[1]].subLessonsData[indexPath.row].subLessonsTitle
-        self.tableView.deselectRow(at: indexPath, animated: true)
-        
-        let type = rozdzialy[indexPathsInSublessons[0]].lessonsData[indexPathsInSublessons[1]].subLessonsData[indexPath.row].typeOfTask
-        
-        if type == "A" {
-            lessonATitle = lessonTitle
-            performSegue(withIdentifier: "goToSubLessonsA", sender: self)
-            
-        } else {
-            lessonBTitle = lessonTitle
-             performSegue(withIdentifier: "goToSubLessonsB", sender: self)
-            
-        }
+//        let lessonTitle = rozdzialy[indexPathsInSublessons[0]].lessonsData[indexPathsInSublessons[1]].subLessonsData[indexPath.row].subLessonsTitle
+//        self.tableView.deselectRow(at: indexPath, animated: true)
+//        
+//        let type = rozdzialy[indexPathsInSublessons[0]].lessonsData[indexPathsInSublessons[1]].subLessonsData[indexPath.row].typeOfTask
+//        
+//        if type == "A" {
+//            lessonATitle = lessonTitle
+//            performSegue(withIdentifier: "goToSubLessonsA", sender: self)
+//            
+//        } else {
+//            lessonBTitle = lessonTitle
+//             performSegue(withIdentifier: "goToSubLessonsB", sender: self)
+//            
+//        }
    
     }
     

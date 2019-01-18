@@ -23,7 +23,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             Theme.current = UserDefaults.standard.bool(forKey: "Theme") ? DarkTheme() : LightTheme()
         }
         
-        openRealm()
+        //openRealm()
+        
+        var realm = try! Realm()
+        
+        print(Realm.Configuration.defaultConfiguration.fileURL!)
+            
+            try! realm.write {
+                
+                let beginnerLessons = CollectionOfLessons()
+                beginnerLessons.isExpanded = true
+                beginnerLessons.title = "Beginner"
+                
+           
+        }
         
         return true
     }
@@ -52,38 +65,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
    
-    func openRealm() {
-        
-        let defaultRealmPath = Realm.Configuration.defaultConfiguration.fileURL!
-        let bundleRealmPath = Bundle.main.url(forResource: "default", withExtension: "realm")
-
-        if !FileManager.default.fileExists(atPath: defaultRealmPath.absoluteString) {
-            do {
-                try FileManager.default.copyItem(at: bundleRealmPath!, to: defaultRealmPath)
-            } catch let error {
-                print("error copying seeds: \(error)")
-            }
-        }
-        
-
-        
-//        let bundlePath = Bundle.main.path(forResource: "default", ofType: "realm")
-//        let destPath = Realm.Configuration.defaultConfiguration.fileURL?.path
-//        let fileManager = FileManager.default
+//    func openRealm() {
 //
-//        if fileManager.fileExists(atPath: destPath!) {
-//            //File exist, do nothing
-//            //print(fileManager.fileExists(atPath: destPath!))
-//        } else {
+//        let defaultRealmPath = Realm.Configuration.defaultConfiguration.fileURL!
+//        let bundleRealmPath = Bundle.main.url(forResource: "default", withExtension: "realm")
+//
+//        if !FileManager.default.fileExists(atPath: defaultRealmPath.absoluteString) {
 //            do {
-//                //Copy file from bundle to Realm default path
-//                try fileManager.copyItem(atPath: bundlePath!, toPath: destPath!)
-//            } catch {
-//                print("\n",error)
+//                try FileManager.default.copyItem(at: bundleRealmPath!, to: defaultRealmPath)
+//            } catch let error {
+//                print("error copying seeds: \(error)")
 //            }
 //        }
-        
-    }
+//
+//    }
+
     
 }
-
