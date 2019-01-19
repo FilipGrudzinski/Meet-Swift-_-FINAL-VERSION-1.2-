@@ -88,18 +88,32 @@ class LessonsTableViewController: UITableViewController {
         }
         
         let sumOfLessonsInSection = resultsOfCollectionOfLessons?[section].lessons.count
+        
         var sumOfDoneLessonsInSection = 0
         
-        for n in 0..<(resultsOfCollectionOfLessons?[section].lessons.count)! {
+        for lessons in 0..<sumOfLessonsInSection! {
             
-            if resultsOfCollectionOfLessons?[section].lessons[n].subLessons.count == resultsOfCollectionOfLessons?[section].lessons[n].completionCounter {
+            var sumOfCompletedLessonInSubLessonsForSection = 0
+            
+            let subLessonsInLessons = resultsOfCollectionOfLessons?[section].lessons[lessons].subLessons.count
+            
+            for sublessons in 0..<subLessonsInLessons! {
                 
-                sumOfDoneLessonsInSection += 1
-                
+                if resultsOfCollectionOfLessons[section].lessons[lessons].subLessons[sublessons].completion == true {
+                    
+                    sumOfCompletedLessonInSubLessonsForSection += 1
+                    
+                }
+            
             }
+            
+            if sumOfCompletedLessonInSubLessonsForSection == subLessonsInLessons {
+                sumOfDoneLessonsInSection += 1
+            }
+            
         }
         
-        if section != (resultsOfCollectionOfLessons?.count)! - 1 {
+        if section <= 1 {
             
             headerCounterLabel.text = "\(sumOfDoneLessonsInSection)/\(sumOfLessonsInSection!)"
             
@@ -144,9 +158,20 @@ class LessonsTableViewController: UITableViewController {
         
         func showsCell() {
             
-            let valueCounterCompletionCounterForProgressBar = resultsOfCollectionOfLessons[indexPath.section].lessons[indexPath.row].completionCounter
+            var sumOfCompletedLessonInSubLessonsForCell = 0
             let subLessonsCounterForProgressBar = resultsOfCollectionOfLessons[indexPath.section].lessons[indexPath.row].subLessons.count
-            //print(subLessonsCounterForProgressBar)
+            
+            // MARK: - Liczymy rozwiązane w podrozdziale
+            
+            for n in 0..<subLessonsCounterForProgressBar {
+                
+                if resultsOfCollectionOfLessons[indexPath.section].lessons[indexPath.row].subLessons[n].completion == true {
+                    
+                    sumOfCompletedLessonInSubLessonsForCell += 1
+                    
+                }
+                
+            }
             
             let backgroundView = UIView()
             backgroundView.backgroundColor = Theme.current.selectedRow
@@ -165,13 +190,14 @@ class LessonsTableViewController: UITableViewController {
             if subLessonsCounterForProgressBar == 0 {
                 cell.progressBar.progress = 0.0
             } else {
-                cell.progressBar.progress = Float((Double(100/subLessonsCounterForProgressBar) * 0.01) * Double(valueCounterCompletionCounterForProgressBar))
+                cell.progressBar.progress = Float((Double(100/subLessonsCounterForProgressBar) * 0.01) * Double(sumOfCompletedLessonInSubLessonsForCell))
             }
             
-            cell.progressLabel.text = "\(valueCounterCompletionCounterForProgressBar)/\(subLessonsCounterForProgressBar)"
+            cell.progressLabel.text = "\(sumOfCompletedLessonInSubLessonsForCell)/\(subLessonsCounterForProgressBar)"
         }
         
-        if indexPath.section != (resultsOfCollectionOfLessons?.count)! - 1 {
+        
+        if indexPath.section <= 1 {
             
             showsCell()
             

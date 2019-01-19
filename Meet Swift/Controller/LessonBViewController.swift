@@ -18,17 +18,20 @@ class LessonBViewController: UIViewController {
     var resultsBLesson: Results<LessonsData>!
     
     
+    @IBOutlet weak var changer: UISwitch!
     
     //print(resultsALesson[indexLesson].completion)
-        
+    
     @IBAction func changer(_ sender: UISwitch) {
         
         
         print(resultsBLesson[indexesBLesson[1]].subLessons[indexesBLesson[2]].completion)
         try! realm.write {
 
-            resultsBLesson[indexesBLesson[1]].subLessons[indexesBLesson[2]].completion = !resultsBLesson[indexesBLesson[1]].subLessons[indexesBLesson[2]].completion
-           
+            resultsBLesson[indexesBLesson[1]].subLessons[indexesBLesson[2]].completion = true
+            
+            
+           //resultsBLesson[indexesBLesson[1]].completionCounter += 1
             
         }
        
@@ -42,7 +45,7 @@ class LessonBViewController: UIViewController {
         applyTheme()
         
         self.title = resultsBLesson[indexesBLesson[0]].subLessons[indexesBLesson[1]].subLessonsTitle
-        
+        changer.setOn(resultsBLesson[indexesBLesson[1]].subLessons[indexesBLesson[2]].completion, animated: false)
         let headerCounterLabel: UILabel = {
             let label = UILabel()
             label.frame = CGRect(x: UIScreen.main.bounds.width - 50, y: 4, width: 50, height: 35)
