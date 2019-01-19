@@ -7,18 +7,41 @@
 //
 
 import UIKit
+import RealmSwift
 
-var lessonBTitle = ""
+var indexesBLesson:[Int] = []
 
 class LessonBViewController: UIViewController {
-
     
+    lazy var realm = try! Realm()
+    
+    var resultsBLesson: Results<LessonsData>!
+    
+    
+    
+    //print(resultsALesson[indexLesson].completion)
+        
+    @IBAction func changer(_ sender: UISwitch) {
+        
+        
+        print(resultsBLesson[indexesBLesson[1]].subLessons[indexesBLesson[2]].completion)
+        try! realm.write {
+
+            resultsBLesson[indexesBLesson[1]].subLessons[indexesBLesson[2]].completion = !resultsBLesson[indexesBLesson[1]].subLessons[indexesBLesson[2]].completion
+           
+            
+        }
+       
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         
-        self.title = lessonBTitle
+        loadItems()
+        applyTheme()
+        
+        self.title = resultsBLesson[indexesBLesson[0]].subLessons[indexesBLesson[1]].subLessonsTitle
         
         let headerCounterLabel: UILabel = {
             let label = UILabel()
@@ -33,11 +56,24 @@ class LessonBViewController: UIViewController {
         view.addSubview(headerCounterLabel)
         view.backgroundColor = Theme.current.viewControllerBackgroundColor
     }
- 
+    
+    
+    // MARK: - Theme function
+    
     private func applyTheme() {
         
         view.backgroundColor = Theme.current.viewControllerBackgroundColor
         //exampleLabel.textColor = Theme.current.buttonColor
         
     }
+    
+    
+    // MARK: - LoadRealm function
+    
+    private func loadItems() {
+        
+        resultsBLesson = realm.objects(LessonsData.self)
+        
+    }
+    
 }

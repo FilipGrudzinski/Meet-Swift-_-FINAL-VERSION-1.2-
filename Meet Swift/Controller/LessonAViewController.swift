@@ -7,14 +7,15 @@
 //
 
 import UIKit
+import RealmSwift
 
-
-var lessonATitle = ""
-
+var indexesALesson:[Int] = []
 
 class LessonAViewController: UIViewController, UITextFieldDelegate {
     
+    lazy var realm = try! Realm()
     
+    var resultsALesson: Results<LessonsData>!
     
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var exampleLabel: UILabel!
@@ -23,16 +24,16 @@ class LessonAViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        loadItems()
         applyTheme()
-        self.title = lessonATitle
+        self.title = resultsALesson[indexesALesson[0]].subLessons[indexesALesson[1]].subLessonsTitle
         self.textField.delegate = self
         
         
         let toolBar = UIToolbar()
         var buttonsArray = [UIBarButtonItem]()
         buttonsArray.append(
-            UIBarButtonItem(title: "Previous", style: .plain, target: self, action: nil)
+            UIBarButtonItem(title: "Previous", style: .plain, target: self, action: #selector(previousButtonAction))
         )
         
         buttonsArray.append(
@@ -40,7 +41,7 @@ class LessonAViewController: UIViewController, UITextFieldDelegate {
         )
         
         buttonsArray.append(
-            UIBarButtonItem(title: "Hint", style: .plain, target: self, action: nil)
+            UIBarButtonItem(title: "Hint", style: .plain, target: self, action: #selector(hintButtonAction))
         )
         
         buttonsArray.append(
@@ -49,7 +50,7 @@ class LessonAViewController: UIViewController, UITextFieldDelegate {
         
         
         buttonsArray.append(
-            UIBarButtonItem(title: "Check", style: .plain, target: self, action: nil)
+            UIBarButtonItem(title: "Check", style: .plain, target: self, action: #selector(checkButtonAction))
         )
         
         toolBar.setItems(buttonsArray, animated: true)
@@ -90,6 +91,22 @@ class LessonAViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     
+    @objc func previousButtonAction(sender: UIButton!) {
+        print("Button tapped")
+    }
+    
+    @objc func hintButtonAction(sender: UIButton!) {
+        print("Button tapped")
+    }
+    
+    @objc func checkButtonAction(sender: UIButton!) {
+        print("Button tapped")
+    }
+    
+    
+    
+    
+    
     // MARK: - Theme function
     
     
@@ -102,4 +119,11 @@ class LessonAViewController: UIViewController, UITextFieldDelegate {
     }
     
     
+    // MARK: - LoadRealm function
+    
+    private func loadItems() {
+        
+        resultsALesson = realm.objects(LessonsData.self)
+        
+    }
 }

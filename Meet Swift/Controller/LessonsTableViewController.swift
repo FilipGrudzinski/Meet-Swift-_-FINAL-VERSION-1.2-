@@ -10,28 +10,18 @@ import UIKit
 import RealmSwift
 
 
+var buyedContent = false
 
 class LessonsTableViewController: UITableViewController {
     
     lazy var realm = try! Realm()
-    
-    var buyedContent = false
     
     var resultsOfCollectionOfLessons: Results<CollectionOfLessons>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print(Realm.Configuration.defaultConfiguration.fileURL!)
-        
-        
-        
-        
-        
-        
-        loadItems()
-        applyTheme()
-        
+        //print(Realm.Configuration.defaultConfiguration.fileURL!)
         
     }
     
@@ -40,7 +30,7 @@ class LessonsTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         applyTheme()
-        //loadItems()
+        loadItems()
         tableView.reloadData()
     }
     
@@ -109,8 +99,6 @@ class LessonsTableViewController: UITableViewController {
             }
         }
         
-        
-        
         if section != (resultsOfCollectionOfLessons?.count)! - 1 {
             
             headerCounterLabel.text = "\(sumOfDoneLessonsInSection)/\(sumOfLessonsInSection!)"
@@ -127,8 +115,6 @@ class LessonsTableViewController: UITableViewController {
                 
             }
         }
-        
-        
         
         return view
     }
@@ -160,7 +146,7 @@ class LessonsTableViewController: UITableViewController {
             
             let valueCounterCompletionCounterForProgressBar = resultsOfCollectionOfLessons[indexPath.section].lessons[indexPath.row].completionCounter
             let subLessonsCounterForProgressBar = resultsOfCollectionOfLessons[indexPath.section].lessons[indexPath.row].subLessons.count
-            print(subLessonsCounterForProgressBar)
+            //print(subLessonsCounterForProgressBar)
             
             let backgroundView = UIView()
             backgroundView.backgroundColor = Theme.current.selectedRow
@@ -175,6 +161,7 @@ class LessonsTableViewController: UITableViewController {
             
             cell.lessonsNumber.text = "\(indexPath.row + 1)."
             cell.lessonsTitle.text = resultsOfCollectionOfLessons[indexPath.section].lessons[indexPath.row].title
+            
             if subLessonsCounterForProgressBar == 0 {
                 cell.progressBar.progress = 0.0
             } else {
@@ -183,7 +170,6 @@ class LessonsTableViewController: UITableViewController {
             
             cell.progressLabel.text = "\(valueCounterCompletionCounterForProgressBar)/\(subLessonsCounterForProgressBar)"
         }
-        
         
         if indexPath.section != (resultsOfCollectionOfLessons?.count)! - 1 {
             
@@ -196,14 +182,14 @@ class LessonsTableViewController: UITableViewController {
                 showsCell()
                 
             } else {
+                cell.backgroundColor = Theme.current.cellBackgroundColor
+                cell.lessonsTitle.textColor = Theme.current.textColor
+                
                 cell.lessonsTitle.text = "Buy More Lessons"
                 cell.progressBar.isHidden = true
                 
             }
         }
-        
-        
-        
         
         return cell
     }
@@ -211,20 +197,11 @@ class LessonsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        //        performSegue(withIdentifier: "goToSubLessonsView", sender: self)
-        
-        let name = resultsOfCollectionOfLessons[indexPath.section].lessons[indexPath.row].title
-        subLessonsTitle = name
-        
-        let indexPaths = [indexPath.section,indexPath.row]
-        print(indexPaths)
-        indexPathsInSublessons = [indexPath.section,indexPath.row]
+        indexesToSublessons = [indexPath.section,indexPath.row]
         //self.tableView.deselectRow(at: indexPath, animated: true)
         
-        
-        
-        
     }
+    
     
     
     
@@ -288,7 +265,7 @@ class LessonsTableViewController: UITableViewController {
     
     
     
-    // MARK: - Theme function
+    // MARK: - LoadRealm function
     
     private func loadItems() {
         

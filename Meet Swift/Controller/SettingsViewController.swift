@@ -52,10 +52,17 @@ class SettingsViewController: UIViewController {
     @IBAction func resetAllProgressButton(_ sender: UIButton) {
         print("Reset All Progress Button Pressed")
         
+        let defaultRealmPath = Realm.Configuration.defaultConfiguration.fileURL!
+        let bundleRealmPath = Bundle.main.url(forResource: "default", withExtension: "realm")
         
-        //NSFileManager.defaultManager().removeItemAtURL(Realm.Configuration.defaultConfiguration.fileURL!)
+        try! FileManager.default.removeItem(at: Realm.Configuration.defaultConfiguration.fileURL!)
         
-       
+        do {
+            try FileManager.default.copyItem(at: bundleRealmPath!, to: defaultRealmPath)
+        } catch let error {
+            print("error copying seeds: \(error)")
+        }
+        
     }
     
     

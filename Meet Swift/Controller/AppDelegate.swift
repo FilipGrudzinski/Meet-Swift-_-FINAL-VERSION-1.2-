@@ -58,6 +58,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
    
+     // MARK: - openRealm function
+    
     func openRealm() {
 
         let defaultRealmPath = Realm.Configuration.defaultConfiguration.fileURL!

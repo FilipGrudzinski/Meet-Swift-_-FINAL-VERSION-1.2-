@@ -10,38 +10,30 @@ import UIKit
 import RealmSwift
 
 
-var subLessonsTitle = ""
-var indexPathsInSublessons: [Int] = []
+
+var indexesToSublessons = [Int]()
 
 
 class SubLessonsTableViewController: UITableViewController {
     
-     lazy var realm = try! Realm()
+    lazy var realm = try! Realm()
     
-     var toDoItems: Results<LessonsData>!
-    
-   
+    var resultsSubLessons: Results<LessonsData>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(indexPathsInSublessons)
-        self.title = subLessonsTitle
+        print("Indexy po przejsci do 2 okranu \(indexesToSublessons)")
         loadItems()
+        self.title = resultsSubLessons?[indexesToSublessons[0]].title
         tableView.separatorStyle = .none
         view.backgroundColor = Theme.current.viewControllerBackgroundColor
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: nil, action: nil)
     }
     
-    
-    func loadItems() {
-        
-        toDoItems = realm.objects(LessonsData.self)
-        
-        
+    override func viewWillAppear(_ animated: Bool) {
+        loadItems()
         tableView.reloadData()
-        
     }
-    
     
     // MARK: - TableView Row settings
     
@@ -52,9 +44,7 @@ class SubLessonsTableViewController: UITableViewController {
     
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //return rozdzialy[indexPathsInSublessons[0]].lessonsData[indexPathsInSublessons[1]].subLessonsData.count
-        return toDoItems[indexPathsInSublessons[0]].subLessons.count
-        
+        return resultsSubLessons[indexesToSublessons[0]].subLessons.count
     }
     
     
@@ -73,36 +63,59 @@ class SubLessonsTableViewController: UITableViewController {
         cell.selectedBackgroundView = backgroundView
         
         cell.subLessonsNumber.text = "\(indexPath.row + 1)."
-        //cell.subLessonsTitle.text = rozdzialy[indexPathsInSublessons[0]].lessonsData[indexPathsInSublessons[1]].subLessonsData[indexPath.row].subLessonsTitle
-        
-        cell.subLessonsTitle.text = toDoItems[indexPathsInSublessons[0]].subLessons[indexPath.row].subLessonsTitle
-        cell.subLessonsDescription.text = toDoItems[indexPathsInSublessons[0]].subLessons[indexPath.row].subLessonsTitleDescription
-        cell.accessoryType = toDoItems[indexPathsInSublessons[0]].subLessons[indexPath.row].completion ? .checkmark : .none
-        //cell.subLessonsDescription.text = rozdzialy[indexPathsInSublessons[0]].lessonsData[indexPathsInSublessons[1]].subLessonsData[indexPath.row].subLessonsTitleDescription
-       // cell.accessoryType = rozdzialy[indexPathsInSublessons[0]].lessonsData[indexPathsInSublessons[1]].subLessonsData[indexPath.row].completion ? .checkmark : .none
+        cell.subLessonsTitle.text = resultsSubLessons[indexesToSublessons[0]].subLessons[indexPath.row].subLessonsTitle
+        cell.subLessonsDescription.text = resultsSubLessons[indexesToSublessons[0]].subLessons[indexPath.row].subLessonsTitleDescription
+        cell.accessoryType = resultsSubLessons[indexesToSublessons[0]].subLessons[indexPath.row].completion ? .checkmark : .none
+        //print(resultsSubLessons[indexesToSublessons[0]].subLessons[indexPath.row].completion)
         
         return cell
     }
     
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+       // let lesn = resultsSubLessons[indexesToSublessons[0]].subLessons[indexPath.row]
+        let lessonTypeA = resultsSubLessons[indexesToSublessons[0]].subLessons[indexPath.row].lessonA.count
+        let lessonTypeB = resultsSubLessons[indexesToSublessons[0]].subLessons[indexPath.row].lessonB.count
+        print("typeA \(lessonTypeA), typeB \(lessonTypeB)")
         
-//        let lessonTitle = rozdzialy[indexPathsInSublessons[0]].lessonsData[indexPathsInSublessons[1]].subLessonsData[indexPath.row].subLessonsTitle
-//        self.tableView.deselectRow(at: indexPath, animated: true)
-//        
-//        let type = rozdzialy[indexPathsInSublessons[0]].lessonsData[indexPathsInSublessons[1]].subLessonsData[indexPath.row].typeOfTask
-//        
-//        if type == "A" {
-//            lessonATitle = lessonTitle
+        var indexes = indexesToSublessons
+        indexes.append(indexPath.row)
+        print("indexes \(indexes)")
+        if lessonTypeA == 1 {
+            
+            performSegue(withIdentifier: "goToSubLessonsA", sender: self)
+            indexesALesson = indexes
+            print("Indexy po przejsci do konkretnej lekcji A \(indexesALesson)")
+            
+        } else if lessonTypeB == 1 {
+            
+            indexesBLesson = indexes
+            performSegue(withIdentifier: "goToSubLessonsB", sender: self)
+            print("Indexy po przejsci do konkretnej lekcji B \(indexesALesson)")
+        }
+        
+        
+       
+//        if typeA == "A" {
+//            
+//            indexesALesson = indexes
 //            performSegue(withIdentifier: "goToSubLessonsA", sender: self)
 //            
-//        } else {
-//            lessonBTitle = lessonTitle
-//             performSegue(withIdentifier: "goToSubLessonsB", sender: self)
+//        } else if typeB == "B" {
 //            
+//            performSegue(withIdentifier: "goToSubLessonsB", sender: self)
+//            indexesBLesson = indexes
 //        }
-   
+        
     }
     
+    // MARK: - LoadRealm function
+    
+    private func loadItems() {
+        
+        resultsSubLessons = realm.objects(LessonsData.self)
+        tableView.reloadData()
+        
+    }
     
 }
