@@ -12,6 +12,7 @@ import RealmSwift
 
 var buyedContent = false
 
+
 class LessonsTableViewController: UITableViewController {
     
     lazy var realm = try! Realm()
@@ -20,7 +21,8 @@ class LessonsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+       
+       
         //print(Realm.Configuration.defaultConfiguration.fileURL!)
         
     }
@@ -32,6 +34,7 @@ class LessonsTableViewController: UITableViewController {
         applyTheme()
         loadItems()
         tableView.reloadData()
+        
     }
     
     
@@ -67,8 +70,9 @@ class LessonsTableViewController: UITableViewController {
         
         let headerCounterLabel: UILabel = {
             let label = UILabel()
-            label.frame = CGRect(x: UIScreen.main.bounds.width - 50, y: 4, width: 50, height: 35)
+            label.frame = CGRect(x: UIScreen.main.bounds.width - 50, y: 4, width: 35, height: 35)
             label.font = UIFont.systemFont(ofSize: 14.0)
+            label.textAlignment = .right
             return label
         }()
         
@@ -156,7 +160,7 @@ class LessonsTableViewController: UITableViewController {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "LessonsCell", for: indexPath) as! CustomLessonsCell
         
-        func showsCell() {
+        //func showsCell() {
             
             var sumOfCompletedLessonInSubLessonsForCell = 0
             let subLessonsCounterForProgressBar = resultsOfCollectionOfLessons[indexPath.section].lessons[indexPath.row].subLessons.count
@@ -194,29 +198,32 @@ class LessonsTableViewController: UITableViewController {
             }
             
             cell.progressLabel.text = "\(sumOfCompletedLessonInSubLessonsForCell)/\(subLessonsCounterForProgressBar)"
-        }
+            
+        //}
         
         
-        if indexPath.section <= 1 {
-            
-            showsCell()
-            
-        } else {
-            
-            if buyedContent {
-                
-                showsCell()
-                
-            } else {
-                cell.backgroundColor = Theme.current.cellBackgroundColor
-                cell.lessonsTitle.textColor = Theme.current.textColor
-                
-                cell.lessonsTitle.text = "Buy More Lessons"
-                cell.progressBar.isHidden = true
-                
-            }
-        }
-        
+//        if indexPath.section <= 1 {
+//
+//            //showsCell()
+//
+//
+//        } else {
+//
+//            if buyedContent {
+//
+//                //showsCell()
+//
+//
+//            } else {
+//                cell.backgroundColor = Theme.current.cellBackgroundColor
+//                cell.lessonsTitle.textColor = Theme.current.textColor
+//
+//                cell.lessonsTitle.text = "Buy More Lessons"
+//                cell.progressBar.isHidden = true
+//
+//            }
+//        }
+       
         return cell
     }
     

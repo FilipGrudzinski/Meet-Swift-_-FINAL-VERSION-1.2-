@@ -12,7 +12,6 @@ import RealmSwift
 
 class LessonsData: Object {
     
-    @objc dynamic var completionCounter: Int = 0
     @objc dynamic var title: String = ""
     let subLessons = List<SubLessonsData>()
     

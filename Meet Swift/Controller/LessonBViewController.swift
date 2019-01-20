@@ -18,25 +18,15 @@ class LessonBViewController: UIViewController {
     var resultsBLesson: Results<LessonsData>!
     
     
+    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var exampleLabel: UILabel!
+    @IBOutlet weak var hintLabel: UILabel!
+    
     @IBOutlet weak var changer: UISwitch!
     
     //print(resultsALesson[indexLesson].completion)
     
-    @IBAction func changer(_ sender: UISwitch) {
-        
-        
-        print(resultsBLesson[indexesBLesson[1]].subLessons[indexesBLesson[2]].completion)
-        try! realm.write {
-
-            resultsBLesson[indexesBLesson[1]].subLessons[indexesBLesson[2]].completion = true
-            
-            
-           //resultsBLesson[indexesBLesson[1]].completionCounter += 1
-            
-        }
-       
-        
-    }
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,20 +35,104 @@ class LessonBViewController: UIViewController {
         applyTheme()
         
         self.title = resultsBLesson[indexesBLesson[0]].subLessons[indexesBLesson[1]].subLessonsTitle
-        changer.setOn(resultsBLesson[indexesBLesson[1]].subLessons[indexesBLesson[2]].completion, animated: false)
-        let headerCounterLabel: UILabel = {
-            let label = UILabel()
-            label.frame = CGRect(x: UIScreen.main.bounds.width - 50, y: 4, width: 50, height: 35)
-            label.font = UIFont.systemFont(ofSize: 14.0)
-            label.text = "Lekcja B"
-            label.textColor = Theme.current.textColor
-            return label
-        }()
-        // Do any additional setup after loading the view.
         
-        view.addSubview(headerCounterLabel)
-        view.backgroundColor = Theme.current.viewControllerBackgroundColor
+        let rightBarButtonItem: UIBarButtonItem = {
+            let barButtonItem = UIBarButtonItem(title: "\(indexesBLesson[2] + 1)/\(resultsBLesson[indexesBLesson[0]].subLessons.count)", style: .plain , target: nil, action: nil)
+            barButtonItem.tintColor = Theme.current.textColor
+            return barButtonItem
+        }()
+        
+        self.navigationItem.rightBarButtonItem = rightBarButtonItem
+      
+        
+        changer.setOn(resultsBLesson[indexesBLesson[1]].subLessons[indexesBLesson[2]].completion, animated: false)
+        hintLabel.isHidden = true
+        hintLabel.adjustsFontSizeToFitWidth = true
+        
+        
+        let toolBar = UIToolbar()
+        var buttonsArray = [UIBarButtonItem]()
+        buttonsArray.append(
+            UIBarButtonItem(title: "Previous", style: .plain, target: self, action: #selector(previousButtonAction))
+        )
+        
+        buttonsArray.append(
+            UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+        )
+        
+        buttonsArray.append(
+            UIBarButtonItem(title: "Hint", style: .plain, target: self, action: #selector(hintButtonAction))
+        )
+        
+        buttonsArray.append(
+            UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+        )
+        
+        
+        buttonsArray.append(
+            UIBarButtonItem(title: "Check", style: .plain, target: self, action: #selector(checkButtonAction))
+        )
+        
+        toolBar.setItems(buttonsArray, animated: true)
+        toolBar.tintColor = Theme.current.buttonColor
+        toolBar.barTintColor = Theme.current.navigationColor
+        
+        
+        
+        view.addSubview(toolBar)
+        
+        // MARK: - Constraint settup
+        
+        
+        toolBar.translatesAutoresizingMaskIntoConstraints = false
+        
+        if #available(iOS 11.0, *) {
+            let guide = self.view.safeAreaLayoutGuide
+            toolBar.trailingAnchor.constraint(equalTo: guide.trailingAnchor).isActive = true
+            toolBar.leadingAnchor.constraint(equalTo: guide.leadingAnchor).isActive = true
+            toolBar.bottomAnchor.constraint(equalTo: guide.bottomAnchor).isActive = true
+            toolBar.heightAnchor.constraint(equalToConstant: 44).isActive = true
+            
+        } else {
+            NSLayoutConstraint(item: toolBar, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1.0, constant: 0).isActive = true
+            NSLayoutConstraint(item: toolBar, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
+            NSLayoutConstraint(item: toolBar, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1.0, constant: 0).isActive = true
+            
+            toolBar.heightAnchor.constraint(equalToConstant: 44).isActive = true
+        
+        }
+        
+        
+
     }
+    
+    
+  
+    
+    @IBAction func changer(_ sender: UISwitch) {
+        
+        try! realm.write {
+            resultsBLesson[indexesBLesson[1]].subLessons[indexesBLesson[2]].completion = true
+            
+        }
+        
+    }
+    
+    
+    @objc func previousButtonAction(sender: UIButton!) {
+        print("Button tapped")
+    }
+    
+    @objc func hintButtonAction(sender: UIButton!) {
+        hintLabel.isHidden = false
+        print("Button tapped")
+    }
+    
+    @objc func checkButtonAction(sender: UIButton!) {
+        print("Button tapped")
+    }
+    
+    
     
     
     // MARK: - Theme function
@@ -66,7 +140,12 @@ class LessonBViewController: UIViewController {
     private func applyTheme() {
         
         view.backgroundColor = Theme.current.viewControllerBackgroundColor
-        //exampleLabel.textColor = Theme.current.buttonColor
+            descriptionLabel.textColor = Theme.current.textColor
+            exampleLabel.textColor = Theme.current.buttonColor
+            hintLabel.textColor = Theme.current.textColor
+            hintLabel.backgroundColor = Theme.current.selectedRow
+        
+    
         
     }
     
@@ -78,5 +157,8 @@ class LessonBViewController: UIViewController {
         resultsBLesson = realm.objects(LessonsData.self)
         
     }
+    
+  
+    
     
 }

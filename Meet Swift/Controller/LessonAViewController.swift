@@ -20,14 +20,31 @@ class LessonAViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var exampleLabel: UILabel!
     @IBOutlet weak var textField: UITextField!
+    @IBOutlet weak var hintLabel: UILabel!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.textField.delegate = self
+        
         loadItems()
         applyTheme()
         self.title = resultsALesson[indexesALesson[0]].subLessons[indexesALesson[1]].subLessonsTitle
-        self.textField.delegate = self
+        
+        
+        let rightBarButtonItem: UIBarButtonItem = {
+            let barButtonItem = UIBarButtonItem(title: "\(indexesALesson[2] + 1)/\(resultsALesson[indexesALesson[0]].subLessons.count)", style: .plain , target: nil, action: nil)
+            barButtonItem.tintColor = Theme.current.textColor
+            return barButtonItem
+        }()
+        
+        self.navigationItem.rightBarButtonItem = rightBarButtonItem
+        
+        hintLabel.isHidden = true
+        hintLabel.adjustsFontSizeToFitWidth = true
+        
+        
         
         
         let toolBar = UIToolbar()
@@ -85,22 +102,26 @@ class LessonAViewController: UIViewController, UITextFieldDelegate {
     }
     
     
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
-        
         return true
     }
     
+    
     @objc func previousButtonAction(sender: UIButton!) {
-        print("Button tapped")
+        print("Button previousButtonAction")
     }
+    
     
     @objc func hintButtonAction(sender: UIButton!) {
-        print("Button tapped")
+        hintLabel.isHidden = false
+        print("Button hintButtonAction")
     }
     
+    
     @objc func checkButtonAction(sender: UIButton!) {
-        print("Button tapped")
+        print("Button checkButtonAction")
     }
     
     
@@ -115,6 +136,10 @@ class LessonAViewController: UIViewController, UITextFieldDelegate {
         view.backgroundColor = Theme.current.viewControllerBackgroundColor
         descriptionLabel.textColor = Theme.current.textColor
         exampleLabel.textColor = Theme.current.buttonColor
+        textField.backgroundColor = Theme.current.selectedRow
+        textField.tintColor = Theme.current.textColor
+        hintLabel.textColor = Theme.current.textColor
+        hintLabel.backgroundColor = Theme.current.selectedRow
         
     }
     
