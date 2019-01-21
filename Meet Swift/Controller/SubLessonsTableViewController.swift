@@ -22,7 +22,6 @@ class SubLessonsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("Indexy po przejsci do 2 okranu \(indexesToSublessons)")
         
         loadItems()
         
@@ -85,18 +84,18 @@ class SubLessonsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let lessonTypeA = resultsSubLessons[indexesToSublessons[0]].lessons[indexesToSublessons[1]].subLessons[indexPath.row].lessonA.count
-        let lessonTypeB = resultsSubLessons[indexesToSublessons[0]].lessons[indexesToSublessons[1]].subLessons[indexPath.row].lessonB.count
+//        let lessonTypeA = resultsSubLessons[indexesToSublessons[0]].lessons[indexesToSublessons[1]].subLessons[indexPath.row].lessonA.count
+//        let lessonTypeB = resultsSubLessons[indexesToSublessons[0]].lessons[indexesToSublessons[1]].subLessons[indexPath.row].lessonB.count
         
-        if lessonTypeA == 1 {
-            
-            performSegue(withIdentifier: "goToSubLessonsA", sender: self)
-            
-        } else if lessonTypeB == 1 {
-            
-            performSegue(withIdentifier: "goToSubLessonsB", sender: self)
-            
-        }
+//        if lessonTypeA == 1 {
+//            
+//            performSegue(withIdentifier: "goToSubLessonsA", sender: self)
+//            
+//        } else if lessonTypeB == 1 {
+//            
+//            performSegue(withIdentifier: "goToSubLessonsB", sender: self)
+//            
+//        }
         
     }
     

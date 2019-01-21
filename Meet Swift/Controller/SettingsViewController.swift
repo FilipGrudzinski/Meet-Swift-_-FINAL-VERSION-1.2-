@@ -13,6 +13,10 @@ import RealmSwift
 class SettingsViewController: UIViewController {
     
     
+    lazy var realm = try! Realm()
+    var resultsOfCollectionOfLessons: Results<CollectionOfLessons>!
+    
+    
     @IBOutlet weak var darkModeLabel: UILabel!
     @IBOutlet weak var darkModeSwitchOutlet: UISwitch!
     @IBOutlet weak var resetAllProgressButtonLabel: UIButton!
@@ -22,6 +26,7 @@ class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        loadItems()
         //resetAllProgressButtonLabel.isHidden = true
         //restoreInAppPurchaseButtonLabel.isHidden = true
         
@@ -47,7 +52,28 @@ class SettingsViewController: UIViewController {
     @IBAction func resetAllProgressButton(_ sender: UIButton) {
         print("Reset All Progress Button Pressed")
         
-      
+        var collections = 0
+        for _ in resultsOfCollectionOfLessons {
+            
+            let countOfLessonsInCollectionOfLessons = resultsOfCollectionOfLessons[collections].lessons.count
+            
+            for lessons in 0..<countOfLessonsInCollectionOfLessons {
+                
+                print(lessons)
+                let countOfSubLessonsInLessons = resultsOfCollectionOfLessons[collections].lessons[lessons].subLessons.count
+                
+                for subLessons in 0..<countOfSubLessonsInLessons {
+                    
+                    try! realm.write {
+                        resultsOfCollectionOfLessons[collections].lessons[lessons].subLessons[subLessons].completion = false
+                        
+                    }
+                    
+                }
+                
+            }
+            collections += 1
+            }
         
     }
     
@@ -57,6 +83,11 @@ class SettingsViewController: UIViewController {
     }
 
     
+    private func loadItems() {
+        
+        resultsOfCollectionOfLessons = realm.objects(CollectionOfLessons.self)
+        
+    }
     
     // MARK: - Theme function
     
@@ -71,6 +102,8 @@ class SettingsViewController: UIViewController {
         restoreInAppPurchaseButtonLabel.tintColor = Theme.current.buttonColor
         
     }
+    
+    
     
     
 }

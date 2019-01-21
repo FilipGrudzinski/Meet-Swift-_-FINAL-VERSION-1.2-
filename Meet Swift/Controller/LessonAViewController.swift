@@ -114,7 +114,15 @@ class LessonAViewController: UIViewController, UITextFieldDelegate {
     @objc func checkButtonAction(sender: UIButton!) {
         print("Button checkButtonAction")
     }
+
     
+    // MARK: - LoadRealm function
+    
+    private func loadItems() {
+        
+        resultsALesson = realm.objects(LessonsData.self)
+        
+    }
     
     
     // MARK: - Theme function
@@ -131,16 +139,6 @@ class LessonAViewController: UIViewController, UITextFieldDelegate {
         hintLabel.backgroundColor = Theme.current.selectedRow
         
     }
-    
-    
-    // MARK: - LoadRealm function
-    
-    private func loadItems() {
-        
-        resultsALesson = realm.objects(LessonsData.self)
-        
-    }
-    
     
     
 }

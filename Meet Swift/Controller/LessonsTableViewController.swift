@@ -59,7 +59,7 @@ class LessonsTableViewController: UITableViewController {
             let button = UIButton()
             button.frame = CGRect(x: 0, y: 4, width: UIScreen.main.bounds.width, height: 35)
             button.contentEdgeInsets = UIEdgeInsets(top: 0, left: 50, bottom: 0, right: 0)
-            button.setTitle(resultsOfCollectionOfLessons?[section].title, for: .normal)
+            button.setTitle(resultsOfCollectionOfLessons?[section].lvlTitle, for: .normal)
             button.contentHorizontalAlignment = .left
             button.titleLabel?.font = UIFont.systemFont(ofSize: 20.0)
             button.addTarget(self, action: #selector(handleOpenClose), for: .touchUpInside)
@@ -110,22 +110,22 @@ class LessonsTableViewController: UITableViewController {
             
         }
         
-//        if section <= 1 {
-//
-//            headerCounterLabel.text = "\(sumOfDoneLessonsInSection)/\(sumOfLessonsInSection!)"
-//
-//        } else {
-//
-//            if buyedContent {
-//
-//                headerCounterLabel.text = "\(sumOfDoneLessonsInSection)/\(sumOfLessonsInSection!)"
-//
-//            } else {
-//
-//                headerCounterLabel.isHidden = true
-//
-//            }
-//        }
+        if section >= 0 {
+
+            headerCounterLabel.text = "\(sumOfDoneLessonsInSection)/\(sumOfLessonsInSection!)"
+
+        } else {
+
+            if buyedContent {
+
+                headerCounterLabel.text = "\(sumOfDoneLessonsInSection)/\(sumOfLessonsInSection!)"
+
+            } else {
+
+                headerCounterLabel.isHidden = true
+
+            }
+        }
         
         return view
     }
@@ -285,6 +285,15 @@ class LessonsTableViewController: UITableViewController {
     }
     
     
+    // MARK: - LoadRealm function
+    
+    private func loadItems() {
+        
+        resultsOfCollectionOfLessons = realm.objects(CollectionOfLessons.self)
+        tableView.reloadData()
+        
+    }
+    
     
     // MARK: - Theme function
     
@@ -294,17 +303,6 @@ class LessonsTableViewController: UITableViewController {
         navigationController?.navigationBar.tintColor = Theme.current.buttonColor // color of navigationbar buttons
         navigationController?.navigationBar.barTintColor = Theme.current.navigationColor // color of navigationbar
         view.backgroundColor = Theme.current.viewControllerBackgroundColor
-        
-    }
-    
-    
-    
-    // MARK: - LoadRealm function
-    
-    private func loadItems() {
-        
-        resultsOfCollectionOfLessons = realm.objects(CollectionOfLessons.self)
-        tableView.reloadData()
         
     }
     

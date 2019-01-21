@@ -13,7 +13,7 @@ import RealmSwift
 class CollectionOfLessons: Object {
     
     @objc dynamic var isExpanded: Bool = false
-    @objc dynamic var title: String = ""
+    @objc dynamic var lvlTitle: String = ""
     let lessons = List<LessonsData>()
     
 }

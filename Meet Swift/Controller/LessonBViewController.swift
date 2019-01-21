@@ -121,7 +121,15 @@ class LessonBViewController: UIViewController {
     @objc func checkButtonAction(sender: UIButton!) {
         print("Button tapped")
     }
+
     
+    // MARK: - LoadRealm function
+    
+    private func loadItems() {
+        
+        resultsBLesson = realm.objects(LessonsData.self)
+        
+    }
     
     
     // MARK: - Theme function
@@ -133,16 +141,6 @@ class LessonBViewController: UIViewController {
         exampleLabel.textColor = Theme.current.buttonColor
         hintLabel.textColor = Theme.current.textColor
         hintLabel.backgroundColor = Theme.current.selectedRow
-        
-    }
-    
-    
-    
-    // MARK: - LoadRealm function
-    
-    private func loadItems() {
-        
-        resultsBLesson = realm.objects(LessonsData.self)
         
     }
 
