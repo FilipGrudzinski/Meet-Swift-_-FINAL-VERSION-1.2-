@@ -10,6 +10,7 @@ import UIKit
 
 class CustomLessonsCell: UITableViewCell  {
     
+    @IBOutlet weak var cell: UIView!
     
     
     let lessonsNumber:UILabel = {
@@ -37,7 +38,6 @@ class CustomLessonsCell: UITableViewCell  {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
         
         
         
@@ -74,8 +74,8 @@ class CustomLessonsCell: UITableViewCell  {
         contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[bar]-1-|", options: [], metrics: nil, views: viewsDict))
         contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-51-[bar]-16-|", options: [], metrics: nil, views: viewsDict))
         
-        
+     
     }
-    
+  
     
 }

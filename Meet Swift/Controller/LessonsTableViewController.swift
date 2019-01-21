@@ -21,10 +21,9 @@ class LessonsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
-       
-        //print(Realm.Configuration.defaultConfiguration.fileURL!)
         
+        loadItems()
+        //print(Realm.Configuration.defaultConfiguration.fileURL!)
     }
     
     
@@ -32,7 +31,6 @@ class LessonsTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         applyTheme()
-        loadItems()
         tableView.reloadData()
         
     }
@@ -50,6 +48,7 @@ class LessonsTableViewController: UITableViewController {
         
         return resultsOfCollectionOfLessons?.count ?? 1
     }
+    
     
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -108,7 +107,7 @@ class LessonsTableViewController: UITableViewController {
                     sumOfCompletedLessonInSubLessonsForSection += 1
                     
                 }
-            
+                
             }
             
             if sumOfCompletedLessonInSubLessonsForSection == subLessonsInLessons {
@@ -161,81 +160,95 @@ class LessonsTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "LessonsCell", for: indexPath) as! CustomLessonsCell
         
         //func showsCell() {
+        
+        var sumOfCompletedLessonInSubLessonsForCell = 0
+        let subLessonsCounterForProgressBar = resultsOfCollectionOfLessons[indexPath.section].lessons[indexPath.row].subLessons.count
+        
+        // MARK: - Liczymy rozwiązane w podrozdziale
+        
+        for n in 0..<subLessonsCounterForProgressBar {
             
-            var sumOfCompletedLessonInSubLessonsForCell = 0
-            let subLessonsCounterForProgressBar = resultsOfCollectionOfLessons[indexPath.section].lessons[indexPath.row].subLessons.count
-            
-            // MARK: - Liczymy rozwiązane w podrozdziale
-            
-            for n in 0..<subLessonsCounterForProgressBar {
+            if resultsOfCollectionOfLessons[indexPath.section].lessons[indexPath.row].subLessons[n].completion == true {
                 
-                if resultsOfCollectionOfLessons[indexPath.section].lessons[indexPath.row].subLessons[n].completion == true {
-                    
-                    sumOfCompletedLessonInSubLessonsForCell += 1
-                    
-                }
+                sumOfCompletedLessonInSubLessonsForCell += 1
                 
             }
             
-            let backgroundView = UIView()
-            backgroundView.backgroundColor = Theme.current.selectedRow
-            cell.selectedBackgroundView = backgroundView
+        }
+        
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = Theme.current.selectedRow
+        cell.selectedBackgroundView = backgroundView
+        
+        cell.backgroundColor = Theme.current.cellBackgroundColor
+        cell.lessonsNumber.textColor = Theme.current.textColor
+        cell.lessonsTitle.textColor = Theme.current.textColor
+        cell.progressLabel.textColor = Theme.current.textColor
+        cell.progressBar.progressTintColor = Theme.current.progressTintColor
+        cell.progressBar.trackTintColor = Theme.current.buttonColor
+        
+        cell.lessonsNumber.text = "\(indexPath.row + 1)."
+        cell.lessonsTitle.text = resultsOfCollectionOfLessons[indexPath.section].lessons[indexPath.row].title
+        
+        if subLessonsCounterForProgressBar == 0 {
+            cell.progressBar.progress = 0.0
+        } else if subLessonsCounterForProgressBar == sumOfCompletedLessonInSubLessonsForCell {
+            cell.progressBar.progress = 1
+        } else {
             
-            cell.backgroundColor = Theme.current.cellBackgroundColor
-            cell.lessonsNumber.textColor = Theme.current.textColor
-            cell.lessonsTitle.textColor = Theme.current.textColor
-            cell.progressLabel.textColor = Theme.current.textColor
-            cell.progressBar.progressTintColor = Theme.current.progressTintColor
-            cell.progressBar.trackTintColor = Theme.current.buttonColor
-            
-            cell.lessonsNumber.text = "\(indexPath.row + 1)."
-            cell.lessonsTitle.text = resultsOfCollectionOfLessons[indexPath.section].lessons[indexPath.row].title
-            
-            if subLessonsCounterForProgressBar == 0 {
-                cell.progressBar.progress = 0.0
-            } else {
-                cell.progressBar.progress = Float((Double(100/subLessonsCounterForProgressBar) * 0.01) * Double(sumOfCompletedLessonInSubLessonsForCell))
-            }
-            
-            cell.progressLabel.text = "\(sumOfCompletedLessonInSubLessonsForCell)/\(subLessonsCounterForProgressBar)"
-            
+            cell.progressBar.progress = Float((Double(100/subLessonsCounterForProgressBar) * 0.01) * Double(sumOfCompletedLessonInSubLessonsForCell))
+        }
+        
+        cell.progressLabel.text = "\(sumOfCompletedLessonInSubLessonsForCell)/\(subLessonsCounterForProgressBar)"
+        
         //}
         
         
-//        if indexPath.section <= 1 {
-//
-//            //showsCell()
-//
-//
-//        } else {
-//
-//            if buyedContent {
-//
-//                //showsCell()
-//
-//
-//            } else {
-//                cell.backgroundColor = Theme.current.cellBackgroundColor
-//                cell.lessonsTitle.textColor = Theme.current.textColor
-//
-//                cell.lessonsTitle.text = "Buy More Lessons"
-//                cell.progressBar.isHidden = true
-//
-//            }
-//        }
-       
+        //        if indexPath.section <= 1 {
+        //
+        //            //showsCell()
+        //
+        //
+        //        } else {
+        //
+        //            if buyedContent {
+        //
+        //                //showsCell()
+        //
+        //
+        //            } else {
+        //                cell.backgroundColor = Theme.current.cellBackgroundColor
+        //                cell.lessonsTitle.textColor = Theme.current.textColor
+        //
+        //                cell.lessonsTitle.text = "Buy More Lessons"
+        //                cell.progressBar.isHidden = true
+        //
+        //            }
+        //        }
+        
         return cell
     }
     
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        indexesToSublessons = [indexPath.section,indexPath.row]
-        //self.tableView.deselectRow(at: indexPath, animated: true)
+        
+        performSegue(withIdentifier: "goToSubLessonsView", sender: self)
+        
         
     }
     
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "goToSubLessonsView" {
+            
+            let subLessonsTableVC = segue.destination as! SubLessonsTableViewController
+            
+            subLessonsTableVC.indexesToSublessons.append(self.tableView!.indexPathForSelectedRow!.section)
+            subLessonsTableVC.indexesToSublessons.append(self.tableView!.indexPathForSelectedRow!.row)
+            
+        }
+    }
     
     
     // MARK: - HandleOpenClosefunction

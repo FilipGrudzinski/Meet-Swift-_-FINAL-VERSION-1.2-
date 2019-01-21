@@ -9,13 +9,14 @@
 import UIKit
 import RealmSwift
 
-var indexesALesson:[Int] = []
+
 
 class LessonAViewController: UIViewController, UITextFieldDelegate {
     
     lazy var realm = try! Realm()
     
     var resultsALesson: Results<LessonsData>!
+    var indexesALesson:[Int] = []
     
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var exampleLabel: UILabel!
@@ -30,22 +31,12 @@ class LessonAViewController: UIViewController, UITextFieldDelegate {
         
         loadItems()
         applyTheme()
-        self.title = resultsALesson[indexesALesson[0]].subLessons[indexesALesson[1]].subLessonsTitle
         
         
-        let rightBarButtonItem: UIBarButtonItem = {
-            let barButtonItem = UIBarButtonItem(title: "\(indexesALesson[2] + 1)/\(resultsALesson[indexesALesson[0]].subLessons.count)", style: .plain , target: nil, action: nil)
-            barButtonItem.tintColor = Theme.current.textColor
-            return barButtonItem
-        }()
-        
-        self.navigationItem.rightBarButtonItem = rightBarButtonItem
+        self.navigationItem.titleView = setTitle(title: "\(resultsALesson[indexesALesson[0]].subLessons[indexesALesson[1]].subLessonsTitle)", subtitle: "\(indexesALesson[2] + 1)/\(resultsALesson[indexesALesson[0]].subLessons.count)")
         
         hintLabel.isHidden = true
         hintLabel.adjustsFontSizeToFitWidth = true
-        
-        
-        
         
         let toolBar = UIToolbar()
         var buttonsArray = [UIBarButtonItem]()
@@ -77,6 +68,8 @@ class LessonAViewController: UIViewController, UITextFieldDelegate {
         
         
         view.addSubview(toolBar)
+        
+        
         
         // MARK: - Constraint settup
         
@@ -151,4 +144,7 @@ class LessonAViewController: UIViewController, UITextFieldDelegate {
         resultsALesson = realm.objects(LessonsData.self)
         
     }
+    
+    
+    
 }

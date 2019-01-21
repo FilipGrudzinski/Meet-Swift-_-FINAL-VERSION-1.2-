@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-var indexesBLesson:[Int] = []
+
 
 class LessonBViewController: UIViewController {
     
@@ -17,6 +17,7 @@ class LessonBViewController: UIViewController {
     
     var resultsBLesson: Results<LessonsData>!
     
+    var indexesBLesson:[Int] = []
     
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var exampleLabel: UILabel!
@@ -34,18 +35,11 @@ class LessonBViewController: UIViewController {
         loadItems()
         applyTheme()
         
-        self.title = resultsBLesson[indexesBLesson[0]].subLessons[indexesBLesson[1]].subLessonsTitle
-        
-        let rightBarButtonItem: UIBarButtonItem = {
-            let barButtonItem = UIBarButtonItem(title: "\(indexesBLesson[2] + 1)/\(resultsBLesson[indexesBLesson[0]].subLessons.count)", style: .plain , target: nil, action: nil)
-            barButtonItem.tintColor = Theme.current.textColor
-            return barButtonItem
-        }()
-        
-        self.navigationItem.rightBarButtonItem = rightBarButtonItem
+        self.navigationItem.titleView = setTitle(title: "\(resultsBLesson[indexesBLesson[0]].subLessons[indexesBLesson[1]].subLessonsTitle)", subtitle: "\(indexesBLesson[2] + 1)/\(resultsBLesson[indexesBLesson[0]].subLessons.count)")
       
         
         changer.setOn(resultsBLesson[indexesBLesson[1]].subLessons[indexesBLesson[2]].completion, animated: false)
+        
         hintLabel.isHidden = true
         hintLabel.adjustsFontSizeToFitWidth = true
         
