@@ -13,21 +13,18 @@ import RealmSwift
 
 class LessonBViewController: UIViewController {
     
+    
     lazy var realm = try! Realm()
-    
     var resultsBLesson: Results<LessonsData>!
-    
     var indexesBLesson:[Int] = []
+    
     
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var exampleLabel: UILabel!
     @IBOutlet weak var hintLabel: UILabel!
-    
     @IBOutlet weak var changer: UISwitch!
     
-    //print(resultsALesson[indexLesson].completion)
     
-   
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +33,7 @@ class LessonBViewController: UIViewController {
         applyTheme()
         
         self.navigationItem.titleView = setTitle(title: "\(resultsBLesson[indexesBLesson[0]].subLessons[indexesBLesson[1]].subLessonsTitle)", subtitle: "\(indexesBLesson[2] + 1)/\(resultsBLesson[indexesBLesson[0]].subLessons.count)")
-      
+        
         
         changer.setOn(resultsBLesson[indexesBLesson[1]].subLessons[indexesBLesson[2]].completion, animated: false)
         
@@ -71,12 +68,11 @@ class LessonBViewController: UIViewController {
         toolBar.tintColor = Theme.current.buttonColor
         toolBar.barTintColor = Theme.current.navigationColor
         
-        
-        
         view.addSubview(toolBar)
         
-        // MARK: - Constraint settup
         
+        
+        // MARK: - Constraint settup
         
         toolBar.translatesAutoresizingMaskIntoConstraints = false
         
@@ -93,15 +89,13 @@ class LessonBViewController: UIViewController {
             NSLayoutConstraint(item: toolBar, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1.0, constant: 0).isActive = true
             
             toolBar.heightAnchor.constraint(equalToConstant: 44).isActive = true
-        
+            
         }
         
         
-
     }
     
     
-  
     
     @IBAction func changer(_ sender: UISwitch) {
         
@@ -112,6 +106,8 @@ class LessonBViewController: UIViewController {
         
     }
     
+    
+    // MARK: - ToolBarButtons
     
     @objc func previousButtonAction(sender: UIButton!) {
         print("Button tapped")
@@ -128,20 +124,18 @@ class LessonBViewController: UIViewController {
     
     
     
-    
     // MARK: - Theme function
     
     private func applyTheme() {
         
         view.backgroundColor = Theme.current.viewControllerBackgroundColor
-            descriptionLabel.textColor = Theme.current.textColor
-            exampleLabel.textColor = Theme.current.buttonColor
-            hintLabel.textColor = Theme.current.textColor
-            hintLabel.backgroundColor = Theme.current.selectedRow
-        
-    
+        descriptionLabel.textColor = Theme.current.textColor
+        exampleLabel.textColor = Theme.current.buttonColor
+        hintLabel.textColor = Theme.current.textColor
+        hintLabel.backgroundColor = Theme.current.selectedRow
         
     }
+    
     
     
     // MARK: - LoadRealm function
@@ -151,8 +145,6 @@ class LessonBViewController: UIViewController {
         resultsBLesson = realm.objects(LessonsData.self)
         
     }
-    
-  
-    
+
     
 }

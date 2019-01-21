@@ -12,11 +12,12 @@ import RealmSwift
 
 
 class LessonAViewController: UIViewController, UITextFieldDelegate {
+
     
     lazy var realm = try! Realm()
-    
     var resultsALesson: Results<LessonsData>!
     var indexesALesson:[Int] = []
+    
     
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var exampleLabel: UILabel!
@@ -31,7 +32,6 @@ class LessonAViewController: UIViewController, UITextFieldDelegate {
         
         loadItems()
         applyTheme()
-        
         
         self.navigationItem.titleView = setTitle(title: "\(resultsALesson[indexesALesson[0]].subLessons[indexesALesson[1]].subLessonsTitle)", subtitle: "\(indexesALesson[2] + 1)/\(resultsALesson[indexesALesson[0]].subLessons.count)")
         
@@ -56,7 +56,6 @@ class LessonAViewController: UIViewController, UITextFieldDelegate {
             UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
         )
         
-        
         buttonsArray.append(
             UIBarButtonItem(title: "Check", style: .plain, target: self, action: #selector(checkButtonAction))
         )
@@ -65,14 +64,10 @@ class LessonAViewController: UIViewController, UITextFieldDelegate {
         toolBar.tintColor = Theme.current.buttonColor
         toolBar.barTintColor = Theme.current.navigationColor
         
-        
-        
         view.addSubview(toolBar)
         
         
-        
         // MARK: - Constraint settup
-        
         
         toolBar.translatesAutoresizingMaskIntoConstraints = false
         
@@ -102,6 +97,9 @@ class LessonAViewController: UIViewController, UITextFieldDelegate {
     }
     
     
+    
+    // MARK: - ToolBarButtons
+    
     @objc func previousButtonAction(sender: UIButton!) {
         print("Button previousButtonAction")
     }
@@ -116,8 +114,6 @@ class LessonAViewController: UIViewController, UITextFieldDelegate {
     @objc func checkButtonAction(sender: UIButton!) {
         print("Button checkButtonAction")
     }
-    
-    
     
     
     

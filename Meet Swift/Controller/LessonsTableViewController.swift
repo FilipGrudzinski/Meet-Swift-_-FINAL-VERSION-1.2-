@@ -14,10 +14,11 @@ var buyedContent = false
 
 
 class LessonsTableViewController: UITableViewController {
+
     
     lazy var realm = try! Realm()
-    
     var resultsOfCollectionOfLessons: Results<CollectionOfLessons>!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +26,6 @@ class LessonsTableViewController: UITableViewController {
         loadItems()
         //print(Realm.Configuration.defaultConfiguration.fileURL!)
     }
-    
     
     
     override func viewWillAppear(_ animated: Bool) {
@@ -77,9 +77,9 @@ class LessonsTableViewController: UITableViewController {
         
         view.addSubview(headerCounterLabel)
         view.addSubview(headerButton)
-        
         view.backgroundColor = Theme.current.headerBackgroundColor
         headerCounterLabel.textColor = Theme.current.textColor
+        
         
         if !(resultsOfCollectionOfLessons?[section].isExpanded)! {
             
@@ -89,11 +89,11 @@ class LessonsTableViewController: UITableViewController {
             
             headerButton.setTitleColor(Theme.current.pressedSectionButton, for: .normal)
         }
+
+        
         
         let sumOfLessonsInSection = resultsOfCollectionOfLessons?[section].lessons.count
-        
         var sumOfDoneLessonsInSection = 0
-        
         for lessons in 0..<sumOfLessonsInSection! {
             
             var sumOfCompletedLessonInSubLessonsForSection = 0
@@ -102,36 +102,30 @@ class LessonsTableViewController: UITableViewController {
             
             for sublessons in 0..<subLessonsInLessons! {
                 
-                if resultsOfCollectionOfLessons[section].lessons[lessons].subLessons[sublessons].completion == true {
-                    
-                    sumOfCompletedLessonInSubLessonsForSection += 1
-                    
-                }
+                if resultsOfCollectionOfLessons[section].lessons[lessons].subLessons[sublessons].completion == true { sumOfCompletedLessonInSubLessonsForSection += 1 }
                 
             }
             
-            if sumOfCompletedLessonInSubLessonsForSection == subLessonsInLessons {
-                sumOfDoneLessonsInSection += 1
-            }
+            if sumOfCompletedLessonInSubLessonsForSection == subLessonsInLessons { sumOfDoneLessonsInSection += 1 }
             
         }
         
-        if section <= 1 {
-            
-            headerCounterLabel.text = "\(sumOfDoneLessonsInSection)/\(sumOfLessonsInSection!)"
-            
-        } else {
-            
-            if buyedContent {
-                
-                headerCounterLabel.text = "\(sumOfDoneLessonsInSection)/\(sumOfLessonsInSection!)"
-                
-            } else {
-                
-                headerCounterLabel.isHidden = true
-                
-            }
-        }
+//        if section <= 1 {
+//
+//            headerCounterLabel.text = "\(sumOfDoneLessonsInSection)/\(sumOfLessonsInSection!)"
+//
+//        } else {
+//
+//            if buyedContent {
+//
+//                headerCounterLabel.text = "\(sumOfDoneLessonsInSection)/\(sumOfLessonsInSection!)"
+//
+//            } else {
+//
+//                headerCounterLabel.isHidden = true
+//
+//            }
+//        }
         
         return view
     }
@@ -146,7 +140,7 @@ class LessonsTableViewController: UITableViewController {
     
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
+
         if !(resultsOfCollectionOfLessons?[section].isExpanded)! {
             return 0
         }
@@ -158,23 +152,15 @@ class LessonsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "LessonsCell", for: indexPath) as! CustomLessonsCell
-        
+        let cellResults = resultsOfCollectionOfLessons[indexPath.section].lessons[indexPath.row]
         //func showsCell() {
         
         var sumOfCompletedLessonInSubLessonsForCell = 0
-        let subLessonsCounterForProgressBar = resultsOfCollectionOfLessons[indexPath.section].lessons[indexPath.row].subLessons.count
+        let subLessonsCounterForProgressBar = cellResults.subLessons.count
         
         // MARK: - Liczymy rozwiązane w podrozdziale
         
-        for n in 0..<subLessonsCounterForProgressBar {
-            
-            if resultsOfCollectionOfLessons[indexPath.section].lessons[indexPath.row].subLessons[n].completion == true {
-                
-                sumOfCompletedLessonInSubLessonsForCell += 1
-                
-            }
-            
-        }
+        for n in 0..<subLessonsCounterForProgressBar { if cellResults.subLessons[n].completion == true { sumOfCompletedLessonInSubLessonsForCell += 1 } }
         
         let backgroundView = UIView()
         backgroundView.backgroundColor = Theme.current.selectedRow
@@ -187,8 +173,7 @@ class LessonsTableViewController: UITableViewController {
         cell.progressBar.progressTintColor = Theme.current.progressTintColor
         cell.progressBar.trackTintColor = Theme.current.buttonColor
         
-        cell.lessonsNumber.text = "\(indexPath.row + 1)."
-        cell.lessonsTitle.text = resultsOfCollectionOfLessons[indexPath.section].lessons[indexPath.row].title
+       
         
         if subLessonsCounterForProgressBar == 0 {
             cell.progressBar.progress = 0.0
@@ -199,6 +184,9 @@ class LessonsTableViewController: UITableViewController {
             cell.progressBar.progress = Float((Double(100/subLessonsCounterForProgressBar) * 0.01) * Double(sumOfCompletedLessonInSubLessonsForCell))
         }
         
+        
+        cell.lessonsNumber.text = "\(indexPath.row + 1)."
+        cell.lessonsTitle.text = cellResults.title
         cell.progressLabel.text = "\(sumOfCompletedLessonInSubLessonsForCell)/\(subLessonsCounterForProgressBar)"
         
         //}

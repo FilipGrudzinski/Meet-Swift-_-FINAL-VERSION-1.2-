@@ -10,7 +10,6 @@ import Foundation
 import RealmSwift
 
 
-
 class CollectionOfLessons: Object {
     
     @objc dynamic var isExpanded: Bool = false

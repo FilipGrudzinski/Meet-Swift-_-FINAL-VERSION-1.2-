@@ -14,45 +14,34 @@ import RealmSwift
 
 class SubLessonsTableViewController: UITableViewController {
     
+    
     lazy var realm = try! Realm()
-    
     var resultsSubLessons: Results<CollectionOfLessons>!
-    
     var indexesToSublessons = [Int]()
-    
+ 
     
     override func viewDidLoad() {
         super.viewDidLoad()
         print("Indexy po przejsci do 2 okranu \(indexesToSublessons)")
+        
         loadItems()
         
+        let reusableResults = resultsSubLessons[indexesToSublessons[0]].lessons[indexesToSublessons[1]]
         
-        let sumOfLessonsInSection = resultsSubLessons[indexesToSublessons[0]].lessons[indexesToSublessons[1]].subLessons.count
         var sumOfDoneLessonsInSection = 0
+        for n in 0..<reusableResults.subLessons.count { if reusableResults.subLessons[n].completion == true { sumOfDoneLessonsInSection += 1 } }
         
-        for n in 0..<sumOfLessonsInSection {
-            
-            if resultsSubLessons[indexesToSublessons[0]].lessons[indexesToSublessons[1]].subLessons[n].completion == true {
-                
-                sumOfDoneLessonsInSection += 1
-                print("prawda")
-                
-            }
-            
-            
-        }
-        
-        self.navigationItem.titleView = setTitle(title: "\(resultsSubLessons[indexesToSublessons[0]].lessons[indexesToSublessons[1]].title)", subtitle: "\(sumOfDoneLessonsInSection)/\(sumOfLessonsInSection)")
-        
+        self.navigationItem.titleView = setTitle(title: "\(resultsSubLessons[indexesToSublessons[0]].lessons[indexesToSublessons[1]].title)", subtitle: "\(sumOfDoneLessonsInSection)/\(reusableResults.subLessons.count)")
         
         tableView.separatorStyle = .none
         view.backgroundColor = Theme.current.viewControllerBackgroundColor
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: nil, action: nil)
+        
     }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         loadItems()
-        tableView.reloadData()
     }
     
     // MARK: - TableView Row settings
@@ -72,6 +61,8 @@ class SubLessonsTableViewController: UITableViewController {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "SubLessonsCell", for: indexPath) as! CustomSubLessonsCell
         
+        let cellResults = resultsSubLessons[indexesToSublessons[0]].lessons[indexesToSublessons[1]].subLessons[indexPath.row]
+        
         cell.backgroundColor = Theme.current.cellBackgroundColor
         cell.subLessonsNumber.textColor = Theme.current.textColor
         cell.subLessonsTitle.textColor = Theme.current.textColor
@@ -83,11 +74,12 @@ class SubLessonsTableViewController: UITableViewController {
         cell.selectedBackgroundView = backgroundView
         
         cell.subLessonsNumber.text = "\(indexPath.row + 1)."
-        cell.subLessonsTitle.text = resultsSubLessons[indexesToSublessons[0]].lessons[indexesToSublessons[1]].subLessons[indexPath.row].subLessonsTitle
-        cell.subLessonsDescription.text = resultsSubLessons[indexesToSublessons[0]].lessons[indexesToSublessons[1]].subLessons[indexPath.row].subLessonsTitleDescription
-        cell.accessoryType = resultsSubLessons[indexesToSublessons[0]].lessons[indexesToSublessons[1]].subLessons[indexPath.row].completion ? .checkmark : .none
+        cell.subLessonsTitle.text = cellResults.subLessonsTitle
+        cell.subLessonsDescription.text = cellResults.subLessonsTitleDescription
+        cell.accessoryType = cellResults.completion ? .checkmark : .none
         
         return cell
+        
     }
     
     
@@ -95,7 +87,6 @@ class SubLessonsTableViewController: UITableViewController {
         
         let lessonTypeA = resultsSubLessons[indexesToSublessons[0]].lessons[indexesToSublessons[1]].subLessons[indexPath.row].lessonA.count
         let lessonTypeB = resultsSubLessons[indexesToSublessons[0]].lessons[indexesToSublessons[1]].subLessons[indexPath.row].lessonB.count
-        //print("typeA \(lessonTypeA), typeB \(lessonTypeB)")
         
         if lessonTypeA == 1 {
             
@@ -127,6 +118,8 @@ class SubLessonsTableViewController: UITableViewController {
         }
     }
     
+    
+    
     // MARK: - LoadRealm function
     
     private func loadItems() {
@@ -135,8 +128,6 @@ class SubLessonsTableViewController: UITableViewController {
         tableView.reloadData()
         
     }
-    
-    
     
     
 }
