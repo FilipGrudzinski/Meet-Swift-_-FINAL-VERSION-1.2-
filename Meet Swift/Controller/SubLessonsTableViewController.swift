@@ -18,19 +18,11 @@ class SubLessonsTableViewController: UITableViewController {
     lazy var realm = try! Realm()
     var resultsSubLessons: Results<CollectionOfLessons>!
     var indexesToSublessons = [Int]()
- 
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         loadItems()
-        
-        let reusableResults = resultsSubLessons[indexesToSublessons[0]].lessons[indexesToSublessons[1]]
-        
-        var sumOfDoneLessonsInSection = 0
-        for n in 0..<reusableResults.subLessons.count { if reusableResults.subLessons[n].completion == true { sumOfDoneLessonsInSection += 1 } }
-        
-        self.navigationItem.titleView = setTitle(title: "\(resultsSubLessons[indexesToSublessons[0]].lessons[indexesToSublessons[1]].title)", subtitle: "\(sumOfDoneLessonsInSection)/\(reusableResults.subLessons.count)")
         
         tableView.separatorStyle = .none
         view.backgroundColor = Theme.current.viewControllerBackgroundColor
@@ -41,10 +33,16 @@ class SubLessonsTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         loadItems()
+        setSubLessonsNavBar()
+        tableView.reloadData()
+        
+      
+        
+            //navigationItem.rightBarButtonItem?.tintColor = Theme.current.textColor
     }
     
     // MARK: - TableView Row settings
-    
+  
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
@@ -84,18 +82,19 @@ class SubLessonsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-//        let lessonTypeA = resultsSubLessons[indexesToSublessons[0]].lessons[indexesToSublessons[1]].subLessons[indexPath.row].lessonA.count
-//        let lessonTypeB = resultsSubLessons[indexesToSublessons[0]].lessons[indexesToSublessons[1]].subLessons[indexPath.row].lessonB.count
+        let lessonTypeA = resultsSubLessons[indexesToSublessons[0]].lessons[indexesToSublessons[1]].subLessons[indexPath.row].typeOfTask
+        let lessonTypeB = resultsSubLessons[indexesToSublessons[0]].lessons[indexesToSublessons[1]].subLessons[indexPath.row].typeOfTask
         
-//        if lessonTypeA == 1 {
-//            
-//            performSegue(withIdentifier: "goToSubLessonsA", sender: self)
-//            
-//        } else if lessonTypeB == 1 {
-//            
-//            performSegue(withIdentifier: "goToSubLessonsB", sender: self)
-//            
-//        }
+        if lessonTypeA == "A" {
+            
+            performSegue(withIdentifier: "goToSubLessonsA", sender: self)
+            self.dismiss(animated: true, completion: nil)
+
+        } else if lessonTypeB == "B" {
+            
+            performSegue(withIdentifier: "goToSubLessonsB", sender: self)
+            self.dismiss(animated: true, completion: nil)
+        }
         
     }
     
@@ -128,5 +127,28 @@ class SubLessonsTableViewController: UITableViewController {
         
     }
     
+    
+}
+
+
+extension SubLessonsTableViewController {
+    
+    private func setSubLessonsNavBar() {
+        
+        let reusableResults = resultsSubLessons[indexesToSublessons[0]].lessons[indexesToSublessons[1]]
+        
+        var sumOfDoneLessonsInSection = 0
+        for n in 0..<reusableResults.subLessons.count { if reusableResults.subLessons[n].completion == true { sumOfDoneLessonsInSection += 1 } }
+        
+        navigationItem.title = "\(resultsSubLessons[indexesToSublessons[0]].lessons[indexesToSublessons[1]].title)"
+        
+        let rightBtt = UIButton(type: .system)
+        rightBtt.isUserInteractionEnabled = false
+        rightBtt.tintColor = Theme.current.textColor
+        rightBtt.setTitle("\(sumOfDoneLessonsInSection)/\(reusableResults.subLessons.count)", for: .normal)
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: rightBtt)
+        
+    }
     
 }

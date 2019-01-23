@@ -14,7 +14,6 @@
 		1458E44A21EA4A23005AE25F /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1458E44921EA4A23005AE25F /* Theme.swift */; };
 		146F8E1E21DF9264002215CB /* AboutViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146F8E1D21DF9264002215CB /* AboutViewViewController.swift */; };
 		146F8E2021DF9B76002215CB /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146F8E1F21DF9B76002215CB /* SettingsViewController.swift */; };
-		147AE56821EE753A0075DEC9 /* ReusableFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147AE56721EE753A0075DEC9 /* ReusableFunctions.swift */; };
 		147AE56A21EFF35F0075DEC9 /* CollectionOfLessons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147AE56921EFF35F0075DEC9 /* CollectionOfLessons.swift */; };
 		147AE56C21EFF3690075DEC9 /* LessonsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147AE56B21EFF3690075DEC9 /* LessonsData.swift */; };
 		147AE56E21EFF3720075DEC9 /* SubLessonsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147AE56D21EFF3720075DEC9 /* SubLessonsData.swift */; };
@@ -27,6 +26,7 @@
 		149B3F9221BE7FC500539BC3 /* LessonAViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149B3F9121BE7FC500539BC3 /* LessonAViewController.swift */; };
 		14DC500B21E90C5B006EDC00 /* CustomSubLessonsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DC500A21E90C5B006EDC00 /* CustomSubLessonsCell.swift */; };
 		14EAE08521F0B39E0008B3EF /* LessonBViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14EAE08421F0B39E0008B3EF /* LessonBViewController.swift */; };
+		14EDED8D21F7C1A5005F5FFA /* default.realm in Resources */ = {isa = PBXBuildFile; fileRef = 14EDED8C21F7C1A5005F5FFA /* default.realm */; };
 		515C6557D7745EBD1C032B16 /* Pods_Meet_Swift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B572BF09DFF4C3EE4290E578 /* Pods_Meet_Swift.framework */; };
 /* End PBXBuildFile section */
 
@@ -38,7 +38,6 @@
 		1458E44921EA4A23005AE25F /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		146F8E1D21DF9264002215CB /* AboutViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewViewController.swift; sourceTree = "<group>"; };
 		146F8E1F21DF9B76002215CB /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		147AE56721EE753A0075DEC9 /* ReusableFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableFunctions.swift; sourceTree = "<group>"; };
 		147AE56921EFF35F0075DEC9 /* CollectionOfLessons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionOfLessons.swift; sourceTree = "<group>"; };
 		147AE56B21EFF3690075DEC9 /* LessonsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonsData.swift; sourceTree = "<group>"; };
 		147AE56D21EFF3720075DEC9 /* SubLessonsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubLessonsData.swift; sourceTree = "<group>"; };
@@ -53,6 +52,7 @@
 		149B3F9121BE7FC500539BC3 /* LessonAViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonAViewController.swift; sourceTree = "<group>"; };
 		14DC500A21E90C5B006EDC00 /* CustomSubLessonsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSubLessonsCell.swift; sourceTree = "<group>"; };
 		14EAE08421F0B39E0008B3EF /* LessonBViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonBViewController.swift; sourceTree = "<group>"; };
+		14EDED8C21F7C1A5005F5FFA /* default.realm */ = {isa = PBXFileReference; lastKnownFileType = file; path = default.realm; sourceTree = "<group>"; };
 		327FCC0BF6494264725D6F7F /* Pods-Meet Swift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Meet Swift.release.xcconfig"; path = "Pods/Target Support Files/Pods-Meet Swift/Pods-Meet Swift.release.xcconfig"; sourceTree = "<group>"; };
 		60BE35164B456F78A4272A0C /* Pods-Meet Swift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Meet Swift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Meet Swift/Pods-Meet Swift.debug.xcconfig"; sourceTree = "<group>"; };
 		B572BF09DFF4C3EE4290E578 /* Pods_Meet_Swift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Meet_Swift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -124,6 +124,7 @@
 		149B3F8B21BE7ED000539BC3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				14EDED8C21F7C1A5005F5FFA /* default.realm */,
 				147AE56921EFF35F0075DEC9 /* CollectionOfLessons.swift */,
 				147AE56B21EFF3690075DEC9 /* LessonsData.swift */,
 				147AE56D21EFF3720075DEC9 /* SubLessonsData.swift */,
@@ -150,7 +151,6 @@
 			children = (
 				147ED44921F3ED9E00A87CB4 /* Assets.xcassets */,
 				149B3F8121BE7DCC00539BC3 /* LaunchScreen.storyboard */,
-				147AE56721EE753A0075DEC9 /* ReusableFunctions.swift */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -242,6 +242,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				149B3F8321BE7DCC00539BC3 /* LaunchScreen.storyboard in Resources */,
+				14EDED8D21F7C1A5005F5FFA /* default.realm in Resources */,
 				147ED44A21F3ED9E00A87CB4 /* Assets.xcassets in Resources */,
 				149B3F7E21BE7DCA00539BC3 /* Main.storyboard in Resources */,
 			);
@@ -312,7 +313,6 @@
 				149B3F9021BE7F8000539BC3 /* SubLessonsTableViewController.swift in Sources */,
 				147AE56C21EFF3690075DEC9 /* LessonsData.swift in Sources */,
 				1458E44121EA2A6F005AE25F /* CustomLessonsCell.swift in Sources */,
-				147AE56821EE753A0075DEC9 /* ReusableFunctions.swift in Sources */,
 				1458E44621EA4885005AE25F /* DarkTheme.swift in Sources */,
 				147AE56A21EFF35F0075DEC9 /* CollectionOfLessons.swift in Sources */,
 				14DC500B21E90C5B006EDC00 /* CustomSubLessonsCell.swift in Sources */,

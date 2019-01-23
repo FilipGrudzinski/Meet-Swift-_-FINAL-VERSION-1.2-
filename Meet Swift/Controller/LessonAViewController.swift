@@ -11,7 +11,7 @@ import RealmSwift
 
 
 
-class LessonAViewController: UIViewController, UITextFieldDelegate {
+class LessonAViewController: UIViewController, UITextViewDelegate {
 
     
     lazy var realm = try! Realm()
@@ -21,22 +21,138 @@ class LessonAViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var exampleLabel: UILabel!
-    @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var hintLabel: UILabel!
+    @IBOutlet weak var textView: UITextView!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.textField.delegate = self
         
         loadItems()
         applyTheme()
+        setLessonANavBar()
+        createToolBar()
         
-        self.navigationItem.titleView = setTitle(title: "\(resultsALesson[indexesALesson[0]].subLessons[indexesALesson[1]].subLessonsTitle)", subtitle: "\(indexesALesson[2] + 1)/\(resultsALesson[indexesALesson[0]].subLessons.count)")
+        textView.delegate = self
+        textView.text = "Type your thoughts here..."
+        textView.textColor = .lightGray
+        
         
         hintLabel.isHidden = true
         hintLabel.adjustsFontSizeToFitWidth = true
+        exampleLabel.adjustsFontSizeToFitWidth = true
+        
+//        if resultsALesson[indexesALesson[0]].subLessons[indexesALesson[1]].userAnswer != nil {
+//
+//            textField.text = "Dupa"
+//
+//        }
+        
+      
+        
+        
+    }
+    
+    
+    
+ 
+    
+    
+    
+    // MARK: - ToolBarButtons
+    
+    @objc func previousButtonAction(sender: UIButton!) {
+        print("Button previousButtonAction")
+        
+        exampleLabel.text = "if fdfsdfd {\n fds \n} else \n{\nffdsfdsf\n}"
+        
+        
+        descriptionLabel.text = "DUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsadd"
+  
+    }
+    
+    
+    @objc func hintButtonAction(sender: UIButton!) {
+        hintLabel.isHidden = false
+        descriptionLabel.isHidden = true
+        print("Button hintButtonAction")
+    }
+    
+    
+    @objc func checkButtonAction(sender: UIButton!) {
+        print("Button checkButtonAction")
+    }
+
+    
+    // MARK: - LoadRealm function
+    
+    private func loadItems() {
+        
+        resultsALesson = realm.objects(LessonsData.self)
+        
+    }
+
+    // MARK: - Theme function
+    
+    
+    private func applyTheme() {
+        
+        view.backgroundColor = Theme.current.viewControllerBackgroundColor
+        descriptionLabel.textColor = Theme.current.textColor
+        exampleLabel.textColor = Theme.current.buttonColor
+//        textField.backgroundColor = Theme.current.viewControllerBackgroundColor
+//        textField.tintColor = Theme.current.textColor
+        hintLabel.textColor = Theme.current.textColor
+        hintLabel.backgroundColor = Theme.current.selectedRow
+        textView.backgroundColor = Theme.current.viewControllerBackgroundColor
+        textView.textColor = Theme.current.textColor
+        
+    }
+    
+    
+    func textViewDidBeginEditing (_ textView: UITextView) {
+        if textView.isFirstResponder {
+            textView.text = nil
+            textView.textColor = Theme.current.textColor
+            
+        }
+    }
+    
+    func textViewDidEndEditing (_ textView: UITextView) {
+        if textView.text.isEmpty || textView.text == "" {
+            //textView.textColor = UIColor.lightGray
+            textView.text = "Type your thoughts here..."
+            textView.tintColor = Theme.current.selectedRow
+        }
+    }
+
+    
+  
+    
+}
+
+
+
+extension LessonAViewController {
+    
+    
+    private func setLessonANavBar() {
+        
+        navigationItem.title = "\(resultsALesson[indexesALesson[0]].subLessons[indexesALesson[1]].subLessonsTitle)"
+        
+        let rightBtt = UIButton(type: .system)
+        rightBtt.isUserInteractionEnabled = false
+        rightBtt.tintColor = Theme.current.textColor
+        rightBtt.setTitle("\(indexesALesson[2] + 1)/\(resultsALesson[indexesALesson[0]].subLessons.count)", for: .normal)
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: rightBtt)
+       
+        
+    }
+    
+    
+    private func createToolBar() {
         
         let toolBar = UIToolbar()
         var buttonsArray = [UIBarButtonItem]()
@@ -86,59 +202,6 @@ class LessonAViewController: UIViewController, UITextFieldDelegate {
             toolBar.heightAnchor.constraint(equalToConstant: 44).isActive = true
         }
         
-        
     }
-    
-    
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
-    
-    
-    
-    // MARK: - ToolBarButtons
-    
-    @objc func previousButtonAction(sender: UIButton!) {
-        print("Button previousButtonAction")
-    }
-    
-    
-    @objc func hintButtonAction(sender: UIButton!) {
-        hintLabel.isHidden = false
-        print("Button hintButtonAction")
-    }
-    
-    
-    @objc func checkButtonAction(sender: UIButton!) {
-        print("Button checkButtonAction")
-    }
-
-    
-    // MARK: - LoadRealm function
-    
-    private func loadItems() {
-        
-        resultsALesson = realm.objects(LessonsData.self)
-        
-    }
-    
-    
-    // MARK: - Theme function
-    
-    
-    private func applyTheme() {
-        
-        view.backgroundColor = Theme.current.viewControllerBackgroundColor
-        descriptionLabel.textColor = Theme.current.textColor
-        exampleLabel.textColor = Theme.current.buttonColor
-        textField.backgroundColor = Theme.current.selectedRow
-        textField.tintColor = Theme.current.textColor
-        hintLabel.textColor = Theme.current.textColor
-        hintLabel.backgroundColor = Theme.current.selectedRow
-        
-    }
-    
     
 }

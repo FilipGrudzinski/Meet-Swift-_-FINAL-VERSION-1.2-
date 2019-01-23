@@ -66,6 +66,7 @@ class SettingsViewController: UIViewController {
                     
                     try! realm.write {
                         resultsOfCollectionOfLessons[collections].lessons[lessons].subLessons[subLessons].completion = false
+                        resultsOfCollectionOfLessons[collections].lessons[lessons].subLessons[subLessons].userAnswer = nil
                         
                     }
                     

@@ -80,14 +80,14 @@ class LessonsTableViewController: UITableViewController {
         view.backgroundColor = Theme.current.headerBackgroundColor
         headerCounterLabel.textColor = Theme.current.textColor
         
-        
-        if !(resultsOfCollectionOfLessons?[section].isExpanded)! {
+        if (resultsOfCollectionOfLessons?[section].isExpanded)! {
             
-            headerButton.setTitleColor(Theme.current.buttonColor, for: .normal)
+            headerButton.setTitleColor(Theme.current.pressedSectionButton, for: .normal)
             
         } else {
             
-            headerButton.setTitleColor(Theme.current.pressedSectionButton, for: .normal)
+            headerButton.setTitleColor(Theme.current.buttonColor, for: .normal)
+            
         }
 
         
@@ -277,7 +277,8 @@ class LessonsTableViewController: UITableViewController {
         } else {
             
             tableView.layoutIfNeeded()
-            tableView.scrollRectToVisible(CGRect(x: 0  , y: tableView.contentSize.height - tableView.bounds.size.height  , width: tableView.bounds.size.width, height: tableView.bounds.size.height), animated: true)
+            tableView.scrollRectToVisible(CGRect(x: 0  , y: tableView.contentSize.height - tableView.bounds.size.height , width: tableView.bounds.size.width, height: tableView.bounds.size.height), animated: true)
+            
             
         }
         
@@ -303,6 +304,8 @@ class LessonsTableViewController: UITableViewController {
         navigationController?.navigationBar.tintColor = Theme.current.buttonColor // color of navigationbar buttons
         navigationController?.navigationBar.barTintColor = Theme.current.navigationColor // color of navigationbar
         view.backgroundColor = Theme.current.viewControllerBackgroundColor
+        navigationController?.navigationBar.isTranslucent = false
+        navigationController?.navigationBar.shadowImage = UIImage()
         
     }
     

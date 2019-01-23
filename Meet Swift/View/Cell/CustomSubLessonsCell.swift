@@ -25,12 +25,16 @@ class CustomSubLessonsCell: UITableViewCell {
         
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 16.0)
+        //label.adjustsFontSizeToFitWidth = true
         return label
     }()
     
     let subLessonsDescription: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 10.0)
+        //label.adjustsFontSizeToFitWidth = true
+        label.lineBreakMode = .byWordWrapping
+        label.numberOfLines = 3
         return label
     }()
     
@@ -58,8 +62,8 @@ class CustomSubLessonsCell: UITableViewCell {
         //h = horizontal - poziomy // v = vertical - pionowy
         
         contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-16-[subNum(30)]-5-[title]-40-|", options: [], metrics: nil, views: viewsDict))
-        contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-21-[title]-2-[description]", options: [], metrics: nil, views: viewsDict))
-        contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-20-[subNum]", options: [], metrics: nil, views: viewsDict))
+        contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-14-[title]-2-[description]", options: [], metrics: nil, views: viewsDict))
+        contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-14-[subNum]", options: [], metrics: nil, views: viewsDict))
         contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-51-[description]-40-|", options: [], metrics: nil, views: viewsDict))
  
         
