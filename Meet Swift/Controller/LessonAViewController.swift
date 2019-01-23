@@ -12,17 +12,18 @@ import RealmSwift
 
 
 class LessonAViewController: UIViewController, UITextViewDelegate {
-
+    
     
     lazy var realm = try! Realm()
     var resultsALesson: Results<LessonsData>!
     var indexesALesson:[Int] = []
     
     
+    
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var exampleLabel: UILabel!
-    @IBOutlet weak var hintLabel: UILabel!
     @IBOutlet weak var textView: UITextView!
+    
     
     
     override func viewDidLoad() {
@@ -33,66 +34,28 @@ class LessonAViewController: UIViewController, UITextViewDelegate {
         applyTheme()
         setLessonANavBar()
         createToolBar()
-        
+        createToolBarAboveKeyboard()
         textView.delegate = self
         textView.text = "Type your thoughts here..."
-        textView.textColor = .lightGray
-        
-        
-        hintLabel.isHidden = true
-        hintLabel.adjustsFontSizeToFitWidth = true
-        exampleLabel.adjustsFontSizeToFitWidth = true
-        
-//        if resultsALesson[indexesALesson[0]].subLessons[indexesALesson[1]].userAnswer != nil {
-//
-//            textField.text = "Dupa"
-//
-//        }
-        
-      
-        
+        textView.textColor = Theme.current.buttonColor
         
     }
     
     
-    
- 
-    
-    
-    
-    // MARK: - ToolBarButtons
-    
-    @objc func previousButtonAction(sender: UIButton!) {
-        print("Button previousButtonAction")
-        
-        exampleLabel.text = "if fdfsdfd {\n fds \n} else \n{\nffdsfdsf\n}"
-        
-        
-        descriptionLabel.text = "DUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsadd"
-  
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
     
-    
-    @objc func hintButtonAction(sender: UIButton!) {
-        hintLabel.isHidden = false
-        descriptionLabel.isHidden = true
-        print("Button hintButtonAction")
-    }
-    
-    
-    @objc func checkButtonAction(sender: UIButton!) {
-        print("Button checkButtonAction")
-    }
-
     
     // MARK: - LoadRealm function
+    
     
     private func loadItems() {
         
         resultsALesson = realm.objects(LessonsData.self)
         
     }
-
+    
     // MARK: - Theme function
     
     
@@ -100,38 +63,30 @@ class LessonAViewController: UIViewController, UITextViewDelegate {
         
         view.backgroundColor = Theme.current.viewControllerBackgroundColor
         descriptionLabel.textColor = Theme.current.textColor
-        exampleLabel.textColor = Theme.current.buttonColor
-//        textField.backgroundColor = Theme.current.viewControllerBackgroundColor
-//        textField.tintColor = Theme.current.textColor
-        hintLabel.textColor = Theme.current.textColor
-        hintLabel.backgroundColor = Theme.current.selectedRow
+        exampleLabel.textColor = Theme.current.textColor
         textView.backgroundColor = Theme.current.viewControllerBackgroundColor
-        textView.textColor = Theme.current.textColor
         
     }
     
     
     func textViewDidBeginEditing (_ textView: UITextView) {
-        if textView.isFirstResponder {
+        if textView.textColor == Theme.current.buttonColor && textView.isFirstResponder {
             textView.text = nil
             textView.textColor = Theme.current.textColor
-            
         }
     }
     
     func textViewDidEndEditing (_ textView: UITextView) {
+        
         if textView.text.isEmpty || textView.text == "" {
-            //textView.textColor = UIColor.lightGray
+            textView.textColor = Theme.current.buttonColor
             textView.text = "Type your thoughts here..."
-            textView.tintColor = Theme.current.selectedRow
         }
+        
+        
     }
-
-    
-  
     
 }
-
 
 
 extension LessonAViewController {
@@ -147,14 +102,14 @@ extension LessonAViewController {
         rightBtt.setTitle("\(indexesALesson[2] + 1)/\(resultsALesson[indexesALesson[0]].subLessons.count)", for: .normal)
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: rightBtt)
-       
+        
         
     }
-    
     
     private func createToolBar() {
         
         let toolBar = UIToolbar()
+        
         var buttonsArray = [UIBarButtonItem]()
         buttonsArray.append(
             UIBarButtonItem(title: "Previous", style: .plain, target: self, action: #selector(previousButtonAction))
@@ -179,6 +134,8 @@ extension LessonAViewController {
         toolBar.setItems(buttonsArray, animated: true)
         toolBar.tintColor = Theme.current.buttonColor
         toolBar.barTintColor = Theme.current.navigationColor
+        toolBar.isTranslucent = false
+        toolBar.setShadowImage(UIImage(), forToolbarPosition: .bottom)
         
         view.addSubview(toolBar)
         
@@ -202,6 +159,92 @@ extension LessonAViewController {
             toolBar.heightAnchor.constraint(equalToConstant: 44).isActive = true
         }
         
+        
+        
     }
+    
+    
+    
+    private func createToolBarAboveKeyboard() {
+        
+        
+        let toolBar = UIToolbar()
+        toolBar.sizeToFit()
+        
+        var buttonsArray = [UIBarButtonItem]()
+        buttonsArray.append(
+            UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(doneButtonAction))
+        )
+        
+        buttonsArray.append(
+            UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+        )
+        
+        buttonsArray.append(
+            UIBarButtonItem(title: "Hint", style: .plain, target: self, action: #selector(hintButtonAction))
+        )
+        
+        buttonsArray.append(
+            UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+        )
+        
+        buttonsArray.append(
+            UIBarButtonItem(title: "Check", style: .plain, target: self, action: #selector(checkButtonAction))
+        )
+        
+        toolBar.setItems(buttonsArray, animated: true)
+        
+        
+        textView.inputAccessoryView = toolBar
+        
+        
+    }
+    
+    
+}
+
+
+
+
+extension LessonAViewController {
+    
+    @objc func previousButtonAction(sender: UIButton!) {
+        print("Button previousButtonAction")
+        
+        exampleLabel.text = "if fdfsdfd {\n fds \n} else \n{\nffdsfdsf\n}DUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaUPAdsaddaDUPAdsaddaDUDUPAdsaddaDUPAdsad"
+        
+        
+        descriptionLabel.text = "DUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsadDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaD"
+        
+    }
+    
+    
+    @objc func hintButtonAction(sender: UIButton!) {
+        
+        
+        print("Button hintButtonAction")
+    }
+    
+    
+    @objc func checkButtonAction(sender: UIButton!) {
+        print("Button checkButtonAction")
+        
+        try! realm.write {
+            resultsALesson[indexesALesson[0]].subLessons[indexesALesson[1]].userAnswer = textView.text
+        }
+        
+        textView.endEditing(true)
+    }
+    
+    @objc func doneButtonAction(sender: UIButton!) {
+        print("Button checkButtonAction")
+        
+        try! realm.write {
+            resultsALesson[indexesALesson[0]].subLessons[indexesALesson[1]].userAnswer = textView.text
+        }
+        
+        textView.endEditing(true)
+    }
+    
     
 }
