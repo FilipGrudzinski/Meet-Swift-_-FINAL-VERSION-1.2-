@@ -331,6 +331,8 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="DFv-Ac-X6D"/>
                     </view>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="buttonALabel" destination="k2P-uz-Gnr" id="VHy-LO-hQ9"/>
                         <outlet property="buttonBLabel" destination="87u-dA-Owh" id="glv-qt-NDa"/>

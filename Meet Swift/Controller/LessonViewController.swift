@@ -125,6 +125,12 @@ extension LessonViewController {
         textView.endEditing(true)
     }
     
+    @objc func nextButtonAction(sender: UIButton!) {
+        print("Button checkButtonAction")
+        
+      
+    }
+    
     
     
     

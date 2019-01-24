@@ -13,7 +13,7 @@ import UIKit
 extension LessonViewController {
     
     
-     func setLessonNavBar() {
+    func setLessonNavBar() {
         
         navigationItem.title = "\(resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].subLessonsTitle)"
         
@@ -30,7 +30,7 @@ extension LessonViewController {
     // MARK: - Theme function
     
     
-     func applyLessonTheme() {
+    func applyLessonTheme() {
         
         view.backgroundColor = Theme.current.viewControllerBackgroundColor
         descriptionLabel.textColor = Theme.current.textColor
@@ -45,11 +45,10 @@ extension LessonViewController {
         buttonBLabel.backgroundColor = Theme.current.buttonColor
         buttonALabel.backgroundColor = Theme.current.buttonColor
         
-        
     }
     
     
-     func layoutLessonSetUp() {
+    func layoutLessonSetUp() {
         
         if resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].typeOfTask == "A" {
             
@@ -60,7 +59,12 @@ extension LessonViewController {
             lessonTaskBLabel.isHidden = true
             descriptionLabel.isHidden = false
             
-            textView.text = "Enter your code here..."
+            if (resultsLesson[indexesLesson[0]].subLessons[indexesLesson[1]].userAnswer)?.trimmingCharacters(in: .whitespacesAndNewlines) != ""  {
+                textView.text = resultsLesson[indexesLesson[0]].subLessons[indexesLesson[1]].userAnswer
+            } else {
+                textView.text = "Enter your code here..."
+            }
+            
             textView.textColor = Theme.current.buttonColor
             
             createToolBarAboveKeyboard()
@@ -76,13 +80,11 @@ extension LessonViewController {
             buttonALabel.layer.cornerRadius = 6
             buttonBLabel.layer.cornerRadius = 6
             buttonCLabel.layer.cornerRadius = 6
-            
             buttonALabel.layer.masksToBounds = true
             buttonBLabel.layer.masksToBounds = true
             buttonCLabel.layer.masksToBounds = true
             
         }
-        
         
     }
     
@@ -99,8 +101,8 @@ extension LessonViewController {
         if textView.text.isEmpty || textView.text == "" {
             textView.textColor = Theme.current.buttonColor
             textView.text = "Enter your code here..."
+            
         }
-        
         
     }
     
@@ -116,27 +118,30 @@ extension LessonViewController {
             UIBarButtonItem(title: "Previous", style: .plain, target: self, action: #selector(previousButtonAction))
         )
         
-        buttonsArray.append(
-            UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
-        )
+        buttonsArray.append( UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil) )
         
         
         buttonsArray.append(
             UIBarButtonItem(title: "Hint", style: .plain, target: self, action: #selector(hintButtonAction))
+            
         )
         
-        buttonsArray.append(
-            UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
-        )
+        buttonsArray.append( UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil) )
         
         buttonsArray.append(
-            UIBarButtonItem(title: "Check", style: .plain, target: self, action: #selector(checkButtonAction))
+            UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.play, target: self, action: #selector(checkButtonAction))
+        )
+        
+        buttonsArray.append( UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil) )
+        
+        buttonsArray.append(
+            UIBarButtonItem(title: "Next", style: .plain, target: self, action: #selector(checkButtonAction))
+            
         )
         
         toolBar.setItems(buttonsArray, animated: true)
         toolBar.tintColor = Theme.current.buttonColor
         toolBar.barTintColor = Theme.current.navigationColor
-        toolBar.isTranslucent = false
         toolBar.setShadowImage(UIImage(), forToolbarPosition: .bottom)
         
         view.addSubview(toolBar)
@@ -176,20 +181,16 @@ extension LessonViewController {
             UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(doneButtonAction))
         )
         
-        buttonsArray.append(
-            UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
-        )
+        buttonsArray.append( UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil) )
         
         buttonsArray.append(
             UIBarButtonItem(title: "Hint", style: .plain, target: self, action: #selector(hintButtonAction))
         )
         
-        buttonsArray.append(
-            UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
-        )
+        buttonsArray.append( UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil) )
         
         buttonsArray.append(
-            UIBarButtonItem(title: "Check", style: .plain, target: self, action: #selector(checkButtonAction))
+            UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.play, target: self, action: #selector(checkButtonAction))
         )
         
         toolBar.setItems(buttonsArray, animated: true)
