@@ -82,37 +82,24 @@ class SubLessonsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let lessonTypeA = resultsSubLessons[indexesToSublessons[0]].lessons[indexesToSublessons[1]].subLessons[indexPath.row].typeOfTask
-        let lessonTypeB = resultsSubLessons[indexesToSublessons[0]].lessons[indexesToSublessons[1]].subLessons[indexPath.row].typeOfTask
-        
-        if lessonTypeA == "A" {
+       
             
-            performSegue(withIdentifier: "goToSubLessonsA", sender: self)
+            performSegue(withIdentifier: "goToSubLesson", sender: self)
             self.dismiss(animated: true, completion: nil)
 
-        } else if lessonTypeB == "B" {
-            
-            performSegue(withIdentifier: "goToSubLessonsB", sender: self)
-            self.dismiss(animated: true, completion: nil)
-        }
+    
         
     }
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        if segue.identifier == "goToSubLessonsA" {
+        if segue.identifier == "goToSubLesson" {
             
-            let lessonAVC = segue.destination as! LessonAViewController
-            for n in indexesToSublessons { lessonAVC.indexesALesson.append(indexesToSublessons[n]) }
-            lessonAVC.indexesALesson.append(self.tableView!.indexPathForSelectedRow!.row)
-            
-        } else if segue.identifier == "goToSubLessonsB" {
-            
-            let lessonBVC = segue.destination as! LessonBViewController
-            for n in indexesToSublessons { lessonBVC.indexesBLesson.append(indexesToSublessons[n]) }
-            lessonBVC.indexesBLesson.append(self.tableView!.indexPathForSelectedRow!.row)
-            
+            let lessonAVC = segue.destination as! LessonViewController
+            for n in indexesToSublessons { lessonAVC.indexesLesson.append(indexesToSublessons[n]) }
+            lessonAVC.indexesLesson.append(self.tableView!.indexPathForSelectedRow!.row)
+            print(lessonAVC.indexesLesson)
         }
     }
     

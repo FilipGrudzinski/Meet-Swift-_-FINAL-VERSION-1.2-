@@ -23,7 +23,7 @@
 		149B3F8321BE7DCC00539BC3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 149B3F8121BE7DCC00539BC3 /* LaunchScreen.storyboard */; };
 		149B3F8E21BE7F2700539BC3 /* LessonsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149B3F8D21BE7F2700539BC3 /* LessonsTableViewController.swift */; };
 		149B3F9021BE7F8000539BC3 /* SubLessonsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149B3F8F21BE7F8000539BC3 /* SubLessonsTableViewController.swift */; };
-		149B3F9221BE7FC500539BC3 /* LessonAViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149B3F9121BE7FC500539BC3 /* LessonAViewController.swift */; };
+		149B3F9221BE7FC500539BC3 /* LessonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149B3F9121BE7FC500539BC3 /* LessonViewController.swift */; };
 		14DC500B21E90C5B006EDC00 /* CustomSubLessonsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DC500A21E90C5B006EDC00 /* CustomSubLessonsCell.swift */; };
 		14EAE08521F0B39E0008B3EF /* LessonBViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14EAE08421F0B39E0008B3EF /* LessonBViewController.swift */; };
 		14EDED8D21F7C1A5005F5FFA /* default.realm in Resources */ = {isa = PBXBuildFile; fileRef = 14EDED8C21F7C1A5005F5FFA /* default.realm */; };
@@ -49,7 +49,7 @@
 		149B3F8421BE7DCC00539BC3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		149B3F8D21BE7F2700539BC3 /* LessonsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonsTableViewController.swift; sourceTree = "<group>"; };
 		149B3F8F21BE7F8000539BC3 /* SubLessonsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubLessonsTableViewController.swift; sourceTree = "<group>"; };
-		149B3F9121BE7FC500539BC3 /* LessonAViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonAViewController.swift; sourceTree = "<group>"; };
+		149B3F9121BE7FC500539BC3 /* LessonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonViewController.swift; sourceTree = "<group>"; };
 		14DC500A21E90C5B006EDC00 /* CustomSubLessonsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSubLessonsCell.swift; sourceTree = "<group>"; };
 		14EAE08421F0B39E0008B3EF /* LessonBViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonBViewController.swift; sourceTree = "<group>"; };
 		14EDED8C21F7C1A5005F5FFA /* default.realm */ = {isa = PBXFileReference; lastKnownFileType = file; path = default.realm; sourceTree = "<group>"; };
@@ -140,7 +140,7 @@
 				146F8E1F21DF9B76002215CB /* SettingsViewController.swift */,
 				149B3F8D21BE7F2700539BC3 /* LessonsTableViewController.swift */,
 				149B3F8F21BE7F8000539BC3 /* SubLessonsTableViewController.swift */,
-				149B3F9121BE7FC500539BC3 /* LessonAViewController.swift */,
+				149B3F9121BE7FC500539BC3 /* LessonViewController.swift */,
 				14EAE08421F0B39E0008B3EF /* LessonBViewController.swift */,
 			);
 			path = Controller;
@@ -316,7 +316,7 @@
 				1458E44621EA4885005AE25F /* DarkTheme.swift in Sources */,
 				147AE56A21EFF35F0075DEC9 /* CollectionOfLessons.swift in Sources */,
 				14DC500B21E90C5B006EDC00 /* CustomSubLessonsCell.swift in Sources */,
-				149B3F9221BE7FC500539BC3 /* LessonAViewController.swift in Sources */,
+				149B3F9221BE7FC500539BC3 /* LessonViewController.swift in Sources */,
 				14EAE08521F0B39E0008B3EF /* LessonBViewController.swift in Sources */,
 				149B3F8E21BE7F2700539BC3 /* LessonsTableViewController.swift in Sources */,
 				1458E44A21EA4A23005AE25F /* Theme.swift in Sources */,

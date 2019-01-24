@@ -152,14 +152,14 @@ extension LessonBViewController {
     
     private func setLessonBNavBar() {
         
-        navigationItem.title = "\(resultsBLesson[indexesBLesson[0]].subLessons[indexesBLesson[1]].subLessonsTitle)"
-        
-        let rightBtt = UIButton(type: .system)
-        rightBtt.isUserInteractionEnabled = false
-        rightBtt.tintColor = Theme.current.textColor
-        rightBtt.setTitle("\(indexesBLesson[2] + 1)/\(resultsBLesson[indexesBLesson[0]].subLessons.count)", for: .normal)
-        
-        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: rightBtt)
+//        navigationItem.title = "\(resultsBLesson[indexesBLesson[1]].subLessons[indexesBLesson[2]].subLessonsTitle)"
+//        
+//        let rightBtt = UIButton(type: .system)
+//        rightBtt.isUserInteractionEnabled = false
+//        rightBtt.tintColor = Theme.current.textColor
+//        rightBtt.setTitle("\(indexesBLesson[2] + 1)/\(resultsBLesson[indexesBLesson[1]].subLessons.count)", for: .normal)
+//        
+//        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: rightBtt)
         
        
         

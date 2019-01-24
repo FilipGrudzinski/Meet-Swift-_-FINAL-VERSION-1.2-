@@ -11,18 +11,23 @@ import RealmSwift
 
 
 
-class LessonAViewController: UIViewController, UITextViewDelegate {
+class LessonViewController: UIViewController, UITextViewDelegate {
     
     
     lazy var realm = try! Realm()
-    var resultsALesson: Results<LessonsData>!
-    var indexesALesson:[Int] = []
+    var resultsLesson: Results<LessonsData>!
+    var indexesLesson:[Int] = []
     
+  
     
     
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var exampleLabel: UILabel!
     @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var lessonBlabel: UILabel!
+    @IBOutlet weak var buttonALabel: UIButton!
+    @IBOutlet weak var buttonBLabel: UIButton!
+    @IBOutlet weak var buttonCLabel: UIButton!
     
     
     
@@ -32,12 +37,31 @@ class LessonAViewController: UIViewController, UITextViewDelegate {
         
         loadItems()
         applyTheme()
-        setLessonANavBar()
+        setLessonNavBar()
         createToolBar()
-        createToolBarAboveKeyboard()
+        
         textView.delegate = self
-        textView.text = "Type your thoughts here..."
-        textView.textColor = Theme.current.buttonColor
+        
+        
+        
+        if resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].typeOfTask == "A" {
+            
+            
+            textView.isHidden = false
+            
+            
+            
+            textView.text = "Enter your code here..."
+            textView.textColor = Theme.current.buttonColor
+            
+            createToolBarAboveKeyboard()
+            
+        } else {
+            
+            
+            
+        }
+        
         
     }
     
@@ -52,7 +76,7 @@ class LessonAViewController: UIViewController, UITextViewDelegate {
     
     private func loadItems() {
         
-        resultsALesson = realm.objects(LessonsData.self)
+        resultsLesson = realm.objects(LessonsData.self)
         
     }
     
@@ -80,7 +104,7 @@ class LessonAViewController: UIViewController, UITextViewDelegate {
         
         if textView.text.isEmpty || textView.text == "" {
             textView.textColor = Theme.current.buttonColor
-            textView.text = "Type your thoughts here..."
+            textView.text = "Enter your code here..."
         }
         
         
@@ -89,17 +113,17 @@ class LessonAViewController: UIViewController, UITextViewDelegate {
 }
 
 
-extension LessonAViewController {
+extension LessonViewController {
     
     
-    private func setLessonANavBar() {
+    private func setLessonNavBar() {
         
-        navigationItem.title = "\(resultsALesson[indexesALesson[0]].subLessons[indexesALesson[1]].subLessonsTitle)"
+        navigationItem.title = "\(resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].subLessonsTitle)"
         
         let rightBtt = UIButton(type: .system)
         rightBtt.isUserInteractionEnabled = false
         rightBtt.tintColor = Theme.current.textColor
-        rightBtt.setTitle("\(indexesALesson[2] + 1)/\(resultsALesson[indexesALesson[0]].subLessons.count)", for: .normal)
+        rightBtt.setTitle("\(indexesLesson[2] + 1)/\(resultsLesson[indexesLesson[1]].subLessons.count)", for: .normal)
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: rightBtt)
         
@@ -111,13 +135,9 @@ extension LessonAViewController {
         let toolBar = UIToolbar()
         
         var buttonsArray = [UIBarButtonItem]()
-        buttonsArray.append(
-            UIBarButtonItem(title: "Previous", style: .plain, target: self, action: #selector(previousButtonAction))
-        )
+     
         
-        buttonsArray.append(
-            UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
-        )
+      
         
         buttonsArray.append(
             UIBarButtonItem(title: "Hint", style: .plain, target: self, action: #selector(hintButtonAction))
@@ -206,23 +226,45 @@ extension LessonAViewController {
 
 
 
-extension LessonAViewController {
+extension LessonViewController {
+    
+    
+    @IBAction func buttonA(_ sender: Any) {
+    }
+    
+    @IBAction func buttonB(_ sender: Any) {
+    }
+    
+    @IBAction func buttonC(_ sender: Any) {
+    }
+    
+    
     
     @objc func previousButtonAction(sender: UIButton!) {
         print("Button previousButtonAction")
         
-        exampleLabel.text = "if fdfsdfd {\n fds \n} else \n{\nffdsfdsf\n}DUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaUPAdsaddaDUPAdsaddaDUDUPAdsaddaDUPAdsad"
+//        exampleLabel.text = "if fdfsdfd {\n fds \n} else \n{\nffdsfdsf\n}DUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaUPAdsaddaDUPAdsaddaDUDUPAdsaddaDUPAdsad"
+//
+//
+//        descriptionLabel.text = "DUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsadDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaD"
         
+      
         
-        descriptionLabel.text = "DUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsadDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaDUPAdsaddaD"
+            
         
     }
     
     
     @objc func hintButtonAction(sender: UIButton!) {
         
-        
+//        navigationController?.popViewController(animated: true)
+//
+//        dismiss(animated: true, completion: nil)
         print("Button hintButtonAction")
+        indexesLesson[2] += 1
+        //loadItems()
+        self.viewDidLoad()
+        
     }
     
     
@@ -230,7 +272,7 @@ extension LessonAViewController {
         print("Button checkButtonAction")
         
         try! realm.write {
-            resultsALesson[indexesALesson[0]].subLessons[indexesALesson[1]].userAnswer = textView.text
+            resultsLesson[indexesLesson[0]].subLessons[indexesLesson[1]].userAnswer = textView.text
         }
         
         textView.endEditing(true)
@@ -240,11 +282,13 @@ extension LessonAViewController {
         print("Button checkButtonAction")
         
         try! realm.write {
-            resultsALesson[indexesALesson[0]].subLessons[indexesALesson[1]].userAnswer = textView.text
+            resultsLesson[indexesLesson[0]].subLessons[indexesLesson[1]].userAnswer = textView.text
         }
         
         textView.endEditing(true)
     }
     
-    
+
+
+
 }
