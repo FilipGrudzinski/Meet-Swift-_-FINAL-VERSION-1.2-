@@ -82,20 +82,16 @@ class SubLessonsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-       
-            
-            performSegue(withIdentifier: "goToSubLesson", sender: self)
+            performSegue(withIdentifier: "goToLesson", sender: self)
             self.dismiss(animated: true, completion: nil)
-
     
-        
     }
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        if segue.identifier == "goToSubLesson" {
-            
+
+        if segue.identifier == "goToLesson" {
+
             let lessonAVC = segue.destination as! LessonViewController
             for n in indexesToSublessons { lessonAVC.indexesLesson.append(indexesToSublessons[n]) }
             lessonAVC.indexesLesson.append(self.tableView!.indexPathForSelectedRow!.row)
