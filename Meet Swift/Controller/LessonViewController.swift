@@ -20,6 +20,14 @@ class LessonViewController: UIViewController, UITextViewDelegate {
     
     
     
+    @IBOutlet weak var correctSubViewButton: UIButton!
+    @IBOutlet weak var correctSubViewLabel: UILabel!
+    @IBOutlet weak var correctSubView: UIView!
+    @IBOutlet weak var hintSubView: UIView!
+    @IBOutlet weak var hintLabel: UILabel!
+    @IBOutlet weak var hintButtonLabel: UIButton!
+    
+    
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var exampleLabel: UILabel!
     @IBOutlet weak var textView: UITextView!
@@ -27,6 +35,7 @@ class LessonViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var buttonALabel: UIButton!
     @IBOutlet weak var buttonBLabel: UIButton!
     @IBOutlet weak var buttonCLabel: UIButton!
+    @IBOutlet weak var exampleTitle: UILabel!
     
     
     
@@ -39,6 +48,8 @@ class LessonViewController: UIViewController, UITextViewDelegate {
         createToolBar()
         layoutLessonSetUp()
         textView.delegate = self
+        hintSubView.isHidden = false
+        correctSubView.isHidden = false
         
     }
     
@@ -58,7 +69,8 @@ class LessonViewController: UIViewController, UITextViewDelegate {
     }
     
     
-    
+   
+
     
 }
 
@@ -78,6 +90,11 @@ extension LessonViewController {
     @IBAction func buttonC(_ sender: Any) {
     }
     
+    @IBAction func correctSubViewButton(_ sender: Any) {
+    }
+    
+    @IBAction func hintButton(_ sender: Any) {
+    }
     
     
     @objc func previousButtonAction(sender: UIButton!) {
@@ -102,11 +119,16 @@ extension LessonViewController {
     
     @objc func hintButtonAction(sender: UIButton!) {
         print("Button hintButtonAction")
+        
+       
+        
     }
     
     
     @objc func checkButtonAction(sender: UIButton!) {
         print("Button checkButtonAction")
+        
+        
         
         try! realm.write {
             resultsLesson[indexesLesson[0]].subLessons[indexesLesson[1]].userAnswer = textView.text
@@ -127,11 +149,64 @@ extension LessonViewController {
     
     @objc func nextButtonAction(sender: UIButton!) {
         print("Button checkButtonAction")
-        
+        if resultsLesson[indexesLesson[0]].subLessons[indexesLesson[1]].completion == true {
+            
+            if indexesLesson[2] <= resultsLesson[indexesLesson[0]].subLessons.count  {
+                
+                indexesLesson[2] += 1
+                self.viewDidLoad()
+            }
+        } else {
+             Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(checkButtonAction), userInfo: nil, repeats: false)
+                print("Wrong")
+            let wrong:UILabel = {
+                let label = UILabel()
+                label.font = UIFont.boldSystemFont(ofSize: 14.0)
+                label.textColor = UIColor.white
+                // label.adjustsFontSizeToFitWidth = true
+                label.text = "Wrong answer maybe you need hint?"
+                label.textAlignment = .center
+                label.backgroundColor = UIColor.red.withAlphaComponent(0.2)
+                label.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 30)
+                return label
+            }()
+            
+            
+            self.view.addSubview(wrong)
+            
+            
+           
+            
+        }
       
     }
     
     
+    private func showWrongAnswer() {
+        
+        let wrong:UILabel = {
+            let label = UILabel()
+            label.font = UIFont.boldSystemFont(ofSize: 14.0)
+            label.textColor = UIColor.white
+            // label.adjustsFontSizeToFitWidth = true
+            label.text = "Wrong answer maybe you need hint?"
+            label.textAlignment = .center
+            label.backgroundColor = UIColor.red.withAlphaComponent(0.2)
+            label.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 30)
+            return label
+        }()
+        
+        
+        self.view.addSubview(wrong)
+        
+    }
     
+  
+    
+    private func showHintCorrectSubView(sender: AnyObject) {
+        
+        
+        
+    }
     
 }

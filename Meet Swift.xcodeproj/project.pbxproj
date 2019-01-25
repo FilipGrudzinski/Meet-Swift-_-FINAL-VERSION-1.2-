@@ -25,6 +25,7 @@
 		149B3F8E21BE7F2700539BC3 /* LessonsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149B3F8D21BE7F2700539BC3 /* LessonsTableViewController.swift */; };
 		149B3F9021BE7F8000539BC3 /* SubLessonsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149B3F8F21BE7F8000539BC3 /* SubLessonsTableViewController.swift */; };
 		149B3F9221BE7FC500539BC3 /* LessonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149B3F9121BE7FC500539BC3 /* LessonViewController.swift */; };
+		14A9203921FB91FD0045F8D2 /* Lesson.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14A9203821FB91FC0045F8D2 /* Lesson.storyboard */; };
 		14DC500B21E90C5B006EDC00 /* CustomSubLessonsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DC500A21E90C5B006EDC00 /* CustomSubLessonsCell.swift */; };
 		14EDED8D21F7C1A5005F5FFA /* default.realm in Resources */ = {isa = PBXBuildFile; fileRef = 14EDED8C21F7C1A5005F5FFA /* default.realm */; };
 		515C6557D7745EBD1C032B16 /* Pods_Meet_Swift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B572BF09DFF4C3EE4290E578 /* Pods_Meet_Swift.framework */; };
@@ -51,6 +52,7 @@
 		149B3F8D21BE7F2700539BC3 /* LessonsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonsTableViewController.swift; sourceTree = "<group>"; };
 		149B3F8F21BE7F8000539BC3 /* SubLessonsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubLessonsTableViewController.swift; sourceTree = "<group>"; };
 		149B3F9121BE7FC500539BC3 /* LessonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonViewController.swift; sourceTree = "<group>"; };
+		14A9203821FB91FC0045F8D2 /* Lesson.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Lesson.storyboard; sourceTree = "<group>"; };
 		14DC500A21E90C5B006EDC00 /* CustomSubLessonsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSubLessonsCell.swift; sourceTree = "<group>"; };
 		14EDED8C21F7C1A5005F5FFA /* default.realm */ = {isa = PBXFileReference; lastKnownFileType = file; path = default.realm; sourceTree = "<group>"; };
 		327FCC0BF6494264725D6F7F /* Pods-Meet Swift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Meet Swift.release.xcconfig"; path = "Pods/Target Support Files/Pods-Meet Swift/Pods-Meet Swift.release.xcconfig"; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				149B3F7C21BE7DCA00539BC3 /* Main.storyboard */,
+				14A9203821FB91FC0045F8D2 /* Lesson.storyboard */,
 				14FE5FBC21E6A2C0007E877F /* Cell */,
 				1458E44221EA4780005AE25F /* Theme */,
 			);
@@ -245,6 +248,7 @@
 				14EDED8D21F7C1A5005F5FFA /* default.realm in Resources */,
 				147ED44A21F3ED9E00A87CB4 /* Assets.xcassets in Resources */,
 				149B3F7E21BE7DCA00539BC3 /* Main.storyboard in Resources */,
+				14A9203921FB91FD0045F8D2 /* Lesson.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

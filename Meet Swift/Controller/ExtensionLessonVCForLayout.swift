@@ -45,6 +45,7 @@ extension LessonViewController {
         buttonBLabel.backgroundColor = Theme.current.buttonColor
         buttonALabel.backgroundColor = Theme.current.buttonColor
         
+        
     }
     
     
@@ -57,7 +58,6 @@ extension LessonViewController {
             buttonCLabel.isHidden = true
             textView.isHidden = false
             lessonTaskBLabel.isHidden = true
-            descriptionLabel.isHidden = false
             
             if (resultsLesson[indexesLesson[0]].subLessons[indexesLesson[1]].userAnswer)?.trimmingCharacters(in: .whitespacesAndNewlines) != ""  {
                 textView.text = resultsLesson[indexesLesson[0]].subLessons[indexesLesson[1]].userAnswer
@@ -76,13 +76,15 @@ extension LessonViewController {
             buttonCLabel.isHidden = false
             textView.isHidden = true
             lessonTaskBLabel.isHidden = false
-            descriptionLabel.isHidden = true
+            exampleLabel.isHidden = true
+            exampleTitle.isHidden = true
             buttonALabel.layer.cornerRadius = 6
             buttonBLabel.layer.cornerRadius = 6
             buttonCLabel.layer.cornerRadius = 6
             buttonALabel.layer.masksToBounds = true
             buttonBLabel.layer.masksToBounds = true
             buttonCLabel.layer.masksToBounds = true
+            
             
         }
         
@@ -135,14 +137,13 @@ extension LessonViewController {
         buttonsArray.append( UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil) )
         
         buttonsArray.append(
-            UIBarButtonItem(title: "Next", style: .plain, target: self, action: #selector(checkButtonAction))
+            UIBarButtonItem(title: "Next", style: .plain, target: self, action: #selector(nextButtonAction))
             
         )
         
         toolBar.setItems(buttonsArray, animated: true)
         toolBar.tintColor = Theme.current.buttonColor
         toolBar.barTintColor = Theme.current.navigationColor
-        toolBar.setShadowImage(UIImage(), forToolbarPosition: .bottom)
         
         view.addSubview(toolBar)
         
