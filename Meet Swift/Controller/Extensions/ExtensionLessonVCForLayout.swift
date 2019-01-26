@@ -64,6 +64,7 @@ extension LessonViewController {
         correctSubView.isHidden = true
         incorectSubView.isHidden = true
         
+        
         if resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].typeOfTask == "A" {
             
             buttonALabel.isHidden = true
@@ -97,6 +98,9 @@ extension LessonViewController {
             buttonALabel.layer.masksToBounds = true
             buttonBLabel.layer.masksToBounds = true
             buttonCLabel.layer.masksToBounds = true
+            buttonALabel.isEnabled = true
+            buttonBLabel.isEnabled = true
+            buttonCLabel.isEnabled = true
             
         }
         

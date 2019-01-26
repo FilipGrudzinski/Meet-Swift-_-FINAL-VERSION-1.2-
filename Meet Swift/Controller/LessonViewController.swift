@@ -52,6 +52,7 @@ class LessonViewController: UIViewController, UITextViewDelegate {
         setLessonNavBar()
         createToolBar()
         layoutLessonSetUp()
+      
         textView.delegate = self
         
         
