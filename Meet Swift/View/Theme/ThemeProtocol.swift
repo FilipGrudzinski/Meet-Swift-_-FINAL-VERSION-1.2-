@@ -23,5 +23,6 @@ protocol ThemeProtocol {
     var headerBackgroundColor: UIColor { get }
     var progressTintColor: UIColor { get }
     var pressedSectionButton: UIColor { get }
+   
     
 }

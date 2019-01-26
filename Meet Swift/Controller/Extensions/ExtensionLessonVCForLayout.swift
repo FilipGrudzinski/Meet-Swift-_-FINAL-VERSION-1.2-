@@ -72,8 +72,8 @@ extension LessonViewController {
             textView.isHidden = false
             lessonTaskBLabel.isHidden = true
             
-            if (resultsLesson[indexesLesson[0]].subLessons[indexesLesson[1]].userAnswer)?.trimmingCharacters(in: .whitespacesAndNewlines) != ""  {
-                textView.text = resultsLesson[indexesLesson[0]].subLessons[indexesLesson[1]].userAnswer
+            if (resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].userAnswer)?.trimmingCharacters(in: .whitespacesAndNewlines) != ""  {
+                textView.text = resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].userAnswer
             } else {
                 textView.text = "Enter your code here..."
             }
@@ -105,9 +105,9 @@ extension LessonViewController {
     
     func textViewDidBeginEditing (_ textView: UITextView) {
         
-        if resultsLesson[indexesLesson[0]].subLessons[indexesLesson[1]].userAnswer != ""  {
+        if resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].userAnswer != ""  {
             
-            textView.text = resultsLesson[indexesLesson[0]].subLessons[indexesLesson[1]].userAnswer
+            textView.text = resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].userAnswer
             
         } else  if textView.textColor == Theme.current.buttonColor && textView.isFirstResponder {
             textView.text = nil

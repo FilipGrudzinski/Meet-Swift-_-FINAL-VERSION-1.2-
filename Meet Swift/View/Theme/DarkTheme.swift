@@ -8,7 +8,9 @@
 
 import UIKit
 
+
 class DarkTheme: ThemeProtocol {
+    
     
     var viewControllerBackgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
     var navigationColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1) //#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
@@ -21,4 +23,6 @@ class DarkTheme: ThemeProtocol {
     var headerBackgroundColor = #colorLiteral(red: 0.0505625, green: 0.0505625, blue: 0.0505625, alpha: 1)  //#colorLiteral(red: 0.08537990196, green: 0.08537990196, blue: 0.08537990196, alpha: 1) //#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
     var progressTintColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
     var pressedSectionButton = #colorLiteral(red: 1, green: 0.5781051517, blue: 0, alpha: 0.5)
+    
+    
 }

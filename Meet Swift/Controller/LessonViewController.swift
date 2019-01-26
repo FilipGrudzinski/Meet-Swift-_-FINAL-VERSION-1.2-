@@ -18,7 +18,11 @@ class LessonViewController: UIViewController, UITextViewDelegate {
     var resultsLesson: Results<LessonsData>!
     var indexesLesson:[Int] = []
     
+    var stuckTimer = Timer()
+    var seconds: Int = 60
     
+    
+    // MARK: - IBOutlets
     
     @IBOutlet weak var correctSubViewButton: UIButton!
     @IBOutlet weak var correctSubViewLabel: UILabel!
@@ -29,10 +33,6 @@ class LessonViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var incorectSubView: UIView!
     @IBOutlet weak var incorectSubViewLabel: UILabel!
     @IBOutlet weak var incorectSubViewSubViewButtonLabel: UIButton!
-    
-    
-    
-    
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var exampleLabel: UILabel!
     @IBOutlet weak var textView: UITextView!
@@ -53,9 +53,9 @@ class LessonViewController: UIViewController, UITextViewDelegate {
         createToolBar()
         layoutLessonSetUp()
         textView.delegate = self
-     
         
-        Timer.scheduledTimer(timeInterval: 30.0, target: self, selector: #selector(showIncorectSubView) , userInfo: nil, repeats: false)
+        
+        stuckTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(stuckTimerStage) , userInfo: nil, repeats: true)
         
     }
     
@@ -67,58 +67,67 @@ class LessonViewController: UIViewController, UITextViewDelegate {
     
     // MARK: - LoadRealm function
     
-    
     private func loadItems() {
         
         resultsLesson = realm.objects(LessonsData.self)
         
     }
     
-}
 
 
-// MARK: - Extension with Buttons
+
+// MARK: - IBACtions
 
 
-extension LessonViewController {
     
-    
-    @IBAction func buttonA(_ sender: Any) {
-    }
-    
-    @IBAction func buttonB(_ sender: Any) {
-    }
-    
-    @IBAction func buttonC(_ sender: Any) {
+    @IBAction func buttonA(_ sender: UIButton!) {
+        if let buttonCurrentTitle = sender.currentTitle { checkBTypeLessonAnswer(buttonCurrentTitle) }
     }
     
     
-    @IBAction func icorectSubViewButton(_ sender: Any) {
+    @IBAction func buttonB(_ sender: UIButton!) {
+        if let buttonCurrentTitle = sender.currentTitle { checkBTypeLessonAnswer(buttonCurrentTitle)  }
+    }
+    
+    
+    @IBAction func buttonC(_ sender: UIButton!) {
+        if let buttonCurrentTitle = sender.currentTitle { checkBTypeLessonAnswer(buttonCurrentTitle) }
+    }
+    
+    
+    @IBAction func incorectSubViewButton(_ sender: UIButton!) {
         showHintSubView()
     }
     
     
-    
-    @IBAction func correctSubVIewButton(_ sender: Any) {
+    @IBAction func correctSubVIewButton(_ sender: UIButton!) {
         
-        if resultsLesson[indexesLesson[0]].subLessons[indexesLesson[1]].completion == true {
+        
+        if resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].completion == true {
             
-            if indexesLesson[2] <= resultsLesson[indexesLesson[0]].subLessons.count  {
+            if indexesLesson[2] < resultsLesson[indexesLesson[1]].subLessons.count - 1  {
                 
                 indexesLesson[2] += 1
                 self.viewDidLoad()
+                
+            } else if indexesLesson[2] == resultsLesson[indexesLesson[1]].subLessons.count - 1 {
+                
+                
+                navigationController?.popViewController(animated: true)
+                
+                dismiss(animated: true, completion: nil)
+                
+                
             }
         }
     }
     
     
-    
-    @IBAction func hintSubViewButton(_ sender: Any) {
+    @IBAction func hintSubViewButton(_ sender: UIButton!) {
         print("Button hintButtonAction from Hintview")
         backToOryginalStage()
         
     }
-    
     
     
     @objc func previousButtonAction(sender: UIButton!) {
@@ -148,40 +157,20 @@ extension LessonViewController {
         print("Button checkButtonAction")
         
         try! realm.write {
-            resultsLesson[indexesLesson[0]].subLessons[indexesLesson[1]].userAnswer = textView.text
+            resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].userAnswer = textView.text
             
         }
         
-        if resultsLesson[indexesLesson[0]].subLessons[indexesLesson[1]].userAnswer ==  resultsLesson[indexesLesson[0]].subLessons[indexesLesson[1]].lessonCorrectAnswer {
+        if resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].userAnswer ==  resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].lessonCorrectAnswer {
             
-            correctSubView.alpha = 0
-            UIView.animate(withDuration: 0.6, animations: {
-                self.correctSubView.isHidden = false
-                self.correctSubViewLabel.text = "Correct Answer Go To Next Lesson"
-                self.hintSubView.isHidden = true
-                self.incorectSubView.isHidden = true
-                self.correctSubView.alpha = 1
-            })
             textView.endEditing(true)
-           
-            try! realm.write {
-                resultsLesson[indexesLesson[0]].subLessons[indexesLesson[1]].completion = true
-                
-            }
+            
+            completionRealmSaveAndShowCorrectSubView()
             
         } else  {
             
-            incorectSubView.alpha = 0
-            UIView.animate(withDuration: 0.6, animations: {
-                
-                self.incorectSubViewLabel.text = "Wrong Answer maybe you need Hint? -> "
-                self.hintSubView.isHidden = true
-                self.incorectSubView.isHidden = false
-                self.incorectSubView.alpha = 1
-                
-            })
+            showIncorectSubView()
             
-            Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(backToOryginalStage) , userInfo: nil, repeats: false)
         }
         
     }
@@ -191,72 +180,53 @@ extension LessonViewController {
         print("Button checkButtonAction")
         
         try! realm.write {
-            resultsLesson[indexesLesson[0]].subLessons[indexesLesson[1]].userAnswer = textView.text
+            resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].userAnswer = textView.text
         }
         
         textView.endEditing(true)
     }
     
     
-    @objc private func showIncorectSubView() {
+    
+    // MARK - Usable Functions
+    
+    private func checkBTypeLessonAnswer(_ buttonTitle: String) {
         
-        incorectSubView.alpha = 0
-        UIView.animate(withDuration: 0.6, animations: {
+        
+        if buttonTitle == resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].lessonCorrectAnswer {
             
-            self.incorectSubViewLabel.text = "Stuck? Maybe Need Help"
-            self.incorectSubView.isHidden = false
-            self.incorectSubView.alpha = 1
+            completionRealmSaveAndShowCorrectSubView()
             
-        })
-        
-        Timer.scheduledTimer(timeInterval: 10.0, target: self, selector: #selector(backToOryginalStage) , userInfo: nil, repeats: false)
-        
+        } else {
+            
+            showIncorectSubView()
+            
+        }
     }
     
     
     
-    private func showHintSubView() {
+    private func completionRealmSaveAndShowCorrectSubView() {
         
+        try! realm.write {
+            resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].completion = true
+        }
         
-        hintSubView.alpha = 0
+        correctSubView.alpha = 0
         UIView.animate(withDuration: 0.6, animations: {
-            self.hintSubView.isHidden = false
-            self.hintSubView.alpha = 1
-            self.hintSubViewLabel.text = "Przykładowy tekst podpowiedzi"
-            //self.hintSubViewLabel.text = resultsLesson[indexesLesson[0]].subLessons[indexesLesson[1]].lessonHint
-            self.incorectSubView.isHidden = true
-            self.correctSubView.isHidden = true
-            self.descriptionLabel.isHidden = true
-            
-        })
-        
-        Timer.scheduledTimer(timeInterval: 20.0, target: self, selector: #selector(backToOryginalStage) , userInfo: nil, repeats: false)
-    }
-    
-    
-    
-    @objc private func backToOryginalStage() {
-        
-        hintSubView.alpha = 1
-        correctSubView.alpha = 1
-        incorectSubView.alpha = 1
-        UIView.animate(withDuration: 0.6, animations: {
+            self.correctSubView.isHidden = false
+            self.correctSubViewLabel.text = "Correct Answer Go To Next Lesson"
             self.hintSubView.isHidden = true
-            self.correctSubView.isHidden = true
             self.incorectSubView.isHidden = true
-            self.descriptionLabel.isHidden = false
-            self.hintSubView.alpha = 0
-            self.correctSubView.alpha = 0
-            self.incorectSubView.alpha = 0
+            self.correctSubView.alpha = 1
         })
-        
-        
-    }
- 
-    private func checkBTypeLessonAnswer() {
-        
+        buttonALabel.isEnabled = false
+        buttonBLabel.isEnabled = false
+        buttonCLabel.isEnabled = false
+        stuckTimer.invalidate()
         
     }
-    
     
 }
+
+

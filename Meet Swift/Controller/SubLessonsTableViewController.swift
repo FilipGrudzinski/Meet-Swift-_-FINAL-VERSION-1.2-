@@ -82,9 +82,12 @@ class SubLessonsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        let type = resultsSubLessons[indexesToSublessons[0]].lessons[indexesToSublessons[1]].subLessons[indexPath.row].typeOfTask
+        
+        if type == "A" || type == "B" {
             performSegue(withIdentifier: "goToLesson", sender: self)
             self.dismiss(animated: true, completion: nil)
-    
+        }
     }
     
     

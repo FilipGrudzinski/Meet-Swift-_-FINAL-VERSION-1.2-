@@ -130,7 +130,7 @@
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal" title="Hint"/>
                                         <connections>
-                                            <action selector="icorectSubViewButton:" destination="zNG-Pn-fPl" eventType="touchUpInside" id="vot-cG-3BG"/>
+                                            <action selector="incorectSubViewButton:" destination="zNG-Pn-fPl" eventType="touchUpInside" id="uzD-BH-gBk"/>
                                         </connections>
                                     </button>
                                 </subviews>
