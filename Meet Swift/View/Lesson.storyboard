@@ -91,15 +91,16 @@
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Labeldsdsdsadasdasd" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KxW-ST-idx">
                                         <rect key="frame" x="16" y="2" width="281" height="76"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LL5-6h-M9E">
-                                        <rect key="frame" x="313" y="16" width="46" height="48"/>
-                                        <state key="normal" title="Button"/>
+                                        <rect key="frame" x="321" y="16" width="38" height="48"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" title="Done"/>
                                         <connections>
-                                            <action selector="correctSubViewButton:" destination="zNG-Pn-fPl" eventType="touchUpInside" id="nrh-Ya-yiR"/>
+                                            <action selector="hintSubViewButton:" destination="zNG-Pn-fPl" eventType="touchUpInside" id="XXm-wf-ko2"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -120,20 +121,20 @@
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Labeldsdsdsadasdasd" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EhE-ru-PD5" userLabel="incorect Label">
                                         <rect key="frame" x="2" y="2" width="295" height="38"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t54-Xg-lBU" userLabel="incorect Button Label">
-                                        <rect key="frame" x="329" y="2" width="30" height="38"/>
+                                        <rect key="frame" x="328" y="2" width="31" height="38"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal" title="Hint"/>
                                         <connections>
-                                            <action selector="correctSubViewButton:" destination="zNG-Pn-fPl" eventType="touchUpInside" id="rhj-po-JmW"/>
-                                            <action selector="hintButton:" destination="zNG-Pn-fPl" eventType="touchUpInside" id="wyV-ZW-4Nq"/>
+                                            <action selector="icorectSubViewButton:" destination="zNG-Pn-fPl" eventType="touchUpInside" id="vot-cG-3BG"/>
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="1" green="0.086368372369374447" blue="0.0012617263239623755" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="1" green="0.086368372369374447" blue="0.0012617263239623755" alpha="0.90000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="t54-Xg-lBU" firstAttribute="top" secondItem="u6d-NB-YvT" secondAttribute="top" constant="2" id="C4S-qt-Fdc"/>
                                     <constraint firstItem="EhE-ru-PD5" firstAttribute="leading" secondItem="u6d-NB-YvT" secondAttribute="leading" constant="2" id="EWX-Ta-oSB"/>
@@ -152,25 +153,25 @@
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Labeldsdsdsadasdasd" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nKd-Oi-Ebf" userLabel="correctLabel">
                                         <rect key="frame" x="2" y="2" width="295" height="38"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lgC-41-NDy" userLabel="correctButton">
-                                        <rect key="frame" x="341" y="2" width="32" height="38"/>
+                                        <rect key="frame" x="324" y="2" width="35" height="38"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal" title="Next"/>
                                         <connections>
-                                            <action selector="correctSubViewButton:" destination="zNG-Pn-fPl" eventType="touchUpInside" id="Wpj-vO-qyQ"/>
-                                            <action selector="hintButton:" destination="zNG-Pn-fPl" eventType="touchUpInside" id="2Di-ld-ugL"/>
+                                            <action selector="correctSubVIewButton:" destination="zNG-Pn-fPl" eventType="touchUpInside" id="4f5-La-Biy"/>
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.098314466281121449" green="0.45350000000000001" blue="0.097065862995891164" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.17349240981711758" green="0.80895833333333333" blue="0.17329789103514931" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="nKd-Oi-Ebf" firstAttribute="leading" secondItem="EZa-L1-Iua" secondAttribute="leading" constant="2" id="0SN-wk-flh"/>
                                     <constraint firstAttribute="trailing" secondItem="nKd-Oi-Ebf" secondAttribute="trailing" constant="78" id="3F3-TO-JLy"/>
                                     <constraint firstAttribute="bottom" secondItem="nKd-Oi-Ebf" secondAttribute="bottom" constant="2" id="C2d-fB-Cat"/>
-                                    <constraint firstAttribute="trailing" secondItem="lgC-41-NDy" secondAttribute="trailing" constant="2" id="MTz-8k-Vqe"/>
+                                    <constraint firstAttribute="trailing" secondItem="lgC-41-NDy" secondAttribute="trailing" constant="16" id="MTz-8k-Vqe"/>
                                     <constraint firstAttribute="bottom" secondItem="lgC-41-NDy" secondAttribute="bottom" constant="2" id="hPz-eN-vkn"/>
                                     <constraint firstAttribute="height" constant="42" id="i10-Ua-tRT"/>
                                     <constraint firstItem="lgC-41-NDy" firstAttribute="top" secondItem="EZa-L1-Iua" secondAttribute="top" constant="2" id="kN0-Gc-W6y"/>
@@ -219,15 +220,18 @@
                         <outlet property="buttonALabel" destination="k2P-uz-Gnr" id="VHy-LO-hQ9"/>
                         <outlet property="buttonBLabel" destination="87u-dA-Owh" id="glv-qt-NDa"/>
                         <outlet property="buttonCLabel" destination="1m0-aJ-XEF" id="MqC-Ej-haS"/>
-                        <outlet property="correctSubView" destination="GQ6-2h-xFb" id="6Ru-Vf-dDt"/>
-                        <outlet property="correctSubViewButton" destination="LL5-6h-M9E" id="z22-Sz-fzX"/>
-                        <outlet property="correctSubViewLabel" destination="KxW-ST-idx" id="Xlc-XA-Yow"/>
+                        <outlet property="correctSubView" destination="EZa-L1-Iua" id="E7A-zJ-g9n"/>
+                        <outlet property="correctSubViewButton" destination="lgC-41-NDy" id="6V1-HS-N9l"/>
+                        <outlet property="correctSubViewLabel" destination="nKd-Oi-Ebf" id="tyH-Ts-9nt"/>
                         <outlet property="descriptionLabel" destination="y2H-2c-A6U" id="Vu4-6O-h7A"/>
                         <outlet property="exampleLabel" destination="NSV-dj-fcF" id="L3Y-Bo-fSr"/>
                         <outlet property="exampleTitle" destination="lxt-Um-Q2d" id="2Lf-iV-Aww"/>
-                        <outlet property="hintButtonLabel" destination="t54-Xg-lBU" id="Fm0-Vo-UKB"/>
-                        <outlet property="hintLabel" destination="EhE-ru-PD5" id="eGx-vf-DPQ"/>
-                        <outlet property="hintSubView" destination="u6d-NB-YvT" id="35A-Wf-5ox"/>
+                        <outlet property="hintSubView" destination="GQ6-2h-xFb" id="4Gz-yz-yE2"/>
+                        <outlet property="hintSubViewButtonLabel" destination="LL5-6h-M9E" id="HZr-fh-RL8"/>
+                        <outlet property="hintSubViewLabel" destination="KxW-ST-idx" id="Fff-hu-LyV"/>
+                        <outlet property="incorectSubView" destination="u6d-NB-YvT" id="NHy-F1-gNw"/>
+                        <outlet property="incorectSubViewLabel" destination="EhE-ru-PD5" id="WGw-yO-MVR"/>
+                        <outlet property="incorectSubViewSubViewButtonLabel" destination="t54-Xg-lBU" id="uG0-Ni-urS"/>
                         <outlet property="lessonTaskBLabel" destination="GLE-ij-3jx" id="3na-RJ-m5i"/>
                         <outlet property="textView" destination="wCC-4q-csU" id="Whv-jv-9kY"/>
                     </connections>

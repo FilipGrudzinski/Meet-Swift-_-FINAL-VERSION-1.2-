@@ -36,7 +36,7 @@ extension LessonViewController {
         descriptionLabel.textColor = Theme.current.textColor
         exampleLabel.textColor = Theme.current.textColor
         textView.backgroundColor = Theme.current.selectedRow
-        lessonTaskBLabel.backgroundColor = Theme.current.selectedRow
+        lessonTaskBLabel.backgroundColor = Theme.current.viewControllerBackgroundColor
         lessonTaskBLabel.textColor = Theme.current.textColor
         buttonCLabel.tintColor = Theme.current.viewControllerBackgroundColor
         buttonBLabel.tintColor = Theme.current.viewControllerBackgroundColor
@@ -46,10 +46,23 @@ extension LessonViewController {
         buttonALabel.backgroundColor = Theme.current.buttonColor
         
         
+        hintSubViewButtonLabel.tintColor = Theme.current.buttonColor
+        hintSubViewLabel.textColor = Theme.current.textColor
+        
+        correctSubViewLabel.textColor = Theme.current.textColor
+        correctSubViewButton.tintColor = Theme.current.buttonColor
+        
+        incorectSubViewLabel.textColor = Theme.current.textColor
+        incorectSubViewSubViewButtonLabel.tintColor = Theme.current.buttonColor
+        
     }
     
     
     func layoutLessonSetUp() {
+        
+        hintSubView.isHidden = true
+        correctSubView.isHidden = true
+        incorectSubView.isHidden = true
         
         if resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].typeOfTask == "A" {
             
@@ -85,14 +98,18 @@ extension LessonViewController {
             buttonBLabel.layer.masksToBounds = true
             buttonCLabel.layer.masksToBounds = true
             
-            
         }
         
     }
     
     
     func textViewDidBeginEditing (_ textView: UITextView) {
-        if textView.textColor == Theme.current.buttonColor && textView.isFirstResponder {
+        
+        if resultsLesson[indexesLesson[0]].subLessons[indexesLesson[1]].userAnswer != ""  {
+            
+            textView.text = resultsLesson[indexesLesson[0]].subLessons[indexesLesson[1]].userAnswer
+            
+        } else  if textView.textColor == Theme.current.buttonColor && textView.isFirstResponder {
             textView.text = nil
             textView.textColor = Theme.current.textColor
         }
@@ -128,18 +145,16 @@ extension LessonViewController {
             
         )
         
-        buttonsArray.append( UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil) )
-        
-        buttonsArray.append(
-            UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.play, target: self, action: #selector(checkButtonAction))
-        )
+        if resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].typeOfTask == "A" {
         
         buttonsArray.append( UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil) )
         
-        buttonsArray.append(
-            UIBarButtonItem(title: "Next", style: .plain, target: self, action: #selector(nextButtonAction))
-            
-        )
+        
+            buttonsArray.append(
+                UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.play, target: self, action: #selector(checkButtonAction))
+            )
+        }
+      
         
         toolBar.setItems(buttonsArray, animated: true)
         toolBar.tintColor = Theme.current.buttonColor
@@ -196,7 +211,7 @@ extension LessonViewController {
         
         toolBar.setItems(buttonsArray, animated: true)
         
-        
+        toolBar.barTintColor = Theme.current.viewControllerBackgroundColor
         textView.inputAccessoryView = toolBar
         
         

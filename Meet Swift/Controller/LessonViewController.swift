@@ -24,8 +24,13 @@ class LessonViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var correctSubViewLabel: UILabel!
     @IBOutlet weak var correctSubView: UIView!
     @IBOutlet weak var hintSubView: UIView!
-    @IBOutlet weak var hintLabel: UILabel!
-    @IBOutlet weak var hintButtonLabel: UIButton!
+    @IBOutlet weak var hintSubViewLabel: UILabel!
+    @IBOutlet weak var hintSubViewButtonLabel: UIButton!
+    @IBOutlet weak var incorectSubView: UIView!
+    @IBOutlet weak var incorectSubViewLabel: UILabel!
+    @IBOutlet weak var incorectSubViewSubViewButtonLabel: UIButton!
+    
+    
     
     
     @IBOutlet weak var descriptionLabel: UILabel!
@@ -48,8 +53,9 @@ class LessonViewController: UIViewController, UITextViewDelegate {
         createToolBar()
         layoutLessonSetUp()
         textView.delegate = self
-        hintSubView.isHidden = false
-        correctSubView.isHidden = false
+     
+        
+        Timer.scheduledTimer(timeInterval: 30.0, target: self, selector: #selector(showIncorectSubView) , userInfo: nil, repeats: false)
         
     }
     
@@ -67,10 +73,6 @@ class LessonViewController: UIViewController, UITextViewDelegate {
         resultsLesson = realm.objects(LessonsData.self)
         
     }
-    
-    
-   
-
     
 }
 
@@ -90,11 +92,33 @@ extension LessonViewController {
     @IBAction func buttonC(_ sender: Any) {
     }
     
-    @IBAction func correctSubViewButton(_ sender: Any) {
+    
+    @IBAction func icorectSubViewButton(_ sender: Any) {
+        showHintSubView()
     }
     
-    @IBAction func hintButton(_ sender: Any) {
+    
+    
+    @IBAction func correctSubVIewButton(_ sender: Any) {
+        
+        if resultsLesson[indexesLesson[0]].subLessons[indexesLesson[1]].completion == true {
+            
+            if indexesLesson[2] <= resultsLesson[indexesLesson[0]].subLessons.count  {
+                
+                indexesLesson[2] += 1
+                self.viewDidLoad()
+            }
+        }
     }
+    
+    
+    
+    @IBAction func hintSubViewButton(_ sender: Any) {
+        print("Button hintButtonAction from Hintview")
+        backToOryginalStage()
+        
+    }
+    
     
     
     @objc func previousButtonAction(sender: UIButton!) {
@@ -111,31 +135,57 @@ extension LessonViewController {
             dismiss(animated: true, completion: nil)
         }
         
-        
-        
-        
     }
     
     
     @objc func hintButtonAction(sender: UIButton!) {
-        print("Button hintButtonAction")
-        
-       
-        
+        print("Button hintButtonAction from toolbar")
+        showHintSubView()
     }
     
     
     @objc func checkButtonAction(sender: UIButton!) {
         print("Button checkButtonAction")
         
-        
-        
         try! realm.write {
             resultsLesson[indexesLesson[0]].subLessons[indexesLesson[1]].userAnswer = textView.text
+            
         }
         
-        textView.endEditing(true)
+        if resultsLesson[indexesLesson[0]].subLessons[indexesLesson[1]].userAnswer ==  resultsLesson[indexesLesson[0]].subLessons[indexesLesson[1]].lessonCorrectAnswer {
+            
+            correctSubView.alpha = 0
+            UIView.animate(withDuration: 0.6, animations: {
+                self.correctSubView.isHidden = false
+                self.correctSubViewLabel.text = "Correct Answer Go To Next Lesson"
+                self.hintSubView.isHidden = true
+                self.incorectSubView.isHidden = true
+                self.correctSubView.alpha = 1
+            })
+            textView.endEditing(true)
+           
+            try! realm.write {
+                resultsLesson[indexesLesson[0]].subLessons[indexesLesson[1]].completion = true
+                
+            }
+            
+        } else  {
+            
+            incorectSubView.alpha = 0
+            UIView.animate(withDuration: 0.6, animations: {
+                
+                self.incorectSubViewLabel.text = "Wrong Answer maybe you need Hint? -> "
+                self.hintSubView.isHidden = true
+                self.incorectSubView.isHidden = false
+                self.incorectSubView.alpha = 1
+                
+            })
+            
+            Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(backToOryginalStage) , userInfo: nil, repeats: false)
+        }
+        
     }
+    
     
     @objc func doneButtonAction(sender: UIButton!) {
         print("Button checkButtonAction")
@@ -147,66 +197,66 @@ extension LessonViewController {
         textView.endEditing(true)
     }
     
-    @objc func nextButtonAction(sender: UIButton!) {
-        print("Button checkButtonAction")
-        if resultsLesson[indexesLesson[0]].subLessons[indexesLesson[1]].completion == true {
+    
+    @objc private func showIncorectSubView() {
+        
+        incorectSubView.alpha = 0
+        UIView.animate(withDuration: 0.6, animations: {
             
-            if indexesLesson[2] <= resultsLesson[indexesLesson[0]].subLessons.count  {
-                
-                indexesLesson[2] += 1
-                self.viewDidLoad()
-            }
-        } else {
-             Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(checkButtonAction), userInfo: nil, repeats: false)
-                print("Wrong")
-            let wrong:UILabel = {
-                let label = UILabel()
-                label.font = UIFont.boldSystemFont(ofSize: 14.0)
-                label.textColor = UIColor.white
-                // label.adjustsFontSizeToFitWidth = true
-                label.text = "Wrong answer maybe you need hint?"
-                label.textAlignment = .center
-                label.backgroundColor = UIColor.red.withAlphaComponent(0.2)
-                label.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 30)
-                return label
-            }()
+            self.incorectSubViewLabel.text = "Stuck? Maybe Need Help"
+            self.incorectSubView.isHidden = false
+            self.incorectSubView.alpha = 1
             
-            
-            self.view.addSubview(wrong)
-            
-            
-           
-            
-        }
-      
+        })
+        
+        Timer.scheduledTimer(timeInterval: 10.0, target: self, selector: #selector(backToOryginalStage) , userInfo: nil, repeats: false)
+        
     }
     
     
-    private func showWrongAnswer() {
-        
-        let wrong:UILabel = {
-            let label = UILabel()
-            label.font = UIFont.boldSystemFont(ofSize: 14.0)
-            label.textColor = UIColor.white
-            // label.adjustsFontSizeToFitWidth = true
-            label.text = "Wrong answer maybe you need hint?"
-            label.textAlignment = .center
-            label.backgroundColor = UIColor.red.withAlphaComponent(0.2)
-            label.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 30)
-            return label
-        }()
+    
+    private func showHintSubView() {
         
         
-        self.view.addSubview(wrong)
+        hintSubView.alpha = 0
+        UIView.animate(withDuration: 0.6, animations: {
+            self.hintSubView.isHidden = false
+            self.hintSubView.alpha = 1
+            self.hintSubViewLabel.text = "Przykładowy tekst podpowiedzi"
+            //self.hintSubViewLabel.text = resultsLesson[indexesLesson[0]].subLessons[indexesLesson[1]].lessonHint
+            self.incorectSubView.isHidden = true
+            self.correctSubView.isHidden = true
+            self.descriptionLabel.isHidden = true
+            
+        })
+        
+        Timer.scheduledTimer(timeInterval: 20.0, target: self, selector: #selector(backToOryginalStage) , userInfo: nil, repeats: false)
+    }
+    
+    
+    
+    @objc private func backToOryginalStage() {
+        
+        hintSubView.alpha = 1
+        correctSubView.alpha = 1
+        incorectSubView.alpha = 1
+        UIView.animate(withDuration: 0.6, animations: {
+            self.hintSubView.isHidden = true
+            self.correctSubView.isHidden = true
+            self.incorectSubView.isHidden = true
+            self.descriptionLabel.isHidden = false
+            self.hintSubView.alpha = 0
+            self.correctSubView.alpha = 0
+            self.incorectSubView.alpha = 0
+        })
+        
+        
+    }
+ 
+    private func checkBTypeLessonAnswer() {
+        
         
     }
     
-  
-    
-    private func showHintCorrectSubView(sender: AnyObject) {
-        
-        
-        
-    }
     
 }
