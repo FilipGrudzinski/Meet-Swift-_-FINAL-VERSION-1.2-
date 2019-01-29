@@ -221,9 +221,7 @@ class LessonViewController: UIViewController, UITextViewDelegate {
             self.incorectSubView.isHidden = true
             self.correctSubView.alpha = 1
         })
-        buttonALabel.isEnabled = false
-        buttonBLabel.isEnabled = false
-        buttonCLabel.isEnabled = false
+        
         stuckTimer.invalidate()
         
     }

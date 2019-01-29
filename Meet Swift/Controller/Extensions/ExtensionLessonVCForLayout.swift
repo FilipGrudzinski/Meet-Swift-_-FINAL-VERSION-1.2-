@@ -98,9 +98,6 @@ extension LessonViewController {
             buttonALabel.layer.masksToBounds = true
             buttonBLabel.layer.masksToBounds = true
             buttonCLabel.layer.masksToBounds = true
-            buttonALabel.isEnabled = true
-            buttonBLabel.isEnabled = true
-            buttonCLabel.isEnabled = true
             
         }
         
@@ -134,7 +131,6 @@ extension LessonViewController {
     func createToolBar() {
         
         let toolBar = UIToolbar()
-        
         var buttonsArray = [UIBarButtonItem]()
         
         buttonsArray.append(
@@ -163,6 +159,7 @@ extension LessonViewController {
         toolBar.setItems(buttonsArray, animated: true)
         toolBar.tintColor = Theme.current.buttonColor
         toolBar.barTintColor = Theme.current.navigationColor
+        toolBar.isTranslucent = true // Maybe  I will off this
         
         view.addSubview(toolBar)
         
@@ -214,8 +211,9 @@ extension LessonViewController {
         )
         
         toolBar.setItems(buttonsArray, animated: true)
+        toolBar.tintColor = Theme.current.buttonColor
+        toolBar.barTintColor = Theme.current.navigationColor
         
-        toolBar.barTintColor = Theme.current.viewControllerBackgroundColor
         textView.inputAccessoryView = toolBar
         
         

@@ -98,6 +98,7 @@ class SettingsViewController: UIViewController {
         navigationController?.navigationBar.tintColor = Theme.current.buttonColor // color of navigationbar buttons
         navigationController?.navigationBar.barTintColor = Theme.current.navigationColor // color of navigationbar
         view.backgroundColor = Theme.current.viewControllerBackgroundColor
+        navigationController?.navigationBar.isTranslucent = false
         darkModeLabel.textColor = Theme.current.textColor
         resetAllProgressButtonLabel.tintColor = Theme.current.buttonColor
         restoreInAppPurchaseButtonLabel.tintColor = Theme.current.buttonColor
