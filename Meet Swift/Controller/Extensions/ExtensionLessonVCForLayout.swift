@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Highlightr
 
 
 
@@ -36,8 +37,7 @@ extension LessonViewController {
         descriptionLabel.textColor = Theme.current.textColor
         exampleLabel.textColor = Theme.current.textColor
         textView.backgroundColor = Theme.current.selectedRow
-        lessonTaskBLabel.backgroundColor = Theme.current.viewControllerBackgroundColor
-        lessonTaskBLabel.textColor = Theme.current.textColor
+        
         buttonCLabel.tintColor = Theme.current.viewControllerBackgroundColor
         buttonBLabel.tintColor = Theme.current.viewControllerBackgroundColor
         buttonALabel.tintColor = Theme.current.viewControllerBackgroundColor
@@ -46,14 +46,19 @@ extension LessonViewController {
         buttonALabel.backgroundColor = Theme.current.buttonColor
         
         
+        lessonBPointA.textColor = Theme.current.textColor
+        lessonBPointB.textColor = Theme.current.textColor
+        lessonBPointC.textColor = Theme.current.textColor
+        
         hintSubViewButtonLabel.tintColor = Theme.current.buttonColor
         hintSubViewLabel.textColor = Theme.current.textColor
+        hintSubView.backgroundColor = Theme.current.selectedRow
         
         correctSubViewLabel.textColor = Theme.current.textColor
         correctSubViewButton.tintColor = Theme.current.buttonColor
         
-        incorectSubViewLabel.textColor = Theme.current.textColor
-        incorectSubViewSubViewButtonLabel.tintColor = Theme.current.buttonColor
+        incorrectSubViewLabel.textColor = Theme.current.textColor
+        incorrectSubViewSubViewButtonLabel.tintColor = Theme.current.buttonColor
         
     }
     
@@ -62,7 +67,7 @@ extension LessonViewController {
         
         hintSubView.isHidden = true
         correctSubView.isHidden = true
-        incorectSubView.isHidden = true
+        incorrectSubView.isHidden = true
         
         
         if resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].typeOfTask == "A" {
@@ -70,16 +75,48 @@ extension LessonViewController {
             buttonALabel.isHidden = true
             buttonBLabel.isHidden = true
             buttonCLabel.isHidden = true
-            textView.isHidden = false
-            lessonTaskBLabel.isHidden = true
+            textView.isHidden = true
+            lessonBPointA.isHidden = true
+            lessonBPointB.isHidden = true
+            lessonBPointC.isHidden = true
+            lessonBAnswerA.isHidden = true
+            lessonBAnswerB.isHidden = true
+            lessonBAnswerC.isHidden = true
+            
+            
+            
+            let highlightr = Highlightr()
+            highlightr?.setTheme(to: "paraiso-dark")
+            
+            let code = "let b: Int = 5"
+            //let code = resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].lessonExample
+            // You can omit the second parameter to use automatic language detection.
+            let highlightedCode = highlightr!.highlight(code, as: "swift")
+            
+            descriptionLabel.attributedText = highlightedCode
+            
+            
+            let textStorage = CodeAttributedString()
+            textStorage.language = "Swift"
+            
+            let layoutManager = NSLayoutManager()
+            textStorage.addLayoutManager(layoutManager)
+            
+            let textContainer = NSTextContainer(size: view.bounds.size)
+            layoutManager.addTextContainer(textContainer)
+            
+            let textView2 = UITextView(frame: CGRect(x: 0, y: 80, width: UIScreen.main.bounds.width, height: 168), textContainer: textContainer)
+            
+            view.addSubview(textView2)
             
             if (resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].userAnswer)?.trimmingCharacters(in: .whitespacesAndNewlines) != ""  {
-                textView.text = resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].userAnswer
+                textView2.text = resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].userAnswer
+                textView2.backgroundColor = Theme.current.selectedRow
             } else {
-                textView.text = "Enter your code here..."
+                textView2.text = "Enter your code here..."
             }
             
-            textView.textColor = Theme.current.buttonColor
+            textView2.textColor = Theme.current.buttonColor
             
             createToolBarAboveKeyboard()
             
@@ -89,7 +126,14 @@ extension LessonViewController {
             buttonBLabel.isHidden = false
             buttonCLabel.isHidden = false
             textView.isHidden = true
-            lessonTaskBLabel.isHidden = false
+            
+            lessonBPointA.isHidden = false
+            lessonBPointB.isHidden = false
+            lessonBPointC.isHidden = false
+            lessonBAnswerA.isHidden = false
+            lessonBAnswerB.isHidden = false
+            lessonBAnswerC.isHidden = false
+            
             exampleLabel.isHidden = true
             exampleTitle.isHidden = true
             buttonALabel.layer.cornerRadius = 6
@@ -108,19 +152,19 @@ extension LessonViewController {
         
         if resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].userAnswer != ""  {
             
-            textView.text = resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].userAnswer
+            textView2.text = resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].userAnswer
             
-        } else  if textView.textColor == Theme.current.buttonColor && textView.isFirstResponder {
-            textView.text = nil
-            textView.textColor = Theme.current.textColor
+        } else  if textView2.textColor == Theme.current.buttonColor && textView2.isFirstResponder {
+            textView2.text = nil
+            textView2.textColor = Theme.current.textColor
         }
     }
     
     func textViewDidEndEditing (_ textView: UITextView) {
         
-        if textView.text.isEmpty || textView.text == "" {
-            textView.textColor = Theme.current.buttonColor
-            textView.text = "Enter your code here..."
+        if textView2.text.isEmpty || textView2.text == "" {
+            textView2.textColor = Theme.current.buttonColor
+            textView2.text = "Enter your code here..."
             
         }
         
@@ -146,15 +190,15 @@ extension LessonViewController {
         )
         
         if resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].typeOfTask == "A" {
-        
-        buttonsArray.append( UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil) )
-        
-        
+            
+            buttonsArray.append( UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil) )
+            
+            
             buttonsArray.append(
                 UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.play, target: self, action: #selector(checkButtonAction))
             )
         }
-      
+        
         
         toolBar.setItems(buttonsArray, animated: true)
         toolBar.tintColor = Theme.current.buttonColor

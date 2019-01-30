@@ -16,18 +16,19 @@ extension LessonViewController {
     
     @objc func showIncorectSubView() {
         
-        incorectSubView.alpha = 0
+        incorrectSubView.alpha = 0
         UIView.animate(withDuration: 0.6, animations: {
             self.hintSubView.isHidden = true
             self.correctSubView.isHidden = true
-            self.incorectSubViewLabel.text = "Wrong Answer maybe you need a hint?"
-            self.incorectSubView.isHidden = false
-            self.incorectSubView.alpha = 1
+            self.incorrectSubViewLabel.text = "Wrong Answer maybe you need a hint?"
+            self.incorrectSubView.isHidden = false
+            self.incorrectSubView.alpha = 1
             
         })
         
-        Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(backToOryginalStage) , userInfo: nil, repeats: false)
+        incorrectTimer = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(backToOryginalStage) , userInfo: nil, repeats: false)
         seconds = 65
+        hintTimer.invalidate()
         
     }
     
@@ -41,14 +42,14 @@ extension LessonViewController {
             self.hintSubView.alpha = 1
             self.hintSubViewLabel.text = "Przykładowy tekst podpowiedzi"
             //self.hintSubViewLabel.text = resultsLesson[indexesLesson[0]].subLessons[indexesLesson[1]].lessonHint
-            self.incorectSubView.isHidden = true
+            self.incorrectSubView.isHidden = true
             self.correctSubView.isHidden = true
             self.descriptionLabel.isHidden = true
             
         })
-        
-        Timer.scheduledTimer(timeInterval: 15.0, target: self, selector: #selector(backToOryginalStage) , userInfo: nil, repeats: false)
+        hintTimer = Timer.scheduledTimer(timeInterval: 15.0, target: self, selector: #selector(backToOryginalStage) , userInfo: nil, repeats: false)
         seconds = 75
+        incorrectTimer.invalidate()
         
     }
     
@@ -58,12 +59,12 @@ extension LessonViewController {
         
         if seconds == 30 && seconds == 1 {
             
-            incorectSubView.alpha = 0
+            incorrectSubView.alpha = 0
             UIView.animate(withDuration: 0.6, animations: {
                 
-                self.incorectSubViewLabel.text = "Stuck? Maybe Need Help"
-                self.incorectSubView.isHidden = false
-                self.incorectSubView.alpha = 1
+                self.incorrectSubViewLabel.text = "Stuck? Maybe Need Help"
+                self.incorrectSubView.isHidden = false
+                self.incorrectSubView.alpha = 1
                 
             })
             
@@ -82,7 +83,7 @@ extension LessonViewController {
     @objc func backToOryginalStage() {
         hintSubView.isHidden = true
         //correctSubView.isHidden = true
-        incorectSubView.isHidden = true
+        incorrectSubView.isHidden = true
         descriptionLabel.isHidden = false
     }
     

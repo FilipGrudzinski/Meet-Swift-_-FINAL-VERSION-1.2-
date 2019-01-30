@@ -19,6 +19,9 @@ class LessonViewController: UIViewController, UITextViewDelegate {
     var indexesLesson:[Int] = []
     
     var stuckTimer = Timer()
+    var incorrectTimer = Timer()
+    var hintTimer = Timer()
+    
     var seconds: Int = 60
     
     
@@ -30,19 +33,27 @@ class LessonViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var hintSubView: UIView!
     @IBOutlet weak var hintSubViewLabel: UILabel!
     @IBOutlet weak var hintSubViewButtonLabel: UIButton!
-    @IBOutlet weak var incorectSubView: UIView!
-    @IBOutlet weak var incorectSubViewLabel: UILabel!
-    @IBOutlet weak var incorectSubViewSubViewButtonLabel: UIButton!
+    @IBOutlet weak var incorrectSubView: UIView!
+    @IBOutlet weak var incorrectSubViewLabel: UILabel!
+    @IBOutlet weak var incorrectSubViewSubViewButtonLabel: UIButton!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var exampleLabel: UILabel!
     @IBOutlet weak var textView: UITextView!
-    @IBOutlet weak var lessonTaskBLabel: UILabel!
+    
+    @IBOutlet weak var lessonBPointA: UILabel!
+    @IBOutlet weak var lessonBPointB: UILabel!
+    @IBOutlet weak var lessonBPointC: UILabel!
+
+    @IBOutlet weak var lessonBAnswerA: UILabel!
+    @IBOutlet weak var lessonBAnswerB: UILabel!
+    @IBOutlet weak var lessonBAnswerC: UILabel!
+   
     @IBOutlet weak var buttonALabel: UIButton!
     @IBOutlet weak var buttonBLabel: UIButton!
     @IBOutlet weak var buttonCLabel: UIButton!
     @IBOutlet weak var exampleTitle: UILabel!
     
-    
+    var textView2 : UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -218,11 +229,13 @@ class LessonViewController: UIViewController, UITextViewDelegate {
             self.correctSubView.isHidden = false
             self.correctSubViewLabel.text = "Correct Answer Go To Next Lesson"
             self.hintSubView.isHidden = true
-            self.incorectSubView.isHidden = true
+            self.incorrectSubView.isHidden = true
             self.correctSubView.alpha = 1
         })
         
         stuckTimer.invalidate()
+        incorrectTimer.invalidate()
+        hintTimer.invalidate()
         
     }
     
