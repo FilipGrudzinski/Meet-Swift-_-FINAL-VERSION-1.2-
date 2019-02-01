@@ -28,7 +28,7 @@ class SettingsViewController: UIViewController {
         
         loadItems()
         //resetAllProgressButtonLabel.isHidden = true
-        //restoreInAppPurchaseButtonLabel.isHidden = true
+        restoreInAppPurchaseButtonLabel.isHidden = true
         
         let modeValue = UserDefaults.standard.bool(forKey: "Theme")
         darkModeSwitchOutlet.setOn(modeValue, animated: false)
@@ -50,7 +50,7 @@ class SettingsViewController: UIViewController {
     
     
     @IBAction func resetAllProgressButton(_ sender: UIButton) {
-        print("Reset All Progress Button Pressed")
+        //print("Reset All Progress Button Pressed")
         
         var collections = 0
         for _ in resultsOfCollectionOfLessons {
@@ -59,7 +59,7 @@ class SettingsViewController: UIViewController {
             
             for lessons in 0..<countOfLessonsInCollectionOfLessons {
                 
-                print(lessons)
+//                print(lessons)
                 let countOfSubLessonsInLessons = resultsOfCollectionOfLessons[collections].lessons[lessons].subLessons.count
                 
                 for subLessons in 0..<countOfSubLessonsInLessons {

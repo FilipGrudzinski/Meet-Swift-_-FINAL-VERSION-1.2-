@@ -124,14 +124,14 @@ class LessonViewController: UIViewController, UITextViewDelegate {
     
     
     @IBAction func hintSubViewButton(_ sender: UIButton!) {
-        print("Button hintButtonAction from Hintview")
+        //print("Button hintButtonAction from Hintview")
         backToOryginalStage()
         
     }
     
     
     @objc func previousButtonAction(sender: UIButton!) {
-        print("Button previousButtonAction")
+        //print("Button previousButtonAction")
         
         if indexesLesson[2] > 0 {
             
@@ -149,13 +149,13 @@ class LessonViewController: UIViewController, UITextViewDelegate {
     
     
     @objc func hintButtonAction(sender: UIButton!) {
-        print("Button hintButtonAction from toolbar")
+        //print("Button hintButtonAction from toolbar")
         showHintSubView()
     }
     
     
     @objc func checkButtonAction(sender: UIButton!) {
-        print("Button checkButtonAction")
+        //print("Button checkButtonAction")
      
         try! realm.write {
             resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].userAnswer = textView.attributedText.string
@@ -177,7 +177,7 @@ class LessonViewController: UIViewController, UITextViewDelegate {
     
     
     @objc func doneButtonAction(sender: UIButton!) {
-        print("Button checkButtonAction")
+        //print("Button checkButtonAction")
         
         try! realm.write {
             resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].userAnswer = textView.attributedText.string

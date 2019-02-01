@@ -37,24 +37,20 @@ extension LessonViewController {
         view.backgroundColor = Theme.current.viewControllerBackgroundColor
         descriptionLabel.textColor = Theme.current.textColor
         exampleLabel.textColor = Theme.current.textColor
-        
         buttonCLabel.tintColor = Theme.current.viewControllerBackgroundColor
         buttonBLabel.tintColor = Theme.current.viewControllerBackgroundColor
         buttonALabel.tintColor = Theme.current.viewControllerBackgroundColor
         buttonCLabel.backgroundColor = Theme.current.buttonColor
         buttonBLabel.backgroundColor = Theme.current.buttonColor
         buttonALabel.backgroundColor = Theme.current.buttonColor
-        
         lessonBPointA.textColor = Theme.current.textColor
         lessonBPointB.textColor = Theme.current.textColor
         lessonBPointC.textColor = Theme.current.textColor
-        
         hintSubViewButtonLabel.tintColor = Theme.current.buttonColor
         hintSubViewLabel.textColor = Theme.current.textColor
         hintSubView.backgroundColor = Theme.current.selectedRow
-        
+        exampleTitle.textColor = Theme.current.textColor
         correctSubViewButton.tintColor = Theme.current.buttonColor
-        
         incorrectSubViewSubViewButtonLabel.tintColor = Theme.current.buttonColor
         
     }
