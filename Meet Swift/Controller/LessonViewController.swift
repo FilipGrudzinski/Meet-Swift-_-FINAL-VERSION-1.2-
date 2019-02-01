@@ -11,7 +11,7 @@ import RealmSwift
 import Highlightr
 
 
-class LessonViewController: UIViewController, UITextViewDelegate {
+class LessonViewController: UIViewController, UITextViewDelegate, UIToolbarDelegate {
     
     
     lazy var realm = try! Realm()
@@ -24,8 +24,8 @@ class LessonViewController: UIViewController, UITextViewDelegate {
     
     var seconds: Int = 60
     let highlightr = Highlightr()
-    var textView: UITextView!
-    
+    var textView: UITextView?
+    var toolBar: UIToolbar?
     
     // MARK: - IBOutlets
     
@@ -59,16 +59,15 @@ class LessonViewController: UIViewController, UITextViewDelegate {
         super.viewDidLoad()
         
         loadItems()
-        applyLessonTheme()
-        layoutLessonSetUp()
         setLessonNavBar()
         createToolBar()
+        layoutLessonSetUp()
+        applyLessonTheme()
         loadLessonStringValueToLessonLabels()
-        
+     
         highlightr?.setTheme(to: "atelier-cave-light")
         
         stuckTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(stuckTimerStage) , userInfo: nil, repeats: true)
-        
         
     }
     
@@ -111,6 +110,8 @@ class LessonViewController: UIViewController, UITextViewDelegate {
             if indexesLesson[2] < resultsLesson[indexesLesson[1]].subLessons.count - 1  {
                 
                 indexesLesson[2] += 1
+                textView?.removeFromSuperview()
+                toolBar?.removeFromSuperview()
                 self.viewDidLoad()
                 
             } else if indexesLesson[2] == resultsLesson[indexesLesson[1]].subLessons.count - 1 {
@@ -136,6 +137,12 @@ class LessonViewController: UIViewController, UITextViewDelegate {
         if indexesLesson[2] > 0 {
             
             indexesLesson[2] -= 1
+            
+            if resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].typeOfTask == "A" {
+                
+            }
+            textView?.removeFromSuperview()
+            toolBar?.removeFromSuperview()
             self.viewDidLoad()
             
         } else {
@@ -158,7 +165,7 @@ class LessonViewController: UIViewController, UITextViewDelegate {
         //print("Button checkButtonAction")
      
         try! realm.write {
-            resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].userAnswer = textView.attributedText.string
+            resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].userAnswer = textView?.attributedText.string
 
         }
     
@@ -180,7 +187,7 @@ class LessonViewController: UIViewController, UITextViewDelegate {
         //print("Button checkButtonAction")
         
         try! realm.write {
-            resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].userAnswer = textView.attributedText.string
+            resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].userAnswer = textView?.attributedText.string
         }
         
         view.endEditing(true)

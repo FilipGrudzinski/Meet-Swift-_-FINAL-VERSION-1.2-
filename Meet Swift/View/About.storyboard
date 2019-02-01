@@ -19,14 +19,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8e9-lG-Gej">
-                                <rect key="frame" x="16" y="37" width="343" height="101.5"/>
-                                <string key="text">Meet Swift is an application prepared to learn the Swift programming language.      The application will allow you to learn the basics of Swift language and advanced topics.</string>
+                                <rect key="frame" x="16" y="37" width="343" height="81.5"/>
+                                <string key="text">Meet Swift is an application prepared to learn the Swift programming language. The application will allow you to learn the basics of Swift language and advanced topics.</string>
                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="TGQ-Tx-s4Y">
-                                <rect key="frame" x="16" y="196" width="250" height="57"/>
+                                <rect key="frame" x="16" y="176" width="250" height="57"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="hcM-wR-Euk">
                                         <rect key="frame" x="0.0" y="0.0" width="250" height="20.5"/>

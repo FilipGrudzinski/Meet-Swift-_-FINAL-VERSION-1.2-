@@ -58,6 +58,8 @@ extension LessonViewController {
     
     func layoutLessonSetUp() {
         
+        
+        
         hintSubView.isHidden = true
         correctSubView.isHidden = true
         incorrectSubView.isHidden = true
@@ -76,18 +78,23 @@ extension LessonViewController {
             
             createToolBarAboveKeyboardAndTextView()
             
+            
             if resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].userAnswer == nil || resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].userAnswer?.trimmingCharacters(in: .whitespacesAndNewlines) == "" {
             
-                textView.text = "enter your code here..."
+                textView?.text = "enter your code here..."
             
             } else {
             
-                textView.attributedText = highlightr!.highlight(resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].userAnswer!, as: "swift")
+                textView?.attributedText = highlightr!.highlight(resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].userAnswer!, as: "swift")
             
             }
         
             
+            
+            
         } else {
+            
+            //textView.removeFromSuperview()
             
             buttonALabel.isHidden = false
             buttonBLabel.isHidden = false
@@ -114,12 +121,14 @@ extension LessonViewController {
     
     func textViewDidBeginEditing (_ textView: UITextView) {
         
+        
+        
         if resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].userAnswer?.trimmingCharacters(in: .whitespacesAndNewlines) != "" && resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].userAnswer != nil  {
 
             textView.attributedText = highlightr!.highlight(resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].userAnswer!, as: "swift")
 
         } else if textView.isFirstResponder {
-            
+        
             textView.text = nil
             
        }
@@ -133,6 +142,8 @@ extension LessonViewController {
             
         }
         
+        
+        
     }
     
     
@@ -142,7 +153,7 @@ extension LessonViewController {
     
     func createToolBar() {
         
-        let toolBar = UIToolbar()
+        toolBar = UIToolbar()
         var buttonsArray = [UIBarButtonItem]()
         
         buttonsArray.append(
@@ -167,31 +178,31 @@ extension LessonViewController {
             )
         }
         
+        toolBar?.delegate = self
+        toolBar?.setItems(buttonsArray, animated: true)
+        toolBar?.tintColor = Theme.current.buttonColor
+        toolBar?.barTintColor = Theme.current.navigationColor
+        toolBar?.isTranslucent = true // Maybe  I will off this
         
-        toolBar.setItems(buttonsArray, animated: true)
-        toolBar.tintColor = Theme.current.buttonColor
-        toolBar.barTintColor = Theme.current.navigationColor
-        toolBar.isTranslucent = true // Maybe  I will off this
-        
-        view.addSubview(toolBar)
+        view.addSubview(toolBar!)
         
 
         
-        toolBar.translatesAutoresizingMaskIntoConstraints = false
+        toolBar?.translatesAutoresizingMaskIntoConstraints = false
         
         if #available(iOS 11.0, *) {
             let guide = self.view.safeAreaLayoutGuide
-            toolBar.trailingAnchor.constraint(equalTo: guide.trailingAnchor).isActive = true
-            toolBar.leadingAnchor.constraint(equalTo: guide.leadingAnchor).isActive = true
-            toolBar.bottomAnchor.constraint(equalTo: guide.bottomAnchor).isActive = true
-            toolBar.heightAnchor.constraint(equalToConstant: 44).isActive = true
+            toolBar?.trailingAnchor.constraint(equalTo: guide.trailingAnchor).isActive = true
+            toolBar?.leadingAnchor.constraint(equalTo: guide.leadingAnchor).isActive = true
+            toolBar?.bottomAnchor.constraint(equalTo: guide.bottomAnchor).isActive = true
+            toolBar?.heightAnchor.constraint(equalToConstant: 44).isActive = true
             
         } else {
-            NSLayoutConstraint(item: toolBar, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1.0, constant: 0).isActive = true
-            NSLayoutConstraint(item: toolBar, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
-            NSLayoutConstraint(item: toolBar, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1.0, constant: 0).isActive = true
+            NSLayoutConstraint(item: toolBar!, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1.0, constant: 0).isActive = true
+            NSLayoutConstraint(item: toolBar!, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
+            NSLayoutConstraint(item: toolBar!, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1.0, constant: 0).isActive = true
             
-            toolBar.heightAnchor.constraint(equalToConstant: 44).isActive = true
+            toolBar?.heightAnchor.constraint(equalToConstant: 44).isActive = true
         }
         
     }
@@ -203,8 +214,10 @@ extension LessonViewController {
     
     func createToolBarAboveKeyboardAndTextView() {
         
-        let toolBar = UIToolbar()
-        toolBar.sizeToFit()
+        
+        
+        let keyboardToolBar = UIToolbar()
+        keyboardToolBar.sizeToFit()
         
         var buttonsArray = [UIBarButtonItem]()
         buttonsArray.append(
@@ -223,9 +236,9 @@ extension LessonViewController {
             UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.play, target: self, action: #selector(checkButtonAction))
         )
         
-        toolBar.setItems(buttonsArray, animated: true)
-        toolBar.tintColor = Theme.current.buttonColor
-        toolBar.barTintColor = Theme.current.navigationColor
+        keyboardToolBar.setItems(buttonsArray, animated: true)
+        keyboardToolBar.tintColor = Theme.current.buttonColor
+        keyboardToolBar.barTintColor = Theme.current.navigationColor
         
         
         let textStorage = CodeAttributedString()
@@ -238,14 +251,13 @@ extension LessonViewController {
         layoutManager.addTextContainer(textContainer)
         
         textView = UITextView(frame: CGRect(x: 0, y: 80, width: UIScreen.main.bounds.width, height: 164), textContainer: textContainer)
-        textView.delegate = self
-        textView.inputAccessoryView = toolBar
-        textView.autocorrectionType = UITextAutocorrectionType.no
-        textView.autocapitalizationType = UITextAutocapitalizationType.none
-        textView.backgroundColor = Theme.current.selectedRow
+        textView?.delegate = self
+        textView?.inputAccessoryView = keyboardToolBar
+        textView?.autocorrectionType = UITextAutocorrectionType.no
+        textView?.autocapitalizationType = UITextAutocapitalizationType.none
+        textView?.backgroundColor = Theme.current.selectedRow
         
-        view.addSubview(textView)
-        
+        view.addSubview(textView!)
         
     }
     
