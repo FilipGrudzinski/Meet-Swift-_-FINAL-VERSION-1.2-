@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="GuP-gJ-gds">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Settings-->
+        <scene sceneID="kHG-CY-EGV">
+            <objects>
+                <viewController title="Settings" id="GuP-gJ-gds" customClass="SettingsViewController" customModule="Meet_Swift" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="YzC-Nl-XzN">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pUy-9P-S3O">
+                                <rect key="frame" x="16" y="57.5" width="343" height="33"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="Reset all progress"/>
+                                <connections>
+                                    <action selector="resetAllProgressButton:" destination="GuP-gJ-gds" eventType="touchUpInside" id="c0S-Q1-tJ8"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AV2-O9-lmp">
+                                <rect key="frame" x="16" y="106.5" width="343" height="33"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="Restore in-app purchase"/>
+                                <connections>
+                                    <action selector="restoreInAppPurchaseButton:" destination="GuP-gJ-gds" eventType="touchUpInside" id="zEK-WB-bFc"/>
+                                </connections>
+                            </button>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="XiE-ey-WoL">
+                                <rect key="frame" x="310" y="16" width="51" height="31"/>
+                                <connections>
+                                    <action selector="colorThemeSwitch:" destination="GuP-gJ-gds" eventType="valueChanged" id="ll8-he-Ha1"/>
+                                </connections>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dark Mode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gu0-UV-g8D">
+                                <rect key="frame" x="16" y="21" width="84" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="62q-kT-5q6" firstAttribute="trailing" secondItem="AV2-O9-lmp" secondAttribute="trailing" constant="16" id="2fQ-c9-raQ"/>
+                            <constraint firstItem="AV2-O9-lmp" firstAttribute="leading" secondItem="62q-kT-5q6" secondAttribute="leading" constant="16" id="6hm-cF-2BU"/>
+                            <constraint firstItem="62q-kT-5q6" firstAttribute="trailing" secondItem="pUy-9P-S3O" secondAttribute="trailing" constant="16" id="AwJ-Zk-vCS"/>
+                            <constraint firstItem="XiE-ey-WoL" firstAttribute="leading" relation="lessThanOrEqual" secondItem="Gu0-UV-g8D" secondAttribute="trailing" constant="210" id="Czs-8h-iXd"/>
+                            <constraint firstItem="pUy-9P-S3O" firstAttribute="leading" secondItem="62q-kT-5q6" secondAttribute="leading" constant="16" id="NsY-LX-CRe"/>
+                            <constraint firstItem="AV2-O9-lmp" firstAttribute="top" secondItem="pUy-9P-S3O" secondAttribute="bottom" constant="16" id="Wz9-iW-B32"/>
+                            <constraint firstItem="XiE-ey-WoL" firstAttribute="top" secondItem="62q-kT-5q6" secondAttribute="top" constant="16" id="XhK-bZ-a6K"/>
+                            <constraint firstItem="Gu0-UV-g8D" firstAttribute="leading" secondItem="62q-kT-5q6" secondAttribute="leading" constant="16" id="ZJT-UN-h9s"/>
+                            <constraint firstItem="62q-kT-5q6" firstAttribute="trailing" secondItem="XiE-ey-WoL" secondAttribute="trailing" constant="16" id="aJm-0g-zf3"/>
+                            <constraint firstItem="Gu0-UV-g8D" firstAttribute="top" secondItem="62q-kT-5q6" secondAttribute="top" constant="21" id="fmK-Oz-TDv"/>
+                            <constraint firstItem="pUy-9P-S3O" firstAttribute="top" secondItem="Gu0-UV-g8D" secondAttribute="bottom" constant="16" id="tZT-Kv-dOP"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="62q-kT-5q6"/>
+                    </view>
+                    <connections>
+                        <outlet property="darkModeLabel" destination="Gu0-UV-g8D" id="nhy-0d-njy"/>
+                        <outlet property="darkModeSwitchOutlet" destination="XiE-ey-WoL" id="BXI-H6-Zle"/>
+                        <outlet property="resetAllProgressButtonLabel" destination="pUy-9P-S3O" id="aAZ-dK-oCP"/>
+                        <outlet property="restoreInAppPurchaseButtonLabel" destination="AV2-O9-lmp" id="cKV-cq-Aaj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Two-kw-FsY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2586" y="-595"/>
+        </scene>
+    </scenes>
+</document>
