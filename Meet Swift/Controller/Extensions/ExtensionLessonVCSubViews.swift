@@ -26,7 +26,7 @@ extension LessonViewController {
             
         })
         
-        incorrectTimer = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(backToOryginalStage) , userInfo: nil, repeats: false)
+        incorrectTimer = Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(backToOryginalStage) , userInfo: nil, repeats: false)
         seconds = 65
         hintTimer.invalidate()
         
@@ -40,8 +40,7 @@ extension LessonViewController {
         UIView.animate(withDuration: 0.6, animations: {
             self.hintSubView.isHidden = false
             self.hintSubView.alpha = 1
-            self.hintSubViewLabel.text = "Przykładowy tekst podpowiedzi"
-            //self.hintSubViewLabel.text = resultsLesson[indexesLesson[0]].subLessons[indexesLesson[1]].lessonHint
+            self.hintSubViewLabel.text = self.resultsLesson[self.indexesLesson[1]].subLessons[self.indexesLesson[2]].lessonHint
             self.incorrectSubView.isHidden = true
             self.correctSubView.isHidden = true
             self.descriptionLabel.isHidden = true
@@ -68,7 +67,7 @@ extension LessonViewController {
                 
             })
             
-            Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(backToOryginalStage) , userInfo: nil, repeats: false)
+            Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(backToOryginalStage) , userInfo: nil, repeats: false)
             
         } else if seconds == 0 {
             
@@ -82,7 +81,6 @@ extension LessonViewController {
     
     @objc func backToOryginalStage() {
         hintSubView.isHidden = true
-        //correctSubView.isHidden = true
         incorrectSubView.isHidden = true
         descriptionLabel.isHidden = false
     }

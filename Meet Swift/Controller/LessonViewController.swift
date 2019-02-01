@@ -8,7 +8,7 @@
 
 import UIKit
 import RealmSwift
-
+import Highlightr
 
 
 class LessonViewController: UIViewController, UITextViewDelegate {
@@ -23,6 +23,8 @@ class LessonViewController: UIViewController, UITextViewDelegate {
     var hintTimer = Timer()
     
     var seconds: Int = 60
+    let highlightr = Highlightr()
+    var textView: UITextView!
     
     
     // MARK: - IBOutlets
@@ -38,36 +40,35 @@ class LessonViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var incorrectSubViewSubViewButtonLabel: UIButton!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var exampleLabel: UILabel!
-    @IBOutlet weak var textView: UITextView!
     
     @IBOutlet weak var lessonBPointA: UILabel!
     @IBOutlet weak var lessonBPointB: UILabel!
     @IBOutlet weak var lessonBPointC: UILabel!
-
+    
     @IBOutlet weak var lessonBAnswerA: UILabel!
     @IBOutlet weak var lessonBAnswerB: UILabel!
     @IBOutlet weak var lessonBAnswerC: UILabel!
-   
+    
     @IBOutlet weak var buttonALabel: UIButton!
     @IBOutlet weak var buttonBLabel: UIButton!
     @IBOutlet weak var buttonCLabel: UIButton!
     @IBOutlet weak var exampleTitle: UILabel!
     
-    var textView2 : UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         loadItems()
         applyLessonTheme()
+        layoutLessonSetUp()
         setLessonNavBar()
         createToolBar()
-        layoutLessonSetUp()
-      
-        textView.delegate = self
+        loadLessonStringValueToLessonLabels()
         
+        highlightr?.setTheme(to: "atelier-cave-light")
         
         stuckTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(stuckTimerStage) , userInfo: nil, repeats: true)
+        
         
     }
     
@@ -77,20 +78,10 @@ class LessonViewController: UIViewController, UITextViewDelegate {
     }
     
     
-    // MARK: - LoadRealm function
     
-    private func loadItems() {
-        
-        resultsLesson = realm.objects(LessonsData.self)
-        
-    }
+    // MARK: - IBACtions
     
-
-
-
-// MARK: - IBACtions
-
-
+    
     
     @IBAction func buttonA(_ sender: UIButton!) {
         if let buttonCurrentTitle = sender.currentTitle { checkBTypeLessonAnswer(buttonCurrentTitle) }
@@ -124,11 +115,8 @@ class LessonViewController: UIViewController, UITextViewDelegate {
                 
             } else if indexesLesson[2] == resultsLesson[indexesLesson[1]].subLessons.count - 1 {
                 
-                
                 navigationController?.popViewController(animated: true)
-                
                 dismiss(animated: true, completion: nil)
-                
                 
             }
         }
@@ -151,9 +139,10 @@ class LessonViewController: UIViewController, UITextViewDelegate {
             self.viewDidLoad()
             
         } else {
-            navigationController?.popViewController(animated: true)
             
+            navigationController?.popViewController(animated: true)
             dismiss(animated: true, completion: nil)
+            
         }
         
     }
@@ -167,21 +156,20 @@ class LessonViewController: UIViewController, UITextViewDelegate {
     
     @objc func checkButtonAction(sender: UIButton!) {
         print("Button checkButtonAction")
-        
+     
         try! realm.write {
-            resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].userAnswer = textView.text
-            
+            resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].userAnswer = textView.attributedText.string
+
         }
-        
-        if resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].userAnswer ==  resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].lessonCorrectAnswer {
-            
-            textView.endEditing(true)
-            
+    
+        if resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].userAnswer == resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].lessonCorrectAnswer {
+
             completionRealmSaveAndShowCorrectSubView()
-            
+
         } else  {
-            
+
             showIncorectSubView()
+          
             
         }
         
@@ -192,15 +180,46 @@ class LessonViewController: UIViewController, UITextViewDelegate {
         print("Button checkButtonAction")
         
         try! realm.write {
-            resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].userAnswer = textView.text
+            resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].userAnswer = textView.attributedText.string
         }
         
-        textView.endEditing(true)
+        view.endEditing(true)
     }
     
     
     
     // MARK - Usable Functions
+    
+ 
+    
+    private func loadItems() {
+        
+        resultsLesson = realm.objects(LessonsData.self)
+        
+    }
+    
+    
+    private func loadLessonStringValueToLessonLabels() {
+        
+        let highlightr = Highlightr()
+        highlightr?.setTheme(to: "atelier-cave-light")
+        
+        //        let lessonDescriptionCode = highlightr!.highlight(resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].lessonDescription, as: "swift")
+        let lessonDescriptionCode = highlightr!.highlight("let a: Int = 3", as: "swift")
+        //let lessonExampleCode = highlightr!.highlight(resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].lessonExample, as: "swift")
+        let lessonExampleCode = highlightr!.highlight("let a: Int = 3", as: "swift")
+        let lessonAnswerOneCode = highlightr!.highlight(resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].lessonAnswerOne, as: "swift")
+        let lessonAnswerTwoCode = highlightr!.highlight(resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].lessonAnswerTwo, as: "swift")
+        let lessonAnswerThreeCode = highlightr!.highlight(resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].lessonAnswerThree, as: "swift")
+        
+        descriptionLabel.attributedText = lessonDescriptionCode
+        exampleLabel.attributedText = lessonExampleCode
+        lessonBAnswerA.attributedText = lessonAnswerOneCode
+        lessonBAnswerB.attributedText = lessonAnswerTwoCode
+        lessonBAnswerC.attributedText = lessonAnswerThreeCode
+        
+    }
+    
     
     private func checkBTypeLessonAnswer(_ buttonTitle: String) {
         
@@ -215,7 +234,6 @@ class LessonViewController: UIViewController, UITextViewDelegate {
             
         }
     }
-    
     
     
     private func completionRealmSaveAndShowCorrectSubView() {
@@ -236,9 +254,9 @@ class LessonViewController: UIViewController, UITextViewDelegate {
         stuckTimer.invalidate()
         incorrectTimer.invalidate()
         hintTimer.invalidate()
+        view.endEditing(true)
         
     }
     
+    
 }
-
-

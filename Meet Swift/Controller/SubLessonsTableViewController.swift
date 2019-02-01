@@ -37,8 +37,6 @@ class SubLessonsTableViewController: UITableViewController {
         tableView.reloadData()
         
       
-        
-            //navigationItem.rightBarButtonItem?.tintColor = Theme.current.textColor
     }
     
     // MARK: - TableView Row settings

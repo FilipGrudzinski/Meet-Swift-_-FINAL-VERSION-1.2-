@@ -14,6 +14,7 @@ import Highlightr
 extension LessonViewController {
     
     
+    
     func setLessonNavBar() {
         
         navigationItem.title = "\(resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].subLessonsTitle)"
@@ -36,7 +37,6 @@ extension LessonViewController {
         view.backgroundColor = Theme.current.viewControllerBackgroundColor
         descriptionLabel.textColor = Theme.current.textColor
         exampleLabel.textColor = Theme.current.textColor
-        textView.backgroundColor = Theme.current.selectedRow
         
         buttonCLabel.tintColor = Theme.current.viewControllerBackgroundColor
         buttonBLabel.tintColor = Theme.current.viewControllerBackgroundColor
@@ -44,7 +44,6 @@ extension LessonViewController {
         buttonCLabel.backgroundColor = Theme.current.buttonColor
         buttonBLabel.backgroundColor = Theme.current.buttonColor
         buttonALabel.backgroundColor = Theme.current.buttonColor
-        
         
         lessonBPointA.textColor = Theme.current.textColor
         lessonBPointB.textColor = Theme.current.textColor
@@ -54,10 +53,8 @@ extension LessonViewController {
         hintSubViewLabel.textColor = Theme.current.textColor
         hintSubView.backgroundColor = Theme.current.selectedRow
         
-        correctSubViewLabel.textColor = Theme.current.textColor
         correctSubViewButton.tintColor = Theme.current.buttonColor
         
-        incorrectSubViewLabel.textColor = Theme.current.textColor
         incorrectSubViewSubViewButtonLabel.tintColor = Theme.current.buttonColor
         
     }
@@ -69,13 +66,11 @@ extension LessonViewController {
         correctSubView.isHidden = true
         incorrectSubView.isHidden = true
         
-        
         if resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].typeOfTask == "A" {
             
             buttonALabel.isHidden = true
             buttonBLabel.isHidden = true
             buttonCLabel.isHidden = true
-            textView.isHidden = true
             lessonBPointA.isHidden = true
             lessonBPointB.isHidden = true
             lessonBPointC.isHidden = true
@@ -83,57 +78,30 @@ extension LessonViewController {
             lessonBAnswerB.isHidden = true
             lessonBAnswerC.isHidden = true
             
+            createToolBarAboveKeyboardAndTextView()
             
-            
-            let highlightr = Highlightr()
-            highlightr?.setTheme(to: "paraiso-dark")
-            
-            let code = "let b: Int = 5"
-            //let code = resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].lessonExample
-            // You can omit the second parameter to use automatic language detection.
-            let highlightedCode = highlightr!.highlight(code, as: "swift")
-            
-            descriptionLabel.attributedText = highlightedCode
-            
-            
-            let textStorage = CodeAttributedString()
-            textStorage.language = "Swift"
-            
-            let layoutManager = NSLayoutManager()
-            textStorage.addLayoutManager(layoutManager)
-            
-            let textContainer = NSTextContainer(size: view.bounds.size)
-            layoutManager.addTextContainer(textContainer)
-            
-            let textView2 = UITextView(frame: CGRect(x: 0, y: 80, width: UIScreen.main.bounds.width, height: 168), textContainer: textContainer)
-            
-            view.addSubview(textView2)
-            
-            if (resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].userAnswer)?.trimmingCharacters(in: .whitespacesAndNewlines) != ""  {
-                textView2.text = resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].userAnswer
-                textView2.backgroundColor = Theme.current.selectedRow
+            if resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].userAnswer == "" {
+                
+                textView.text = "enter your code here..."
+                
             } else {
-                textView2.text = "Enter your code here..."
+                
+                textView.attributedText = highlightr!.highlight(resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].userAnswer!, as: "swift")
+                
             }
             
-            textView2.textColor = Theme.current.buttonColor
-            
-            createToolBarAboveKeyboard()
             
         } else {
             
             buttonALabel.isHidden = false
             buttonBLabel.isHidden = false
             buttonCLabel.isHidden = false
-            textView.isHidden = true
-            
             lessonBPointA.isHidden = false
             lessonBPointB.isHidden = false
             lessonBPointC.isHidden = false
             lessonBAnswerA.isHidden = false
             lessonBAnswerB.isHidden = false
             lessonBAnswerC.isHidden = false
-            
             exampleLabel.isHidden = true
             exampleTitle.isHidden = true
             buttonALabel.layer.cornerRadius = 6
@@ -150,26 +118,31 @@ extension LessonViewController {
     
     func textViewDidBeginEditing (_ textView: UITextView) {
         
-        if resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].userAnswer != ""  {
+        if resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].userAnswer != "" || textView.text == "enter your code here..."  {
             
-            textView2.text = resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].userAnswer
+            textView.attributedText = highlightr!.highlight(resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].userAnswer!, as: "swift")
             
-        } else  if textView2.textColor == Theme.current.buttonColor && textView2.isFirstResponder {
-            textView2.text = nil
-            textView2.textColor = Theme.current.textColor
+        } else if textView.textColor == Theme.current.buttonColor && textView.isFirstResponder {
+            
+            textView.text = nil
+            textView.textColor = Theme.current.textColor
+            
         }
     }
     
     func textViewDidEndEditing (_ textView: UITextView) {
         
-        if textView2.text.isEmpty || textView2.text == "" {
-            textView2.textColor = Theme.current.buttonColor
-            textView2.text = "Enter your code here..."
+        if textView.text.isEmpty || textView.text == "" {
+            textView.textColor = Theme.current.buttonColor
+            textView.text = "enter your code here..."
             
         }
         
     }
     
+    
+    
+    // MARK: - createToolBar function
     
     
     func createToolBar() {
@@ -207,8 +180,7 @@ extension LessonViewController {
         
         view.addSubview(toolBar)
         
-        
-        // MARK: - Constraint settup
+
         
         toolBar.translatesAutoresizingMaskIntoConstraints = false
         
@@ -231,8 +203,10 @@ extension LessonViewController {
     
     
     
-    func createToolBarAboveKeyboard() {
-        
+     // MARK: - createToolBarAboveKeyboardAndTextView function
+    
+    
+    func createToolBarAboveKeyboardAndTextView() {
         
         let toolBar = UIToolbar()
         toolBar.sizeToFit()
@@ -258,10 +232,28 @@ extension LessonViewController {
         toolBar.tintColor = Theme.current.buttonColor
         toolBar.barTintColor = Theme.current.navigationColor
         
+        
+        let textStorage = CodeAttributedString()
+        textStorage.language = "Swift"
+        textStorage.highlightr.setTheme(to: "atelier-cave-light")
+        let layoutManager = NSLayoutManager()
+        textStorage.addLayoutManager(layoutManager)
+        
+        let textContainer = NSTextContainer(size: view.bounds.size)
+        layoutManager.addTextContainer(textContainer)
+        
+        textView = UITextView(frame: CGRect(x: 0, y: 80, width: UIScreen.main.bounds.width, height: 164), textContainer: textContainer)
+        textView.delegate = self
         textView.inputAccessoryView = toolBar
+        textView.autocorrectionType = UITextAutocorrectionType.no
+        textView.autocapitalizationType = UITextAutocapitalizationType.none
+        textView.backgroundColor = Theme.current.selectedRow
+        
+        view.addSubview(textView)
         
         
     }
+    
     
     
 }
