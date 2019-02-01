@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1408FCB62203DCE400177660 /* About.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1408FCB52203DCE400177660 /* About.storyboard */; };
+		1408FCB82203DD3800177660 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1408FCB72203DD3800177660 /* Settings.storyboard */; };
 		1458E44121EA2A6F005AE25F /* CustomLessonsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1458E44021EA2A6F005AE25F /* CustomLessonsCell.swift */; };
 		1458E44421EA47AE005AE25F /* ThemeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1458E44321EA47AE005AE25F /* ThemeProtocol.swift */; };
 		1458E44621EA4885005AE25F /* DarkTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1458E44521EA4885005AE25F /* DarkTheme.swift */; };
@@ -33,6 +35,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1408FCB52203DCE400177660 /* About.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = About.storyboard; sourceTree = "<group>"; };
+		1408FCB72203DD3800177660 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		1458E44021EA2A6F005AE25F /* CustomLessonsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLessonsCell.swift; sourceTree = "<group>"; };
 		1458E44321EA47AE005AE25F /* ThemeProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeProtocol.swift; sourceTree = "<group>"; };
 		1458E44521EA4885005AE25F /* DarkTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkTheme.swift; sourceTree = "<group>"; };
@@ -118,6 +122,8 @@
 		149B3F8A21BE7EC700539BC3 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1408FCB72203DD3800177660 /* Settings.storyboard */,
+				1408FCB52203DCE400177660 /* About.storyboard */,
 				149B3F7C21BE7DCA00539BC3 /* Main.storyboard */,
 				14A9203821FB91FC0045F8D2 /* Lesson.storyboard */,
 				14FE5FBC21E6A2C0007E877F /* Cell */,
@@ -257,9 +263,11 @@
 			files = (
 				14A9203B21FBFA530045F8D2 /* default.realm in Resources */,
 				149B3F8321BE7DCC00539BC3 /* LaunchScreen.storyboard in Resources */,
+				1408FCB62203DCE400177660 /* About.storyboard in Resources */,
 				147ED44A21F3ED9E00A87CB4 /* Assets.xcassets in Resources */,
 				149B3F7E21BE7DCA00539BC3 /* Main.storyboard in Resources */,
 				14A9203921FB91FD0045F8D2 /* Lesson.storyboard in Resources */,
+				1408FCB82203DD3800177660 /* Settings.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
