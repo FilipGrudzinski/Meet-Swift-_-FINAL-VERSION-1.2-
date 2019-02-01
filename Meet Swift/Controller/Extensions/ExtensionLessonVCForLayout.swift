@@ -76,16 +76,16 @@ extension LessonViewController {
             
             createToolBarAboveKeyboardAndTextView()
             
-            if resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].userAnswer == "" {
-                
-                textView.text = "enter your code here..."
-                
-            } else {
-                
-                textView.attributedText = highlightr!.highlight(resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].userAnswer!, as: "swift")
-                
-            }
+            if resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].userAnswer == nil || resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].userAnswer?.trimmingCharacters(in: .whitespacesAndNewlines) == "" {
             
+                textView.text = "enter your code here..."
+            
+            } else {
+            
+                textView.attributedText = highlightr!.highlight(resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].userAnswer!, as: "swift")
+            
+            }
+        
             
         } else {
             
@@ -114,21 +114,20 @@ extension LessonViewController {
     
     func textViewDidBeginEditing (_ textView: UITextView) {
         
-        if resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].userAnswer != "" || textView.text == "enter your code here..."  {
-            
+        if resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].userAnswer?.trimmingCharacters(in: .whitespacesAndNewlines) != "" && resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].userAnswer != nil  {
+
             textView.attributedText = highlightr!.highlight(resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].userAnswer!, as: "swift")
-            
-        } else if textView.textColor == Theme.current.buttonColor && textView.isFirstResponder {
+
+        } else if textView.isFirstResponder {
             
             textView.text = nil
-            textView.textColor = Theme.current.textColor
             
-        }
+       }
     }
     
     func textViewDidEndEditing (_ textView: UITextView) {
         
-        if textView.text.isEmpty || textView.text == "" {
+        if textView.text.isEmpty || textView.text.trimmingCharacters(in: .whitespacesAndNewlines) == "" {
             textView.textColor = Theme.current.buttonColor
             textView.text = "enter your code here..."
             
