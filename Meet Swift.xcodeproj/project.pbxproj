@@ -122,9 +122,9 @@
 		149B3F8A21BE7EC700539BC3 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				1408FCB72203DD3800177660 /* Settings.storyboard */,
-				1408FCB52203DCE400177660 /* About.storyboard */,
 				149B3F7C21BE7DCA00539BC3 /* Main.storyboard */,
+				1408FCB52203DCE400177660 /* About.storyboard */,
+				1408FCB72203DD3800177660 /* Settings.storyboard */,
 				14A9203821FB91FC0045F8D2 /* Lesson.storyboard */,
 				14FE5FBC21E6A2C0007E877F /* Cell */,
 				1458E44221EA4780005AE25F /* Theme */,
