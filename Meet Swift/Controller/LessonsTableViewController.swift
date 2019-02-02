@@ -305,7 +305,7 @@ class LessonsTableViewController: UITableViewController {
         navigationController?.navigationBar.barTintColor = Theme.current.navigationColor // color of navigationbar
         view.backgroundColor = Theme.current.viewControllerBackgroundColor
         navigationController?.navigationBar.isTranslucent = false
-        //navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.shadowImage = UIImage()
         
     }
     

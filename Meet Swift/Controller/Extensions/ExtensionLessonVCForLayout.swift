@@ -182,8 +182,9 @@ extension LessonViewController {
         toolBar?.setItems(buttonsArray, animated: true)
         toolBar?.tintColor = Theme.current.buttonColor
         toolBar?.barTintColor = Theme.current.navigationColor
-        toolBar?.isTranslucent = true // Maybe  I will off this
-        
+        toolBar?.isTranslucent = false // Maybe  I will off this
+        toolBar?.setShadowImage(UIImage(), forToolbarPosition: .bottom)
+
         view.addSubview(toolBar!)
         
 
