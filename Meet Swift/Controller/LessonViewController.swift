@@ -64,7 +64,7 @@ class LessonViewController: UIViewController, UITextViewDelegate, UIToolbarDeleg
         layoutLessonSetUp()
         applyLessonTheme()
         loadLessonStringValueToLessonLabels()
-     
+        
         highlightr?.setTheme(to: "atelier-cave-light")
         
         stuckTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(stuckTimerStage) , userInfo: nil, repeats: true)
@@ -163,20 +163,20 @@ class LessonViewController: UIViewController, UITextViewDelegate, UIToolbarDeleg
     
     @objc func checkButtonAction(sender: UIButton!) {
         //print("Button checkButtonAction")
-     
+        
         try! realm.write {
             resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].userAnswer = textView?.attributedText.string
-
+            
         }
-    
+        
         if resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].userAnswer == resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].lessonCorrectAnswer {
-
+            
             completionRealmSaveAndShowCorrectSubView()
-
+            
         } else  {
-
+            
             showIncorectSubView()
-          
+            
             
         }
         
@@ -197,7 +197,7 @@ class LessonViewController: UIViewController, UITextViewDelegate, UIToolbarDeleg
     
     // MARK: - Usable Functions
     
- 
+    
     
     private func loadItems() {
         
@@ -211,10 +211,8 @@ class LessonViewController: UIViewController, UITextViewDelegate, UIToolbarDeleg
         let highlightr = Highlightr()
         highlightr?.setTheme(to: "atelier-cave-light")
         
-        //        let lessonDescriptionCode = highlightr!.highlight(resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].lessonDescription, as: "swift")
-        let lessonDescriptionCode = highlightr!.highlight("let a: Int = 3", as: "swift")
-        //let lessonExampleCode = highlightr!.highlight(resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].lessonExample, as: "swift")
-        let lessonExampleCode = highlightr!.highlight("let a: Int = 3", as: "swift")
+        let lessonDescriptionCode = highlightr!.highlight(resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].lessonDescription, as: "swift")
+        let lessonExampleCode = highlightr!.highlight(resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].lessonExample, as: "swift")
         let lessonAnswerOneCode = highlightr!.highlight(resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].lessonAnswerOne, as: "swift")
         let lessonAnswerTwoCode = highlightr!.highlight(resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].lessonAnswerTwo, as: "swift")
         let lessonAnswerThreeCode = highlightr!.highlight(resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].lessonAnswerThree, as: "swift")

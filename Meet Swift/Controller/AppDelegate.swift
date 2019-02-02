@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         openRealm()
         
         
-        print(Realm.Configuration.defaultConfiguration.fileURL!)
+        //print(Realm.Configuration.defaultConfiguration.fileURL!)
             
         
         return true

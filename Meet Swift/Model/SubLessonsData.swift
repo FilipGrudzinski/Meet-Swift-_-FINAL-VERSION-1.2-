@@ -18,7 +18,6 @@ class SubLessonsData: Object {
     @objc dynamic var subLessonsTitleDescription: String = ""
     @objc dynamic var lessonDescription: String = ""
     @objc dynamic var lessonExample: String = ""
-    @objc dynamic var lessonTask: String = ""
     @objc dynamic var lessonHint: String = ""
     @objc dynamic var lessonAnswerOne: String = ""
     @objc dynamic var lessonAnswerTwo: String = ""
