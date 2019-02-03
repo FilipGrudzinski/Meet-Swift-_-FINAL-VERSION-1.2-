@@ -110,6 +110,8 @@ class LessonsTableViewController: UITableViewController {
             
         }
         
+       
+        
         if section >= 0 {
 
             headerCounterLabel.text = "\(sumOfDoneLessonsInSection)/\(sumOfLessonsInSection!)"
@@ -180,7 +182,6 @@ class LessonsTableViewController: UITableViewController {
         } else if subLessonsCounterForProgressBar == sumOfCompletedLessonInSubLessonsForCell {
             cell.progressBar.progress = 1
         } else {
-            
             cell.progressBar.progress = Float((Double(100/subLessonsCounterForProgressBar) * 0.01) * Double(sumOfCompletedLessonInSubLessonsForCell))
         }
         

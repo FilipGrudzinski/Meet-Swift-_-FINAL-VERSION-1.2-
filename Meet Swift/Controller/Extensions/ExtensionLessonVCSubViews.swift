@@ -13,8 +13,26 @@ import UIKit
 extension LessonViewController {
     
     
+  func showCorrectSubView() {
+        
+        correctSubView.alpha = 0
+        UIView.animate(withDuration: 0.6, animations: {
+            self.correctSubView.isHidden = false
+            self.correctSubViewLabel.text = "Correct Answer Go To Next Lesson"
+            self.hintSubView.isHidden = true
+            self.incorrectSubView.isHidden = true
+            self.correctSubView.alpha = 1
+        })
+        
+        stuckTimer.invalidate()
+        incorrectTimer.invalidate()
+        hintTimer.invalidate()
+        view.endEditing(true)
+        
+    }
     
-    @objc func showIncorectSubView() {
+    
+    func showIncorectSubView() {
         
         incorrectSubView.alpha = 0
         UIView.animate(withDuration: 0.6, animations: {

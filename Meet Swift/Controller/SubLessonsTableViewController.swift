@@ -48,7 +48,9 @@ class SubLessonsTableViewController: UITableViewController {
     
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return resultsSubLessons[indexesToSublessons[0]].lessons[indexesToSublessons[1]].subLessons.count
+        
+            return resultsSubLessons[indexesToSublessons[0]].lessons[indexesToSublessons[1]].subLessons.count
+   
     }
     
     
@@ -56,23 +58,25 @@ class SubLessonsTableViewController: UITableViewController {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "SubLessonsCell", for: indexPath) as! CustomSubLessonsCell
         
+        
         let cellResults = resultsSubLessons[indexesToSublessons[0]].lessons[indexesToSublessons[1]].subLessons[indexPath.row]
+                    
+            cell.backgroundColor = Theme.current.cellBackgroundColor
+            cell.subLessonsNumber.textColor = Theme.current.textColor
+            cell.subLessonsTitle.textColor = Theme.current.textColor
+            cell.subLessonsDescription.textColor = Theme.current.textColor
+            cell.tintColor = Theme.current.buttonColor
+            
+            let backgroundView = UIView()
+            backgroundView.backgroundColor = Theme.current.selectedRow
+            cell.selectedBackgroundView = backgroundView
+            
+            cell.subLessonsNumber.text = "\(indexPath.row + 1)."
+            cell.subLessonsTitle.text = cellResults.subLessonsTitle
+            cell.subLessonsDescription.text = cellResults.subLessonsTitleDescription
+            cell.accessoryType = cellResults.completion ? .checkmark : .none
         
-        cell.backgroundColor = Theme.current.cellBackgroundColor
-        cell.subLessonsNumber.textColor = Theme.current.textColor
-        cell.subLessonsTitle.textColor = Theme.current.textColor
-        cell.subLessonsDescription.textColor = Theme.current.textColor
-        cell.tintColor = Theme.current.buttonColor
-        
-        let backgroundView = UIView()
-        backgroundView.backgroundColor = Theme.current.selectedRow
-        cell.selectedBackgroundView = backgroundView
-        
-        cell.subLessonsNumber.text = "\(indexPath.row + 1)."
-        cell.subLessonsTitle.text = cellResults.subLessonsTitle
-        cell.subLessonsDescription.text = cellResults.subLessonsTitleDescription
-        cell.accessoryType = cellResults.completion ? .checkmark : .none
-        
+       
         return cell
         
     }
@@ -96,7 +100,7 @@ class SubLessonsTableViewController: UITableViewController {
             let lessonAVC = segue.destination as! LessonViewController
             for n in indexesToSublessons { lessonAVC.indexesLesson.append(indexesToSublessons[n]) }
             lessonAVC.indexesLesson.append(self.tableView!.indexPathForSelectedRow!.row)
-            print(lessonAVC.indexesLesson)
+            //print(lessonAVC.indexesLesson)
         }
     }
     

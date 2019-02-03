@@ -18,14 +18,17 @@ class LessonViewController: UIViewController, UITextViewDelegate, UIToolbarDeleg
     var resultsLesson: Results<LessonsData>!
     var indexesLesson:[Int] = []
     
+    var textView: UITextView?
+    var toolBar: UIToolbar?
+    
     var stuckTimer = Timer()
     var incorrectTimer = Timer()
     var hintTimer = Timer()
     
     var seconds: Int = 60
+    
     let highlightr = Highlightr()
-    var textView: UITextView?
-    var toolBar: UIToolbar?
+   
     
     // MARK: - IBOutlets
     
@@ -109,17 +112,14 @@ class LessonViewController: UIViewController, UITextViewDelegate, UIToolbarDeleg
             
             if indexesLesson[2] < resultsLesson[indexesLesson[1]].subLessons.count - 1  {
                 
-                indexesLesson[2] += 1
-                textView?.removeFromSuperview()
-                toolBar?.removeFromSuperview()
-                self.viewDidLoad()
+                toTheNextLesson()
                 
-            } else if indexesLesson[2] == resultsLesson[indexesLesson[1]].subLessons.count - 1 {
+            } else {
                 
-                navigationController?.popViewController(animated: true)
-                dismiss(animated: true, completion: nil)
+                backToSubLessonVC()
                 
             }
+            
         }
     }
     
@@ -147,8 +147,7 @@ class LessonViewController: UIViewController, UITextViewDelegate, UIToolbarDeleg
             
         } else {
             
-            navigationController?.popViewController(animated: true)
-            dismiss(animated: true, completion: nil)
+            backToSubLessonVC()
             
         }
         
@@ -171,7 +170,7 @@ class LessonViewController: UIViewController, UITextViewDelegate, UIToolbarDeleg
         
         if resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].userAnswer == resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].lessonCorrectAnswer {
             
-            completionRealmSaveAndShowCorrectSubView()
+            completionRealmSaveAndCheckIfAllLessonAreCompleted()
             
         } else  {
             
@@ -231,7 +230,8 @@ class LessonViewController: UIViewController, UITextViewDelegate, UIToolbarDeleg
         
         if buttonTitle == resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].lessonCorrectAnswer {
             
-            completionRealmSaveAndShowCorrectSubView()
+            completionRealmSaveAndCheckIfAllLessonAreCompleted()
+            
             
         } else {
             
@@ -241,26 +241,69 @@ class LessonViewController: UIViewController, UITextViewDelegate, UIToolbarDeleg
     }
     
     
-    private func completionRealmSaveAndShowCorrectSubView() {
+
+    
+    
+    private func completionRealmSaveAndCheckIfAllLessonAreCompleted() {
         
         try! realm.write {
             resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].completion = true
         }
         
-        correctSubView.alpha = 0
-        UIView.animate(withDuration: 0.6, animations: {
-            self.correctSubView.isHidden = false
-            self.correctSubViewLabel.text = "Correct Answer Go To Next Lesson"
-            self.hintSubView.isHidden = true
-            self.incorrectSubView.isHidden = true
-            self.correctSubView.alpha = 1
-        })
+        var toPopUpCounter = 0
+            
+            for lesson in 0..<resultsLesson[indexesLesson[1]].subLessons.count {
+                
+                if resultsLesson[indexesLesson[1]].subLessons[lesson].completion == true {
+                    
+                    toPopUpCounter += 1
+                    print(toPopUpCounter)
+                    
+                }
+                
+            }
+            
+            if toPopUpCounter == resultsLesson[indexesLesson[1]].subLessons.count {
+
+                popUp()
+
+            } else {
+
+                showCorrectSubView()
+
+            }
         
-        stuckTimer.invalidate()
-        incorrectTimer.invalidate()
-        hintTimer.invalidate()
-        view.endEditing(true)
+    }
+    
+    
+    
+    private func popUp() {
         
+        let alert = UIAlertController(title: "Awesome", message: "You completed \(resultsLesson[indexesLesson[1]].title) lessons", preferredStyle: .alert)
+        
+        let okayAction = UIAlertAction(title: "Okay", style: .cancel) {(UIAlertAction) in self.backToSubLessonVC()}
+        
+        alert.addAction(okayAction)
+        
+        
+        present(alert, animated: true, completion: nil)
+        
+    }
+    
+    private func backToSubLessonVC() {
+        
+        navigationController?.popViewController(animated: true)
+        dismiss(animated: true, completion: nil)
+        
+    }
+    
+    private func toTheNextLesson() {
+        
+            indexesLesson[2] += 1
+            textView?.removeFromSuperview()
+            toolBar?.removeFromSuperview()
+            self.viewDidLoad()
+            
     }
     
     
