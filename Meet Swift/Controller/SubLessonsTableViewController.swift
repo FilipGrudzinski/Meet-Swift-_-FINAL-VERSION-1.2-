@@ -18,6 +18,7 @@ class SubLessonsTableViewController: UITableViewController {
     lazy var realm = try! Realm()
     var resultsSubLessons: Results<CollectionOfLessons>!
     var indexesToSublessons = [Int]()
+    var counterSubLessons = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +29,8 @@ class SubLessonsTableViewController: UITableViewController {
         view.backgroundColor = Theme.current.viewControllerBackgroundColor
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: nil, action: nil)
         
+        counterSubLessons = resultsSubLessons[indexesToSublessons[0]].lessons[indexesToSublessons[1]].subLessons.count
+        
     }
     
     
@@ -36,11 +39,10 @@ class SubLessonsTableViewController: UITableViewController {
         setSubLessonsNavBar()
         tableView.reloadData()
         
-      
     }
     
     // MARK: - TableView Row settings
-  
+    
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
@@ -49,8 +51,11 @@ class SubLessonsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-            return resultsSubLessons[indexesToSublessons[0]].lessons[indexesToSublessons[1]].subLessons.count
-   
+        if counterSubLessons > 0 {
+            return counterSubLessons
+        }
+        return 1
+        
     }
     
     
@@ -58,25 +63,31 @@ class SubLessonsTableViewController: UITableViewController {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "SubLessonsCell", for: indexPath) as! CustomSubLessonsCell
         
+        cell.backgroundColor = Theme.current.cellBackgroundColor
+        cell.subLessonsNumber.textColor = Theme.current.textColor
+        cell.subLessonsTitle.textColor = Theme.current.textColor
+        cell.subLessonsDescription.textColor = Theme.current.textColor
+        cell.tintColor = Theme.current.buttonColor
         
-        let cellResults = resultsSubLessons[indexesToSublessons[0]].lessons[indexesToSublessons[1]].subLessons[indexPath.row]
-                    
-            cell.backgroundColor = Theme.current.cellBackgroundColor
-            cell.subLessonsNumber.textColor = Theme.current.textColor
-            cell.subLessonsTitle.textColor = Theme.current.textColor
-            cell.subLessonsDescription.textColor = Theme.current.textColor
-            cell.tintColor = Theme.current.buttonColor
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = Theme.current.selectedRow
+        cell.selectedBackgroundView = backgroundView
+        
+        if counterSubLessons > 0 {
             
-            let backgroundView = UIView()
-            backgroundView.backgroundColor = Theme.current.selectedRow
-            cell.selectedBackgroundView = backgroundView
+            let cellResults = resultsSubLessons[indexesToSublessons[0]].lessons[indexesToSublessons[1]].subLessons[indexPath.row]
             
             cell.subLessonsNumber.text = "\(indexPath.row + 1)."
             cell.subLessonsTitle.text = cellResults.subLessonsTitle
             cell.subLessonsDescription.text = cellResults.subLessonsTitleDescription
             cell.accessoryType = cellResults.completion ? .checkmark : .none
+            
+        } else {
+            
+            cell.subLessonsTitle.text = "Cooming Soon ... "
+            
+        }
         
-       
         return cell
         
     }
@@ -84,19 +95,28 @@ class SubLessonsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let type = resultsSubLessons[indexesToSublessons[0]].lessons[indexesToSublessons[1]].subLessons[indexPath.row].typeOfTask
-        
-        if type == "A" || type == "B" {
-            performSegue(withIdentifier: "goToLesson", sender: self)
-            self.dismiss(animated: true, completion: nil)
+        if counterSubLessons > 0 {
+            
+            let type = resultsSubLessons[indexesToSublessons[0]].lessons[indexesToSublessons[1]].subLessons[indexPath.row].typeOfTask
+            
+            if type == "A" || type == "B" {
+                performSegue(withIdentifier: "goToLesson", sender: self)
+                self.dismiss(animated: true, completion: nil)
+            }
+            
+        } else {
+            
+            self.tableView.deselectRow(at: indexPath, animated: true)
+            
         }
+        
     }
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-
+        
         if segue.identifier == "goToLesson" {
-
+            
             let lessonAVC = segue.destination as! LessonViewController
             for n in indexesToSublessons { lessonAVC.indexesLesson.append(indexesToSublessons[n]) }
             lessonAVC.indexesLesson.append(self.tableView!.indexPathForSelectedRow!.row)
@@ -133,7 +153,16 @@ extension SubLessonsTableViewController {
         let rightBtt = UIButton(type: .system)
         rightBtt.isUserInteractionEnabled = false
         rightBtt.tintColor = Theme.current.textColor
-        rightBtt.setTitle("\(sumOfDoneLessonsInSection)/\(reusableResults.subLessons.count)", for: .normal)
+        if counterSubLessons > 0 {
+            
+            rightBtt.setTitle("\(sumOfDoneLessonsInSection)/\(reusableResults.subLessons.count)", for: .normal)
+            
+        } else {
+            
+            rightBtt.setTitle("", for: .normal)
+            
+        }
+        
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: rightBtt)
         

@@ -14,7 +14,7 @@ var buyedContent = false
 
 
 class LessonsTableViewController: UITableViewController {
-
+    
     
     lazy var realm = try! Realm()
     var resultsOfCollectionOfLessons: Results<CollectionOfLessons>!
@@ -89,7 +89,7 @@ class LessonsTableViewController: UITableViewController {
             headerButton.setTitleColor(Theme.current.buttonColor, for: .normal)
             
         }
-
+        
         
         
         let sumOfLessonsInSection = resultsOfCollectionOfLessons?[section].lessons.count
@@ -110,23 +110,14 @@ class LessonsTableViewController: UITableViewController {
             
         }
         
-       
-        
-        if section >= 0 {
-
+        if section == 0 {
+            
             headerCounterLabel.text = "\(sumOfDoneLessonsInSection)/\(sumOfLessonsInSection!)"
-
+            
         } else {
-
-            if buyedContent {
-
-                headerCounterLabel.text = "\(sumOfDoneLessonsInSection)/\(sumOfLessonsInSection!)"
-
-            } else {
-
-                headerCounterLabel.isHidden = true
-
-            }
+            
+            headerCounterLabel.isHidden = true
+            
         }
         
         return view
@@ -142,7 +133,7 @@ class LessonsTableViewController: UITableViewController {
     
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
+        
         if !(resultsOfCollectionOfLessons?[section].isExpanded)! {
             return 0
         }
@@ -155,7 +146,6 @@ class LessonsTableViewController: UITableViewController {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "LessonsCell", for: indexPath) as! CustomLessonsCell
         let cellResults = resultsOfCollectionOfLessons[indexPath.section].lessons[indexPath.row]
-        //func showsCell() {
         
         var sumOfCompletedLessonInSubLessonsForCell = 0
         let subLessonsCounterForProgressBar = cellResults.subLessons.count
@@ -175,8 +165,6 @@ class LessonsTableViewController: UITableViewController {
         cell.progressBar.progressTintColor = Theme.current.progressTintColor
         cell.progressBar.trackTintColor = Theme.current.buttonColor
         
-       
-        
         if subLessonsCounterForProgressBar == 0 {
             cell.progressBar.progress = 0.0
         } else if subLessonsCounterForProgressBar == sumOfCompletedLessonInSubLessonsForCell {
@@ -185,35 +173,22 @@ class LessonsTableViewController: UITableViewController {
             cell.progressBar.progress = Float((Double(100/subLessonsCounterForProgressBar) * 0.01) * Double(sumOfCompletedLessonInSubLessonsForCell))
         }
         
+        if cellResults.subLessons.count > 0 {
+            
+            cell.lessonsNumber.text = "\(indexPath.row + 1)."
+            cell.lessonsTitle.text = cellResults.title
+            cell.progressLabel.text = "\(sumOfCompletedLessonInSubLessonsForCell)/\(subLessonsCounterForProgressBar)"
+            
+            
+        } else {
+            
+            cell.lessonsNumber.text = "\(indexPath.row + 1)."
+            cell.lessonsTitle.text = cellResults.title
+            cell.progressLabel.text = "soon"
+            //cell.progressBar.isHidden = true
+            
+        }
         
-        cell.lessonsNumber.text = "\(indexPath.row + 1)."
-        cell.lessonsTitle.text = cellResults.title
-        cell.progressLabel.text = "\(sumOfCompletedLessonInSubLessonsForCell)/\(subLessonsCounterForProgressBar)"
-        
-        //}
-        
-        
-        //        if indexPath.section <= 1 {
-        //
-        //            //showsCell()
-        //
-        //
-        //        } else {
-        //
-        //            if buyedContent {
-        //
-        //                //showsCell()
-        //
-        //
-        //            } else {
-        //                cell.backgroundColor = Theme.current.cellBackgroundColor
-        //                cell.lessonsTitle.textColor = Theme.current.textColor
-        //
-        //                cell.lessonsTitle.text = "Buy More Lessons"
-        //                cell.progressBar.isHidden = true
-        //
-        //            }
-        //        }
         
         return cell
     }
@@ -295,6 +270,7 @@ class LessonsTableViewController: UITableViewController {
         tableView.reloadData()
         
     }
+    
     
     
     // MARK: - Theme function
