@@ -62,8 +62,8 @@ class CustomSubLessonsCell: UITableViewCell {
         //h = horizontal - poziomy // v = vertical - pionowy
         
         contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-16-[subNum(30)]-5-[title]-40-|", options: [], metrics: nil, views: viewsDict))
-        contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-14-[title]-2-[description]", options: [], metrics: nil, views: viewsDict))
-        contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-14-[subNum]", options: [], metrics: nil, views: viewsDict))
+        contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-10-[title]-0-[description]", options: [], metrics: nil, views: viewsDict))
+        contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-10-[subNum]", options: [], metrics: nil, views: viewsDict))
         contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-51-[description]-40-|", options: [], metrics: nil, views: viewsDict))
  
         

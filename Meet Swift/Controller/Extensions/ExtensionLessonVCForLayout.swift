@@ -75,6 +75,8 @@ extension LessonViewController {
             lessonBAnswerA.isHidden = true
             lessonBAnswerB.isHidden = true
             lessonBAnswerC.isHidden = true
+            exampleLabel.sizeToFit()
+            //exampleLabel.adjustsFontForContentSizeCategory = true
             
             createToolBarAboveKeyboardAndTextView()
             

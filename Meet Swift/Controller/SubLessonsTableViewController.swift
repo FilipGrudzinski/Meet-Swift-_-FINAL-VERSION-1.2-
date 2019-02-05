@@ -118,9 +118,10 @@ class SubLessonsTableViewController: UITableViewController {
         if segue.identifier == "goToLesson" {
             
             let lessonAVC = segue.destination as! LessonViewController
-            for n in indexesToSublessons { lessonAVC.indexesLesson.append(indexesToSublessons[n]) }
+            
+            lessonAVC.indexesLesson = indexesToSublessons
             lessonAVC.indexesLesson.append(self.tableView!.indexPathForSelectedRow!.row)
-            //print(lessonAVC.indexesLesson)
+            print(lessonAVC.indexesLesson)
         }
     }
     
