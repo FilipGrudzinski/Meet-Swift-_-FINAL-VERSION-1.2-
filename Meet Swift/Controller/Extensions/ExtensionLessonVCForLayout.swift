@@ -63,7 +63,8 @@ extension LessonViewController {
         hintSubView.isHidden = true
         correctSubView.isHidden = true
         incorrectSubView.isHidden = true
-        
+        descriptionLabel.adjustsFontSizeToFitWidth = true
+        hintSubViewLabel.adjustsFontSizeToFitWidth = true
         
         if typeOfTaskLesson == "A" {
             
@@ -76,6 +77,7 @@ extension LessonViewController {
             lessonBAnswerA.isHidden = true
             lessonBAnswerB.isHidden = true
             lessonBAnswerC.isHidden = true
+            
             exampleLabel.sizeToFit()
             //exampleLabel.adjustsFontForContentSizeCategory = true
             
@@ -103,7 +105,9 @@ extension LessonViewController {
             lessonBAnswerA.isHidden = true
             lessonBAnswerB.isHidden = true
             lessonBAnswerC.isHidden = true
+            textView?.isHidden = true
             exampleLabel.sizeToFit()
+            
             
         } else {
             
