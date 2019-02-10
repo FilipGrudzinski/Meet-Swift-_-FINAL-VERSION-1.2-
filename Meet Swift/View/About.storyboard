@@ -70,14 +70,24 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bRJ-z6-xhy">
+                                <rect key="frame" x="16" y="249" width="343" height="30"/>
+                                <state key="normal" title="Swift Documentation"/>
+                                <connections>
+                                    <action selector="docButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CCj-sQ-zBP"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="bRJ-z6-xhy" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="0df-Wr-K02"/>
                             <constraint firstItem="8e9-lG-Gej" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="17" id="KPe-fp-FZ5"/>
                             <constraint firstItem="TGQ-Tx-s4Y" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="ORA-8t-WBr"/>
                             <constraint firstItem="TGQ-Tx-s4Y" firstAttribute="top" secondItem="8e9-lG-Gej" secondAttribute="bottom" constant="57.5" id="aV1-wg-Ue4"/>
+                            <constraint firstItem="bRJ-z6-xhy" firstAttribute="top" secondItem="TGQ-Tx-s4Y" secondAttribute="bottom" constant="16" id="eVp-Ee-MQW"/>
                             <constraint firstItem="8e9-lG-Gej" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="kJl-Dq-vaK"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="8e9-lG-Gej" secondAttribute="trailing" constant="16" id="oIO-dc-BVs"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="bRJ-z6-xhy" secondAttribute="trailing" constant="16" id="uZR-hJ-YT2"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -87,6 +97,7 @@
                         <outlet property="contactLabel" destination="MAq-aC-Ugg" id="U0j-Zx-DJG"/>
                         <outlet property="contaktLabelContent" destination="FDa-1i-N7Q" id="xzK-Z7-UFM"/>
                         <outlet property="descriptionLabel" destination="8e9-lG-Gej" id="ONp-tI-Hdq"/>
+                        <outlet property="docLabel" destination="bRJ-z6-xhy" id="AIH-rd-U8L"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
