@@ -190,12 +190,7 @@ class LessonViewController: UIViewController, UITextViewDelegate, UIToolbarDeleg
             
         } else if typeOfTaskLesson == "A1" {
             
-            try! realm.write {
-                resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].completion = true
-                resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].userAnswer = "true"
-                
-            }
-            toTheNextLesson()
+            completionRealmSaveAndCheckIfAllLessonAreCompleted()
             
         }
         
