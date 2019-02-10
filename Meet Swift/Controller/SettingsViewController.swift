@@ -21,6 +21,7 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var darkModeSwitchOutlet: UISwitch!
     @IBOutlet weak var resetAllProgressButtonLabel: UIButton!
     @IBOutlet weak var restoreInAppPurchaseButtonLabel: UIButton!
+  
     
     
     override func viewDidLoad() {
@@ -84,6 +85,9 @@ class SettingsViewController: UIViewController {
     }
 
     
+
+    
+    
     private func loadItems() {
         
         resultsOfCollectionOfLessons = realm.objects(CollectionOfLessons.self)
@@ -102,6 +106,7 @@ class SettingsViewController: UIViewController {
         darkModeLabel.textColor = Theme.current.textColor
         resetAllProgressButtonLabel.tintColor = Theme.current.buttonColor
         restoreInAppPurchaseButtonLabel.tintColor = Theme.current.buttonColor
+        
         
     }
     

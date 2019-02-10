@@ -19,6 +19,7 @@ class AboutViewViewController: UIViewController, MFMailComposeViewControllerDele
     @IBOutlet weak var autorLabel: UILabel!
     @IBOutlet weak var autorLabelContent: UILabel!
     @IBOutlet weak var contactLabel: UILabel!
+    @IBOutlet weak var docLabel: UIButton!
     
     
     override func viewDidLoad() {
@@ -30,6 +31,16 @@ class AboutViewViewController: UIViewController, MFMailComposeViewControllerDele
         applyTheme()
         // Do any additional setup after loading the view.
     }
+    
+    
+    @IBAction func docButton(_ sender: UIButton) {
+        
+        if let requestUrl = NSURL(string: "https://docs.swift.org/swift-book/LanguageGuide/TheBasics.html") {
+            UIApplication.shared.open(requestUrl as URL, options: [:], completionHandler: nil)
+        }
+        
+    }
+    
     
     @objc func tapFunction(sender:UITapGestureRecognizer) {
         
@@ -85,6 +96,7 @@ class AboutViewViewController: UIViewController, MFMailComposeViewControllerDele
         autorLabelContent.textColor = Theme.current.textColor
         contactLabel.textColor = Theme.current.textColor
         contaktLabelContent.textColor = Theme.current.buttonColor
+        docLabel.tintColor = Theme.current.buttonColor
         
     }
     
