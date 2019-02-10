@@ -26,9 +26,11 @@ class LessonViewController: UIViewController, UITextViewDelegate, UIToolbarDeleg
     var hintTimer = Timer()
     
     var seconds: Int = 60
+    var typeOfTaskLesson: String = ""
+    var lessonCorrectAnswer: String = ""
     
     let highlightr = Highlightr()
-   
+    
     
     // MARK: - IBOutlets
     
@@ -64,6 +66,8 @@ class LessonViewController: UIViewController, UITextViewDelegate, UIToolbarDeleg
         loadItems()
         setLessonNavBar()
         createToolBar()
+        typeOfTaskLesson = resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].typeOfTask
+        lessonCorrectAnswer = resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].lessonCorrectAnswer
         layoutLessonSetUp()
         applyLessonTheme()
         loadLessonStringValueToLessonLabels()
@@ -71,6 +75,7 @@ class LessonViewController: UIViewController, UITextViewDelegate, UIToolbarDeleg
         highlightr?.setTheme(to: "atelier-cave-light")
         
         stuckTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(stuckTimerStage) , userInfo: nil, repeats: true)
+        
         
     }
     
@@ -163,19 +168,43 @@ class LessonViewController: UIViewController, UITextViewDelegate, UIToolbarDeleg
     @objc func checkButtonAction(sender: UIButton!) {
         //print("Button checkButtonAction")
         
-        try! realm.write {
-            resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].userAnswer = textView?.attributedText.string
-            
-        }
         
-        if resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].userAnswer == resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].lessonCorrectAnswer {
+        if typeOfTaskLesson == "A" {
             
-            completionRealmSaveAndCheckIfAllLessonAreCompleted()
             
-        } else  {
+            try! realm.write {
+                resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].userAnswer = textView?.attributedText.string
+                
+            }
             
-            showIncorectSubView()
+            if resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].userAnswer == lessonCorrectAnswer {
+                
+                completionRealmSaveAndCheckIfAllLessonAreCompleted()
+                
+            } else  {
+                
+                showIncorectSubView()
+                
+                
+            }
             
+        } else if typeOfTaskLesson == "A1" {
+            
+            try! realm.write {
+                resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].userAnswer = "true"
+                
+            }
+            
+            if resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].userAnswer == lessonCorrectAnswer {
+                
+                completionRealmSaveAndCheckIfAllLessonAreCompleted()
+                
+            } else  {
+                
+                showIncorectSubView()
+                
+                
+            }
             
         }
         
@@ -206,21 +235,38 @@ class LessonViewController: UIViewController, UITextViewDelegate, UIToolbarDeleg
     
     
     private func loadLessonStringValueToLessonLabels() {
-        
-        let highlightr = Highlightr()
-        highlightr?.setTheme(to: "atelier-cave-light")
-        
-        let lessonDescriptionCode = highlightr!.highlight(resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].lessonDescription, as: "swift")
-        let lessonExampleCode = highlightr!.highlight(resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].lessonExample, as: "swift")
-        let lessonAnswerOneCode = highlightr!.highlight(resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].lessonAnswerOne, as: "swift")
-        let lessonAnswerTwoCode = highlightr!.highlight(resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].lessonAnswerTwo, as: "swift")
-        let lessonAnswerThreeCode = highlightr!.highlight(resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].lessonAnswerThree, as: "swift")
-        
-        descriptionLabel.attributedText = lessonDescriptionCode
-        exampleLabel.attributedText = lessonExampleCode
-        lessonBAnswerA.attributedText = lessonAnswerOneCode
-        lessonBAnswerB.attributedText = lessonAnswerTwoCode
-        lessonBAnswerC.attributedText = lessonAnswerThreeCode
+//        
+//        let highlightr = Highlightr()
+//        highlightr?.setTheme(to: "atelier-cave-light")
+//        
+        if typeOfTaskLesson == "A" || typeOfTaskLesson == "A1" {
+            
+            let lessonDescriptionCode = highlightr!.highlight(resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].lessonDescription, as: "swift")
+            
+            let lessonExampleForExampleLabel = resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].lessonExample
+            let lessonAnswerOneForExampleLabel = resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].lessonAnswerOne
+            let lessonAnswerTwoForExampleLabel = resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].lessonAnswerTwo
+            let lessonAnswerThreeForExampleLabel = resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].lessonAnswerThree
+            
+            let hugeExample = "\(lessonExampleForExampleLabel)\n +\(lessonAnswerOneForExampleLabel)\n +\(lessonAnswerTwoForExampleLabel)\n +\(lessonAnswerThreeForExampleLabel)"
+            let lessonExampleCode = highlightr!.highlight(hugeExample, as: "swift")
+            
+            descriptionLabel.attributedText = lessonDescriptionCode
+            exampleLabel.attributedText = lessonExampleCode
+            
+        }  else if typeOfTaskLesson == "B" {
+            
+            let lessonDescriptionCode = highlightr!.highlight(resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].lessonDescription, as: "swift")
+            let lessonAnswerOneCode = highlightr!.highlight(resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].lessonAnswerOne, as: "swift")
+            let lessonAnswerTwoCode = highlightr!.highlight(resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].lessonAnswerTwo, as: "swift")
+            let lessonAnswerThreeCode = highlightr!.highlight(resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].lessonAnswerThree, as: "swift")
+            
+            descriptionLabel.attributedText = lessonDescriptionCode
+            lessonBAnswerA.attributedText = lessonAnswerOneCode
+            lessonBAnswerB.attributedText = lessonAnswerTwoCode
+            lessonBAnswerC.attributedText = lessonAnswerThreeCode
+            
+        }
         
     }
     
@@ -228,7 +274,7 @@ class LessonViewController: UIViewController, UITextViewDelegate, UIToolbarDeleg
     private func checkBTypeLessonAnswer(_ buttonTitle: String) {
         
         
-        if buttonTitle == resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].lessonCorrectAnswer {
+        if buttonTitle == lessonCorrectAnswer {
             
             completionRealmSaveAndCheckIfAllLessonAreCompleted()
             
@@ -241,7 +287,7 @@ class LessonViewController: UIViewController, UITextViewDelegate, UIToolbarDeleg
     }
     
     
-
+    
     
     
     private func completionRealmSaveAndCheckIfAllLessonAreCompleted() {
@@ -251,27 +297,27 @@ class LessonViewController: UIViewController, UITextViewDelegate, UIToolbarDeleg
         }
         
         var toPopUpCounter = 0
+        
+        for lesson in 0..<resultsLesson[indexesLesson[1]].subLessons.count {
             
-            for lesson in 0..<resultsLesson[indexesLesson[1]].subLessons.count {
+            if resultsLesson[indexesLesson[1]].subLessons[lesson].completion == true {
                 
-                if resultsLesson[indexesLesson[1]].subLessons[lesson].completion == true {
-                    
-                    toPopUpCounter += 1
-                    print(toPopUpCounter)
-                    
-                }
+                toPopUpCounter += 1
+                print(toPopUpCounter)
                 
             }
             
-            if toPopUpCounter == resultsLesson[indexesLesson[1]].subLessons.count {
-
-                popUp()
-
-            } else {
-
-                showCorrectSubView()
-
-            }
+        }
+        
+        if toPopUpCounter == resultsLesson[indexesLesson[1]].subLessons.count {
+            
+            popUp()
+            
+        } else {
+            
+            showCorrectSubView()
+            
+        }
         
     }
     
@@ -299,11 +345,11 @@ class LessonViewController: UIViewController, UITextViewDelegate, UIToolbarDeleg
     
     private func toTheNextLesson() {
         
-            indexesLesson[2] += 1
-            textView?.removeFromSuperview()
-            toolBar?.removeFromSuperview()
-            self.viewDidLoad()
-            
+        indexesLesson[2] += 1
+        textView?.removeFromSuperview()
+        toolBar?.removeFromSuperview()
+        self.viewDidLoad()
+        
     }
     
     

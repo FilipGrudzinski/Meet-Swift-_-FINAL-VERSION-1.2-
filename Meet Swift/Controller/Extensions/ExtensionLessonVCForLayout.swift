@@ -64,7 +64,8 @@ extension LessonViewController {
         correctSubView.isHidden = true
         incorrectSubView.isHidden = true
         
-        if resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].typeOfTask == "A" {
+        
+        if typeOfTaskLesson == "A" {
             
             buttonALabel.isHidden = true
             buttonBLabel.isHidden = true
@@ -91,8 +92,18 @@ extension LessonViewController {
             
             }
         
+        } else if typeOfTaskLesson == "A1" {
             
-            
+            buttonALabel.isHidden = true
+            buttonBLabel.isHidden = true
+            buttonCLabel.isHidden = true
+            lessonBPointA.isHidden = true
+            lessonBPointB.isHidden = true
+            lessonBPointC.isHidden = true
+            lessonBAnswerA.isHidden = true
+            lessonBAnswerB.isHidden = true
+            lessonBAnswerC.isHidden = true
+            exampleLabel.sizeToFit()
             
         } else {
             
@@ -170,7 +181,7 @@ extension LessonViewController {
             
         )
         
-        if resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].typeOfTask == "A" {
+        if typeOfTaskLesson == "A" {
             
             buttonsArray.append( UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil) )
             

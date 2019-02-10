@@ -99,7 +99,7 @@ class SubLessonsTableViewController: UITableViewController {
             
             let type = resultsSubLessons[indexesToSublessons[0]].lessons[indexesToSublessons[1]].subLessons[indexPath.row].typeOfTask
             
-            if type == "A" || type == "B" {
+            if type == "A" || type == "A1" || type == "B" {
                 performSegue(withIdentifier: "goToLesson", sender: self)
                 self.dismiss(animated: true, completion: nil)
             }
