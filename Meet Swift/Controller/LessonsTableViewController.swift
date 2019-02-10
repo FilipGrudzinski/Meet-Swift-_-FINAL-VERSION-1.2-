@@ -84,12 +84,12 @@ class LessonsTableViewController: UITableViewController {
             
             headerButton.setTitleColor(Theme.current.pressedSectionButton, for: .normal)
             
+            
         } else {
             
             headerButton.setTitleColor(Theme.current.buttonColor, for: .normal)
             
         }
-        
         
         
         let sumOfLessonsInSection = resultsOfCollectionOfLessons?[section].lessons.count
@@ -116,7 +116,8 @@ class LessonsTableViewController: UITableViewController {
             
         } else {
             
-            headerCounterLabel.isHidden = true
+            headerCounterLabel.text = "soon"
+            //headerCounterLabel.isHidden = true
             
         }
         
@@ -245,6 +246,8 @@ class LessonsTableViewController: UITableViewController {
             headerButton.setTitleColor(Theme.current.pressedSectionButton, for: .normal)
             
         }
+        
+        
         
         if section == 0 {
             

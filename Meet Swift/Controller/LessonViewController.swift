@@ -65,14 +65,14 @@ class LessonViewController: UIViewController, UITextViewDelegate, UIToolbarDeleg
         
         loadItems()
         setLessonNavBar()
-        createToolBar()
         typeOfTaskLesson = resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].typeOfTask
+        createToolBar()
         lessonCorrectAnswer = resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].lessonCorrectAnswer
         layoutLessonSetUp()
         applyLessonTheme()
         loadLessonStringValueToLessonLabels()
         
-        highlightr?.setTheme(to: "atelier-cave-light")
+        
         
         stuckTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(stuckTimerStage) , userInfo: nil, repeats: true)
         
@@ -197,7 +197,7 @@ class LessonViewController: UIViewController, UITextViewDelegate, UIToolbarDeleg
             
             if resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].userAnswer == lessonCorrectAnswer {
                 
-                completionRealmSaveAndCheckIfAllLessonAreCompleted()
+                toTheNextLesson()
                 
             } else  {
                 
@@ -235,20 +235,22 @@ class LessonViewController: UIViewController, UITextViewDelegate, UIToolbarDeleg
     
     
     private func loadLessonStringValueToLessonLabels() {
-//        
-//        let highlightr = Highlightr()
-//        highlightr?.setTheme(to: "atelier-cave-light")
-//        
+        
+        highlightr?.setTheme(to: "atelier-cave-light")
+        
         if typeOfTaskLesson == "A" || typeOfTaskLesson == "A1" {
             
             let lessonDescriptionCode = highlightr!.highlight(resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].lessonDescription, as: "swift")
             
-            let lessonExampleForExampleLabel = resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].lessonExample
-            let lessonAnswerOneForExampleLabel = resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].lessonAnswerOne
-            let lessonAnswerTwoForExampleLabel = resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].lessonAnswerTwo
-            let lessonAnswerThreeForExampleLabel = resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].lessonAnswerThree
+            let lessonExampleLineOneForExampleLabel = resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].lessonExampleLineOne
+            let lessonExampleLineTwoForExampleLabel = resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].lessonExampleLineTwo
+            let lessonExampleLineThreeForExampleLabel = resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].lessonExampleLineThree
+            let lessonExampleLineFourForExampleLabel = resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].lessonExampleLineFour
+            let lessonExampleLineFiveForExampleLabel = resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].lessonExampleLineFive
+            let lessonExampleLineSixForExampleLabel = resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].lessonExampleLineSix
+            let lessonExampleLineSevenForExampleLabel = resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].lessonExampleLineSeven
             
-            let hugeExample = "\(lessonExampleForExampleLabel)\n +\(lessonAnswerOneForExampleLabel)\n +\(lessonAnswerTwoForExampleLabel)\n +\(lessonAnswerThreeForExampleLabel)"
+            let hugeExample = "\(lessonExampleLineOneForExampleLabel)\n\(lessonExampleLineTwoForExampleLabel)\n\(lessonExampleLineThreeForExampleLabel)\n\(lessonExampleLineFourForExampleLabel)\n\(lessonExampleLineFiveForExampleLabel)\n\(lessonExampleLineSixForExampleLabel)\n\(lessonExampleLineSevenForExampleLabel)"
             let lessonExampleCode = highlightr!.highlight(hugeExample, as: "swift")
             
             descriptionLabel.attributedText = lessonDescriptionCode
@@ -257,14 +259,14 @@ class LessonViewController: UIViewController, UITextViewDelegate, UIToolbarDeleg
         }  else if typeOfTaskLesson == "B" {
             
             let lessonDescriptionCode = highlightr!.highlight(resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].lessonDescription, as: "swift")
-            let lessonAnswerOneCode = highlightr!.highlight(resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].lessonAnswerOne, as: "swift")
-            let lessonAnswerTwoCode = highlightr!.highlight(resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].lessonAnswerTwo, as: "swift")
-            let lessonAnswerThreeCode = highlightr!.highlight(resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].lessonAnswerThree, as: "swift")
+            let lessonExampleLineOneForExampleLabelCode = highlightr!.highlight(resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].lessonExampleLineOne, as: "swift")
+            let lessonExampleLineTwoForExampleLabelCode = highlightr!.highlight(resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].lessonExampleLineTwo, as: "swift")
+            let lessonExampleLineThreeForExampleLabelCode = highlightr!.highlight(resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].lessonExampleLineThree, as: "swift")
             
             descriptionLabel.attributedText = lessonDescriptionCode
-            lessonBAnswerA.attributedText = lessonAnswerOneCode
-            lessonBAnswerB.attributedText = lessonAnswerTwoCode
-            lessonBAnswerC.attributedText = lessonAnswerThreeCode
+            lessonBAnswerA.attributedText = lessonExampleLineOneForExampleLabelCode
+            lessonBAnswerB.attributedText = lessonExampleLineTwoForExampleLabelCode
+            lessonBAnswerC.attributedText = lessonExampleLineThreeForExampleLabelCode
             
         }
         

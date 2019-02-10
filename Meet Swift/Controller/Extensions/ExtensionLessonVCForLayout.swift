@@ -65,6 +65,7 @@ extension LessonViewController {
         incorrectSubView.isHidden = true
         descriptionLabel.adjustsFontSizeToFitWidth = true
         hintSubViewLabel.adjustsFontSizeToFitWidth = true
+        exampleLabel.sizeToFit()
         
         if typeOfTaskLesson == "A" {
             
@@ -78,7 +79,6 @@ extension LessonViewController {
             lessonBAnswerB.isHidden = true
             lessonBAnswerC.isHidden = true
             
-            exampleLabel.sizeToFit()
             //exampleLabel.adjustsFontForContentSizeCategory = true
             
             createToolBarAboveKeyboardAndTextView()
@@ -106,12 +106,8 @@ extension LessonViewController {
             lessonBAnswerB.isHidden = true
             lessonBAnswerC.isHidden = true
             textView?.isHidden = true
-            exampleLabel.sizeToFit()
-            
             
         } else {
-            
-            //textView.removeFromSuperview()
             
             buttonALabel.isHidden = false
             buttonBLabel.isHidden = false
@@ -138,8 +134,6 @@ extension LessonViewController {
     
     func textViewDidBeginEditing (_ textView: UITextView) {
         
-        
-        
         if resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].userAnswer?.trimmingCharacters(in: .whitespacesAndNewlines) != "" && resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].userAnswer != nil  {
 
             textView.attributedText = highlightr!.highlight(resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].userAnswer!, as: "swift")
@@ -151,6 +145,7 @@ extension LessonViewController {
        }
     }
     
+    
     func textViewDidEndEditing (_ textView: UITextView) {
         
         if textView.text.isEmpty || textView.text.trimmingCharacters(in: .whitespacesAndNewlines) == "" {
@@ -158,8 +153,6 @@ extension LessonViewController {
             textView.text = "enter your code here..."
             
         }
-        
-        
         
     }
     
@@ -185,7 +178,7 @@ extension LessonViewController {
             
         )
         
-        if typeOfTaskLesson == "A" {
+        if typeOfTaskLesson == "A" || typeOfTaskLesson == "A1"  {
             
             buttonsArray.append( UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil) )
             
@@ -193,7 +186,7 @@ extension LessonViewController {
             buttonsArray.append(
                 UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.play, target: self, action: #selector(checkButtonAction))
             )
-        }
+       }
         
         toolBar?.delegate = self
         toolBar?.setItems(buttonsArray, animated: true)

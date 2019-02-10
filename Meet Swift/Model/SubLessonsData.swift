@@ -17,11 +17,14 @@ class SubLessonsData: Object {
     @objc dynamic var subLessonsTitle: String = ""
     @objc dynamic var subLessonsTitleDescription: String = ""
     @objc dynamic var lessonDescription: String = ""
-    @objc dynamic var lessonExample: String = ""
     @objc dynamic var lessonHint: String = ""
-    @objc dynamic var lessonAnswerOne: String = ""
-    @objc dynamic var lessonAnswerTwo: String = ""
-    @objc dynamic var lessonAnswerThree: String = ""
+    @objc dynamic var lessonExampleLineOne: String = ""
+    @objc dynamic var lessonExampleLineTwo: String = ""
+    @objc dynamic var lessonExampleLineThree: String = ""
+    @objc dynamic var lessonExampleLineFour: String = ""
+    @objc dynamic var lessonExampleLineFive: String = ""
+    @objc dynamic var lessonExampleLineSix: String = ""
+    @objc dynamic var lessonExampleLineSeven: String = ""
     @objc dynamic var lessonCorrectAnswer: String = ""
     @objc dynamic var userAnswer: String?
    

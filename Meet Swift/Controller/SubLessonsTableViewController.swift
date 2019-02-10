@@ -96,7 +96,7 @@ class SubLessonsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if counterSubLessons > 0 {
-            
+            print(resultsSubLessons[indexesToSublessons[0]].lessons[indexesToSublessons[1]].subLessons[indexPath.row].typeOfTask)
             let type = resultsSubLessons[indexesToSublessons[0]].lessons[indexesToSublessons[1]].subLessons[indexPath.row].typeOfTask
             
             if type == "A" || type == "A1" || type == "B" {
@@ -115,13 +115,14 @@ class SubLessonsTableViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
+        
         if segue.identifier == "goToLesson" {
             
             let lessonAVC = segue.destination as! LessonViewController
             
             lessonAVC.indexesLesson = indexesToSublessons
             lessonAVC.indexesLesson.append(self.tableView!.indexPathForSelectedRow!.row)
-            print(lessonAVC.indexesLesson)
+          
         }
     }
     
