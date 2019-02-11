@@ -65,6 +65,7 @@ class LessonViewController: UIViewController, UITextViewDelegate, UIToolbarDeleg
         
         loadItems()
         setLessonNavBar()
+        
         typeOfTaskLesson = resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].typeOfTask
         createToolBar()
         lessonCorrectAnswer = resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].lessonCorrectAnswer
@@ -143,9 +144,6 @@ class LessonViewController: UIViewController, UITextViewDelegate, UIToolbarDeleg
             
             indexesLesson[2] -= 1
             
-            if resultsLesson[indexesLesson[1]].subLessons[indexesLesson[2]].typeOfTask == "A" {
-                
-            }
             textView?.removeFromSuperview()
             toolBar?.removeFromSuperview()
             self.viewDidLoad()
