@@ -25,7 +25,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="23" translatesAutoresizingMaskIntoConstraints="NO" id="I1B-4P-bHA">
-                                <rect key="frame" x="111.5" y="242.5" width="152" height="182.5"/>
+                                <rect key="frame" x="111.5" y="314" width="152" height="39.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Meet Swift" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yvg-E3-oOJ">
                                         <rect key="frame" x="0.0" y="0.0" width="152" height="39.5"/>
@@ -33,13 +33,6 @@
                                         <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launchLogo" translatesAutoresizingMaskIntoConstraints="NO" id="rmE-3N-3OI">
-                                        <rect key="frame" x="16" y="62.5" width="120" height="120"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="120" id="Uhr-NZ-rPm"/>
-                                            <constraint firstAttribute="height" constant="120" id="oWJ-63-sNQ"/>
-                                        </constraints>
-                                    </imageView>
                                 </subviews>
                             </stackView>
                         </subviews>
@@ -59,7 +52,4 @@
             <point key="canvasLocation" x="52" y="374.66266866566718"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="launchLogo" width="109.19999694824219" height="105.12000274658203"/>
-    </resources>
 </document>
