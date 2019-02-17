@@ -62,7 +62,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         let defaultRealmPath = Realm.Configuration.defaultConfiguration.fileURL!
         let bundleRealmPath = Bundle.main.url(forResource: "default", withExtension: "realm")
-
+        
         if !FileManager.default.fileExists(atPath: defaultRealmPath.absoluteString) {
             do {
                 try FileManager.default.copyItem(at: bundleRealmPath!, to: defaultRealmPath)
@@ -71,6 +71,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
 
+        
     }
 
     

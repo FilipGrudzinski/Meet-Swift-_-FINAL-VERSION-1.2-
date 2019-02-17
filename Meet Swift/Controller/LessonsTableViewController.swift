@@ -24,6 +24,10 @@ class LessonsTableViewController: UITableViewController {
         super.viewDidLoad()
         
         loadItems()
+        
+        try! realm.write {
+            resultsOfCollectionOfLessons[0].lessons[0].subLessons[5].lessonDescription = "write variable \"firstInteger\" with 101 value"
+        }
         //print(Realm.Configuration.defaultConfiguration.fileURL!)
     }
     

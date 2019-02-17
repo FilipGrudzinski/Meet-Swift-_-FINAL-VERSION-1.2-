@@ -268,6 +268,7 @@ extension LessonViewController {
         textView?.delegate = self
         textView?.inputAccessoryView = keyboardToolBar
         textView?.autocorrectionType = UITextAutocorrectionType.no
+        textView?.keyboardType = .asciiCapable
         textView?.autocapitalizationType = UITextAutocapitalizationType.none
         textView?.backgroundColor = Theme.current.selectedRow
         
